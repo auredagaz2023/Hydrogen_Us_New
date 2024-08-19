@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="50px" height="50px" viewBox="-2.5 -2 50 50" enableBackground="new -2.5 -2 50 50" xml:space="preserve">
+<title>Group 3</title>
+<g id="Page-1">
+	<g id="CONTATTI" transform="translate(-845.000000, -1158.000000)">
+		<g id="Group-9" transform="translate(723.666667, 1100.392588)">
+			<g id="Group-3" transform="translate(121.337913, 57.779574)">
+				<g id="Clip-2">
+				</g>
+				<defs>
+					<filter id="Adobe_OpacityMaskFilter" filterUnits="userSpaceOnUse" x="-0.025" y="0.283" width="45.199" height="46.398">
+						<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+					</filter>
+				</defs>
+				<mask maskUnits="userSpaceOnUse" x="-0.025" y="0.283" width="45.199" height="46.398" id="mask-2">
+					<g filter="url(#Adobe_OpacityMaskFilter)">
+						<polygon id="path-1" fill="#FFFFFF" points="-0.024,0.284 45.173,0.284 45.173,46.681 -0.024,46.681 						"/>
+					</g>
+				</mask>
+				<path id="Fill-1" mask="url(#mask-2)" fill="#174860" d="M36.011,24.105c0.676,0,1.223,0.547,1.223,1.221
+					c0,0.676-0.547,1.222-1.223,1.222H9.137c-0.675,0-1.221-0.547-1.221-1.222s0.547-1.221,1.221-1.221H36.011z M36.011,16.165
+					c0.676,0,1.223,0.547,1.223,1.221c0,0.675-0.547,1.222-1.223,1.222H9.137c-0.675,0-1.221-0.547-1.221-1.222
+					s0.547-1.221,1.221-1.221H36.011z M36.011,8.224c0.676,0,1.223,0.547,1.223,1.221c0,0.675-0.547,1.222-1.223,1.222H9.137
+					c-0.675,0-1.221-0.547-1.221-1.222s0.547-1.221,1.221-1.221H36.011z M40.287,2.727H4.862c-1.375,0-2.443,1.068-2.443,2.443
+					v24.432c0,1.374,1.068,2.442,2.443,2.442h18.933v0.002c0.321-0.003,0.629,0.119,0.859,0.342l9.83,9.793l-0.916-8.801
+					c-0.033-0.343,0.082-0.683,0.313-0.938c0.233-0.256,0.563-0.398,0.908-0.397h5.497c1.374,0,2.443-1.069,2.443-2.443V5.171
+					C42.731,3.796,41.661,2.727,40.287,2.727L40.287,2.727z M40.287,0.283c2.686,0,4.886,2.201,4.886,4.887v24.432
+					c0,2.686-2.2,4.887-4.886,4.887h-4.143l1.107,10.86l0,0c0.046,0.507-0.229,0.99-0.688,1.211
+					c-0.458,0.221-1.006,0.135-1.374-0.218l-11.89-11.854H4.863c-2.686,0-4.887-2.201-4.887-4.886V5.17
+					c0-2.686,2.201-4.887,4.887-4.887H40.287L40.287,0.283z"/>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>
