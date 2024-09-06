@@ -26,7 +26,7 @@ import {
   Collection,
 } from '@shopify/hydrogen/storefront-api-types';
 
-import {ContentfulParagraph} from '~/routes/($lang)/types';
+import {ContentfulParagraph} from '~/routes/types';
 
 import ProductCardContent from './productCardContent';
 import CollectionCardContent from './collectionCardContent';
@@ -75,10 +75,10 @@ import {useIsHydrated} from '~/hooks/useIsHydrated';
 import {useCartFetchers} from '~/hooks/useCartFetchers';
 import type {LayoutData} from '../root';
 import {MobileNav} from './MobileNav';
-import {ContentfulHomePromotion} from '~/routes/($lang)/types';
+import {ContentfulHomePromotion} from '~/routes/types';
 import {DropdownMenu} from './DropdownMenu';
 import {RxCross2} from 'react-icons/rx';
-import {slugify} from '~/routes/($lang)/news';
+import {slugify} from '~/routes/news.index';
 
 const EMAILJS_SERVICE_ID = 'orders-mx-mail';
 const EMAILJS_SUBSCRIPTION_TEMPLATE_ID = 'mx-usa-form-subscription';

@@ -1,4 +1,4 @@
-import { Asset, ContentItem, ContentStoreCategory } from "~/routes/($lang)/types";
+import { Asset, ContentItem, ContentStoreCategory } from "~/routes/types";
 
 type TProps = {
     item: ContentItem;

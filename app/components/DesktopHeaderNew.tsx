@@ -24,10 +24,10 @@ import {
 import {useEffect, useState} from 'react';
 import Logo_Img from '../assets/dark_logo.png';
 import {MobileNav} from './MobileNav';
-import {ContentfulHomePromotion} from '~/routes/($lang)/types';
+import {ContentfulHomePromotion} from '~/routes/types';
 import {DropdownMenu} from './DropdownMenu';
 import {RxCross2} from 'react-icons/rx';
-import {slugify} from '~/routes/($lang)/news';
+import {slugify} from '~/routes/news.index';
 import {topMenuList, mainMenuList} from './Layout';
 
 export function DesktopHeaderNew({openCart}: {openCart: () => void}) {

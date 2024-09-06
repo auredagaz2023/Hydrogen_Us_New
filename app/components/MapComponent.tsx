@@ -1,6 +1,6 @@
 import GoogleMapReact from "google-map-react";
 import { FaClock, FaEnvelope, FaMap, FaMapMarkerAlt, FaPhone, FaStore, FaTimes } from "react-icons/fa";
-import { ContentItem, ContentStoreCategory } from "~/routes/($lang)/types";
+import { ContentItem, ContentStoreCategory } from "~/routes/types";
 
 const API_KEY = "AIzaSyC8ZQTL2qrSTWiK6gnZ5uYotq5LdfsGJPw";
 

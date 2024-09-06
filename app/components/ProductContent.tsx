@@ -15,9 +15,9 @@ import {
 } from '~/lib/type';
 import {Tab} from '@headlessui/react';
 import {useEffect, useState} from 'react';
-import {ContentfulDocument} from '~/routes/($lang)/types';
-import {ContentfulParagraph} from '~/routes/($lang)/types';
-import {ContentfulEmbeddedAsset} from '~/routes/($lang)/types';
+import {ContentfulDocument} from '~/routes/types';
+import {ContentfulParagraph} from '~/routes/types';
+import {ContentfulEmbeddedAsset} from '~/routes/types';
 import CollectionImg from '../assets/icons/collection.png';
 import CertificationImg from '../assets/icons/certifications.png';
 import HeightImg from '../assets/icons/height.png';

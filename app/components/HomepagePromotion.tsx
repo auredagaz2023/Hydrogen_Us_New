@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {ContentfulHomePromotion} from '~/routes/($lang)/types';
+import {ContentfulHomePromotion} from '~/routes/types';
 import promoSvg from '~/assets/homepage-promo.svg';
 import {Link} from './Link';
 
