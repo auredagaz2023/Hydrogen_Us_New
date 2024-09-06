@@ -24,7 +24,7 @@ import {Layout} from '~/components';
 import {GenericError} from './components/GenericError';
 import {NotFound} from './components/NotFound';
 
-import styles from './styles/app.css';
+import styles from '../app/styles/app.css';
 import customSliderStyles from 'public/styles/slick-custom.css';
 import customStyles from 'public/styles/custom-styles.css';
 import favicon from '../public/favicon.svg';
