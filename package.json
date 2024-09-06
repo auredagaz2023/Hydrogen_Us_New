@@ -19,7 +19,7 @@
     "@headlessui/react": "^1.7.2",
     "@headlessui/tailwindcss": "^0.2.0",
     "@remix-run/node": "^2.8.0",
-    "@remix-run/react": "2.8.0",
+    "@remix-run/react": "^2.8.0",
     "@shopify/cli": "^3.59.2",
     "@shopify/cli-hydrogen": "^8.0.4",
     "@shopify/hydrogen": "^2024.4.2",
