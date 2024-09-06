@@ -20,8 +20,9 @@ import {
 } from '@remix-run/react';
 import {
   ShopifySalesChannel,
-  Seo,
+  // Seo,
   type SeoHandleFunction,
+  getShopAnalytics,
 } from '@shopify/hydrogen';
 import {Layout} from '~/components';
 import {GenericError} from './components/GenericError';
