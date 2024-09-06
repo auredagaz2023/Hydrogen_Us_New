@@ -1,33 +1,33 @@
 import { useEffect, useRef, useState } from 'react'
 
-import desktopHeaderVideo from '../../../assets/Landing-Memorial/Header/header-desktop.mp4'
-import mobileHeaderVideo from '../../../assets/Landing-Memorial/Header/header-mobile.mp4'
-import desktopCarousel_1 from '../../../assets/Landing-Memorial/Desktop/magnistretch-01.jpg'
-import desktopCarousel_2 from '../../../assets/Landing-Memorial/Desktop/magnistretch-02.jpg'
-import desktopCarousel_3 from '../../../assets/Landing-Memorial/Desktop/magnistretch-03.jpg'
-import desktopCarousel_4 from '../../../assets/Landing-Memorial/Desktop/magnistretch-04.jpg'
-import desktopCarousel_5 from '../../../assets/Landing-Memorial/Desktop/magnistretch-05.jpg'
-import mobileCarousel_1 from  '../../../assets/Landing-Memorial/Mobile/magnistretch-01.jpg'
-import mobileCarousel_2 from '../../../assets/Landing-Memorial/Mobile/magnistretch-02.jpg'
-import mobileCarousel_3 from '../../../assets/Landing-Memorial/Mobile/magnistretch-03.jpg'
-import mobileCarousel_4 from '../../../assets/Landing-Memorial/Mobile/magnistretch-04.jpg'
-import mobileCarousel_5 from '../../../assets/Landing-Memorial/Mobile/magnistretch-05.jpg'
-import universidadIcon from '../../../assets/universidad.svg'
-import outlastIcon from '../../../assets/outlast.svg'
-import endosedbyIcon from '../../../assets/endosedby.svg'
-import patentedIcon from '../../../assets/patented.svg';
-import spaceIcon from '../../../assets/space.svg'
+import desktopHeaderVideo from '~/assets/Landing-Memorial/Header/header-desktop.mp4'
+import mobileHeaderVideo from '~/assets/Landing-Memorial/Header/header-mobile.mp4'
+import desktopCarousel_1 from '~/assets/Landing-Memorial/Desktop/magnistretch-01.jpg'
+import desktopCarousel_2 from '~/assets/Landing-Memorial/Desktop/magnistretch-02.jpg'
+import desktopCarousel_3 from '~/assets/Landing-Memorial/Desktop/magnistretch-03.jpg'
+import desktopCarousel_4 from '~/assets/Landing-Memorial/Desktop/magnistretch-04.jpg'
+import desktopCarousel_5 from '~/assets/Landing-Memorial/Desktop/magnistretch-05.jpg'
+import mobileCarousel_1 from  '~/assets/Landing-Memorial/Mobile/magnistretch-01.jpg'
+import mobileCarousel_2 from '~/assets/Landing-Memorial/Mobile/magnistretch-02.jpg'
+import mobileCarousel_3 from '~/assets/Landing-Memorial/Mobile/magnistretch-03.jpg'
+import mobileCarousel_4 from '~/assets/Landing-Memorial/Mobile/magnistretch-04.jpg'
+import mobileCarousel_5 from '~/assets/Landing-Memorial/Mobile/magnistretch-05.jpg'
+import universidadIcon from '~/assets/universidad.svg'
+import outlastIcon from '~/assets/outlast.svg'
+import endosedbyIcon from '~/assets/endosedby.svg'
+import patentedIcon from '~/assets/patented.svg';
+import spaceIcon from '~/assets/space.svg'
 
-import freeshippingsvg from  '../../../assets/Landing/Desktop/icons/free-shipping.svg'
-import trialsvg from '../../../assets/Landing/Desktop/icons/trial.svg'
-import starsvg from '../../../assets/Landing/Desktop/icons/star.svg'
-import magniflexlogo from '../../../assets/Landing/Desktop/magniflex.svg'
+import freeshippingsvg from  '~/assets/Landing/Desktop/icons/free-shipping.svg'
+import trialsvg from '~/assets/Landing/Desktop/icons/trial.svg'
+import starsvg from '~/assets/Landing/Desktop/icons/star.svg'
+import magniflexlogo from '~/assets/Landing/Desktop/magniflex.svg'
 import {FaFacebookF} from 'react-icons/fa';
 import {AiOutlineInstagram} from 'react-icons/ai';
 import Slider from 'react-slick';
 import emailjs from '@emailjs/browser';
 
-import '../../../styles/slick-custom.css';
+import '~/styles/slick-custom.css';
 
 const EMAILJS_SERVICE_ID = 'orders-mx-mail';
 const EMAILJS_PUBLIC_KEY = 'S4HKNw2-KC7dMdcU4';

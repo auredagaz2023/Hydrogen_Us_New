@@ -1,21 +1,21 @@
 import { useRef, useState } from 'react'
 
-import desktopHeaderVideoHigh from '../../../assets/LandingB-Outlast/Desktop/header-high.mp4'
-import desktopHeaderVideoLow from '../../../assets/LandingB-Outlast/Desktop/header-low.mp4'
+import desktopHeaderVideoHigh from '~/assets/LandingB-Outlast/Desktop/header-high.mp4'
+import desktopHeaderVideoLow from '~/assets/LandingB-Outlast/Desktop/header-low.mp4'
 
-import mobileHeaderVideoHigh from '../../../assets/LandingB-Outlast/Mobile/header-high.mp4'
-import mobileHeaderVideoLow from '../../../assets/LandingB-Outlast/Mobile/header-low.mp4'
+import mobileHeaderVideoHigh from '~/assets/LandingB-Outlast/Mobile/header-high.mp4'
+import mobileHeaderVideoLow from '~/assets/LandingB-Outlast/Mobile/header-low.mp4'
 
-import footerSvg from '../../../assets/LandingB-Outlast/spaceman.svg'
+import footerSvg from '~/assets/LandingB-Outlast/spaceman.svg'
 
-import standardDeluxePng from '../../../assets/LandingB-Outlast/Desktop/Images/Products/Images/01-superiore-deluxe-standard.jpg'
-import maxiDeluxePng from '../../../assets/LandingB-Outlast/Desktop/Images/Products/Images/02-superiore-deluxe-maxi.jpg'
+import standardDeluxePng from '~/assets/LandingB-Outlast/Desktop/Images/Products/Images/01-superiore-deluxe-standard.jpg'
+import maxiDeluxePng from '~/assets/LandingB-Outlast/Desktop/Images/Products/Images/02-superiore-deluxe-maxi.jpg'
 
-import standardDeluxePngRoll from '../../../assets/LandingB-Outlast/Desktop/Images/Products/Roll/01-superiore-deluxe-standard.jpg'
-import maxiDeluxePngRoll from '../../../assets/LandingB-Outlast/Desktop/Images/Products/Roll/02-superiore-deluxe-maxi.jpg'
+import standardDeluxePngRoll from '~/assets/LandingB-Outlast/Desktop/Images/Products/Roll/01-superiore-deluxe-standard.jpg'
+import maxiDeluxePngRoll from '~/assets/LandingB-Outlast/Desktop/Images/Products/Roll/02-superiore-deluxe-maxi.jpg'
 
-import standardDeluxePngMobile from '../../../assets/LandingB-Outlast/Mobile/Images/Products/01-superiore-deluxe-standard.jpg'
-import maxiDeluxePngMobile from '../../../assets/LandingB-Outlast/Mobile/Images/Products/02-superiore-deluxe-maxi.jpg'
+import standardDeluxePngMobile from '~/assets/LandingB-Outlast/Mobile/Images/Products/01-superiore-deluxe-standard.jpg'
+import maxiDeluxePngMobile from '~/assets/LandingB-Outlast/Mobile/Images/Products/02-superiore-deluxe-maxi.jpg'
 
 import { FaFacebookF } from 'react-icons/fa'
 import { AiOutlineInstagram } from 'react-icons/ai'

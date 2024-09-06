@@ -1,9 +1,9 @@
 import {Keyframes} from '@emotion/react';
 import {Fade, Reveal} from 'react-awesome-reveal';
 import {PageHeader, Section, Heading, Link} from '~/components';
-import Sost1_Img from '../../../assets/Brand/aeko-tex.jpg';
-import Sost2_Img from '../../../assets/Brand/sustainable-development-goals-gray.png';
-import Sost4_Img from '../../../assets/Brand/article-thumb.jpg';
+import Sost1_Img from '~/assets/Brand/aeko-tex.jpg';
+import Sost2_Img from '~/assets/Brand/sustainable-development-goals-gray.png';
+import Sost4_Img from '~/assets/Brand/article-thumb.jpg';
 import {SostenibilitaSlider} from '~/components/SostenibilitaSlider';
 
 export default function Sostenibilita(props: {keyframe: Keyframes}) {
