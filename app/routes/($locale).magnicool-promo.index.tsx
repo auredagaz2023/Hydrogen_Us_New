@@ -1,23 +1,23 @@
 import { useRef, useState } from 'react'
-import desktopHeaderVideoHigh from '../../../assets/LandingA/Desktop/Images/header-high.mp4'
-import desktopHeaderVideoLow from '../../../assets/LandingA/Desktop/Images/header-low.mp4'
-import desktopHeaderImg from '../../../assets/LandingA/Desktop/Images/header.jpg';
-import mobileHeaderImg from '../../../assets/LandingA/Mobile/Images/header.jpg';
+import desktopHeaderVideoHigh from '~/assets/LandingA/Desktop/Images/header-high.mp4'
+import desktopHeaderVideoLow from '~/assets/LandingA/Desktop/Images/header-low.mp4'
+import desktopHeaderImg from '~/assets/LandingA/Desktop/Images/header.jpg';
+import mobileHeaderImg from '~/assets/LandingA/Mobile/Images/header.jpg';
 
-import mobileHeaderVideoHigh from '../../../assets/LandingA/Mobile/Images/header-high.mp4'
-import mobileHeaderVideoLow from '../../../assets/LandingA/Mobile/Images/header-low.mp4'
+import mobileHeaderVideoHigh from '~/assets/LandingA/Mobile/Images/header-high.mp4'
+import mobileHeaderVideoLow from '~/assets/LandingA/Mobile/Images/header-low.mp4'
 
-import gracierImg from '../../../assets/LandingA/Desktop/Images/gracier-img.jpg'
-import gracierImgMobile from '../../../assets/LandingA/Mobile/Images/gracier-img.jpg'
+import gracierImg from '~/assets/LandingA/Desktop/Images/gracier-img.jpg'
+import gracierImgMobile from '~/assets/LandingA/Mobile/Images/gracier-img.jpg'
 
-import magnicoolPillowPng from '../../../assets/LandingA/Desktop/Images/Products/Images/01-magnicool-3d-pillow.jpg'
-import magnicoolTopperPng from '../../../assets/LandingA/Desktop/Images/Products/Images/02-magnicool-3d-topper.jpg'
+import magnicoolPillowPng from '~/assets/LandingA/Desktop/Images/Products/Images/01-magnicool-3d-pillow.jpg'
+import magnicoolTopperPng from '~/assets/LandingA/Desktop/Images/Products/Images/02-magnicool-3d-topper.jpg'
 
-import magnicoolPillowPngRoll from '../../../assets/LandingA/Desktop/Images/Products/Roll/01-magnicool-3d-pillow-roll.jpg'
-import magnicoolTopperPngRoll from '../../../assets/LandingA/Desktop/Images/Products/Roll/02-magnicool-3d-topper-roll.jpg'
+import magnicoolPillowPngRoll from '~/assets/LandingA/Desktop/Images/Products/Roll/01-magnicool-3d-pillow-roll.jpg'
+import magnicoolTopperPngRoll from '~/assets/LandingA/Desktop/Images/Products/Roll/02-magnicool-3d-topper-roll.jpg'
 
-import magnicoolPillowPngMobile from '../../../assets/LandingA/Mobile/Images/Products/01-magnicool-3d-pillow.png'
-import magnicoolTopperPngMobile from '../../../assets/LandingA/Mobile/Images/Products/02-magnicool-3d-topper.png'
+import magnicoolPillowPngMobile from '~/assets/LandingA/Mobile/Images/Products/01-magnicool-3d-pillow.png'
+import magnicoolTopperPngMobile from '~/assets/LandingA/Mobile/Images/Products/02-magnicool-3d-topper.png'
 import { FaFacebookF } from 'react-icons/fa'
 import { AiOutlineInstagram } from 'react-icons/ai'
 
