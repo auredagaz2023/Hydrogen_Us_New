@@ -57,7 +57,6 @@ export type CollectionWithMetafields <T> =  T & {
 
 export type ProductWithMetafields <T> = T & {
   discountPercent: { value: number },
-  saveUpTo: {value: string},
   headline: { value: string },
   technology: { value: string },
   benefits: { value: string },
