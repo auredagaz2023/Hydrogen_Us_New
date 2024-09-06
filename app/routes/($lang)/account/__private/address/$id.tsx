@@ -3,9 +3,10 @@ import {
   Form,
   Link,
   useActionData,
+  useNavigation,
   useOutletContext,
   useParams,
-  useTransition,
+  // useTransition,
 } from '@remix-run/react';
 import {flattenConnection} from '@shopify/hydrogen';
 import type {
@@ -145,7 +146,8 @@ export default function EditAddress() {
   const {id: addressId} = useParams();
   const isNewAddress = addressId === 'add';
   const actionData = useActionData<ActionData>();
-  const transition = useTransition();
+  const { state } = useNavigation()
+  // const transition = useTransition();
   const {customer} = useOutletContext<AccountOutletContext>();
   const addresses = flattenConnection(customer.addresses);
   const defaultAddress = customer.defaultAddress;
@@ -359,9 +361,9 @@ export default function EditAddress() {
                 <Button
                   className="w-full focus:shadow-outline px-8 py-3 bg-dark-blue text-white text-[13px]"
                   type="submit"
-                  disabled={transition.state !== 'idle'}
+                  disabled={state !== 'idle'}
                 >
-                  {transition.state !== 'idle' ? 'Saving' : 'Save address'}
+                  {state !== 'idle' ? 'Saving' : 'Save address'}
                 </Button>
               </div>
               <div>
