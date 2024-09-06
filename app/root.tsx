@@ -11,9 +11,12 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useCatch,
+  // useCatch,
+  useRouteLoaderData,
   useLoaderData,
   useMatches,
+  useRouteError,
+  isRouteErrorResponse,
 } from '@remix-run/react';
 import {
   ShopifySalesChannel,
@@ -172,9 +175,18 @@ export default function App() {
 
 export function CatchBoundary() {
   const [root] = useMatches();
-  const caught = useCatch();
-  const isNotFound = caught.status === 404;
+  // const caught = useCatch();
+  const routeError = useRouteError()
+  const isNotFound = routeError.status === 404;
   const locale = root.data?.selectedLocale ?? DEFAULT_LOCALE;
+  const isRouteError = isRouteErrorResponse(routeError);
+  let title = 'Error';
+  let pageType = 'page';
+
+  if (isRouteError) {
+    title = 'Not found';
+    if (routeError.status === 404) pageType = routeError.data || pageType;
+  }
 
   return (
     <html lang={locale.language}>
@@ -189,10 +201,10 @@ export function CatchBoundary() {
           key={`${locale.language}-${locale.country}`}
         >
           {isNotFound ? (
-            <NotFound type={caught.data?.pageType} />
+            <NotFound type={pageType} />
           ) : (
             <GenericError
-              error={{message: `${caught.status} ${caught.data}`}}
+              error={{message: `${routeError.status} ${routeError.data}`}}
             />
           )}
         </Layout>
