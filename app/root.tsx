@@ -174,7 +174,7 @@ export default function App() {
   return (
     <html lang={locale.language}>
       <head>
-        <Seo />
+        {/* <Seo /> */}
         <Meta />
         <Links />
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8ZQTL2qrSTWiK6gnZ5uYotq5LdfsGJPw&libraries=places"></script>
