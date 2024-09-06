@@ -2,8 +2,8 @@ import {
   defer,
   type LinksFunction,
   type MetaFunction,
-  type LoaderArgs,
   type AppLoadContext,
+  LoaderFunctionArgs,
 } from '@shopify/remix-oxygen';
 import {
   Links,
@@ -36,6 +36,8 @@ import {DEFAULT_LOCALE, parseMenu, type EnhancedMenu} from './lib/utils';
 import invariant from 'tiny-invariant';
 import {Shop, Cart} from '@shopify/hydrogen/storefront-api-types';
 import {useAnalytics} from './hooks/useAnalytics';
+
+import {seoPayload} from '~/lib/session.server'
 
 
 // import * as gtag from './gtags.client';
@@ -102,25 +104,49 @@ export const links: LinksFunction = () => {
   ];
 };
 
-export const meta: MetaFunction = () => ({
-  charset: 'utf-8',
-  viewport: 'width=device-width,initial-scale=1',
-});
+// export const meta: MetaFunction = () => ({
+//   charset: 'utf-8',
+//   viewport: 'width=device-width,initial-scale=1',
+// });
+export const meta: MetaFunction<typeof loader> = ({data}) => {
+  return [{charset: 'utf-8', viewport: 'width=device-width,initial-scale=1',}];
+};
 
-export async function loader({context}: LoaderArgs) {
+export async function loader({request, context}: LoaderFunctionArgs) {
+  const {storefront, cart, env} = context;
+  // const isLoggedInPromise = context.customerAccount?.isLoggedIn(); 
   const [cartId, layout] = await Promise.all([
     context.session.get('cartId'),
     getLayoutData(context),
   ]);
 
+  const seo = seoPayload.root({shop: layout.shop, url: request.url});
+
   return defer({
+    shop: getShopAnalytics({
+      storefront: context.storefront,
+      publicStorefrontId: env.PUBLIC_STOREFRONT_ID,
+    }),
+    consent: {
+      checkoutDomain: env.PUBLIC_CHECKOUT_DOMAIN,
+      storefrontAccessToken: env.PUBLIC_STOREFRONT_API_TOKEN,
+    },
+    // isLoggedIn: isLoggedInPromise,
+    // layout,
+    selectedLocale: storefront.i18n,
+    // cart: cart.get(),
+    seo,
     layout,
-    selectedLocale: context.storefront.i18n,
+    // selectedLocale: context.storefront.i18n,
     cart: cartId ? getCart(context, cartId) : undefined,
-    analytics: {
-      shopifySalesChannel: ShopifySalesChannel.hydrogen,
-      shopId: layout.shop.id,
-      // gaTrackingId: 'NUMBERS',
+    // analytics: {
+    //   shopifySalesChannel: ShopifySalesChannel.hydrogen,
+    //   shopId: layout.shop.id,
+    // },
+  },
+  {
+    headers: {
+      'Set-Cookie': await context.session.commit(),
     },
   });
 }
