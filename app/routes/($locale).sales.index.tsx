@@ -10,7 +10,7 @@ import {
   ContentfulParagraph,
   ContentfulPromoDesc,
   ContentfulPromotion,
-} from '../types';
+} from './($locale).types';
 import {CollectionWithMetafields, ProductWithMetafields} from '~/lib/type';
 import { useEffect } from 'react';
 

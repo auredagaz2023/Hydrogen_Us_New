@@ -34,7 +34,7 @@ import {
   type AppLoadContext,
 } from '@shopify/remix-oxygen';
 import {Money, flattenConnection} from '@shopify/hydrogen';
-import {getFeaturedData} from './($lang)/featured-products';
+import {getFeaturedData} from './$locale.featured-products';
 import {doLogout} from './($lang)/account/__private/logout';
 import {statusMessage, usePrefixPathWithLocale} from '~/lib/utils';
 

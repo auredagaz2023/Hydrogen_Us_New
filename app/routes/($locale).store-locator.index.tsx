@@ -8,7 +8,7 @@ import {
   ContentItem,
   ContentStoreCategory,
   ContentfulParagraph,
-} from '../types';
+} from './($locale).types';
 import MapComponent from '~/components/MapComponent';
 import {LoaderArgs, json} from '@shopify/remix-oxygen';
 import {useLoaderData} from '@remix-run/react';

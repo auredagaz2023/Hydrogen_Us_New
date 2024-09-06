@@ -1,5 +1,5 @@
 import {Form} from 'react-bootstrap';
-import {Asset, ContentItem, ContentStoreCategory} from '~/routes/types';
+import {Asset, ContentItem, ContentStoreCategory} from '~/routes/($locale).types';
 
 type TProps = {
   isValid: boolean;

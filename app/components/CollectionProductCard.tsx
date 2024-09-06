@@ -8,7 +8,7 @@ import {
 import {RichText} from './Richtext';
 import {Image} from '@shopify/hydrogen';
 import {useEffect, useState} from 'react';
-import {ContentfulDocument} from '~/routes/types';
+import {ContentfulDocument} from '~/routes/($locale).types';
 import FadeIn from './FadeIn';
 
 type TProps = {

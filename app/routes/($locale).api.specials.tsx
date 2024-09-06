@@ -10,7 +10,7 @@ import {
     ContentfulParagraph,
     ContentfulPromoDesc,
     ContentfulPromotion,
-  } from '../types';
+  } from './($locale).types';
 
 /**
  * Fetch a given set of products from the storefront API

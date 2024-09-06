@@ -7,7 +7,7 @@ import {Image, Money} from '@shopify/hydrogen';
 import CollectionReviewImage from '../assets/category-review-placeholder.jpg';
 import {Link} from '@remix-run/react';
 import {ProductWithMetafields} from '~/lib/type';
-import {slugify} from '~/routes/news.index';
+import {slugify} from '~/routes/($locale).news.index';
 
 export function ProductDetails({
   product,

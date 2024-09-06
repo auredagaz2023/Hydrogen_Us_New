@@ -8,7 +8,7 @@ import {Image, Money} from '@shopify/hydrogen';
 
 import {Link} from '@remix-run/react';
 import {CollectionWithMetafields, ProductWithMetafields} from '~/lib/type';
-import {slugify} from '~/routes/news.index';
+import {slugify} from '~/routes/($locale).news.index';
 
 // import MagniCoolIcon from '../assets/Pillows/Layer on pillows/Desktop L700px/icon-01-magnicool.png'
 // import ClassicoIcon from '../assets/Pillows/Layer on pillows/Desktop L700px/icon-02-classico.png'

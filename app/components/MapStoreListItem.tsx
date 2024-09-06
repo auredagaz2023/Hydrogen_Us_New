@@ -1,5 +1,5 @@
 import {FaChevronCircleRight} from 'react-icons/fa';
-import {ContentItem, ContentStoreCategory} from '~/routes/types';
+import {ContentItem, ContentStoreCategory} from '~/routes/($locale).types';
 
 type TProps = {
   item: ContentItem;

@@ -10,7 +10,7 @@ import {
 import {Image, flattenConnection} from '@shopify/hydrogen';
 import {ProductWithMetafields} from '~/lib/type';
 import {BsFilter} from 'react-icons/bs';
-import {slugify} from '../news.index';
+import {slugify} from './($locale).news.index';
 
 export const handle = {
   seo: {

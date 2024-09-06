@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Asset, ContentfulEmbeddedAsset, ContentfulParagraph, News, } from "./types";
+import { Asset, ContentfulEmbeddedAsset, ContentfulParagraph, News, } from "./($locale).types";
 import { CollectionLinks } from "~/components/CollectionLinks";
 import { Link } from "@remix-run/react";
 

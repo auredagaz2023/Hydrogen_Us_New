@@ -2,7 +2,7 @@ import {Collection, Product} from '@shopify/hydrogen/storefront-api-types';
 import {Image} from '@shopify/hydrogen';
 import {Link} from '@remix-run/react';
 import {CollectionWithMetafields, ProductWithMetafields} from '~/lib/type';
-import {slugify} from '~/routes/news.index';
+import {slugify} from '~/routes/($locale).news.index';
 
 export function ProductDetailCard({
   collection,

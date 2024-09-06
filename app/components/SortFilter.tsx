@@ -20,7 +20,7 @@ import type {
 import {
   AppliedFilter,
   SortParam,
-} from '~/routes/($lang)/collections/$collectionHandle';
+} from '~/routes/$locale.collections.$collectionHandle';
 
 type Props = {
   filters: Filter[];
