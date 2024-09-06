@@ -34,7 +34,7 @@ export default {
       const {storefront} = createStorefrontClient({
         cache,
         waitUntil,
-        buyerIp: getBuyerIp(request),
+        // buyerIp: getBuyerIp(request),
         i18n: getLocaleFromRequest(request),
         publicStorefrontToken: env.PUBLIC_STOREFRONT_API_TOKEN,
         privateStorefrontToken: env.PRIVATE_STOREFRONT_API_TOKEN,
