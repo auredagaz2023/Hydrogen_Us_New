@@ -8,7 +8,7 @@ import {
   Product as ProductType,
   Collection,
 } from '@shopify/hydrogen/storefront-api-types';
-import {slugify} from '~/routes/($locale).news.index';
+import {slugify} from '~/routes/($locale).news';
 import {Link} from '~/components';
 import {Image} from '@shopify/hydrogen';
 

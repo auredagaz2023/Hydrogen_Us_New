@@ -78,7 +78,7 @@ import {MobileNav} from './MobileNav';
 import {ContentfulHomePromotion} from '~/routes/($locale).types';
 import {DropdownMenu} from './DropdownMenu';
 import {RxCross2} from 'react-icons/rx';
-import {slugify} from '~/routes/($locale).news.index';
+import {slugify} from '~/routes/($locale).news';
 
 const EMAILJS_SERVICE_ID = 'orders-mx-mail';
 const EMAILJS_SUBSCRIPTION_TEMPLATE_ID = 'mx-usa-form-subscription';

@@ -2,7 +2,7 @@ import { useParams } from "@remix-run/react";
 import { Asset, ContentfulEmbeddedAsset, ContentfulParagraph, News } from "./($locale).types";
 import { useEffect, useState } from "react";
 import Slider from "react-slick";
-import { NewsCard, slugify } from "./($locale).news.index";
+import { NewsCard, slugify } from "./($locale).news";
 import { CollectionLinks } from "~/components/CollectionLinks";
 
 interface ContentfulResponse {
