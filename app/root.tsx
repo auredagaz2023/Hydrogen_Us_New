@@ -36,7 +36,7 @@ import favicon from '../public/favicon.svg';
 import {DEFAULT_LOCALE, parseMenu, type EnhancedMenu} from './lib/utils';
 import invariant from 'tiny-invariant';
 import {Shop, Cart} from '@shopify/hydrogen/storefront-api-types';
-import {useAnalytics} from './hoo/useAnalytics';
+import {useAnalytics} from '~/hooks/useAnalytics';
 
 import {seoPayload} from '~/lib/session.server'
 
