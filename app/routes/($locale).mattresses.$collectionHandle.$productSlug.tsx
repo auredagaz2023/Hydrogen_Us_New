@@ -34,7 +34,7 @@ import CollectionProductCard from '~/components/CollectionProductCard';
 import {slugify} from './($locale).news.index';
 import {RxMinusCircled, RxPlusCircled} from 'react-icons/rx';
 import Slider, {type Settings} from 'react-slick';
-import {useMediaQuery} from '~/hooks/useMediaQuery';
+import {useMediaQuery} from '~/hoo/useMediaQuery';
 import FadeIn from '~/components/FadeIn';
 
 const seo: SeoHandleFunction<typeof loader> = ({data}) => ({

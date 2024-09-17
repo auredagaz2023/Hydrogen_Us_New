@@ -71,8 +71,8 @@ import emailjs from '@emailjs/browser';
 import Logo_Img from '../assets/dark_logo.png';
 import Footer_logo_img from '../assets/white_logo.png';
 
-import {useIsHydrated} from '~/hooks/useIsHydrated';
-import {useCartFetchers} from '~/hooks/useCartFetchers';
+import {useIsHydrated} from '~/hoo/useIsHydrated';
+import {useCartFetchers} from '~/hoo/useCartFetchers';
 import type {LayoutData} from '../root';
 import {MobileNav} from './MobileNav';
 import {ContentfulHomePromotion} from '~/routes/($locale).types';
