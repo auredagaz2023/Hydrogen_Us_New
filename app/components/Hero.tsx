@@ -7,7 +7,7 @@ import type {
   Video as MediaVideo,
 } from '@shopify/hydrogen/storefront-api-types';
 import {Heading, Text, Link} from '~/components';
-import type {CollectionHero} from '~/routes/($locale).index';
+import type {CollectionHero} from '~/routes/($locale)._index';
 
 /**
  * Hero component that renders metafields attached to collection resources
