@@ -1,4 +1,4 @@
-import {json, type MetaFunction, type LoaderArgs} from '@shopify/remix-oxygen';
+import {json, type MetaFunction, type LoaderFunctionArgs} from '@shopify/remix-oxygen';
 import {useLoaderData} from '@remix-run/react';
 import type {
   Collection,
@@ -24,7 +24,7 @@ import {PRODUCT_CARD_FRAGMENT} from '~/data/fragments';
 import {CollectionLinks} from '~/components/CollectionLinks';
 import {TestMattressWidget} from '~/components/TestMattressWidget';
 import {CollectionWithMetafields, ProductWithMetafields} from '~/lib/type';
-import CollectionReviewImage from '../../../assets/category-review-placeholder.jpg';
+import CollectionReviewImage from '../../assets/category-review-placeholder.jpg';
 
 const PAGINATION_SIZE = 8;
 
@@ -34,7 +34,7 @@ export const handle = {
   },
 };
 
-export const loader = async ({request, context: {storefront}}: LoaderArgs) => {
+export const loader = async ({request, context: {storefront}}: LoaderFunctionArgs) => {
   const variables = getPaginationVariables(request, PAGINATION_SIZE);
   const {collections} = await storefront.query<{
     collections: CollectionConnection;
@@ -50,9 +50,9 @@ export const loader = async ({request, context: {storefront}}: LoaderArgs) => {
 };
 
 export const meta: MetaFunction = () => {
-  return {
+  return [{
     title: 'All Collections',
-  };
+  }];
 };
 
 const COLLECTIONS_QUERY = `#graphql

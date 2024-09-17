@@ -1,4 +1,4 @@
-import {json, type LoaderArgs} from '@shopify/remix-oxygen';
+import {json, type LoaderFunctionArgs} from '@shopify/remix-oxygen';
 import {flattenConnection} from '@shopify/hydrogen';
 import {ProductConnection} from '@shopify/hydrogen/storefront-api-types';
 
@@ -12,7 +12,7 @@ import {ProductConnection} from '@shopify/hydrogen/storefront-api-types';
  * @see https://shopify.dev/api/storefront/2023-01/queries/products
  */
 
-export async function loader({params, request, context}: LoaderArgs) {
+export async function loader({params, request, context}: LoaderFunctionArgs) {
   const url = new URL(request.url);
   const searchParams = new URLSearchParams(url.search);
   const productType = searchParams.get('productType') ?? 'Topper';

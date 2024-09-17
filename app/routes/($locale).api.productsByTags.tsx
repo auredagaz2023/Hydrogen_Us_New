@@ -1,7 +1,7 @@
-import {ActionArgs, LoaderArgs, json} from '@shopify/remix-oxygen';
+import {ActionFunctionArgs, LoaderFunctionArgs, json} from '@shopify/remix-oxygen';
 import {ProductConnection} from '@shopify/hydrogen/storefront-api-types';
 import {PRODUCT_CARD_FRAGMENT} from '~/data/fragments';
-import {ActionData} from '../($lang)/account/__private/edit';
+import {ActionData} from './($locale).account.edit';
 
 const badRequest = (data: ActionData) => json(data, {status: 400});
 
@@ -9,7 +9,7 @@ export async function action({
   request,
   context: {storefront},
   params,
-}: ActionArgs) {
+}: ActionFunctionArgs) {
   const body = await request.formData();
   const tagsString = body.get('tags');
   const testIndex = body.get('test-index');

@@ -8,7 +8,7 @@ import {
   Collection,
   CollectionConnection,
 } from '@shopify/hydrogen/storefront-api-types';
-import {LoaderArgs, json} from '@shopify/remix-oxygen';
+import {LoaderFunctionArgs, json} from '@shopify/remix-oxygen';
 import invariant from 'tiny-invariant';
 import {CollectionDetails} from '~/components/CollectionDetails';
 import {CollectionHeading} from '~/components/CollectionHeading';
@@ -21,7 +21,7 @@ const seo: SeoHandleFunction<typeof loader> = ({data}) => ({
   description: 'Product category',
 });
 
-export async function loader({params, request, context}: LoaderArgs) {
+export async function loader({params, request, context}: LoaderFunctionArgs) {
   const url = new URL(request.url);
   const searchParams = new URLSearchParams(url.search);
   const productType = searchParams.get('productType') ?? 'Topper';
