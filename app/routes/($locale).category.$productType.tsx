@@ -119,28 +119,6 @@ export default function CategoryCollections() {
     return undefined;
   };
 
-  const getHeadingPlural = (productType: string) => {
-    let heading;
-    switch (productType) {
-      case 'Mattress':
-        heading = 'mattresses';
-        break;
-
-      case 'Pillow':
-        heading = 'pillows';
-        break;
-
-      case 'Topper':
-        heading = 'toppers';
-        break;
-
-      default:
-        heading = productType;
-        break;
-    }
-    return heading;
-  }
-
   return (
     <>
       <div className="px-3 sm:container py-16 md:py-24 lg:py-28">

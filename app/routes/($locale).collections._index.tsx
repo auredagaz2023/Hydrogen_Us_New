@@ -56,9 +56,9 @@ export const loader = async ({request, context: {storefront}}: LoaderArgs) => {
 };
 
 export const meta: MetaFunction = () => {
-  return {
+  return [{
     title: 'All Collections',
-  };
+  }];
 };
 
 export default function Collections() {

@@ -8,7 +8,7 @@ import {
   Product as ProductType,
   Collection as CollectionType,
 } from '@shopify/hydrogen/storefront-api-types';
-import {LoaderArgs, json} from '@shopify/remix-oxygen';
+import {LoaderFunctionArgs, json} from '@shopify/remix-oxygen';
 import invariant from 'tiny-invariant';
 import {CollectionHeading} from '~/components/CollectionHeading';
 import {CollectionLinks} from '~/components/CollectionLinks';
@@ -26,7 +26,7 @@ export const handle = {
   seo,
 };
 
-export async function loader({params, request, context}: LoaderArgs) {
+export async function loader({params, request, context}: LoaderFunctionArgs) {
   const {collectionHandle} = params;
   invariant(collectionHandle, 'Missing productType param');
 

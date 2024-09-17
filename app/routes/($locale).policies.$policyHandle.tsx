@@ -44,9 +44,9 @@ export async function loader({request, params, context}: LoaderArgs) {
 }
 
 export const meta: MetaFunction<typeof loader> = ({data}) => {
-  return {
+  return [{
     title: data?.policy?.title ?? 'Policies',
-  };
+  }];
 };
 
 export default function Policies() {

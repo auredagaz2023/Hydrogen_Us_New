@@ -52,9 +52,9 @@ export const loader = async ({context: {storefront}}: LoaderArgs) => {
 };
 
 export const meta: MetaFunction = () => {
-  return {
+  return [{
     title: 'All Journals',
-  };
+  }];
 };
 
 export default function Journals() {
