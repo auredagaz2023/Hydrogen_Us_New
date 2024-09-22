@@ -45,7 +45,7 @@ export const action: ActionFunction = async ({request, context}) => {
       variables: {email},
     });
 
-    return json({resetRequested: true});
+    return json({resetRequested: true});``
   } catch (error: any) {
     return badRequest({
       formError: 'Something went wrong. Please try again later.',

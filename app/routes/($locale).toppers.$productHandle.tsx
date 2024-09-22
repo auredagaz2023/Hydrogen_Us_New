@@ -344,7 +344,7 @@ export default function Product() {
           <div className="product-price p-5 text-dark-blue text-cusSubheading lg:text-[20px]">
             <div className='flex items-center'>
               <Money data={selectedVariant.price} />
-              {product.discountPercent ? (
+              {/* {product.discountPercent ? (
                   <span className="text-red-600 ml-8">
                   -
                   {
@@ -359,6 +359,22 @@ export default function Product() {
                   SALE
                 </span>
               )
+              } */}
+              {product.discountPercent && (
+                  <span className="text-red-600 ml-8">
+                  -
+                  {
+                    product.discountPercent.value
+                  }
+                  %
+                </span>
+              )  
+              // :
+              // (
+              //   <span className="text-red-600 ml-2 font-bold text-[18px]">
+              //     SALE
+              //   </span>
+              // )
               }
             </div>
             
