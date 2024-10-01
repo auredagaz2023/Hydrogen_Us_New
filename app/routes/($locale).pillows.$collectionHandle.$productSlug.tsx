@@ -31,7 +31,7 @@ import WorldMap from '~/components/worldmap';
 import {CollectionWithMetafields, ProductWithMetafields} from '~/lib/type';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import CollectionProductCard from '~/components/CollectionProductCard';
-import {slugify} from '../news';
+import {slugify} from '~/routes/($locale).news';
 import {RxMinusCircled, RxPlusCircled} from 'react-icons/rx';
 import FadeIn from '~/components/FadeIn';
 
