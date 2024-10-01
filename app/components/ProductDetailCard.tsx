@@ -2,7 +2,7 @@ import {Collection, Product} from '@shopify/hydrogen/storefront-api-types';
 import {Image} from '@shopify/hydrogen';
 import {Link} from '@remix-run/react';
 import {CollectionWithMetafields, ProductWithMetafields} from '~/lib/type';
-import {slugify} from '~/routes/($locale).news';
+import {slugify} from '~/routes/($lang)/news';
 
 export function ProductDetailCard({
   collection,
@@ -45,6 +45,7 @@ export function ProductDetailCard({
   }
 
   let productDiscount: number = 0;
+  let productSaveUpTo: string = ''
   collection.products.nodes
     .filter(
       (product) =>
@@ -55,6 +56,11 @@ export function ProductDetailCard({
         .discountPercent;
       if (discountPercent && discountPercent.value > productDiscount) {
         productDiscount = discountPercent.value;
+      }
+      const saveUpTo = (product as ProductWithMetafields<Product>)
+        .saveUpTo;
+      if (saveUpTo) {
+        productSaveUpTo = saveUpTo.value;
       }
     });
 
@@ -102,15 +108,25 @@ export function ProductDetailCard({
               widths={[700]}
             />
           )}
-          {productDiscount > 0 && (
+          {/* {productDiscount > 0 && (
             <div className="absolute left-0 top-5 bg-red-600 text-white flex justify-end w-40 uppercase px-4">
               Promo -{productDiscount}%
             </div>
           )}
+          {productSaveUpTo && (
+            <div className="absolute left-0 top-5 bg-red-600 text-white flex justify-end w-40 uppercase px-4">
+              Promo -{productSaveUpTo}%
+            </div>
+          )} */}
         </div>
 
         <h3 className="text-dark-blue text-left text-[11px] mt-2 uppercase font-semibold">
           {collection.title}
+          {(productDiscount > 0 || productSaveUpTo) && (
+            <span className="text-red-500 w-40 uppercase px-4">
+              Promo
+            </span>
+          )}
         </h3>
 
         {collection[summaryKey] && (

@@ -514,7 +514,7 @@ export default function CollectionProducts() {
                             backgroundImage: `url("${productImage.url}")`,
                           }}
                         ></div>
-                        <div className="grow pl-5 hover:text-[#b09987] py-1">
+                        <div className="grow pl-5 hover:text-[#b09987] py-1 ">
                           <p className="text-xs font-bold uppercase">
                             {product.title}
                           </p>
@@ -533,7 +533,7 @@ export default function CollectionProducts() {
                               Starting at&nbsp;&nbsp;
                               {(product as ProductWithMetafields<Product>)
                                 .discountPercent ? (
-                                <>
+                                <div className='flex flex-wrap justify-between'>
                                   <span className="text-blue">
                                     <Money
                                       data={{
@@ -547,9 +547,10 @@ export default function CollectionProducts() {
                                           100
                                         ).toString(),
                                       }}
-                                    />
+                                    />                                    
                                   </span>
-                                </>
+                                  <span className='text-red-600 font-bold pr-[10px]'>{`PROMO ${(product as ProductWithMetafields<Product>).discountPercent.value}%`}</span>                                  
+                                </div>
                               ) : (
                                 <Money data={minPrice} />
                               )}

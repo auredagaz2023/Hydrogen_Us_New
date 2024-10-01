@@ -31,7 +31,7 @@ import WorldMap from '~/components/worldmap';
 import {CollectionWithMetafields, ProductWithMetafields} from '~/lib/type';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import CollectionProductCard from '~/components/CollectionProductCard';
-import {slugify} from './($locale).news';
+import {slugify} from '../news';
 import {RxMinusCircled, RxPlusCircled} from 'react-icons/rx';
 import FadeIn from '~/components/FadeIn';
 
@@ -584,7 +584,7 @@ export default function CollectionProducts() {
                               Starting at&nbsp;&nbsp;
                               {(product as ProductWithMetafields<Product>)
                                 .discountPercent ? (
-                                <>
+                                <div className='flex flex-wrap justify-between'>
                                   <span className="text-blue">
                                     <Money
                                       data={{
@@ -600,7 +600,8 @@ export default function CollectionProducts() {
                                       }}
                                     />
                                   </span>
-                                </>
+                                  <span className='text-red-600 font-bold pr-[10px]'>{`PROMO ${(product as ProductWithMetafields<Product>).discountPercent.value}%`}</span>
+                                </div>
                               ) : (
                                 <Money data={minPrice} />
                               )}
@@ -632,12 +633,12 @@ export default function CollectionProducts() {
                             )}
                           </p> */}
                         </div>
-                        {(product as ProductWithMetafields<Product>)
+                        {/* {(product as ProductWithMetafields<Product>)
                           .discountPercent && (
                           <div className="absolute top-0 left-0 bg-red-600 text-white px-2 uppercase text-8">
                             promo
                           </div>
-                        )}
+                        )} */}
                         {/* </Disclosure.Button> */}
                       </Link>
                     );
@@ -750,43 +751,51 @@ export default function CollectionProducts() {
         </div>
         {selectedVariant && (
           <div className="product-price p-5 text-dark-blue text-cusSubheading lg:text-[20px]">
-            {/* {(selectedProduct as ProductWithMetafields<Product>)
+            {(selectedProduct as ProductWithMetafields<Product>)
               .discountPercent ? (
               <>
-                <s>
-                  <Money data={selectedVariant.price} />
-                </s>
-                <span className="text-lg text-red-600">
-                  <Money
-                    data={{
-                      ...selectedVariant.price,
-                      amount: (
-                        (parseInt(selectedVariant.price.amount) *
-                          (100 -
-                            (selectedProduct as ProductWithMetafields<Product>)
-                              .discountPercent.value)) /
-                        100
-                      ).toString(),
-                    }}
-                  />
+                <span className="font-bold text-red-600 text-sm">
+                  PROMO&nbsp;
+                  {
+                    (selectedProduct as ProductWithMetafields<Product>)
+                      .discountPercent.value
+                  }
+                  %
                 </span>
+                <div className='flex flex-wrap justify-between'>
+                  <s>
+                    <Money data={selectedVariant.price} />
+                  </s>
+                  <span className="text-lg text-red-600">
+                    <Money
+                      data={{
+                        ...selectedVariant.price,
+                        amount: (
+                          (parseInt(selectedVariant.price.amount) *
+                            (100 -
+                              (selectedProduct as ProductWithMetafields<Product>)
+                                .discountPercent.value)) /
+                          100
+                        ).toString(),
+                      }}
+                    />
+                  </span>
+                </div>
               </>
-            ) : (
-              <>
-                <Money data={selectedVariant.price} />
-                {selectedVariant.price.currencyCode}
-              </>
-            )} */}
-            {selectedVariant?.compareAtPrice
-               ? (
-                <>
-                  {selectedVariant.compareAtPrice && <Money className='text-red-600 line-through' data={selectedVariant.compareAtPrice} />} 
-                  <Money data={selectedVariant.price} />
-                </>
-              ) : (
-                <Money data={selectedVariant.price} />
-              )
-            }
+            ) : 
+            (
+              selectedVariant?.compareAtPrice
+                ? (
+                 <>
+                   {selectedVariant.compareAtPrice && <Money className='text-red-600 line-through' data={selectedVariant.compareAtPrice} />} 
+                   <Money data={selectedVariant.price} />
+                 </>
+               ) : (
+                 <Money data={selectedVariant.price} />
+               )
+             
+              // <Money data={selectedVariant.price} />
+            )}
             {(selectedProduct as ProductWithMetafields<Product>)
               .discountPercent && (
               <span className="text-red-600 ml-8">

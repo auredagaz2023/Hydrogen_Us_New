@@ -536,21 +536,24 @@ export default function CollectionProducts() {
                               {(product as ProductWithMetafields<Product>)
                                 .discountPercent ? (
                                 <>
-                                  <span className="text-blue">
-                                    <Money
-                                      data={{
-                                        ...minPrice,
-                                        amount: (
-                                          (parseInt(minPrice.amount) *
-                                            (100 -
-                                              (
-                                                product as ProductWithMetafields<Product>
-                                              ).discountPercent.value)) /
-                                          100
-                                        ).toString(),
-                                      }}
-                                    />
-                                  </span>
+                                  <div className='flex flex-wrap justify-between'>
+                                    <span className="text-red">
+                                      <Money
+                                        data={{
+                                          ...minPrice,
+                                          amount: (
+                                            (parseInt(minPrice.amount) *
+                                              (100 -
+                                                (
+                                                  product as ProductWithMetafields<Product>
+                                                ).discountPercent.value)) /
+                                            100
+                                          ).toString(),
+                                        }}
+                                      />
+                                    </span>
+                                    <span className='text-red-600 font-bold pr-[10px]'>{`PROMO ${(product as ProductWithMetafields<Product>).discountPercent.value}%`}</span>
+                                  </div>
                                 </>
                               ) : (
                                 <Money data={minPrice} />

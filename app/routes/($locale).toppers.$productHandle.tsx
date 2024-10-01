@@ -361,7 +361,7 @@ export default function Product() {
               )
               } */}
               {product.discountPercent && (
-                  <span className="text-red-600 ml-8">
+                <span className="text-red-600 ml-8">
                   -
                   {
                     product.discountPercent.value
