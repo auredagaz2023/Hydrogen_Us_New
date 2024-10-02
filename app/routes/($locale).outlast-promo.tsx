@@ -32,7 +32,7 @@ const products = [
     original_price: "$219",
     price: "$175.20",
     button: "Shop SUPERIORE DELUXE STANDARD",
-    link: "https://magniflex.us/pillows/superiore/superiore-deluxe-standard",
+    link: "https://magniflex.us/pillows/superiore?product=superiore-deluxe-standard",
     bottom: "save up to $43.80"
   },
   {
@@ -46,7 +46,7 @@ const products = [
     original_price: "$229.00",
     price: "$183.20",
     button: "Shop SUPERIORE DELUXE MAXI",
-    link: "https://magniflex.us/pillows/superiore/superiore-deluxe-maxi",
+    link: "https://magniflex.us/pillows/superiore?product=superiore-deluxe-maxi",
     bottom: "save up to $45.80"
   },
 ]

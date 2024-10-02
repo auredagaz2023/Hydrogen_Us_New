@@ -426,7 +426,7 @@ export const InnovazioneMagnistretch = React.forwardRef<HTMLDivElement, any>(
                     </div>
                     <a
                       className="mb-2 lg:mb-0 font-bold bg-174860 text-white px-10 py-4 pointer uppercase text-xs hover:bg-2f88b1 float-right inline-block whitespace-nowrap"
-                      href="/mattresses/magnistretch/magnistretch-sport-10"
+                      href="/mattresses/magnistretch?product=magnistretch-sport-10"
                     >
                       Discover the product
                     </a>

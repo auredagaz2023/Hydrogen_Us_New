@@ -430,7 +430,7 @@ export default function CollectionProducts() {
                           productType={productType}
                           handle={handle}
                           selectedProduct={selectedProduct}
-                          linkTo={`/pillows/${collectionHandle}/${slugify(
+                          linkTo={`/pillows/${collectionHandle}?product=${slugify(
                             product.title,
                           )}`}
                           closeModel={() => setHandle(undefined)}
@@ -496,7 +496,7 @@ export default function CollectionProducts() {
                       // <Disclosure.Button
                       //   as={Link}
                       <Link
-                        to={`/pillows/${collectionHandle}/${slugify(
+                        to={`/pillows/${collectionHandle}?product=${slugify(
                           product.title,
                         )}`}
                         key={index}

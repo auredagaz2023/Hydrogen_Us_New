@@ -78,18 +78,18 @@ export function ProductDetailCard({
         break;
 
       case 'Topper':
-        cardLink = `/toppers`;
+        cardLink = `/toppers/details`;
         break;
 
       case 'Beds and Bases':
-        cardLink = `/bed-bases`;
+        cardLink = `/bed-bases/details`;
         break;
 
       default:
         break;
     }
 
-    return `${cardLink}/${slugify(
+    return `${cardLink}?product=${slugify(
       collection.products.nodes.find(
         (product) => product.productType === productType,
       )?.title || '',

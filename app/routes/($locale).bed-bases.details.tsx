@@ -80,7 +80,9 @@ export const handle = {
 };
 
 export async function loader({params, request, context}: LoaderArgs) {
-  const {productHandle} = params;
+  const url = new URL(request.url);
+  const productHandle = url.searchParams.get('product');
+  // const {productHandle} = params;
   invariant(productHandle, 'Missing productHandle param, check route filename');
 
   const searchParams = new URL(request.url).searchParams;
@@ -139,7 +141,6 @@ export default function Product() {
   const [selectedVariant, setSelectedVariant] = useState<
     ProductVariant | undefined
   >(undefined);
-  const [selectedItem, setSelectedItem] = useState<Number>(0);
   const [selectedImage, setSelectedImage] = useState<ImageType>(
     product.featuredImage || product.images?.nodes[0],
   );
@@ -188,21 +189,7 @@ export default function Product() {
                   ),
                 )}
               </Swiper>
-              {product.discountPercent && (
-                <div className="absolute left-0 top-10 flex justify-end bg-red-600 text-white w-48 px-2 py-2 z-10">
-                  Promo -
-                  {
-                    product.discountPercent.value
-                  }
-                  %
-                </div>
-              )}
-              {product.saveUpTo && (
-                <div className="absolute left-0 top-10 flex justify-end bg-red-600 text-white px-[25px] py-2 z-10">
-                  SALE
-                </div>
-              )}
-              <div className={`imageNavigation absolute ${(product.discountPercent || product.saveUpTo) ? 'top-[100px]' : 'top-[25px]' }  left-5 w-10 md:w-16 z-10`}>
+              <div className="imageNavigation absolute top-[25px] left-5 w-10 md:w-16 z-10">
                 {product.images.nodes.map(
                   (navImage: ImageType, index: number) => (
                     <Image
@@ -230,7 +217,7 @@ export default function Product() {
             <div className="w-full flex justify-center border border-border cursor-pointer">
               <AnchorLink
                 href="#productDetails"
-                className={`hidden md:flex justify-between items-center p-2 md:px-4 md:py-5 break-all text-174860 text-10 md:text-xs font-semibold uppercase`}
+                className={`text-xs font-semibold uppercase hidden md:flex items-center gap-2`}
                 offset={100}
               >
                 <span>Discover more</span>
@@ -251,7 +238,7 @@ export default function Product() {
           </div>
         </div>
       </div>
-      <div className="w-full lg:w-3/12 bg-white lg:border-l-[30px] lg:border-[#f7f7f7]">
+      <div className="w-full lg:w-3/12 bg-white lg:border-l-[30px] lg:border-[#f7f7f7] pb-3">
         <h1 className="product-title text-cusSubheading text-dark-blue font-semibold lg:text-[25px] mt-[15px] mb-[10px] p-5">
           {product.title}
         </h1>
@@ -278,45 +265,43 @@ export default function Product() {
                   <>
                     {flattenConnection(product.variants).map(
                       (variant: ProductVariant, index: number) => (
-                        <Disclosure.Button
-                          as="div"
+                        <div
                           className="flex items-center mb-4"
                           key={index}
                           onClick={() => {
                             setSelectedVariant(variant);
-                            setSelectedItem(index);
                             // close();
                           }}
                         >
                           <input
-                            checked={index == selectedItem}
-                            id={`default-radio-${index}`}
+                            checked={variant == selectedVariant}
+                            id="default-radio-1"
                             type="radio"
                             value=""
                             name="default-radio"
-                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:text-[#181818] dark:text-red-200"
+                            className="w-4 h-4 text-[#181a1b] bg-gray-100 border-gray-300 focus:text-[#181818] dark:text-red-200"
                           />
                           <label className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                             {variant.selectedOptions[0].value}
                           </label>
-                        </Disclosure.Button>
+                        </div>
+                        // <div
+                        //   key={index}
+                        //   className={`${
+                        //     selectedVariant == variant ? 'bg-[#e9eced]' : ''
+                        //   } border rounded-xs border-[#e9eced] mt-2 flex items-center cursor-pointer`}
+                        //   onClick={() => {
+                        //     setSelectedVariant(variant);
+                        //     close();
+                        //   }}
+                        // >
+                        //   <div className="grow pl-5 text-dark-blue text-[10px]">
+                        //     {variant.selectedOptions[0].value}
+                        //   </div>
+                        // </div>
                       ),
                     )}
                   </>
-                  // <div
-                  //   key={index}
-                  //   className={`${
-                  //     selectedVariant == variant ? 'bg-[#e9eced]' : ''
-                  //   } border rounded-xs border-[#e9eced] mt-2 flex items-center cursor-pointer`}
-                  //   onClick={() => {
-                  //     setSelectedVariant(variant);
-                  //     close();
-                  //   }}
-                  // >
-                  //   <div className="grow pl-5 text-dark-blue text-[10px]">
-                  //     {variant.selectedOptions[0].value}
-                  //   </div>
-                  // </div>
                 )}
               </Disclosure.Panel>
             </>
@@ -342,42 +327,7 @@ export default function Product() {
         </div>
         {selectedVariant && (
           <div className="product-price p-5 text-dark-blue text-cusSubheading lg:text-[20px]">
-            <div className='flex items-center'>
-              <Money data={selectedVariant.price} />
-              {/* {product.discountPercent ? (
-                  <span className="text-red-600 ml-8">
-                  -
-                  {
-                    product.discountPercent.value
-                  }
-                  %
-                </span>
-              )  
-              :
-              (
-                <span className="text-red-600 ml-2 font-bold text-[18px]">
-                  SALE
-                </span>
-              )
-              } */}
-              {product.discountPercent && (
-                <span className="text-red-600 ml-8">
-                  -
-                  {
-                    product.discountPercent.value
-                  }
-                  %
-                </span>
-              )  
-              // :
-              // (
-              //   <span className="text-red-600 ml-2 font-bold text-[18px]">
-              //     SALE
-              //   </span>
-              // )
-              }
-            </div>
-            
+            <Money data={selectedVariant.price} />
           </div>
         )}
         {!selectedVariant && (
@@ -429,75 +379,81 @@ export default function Product() {
                           as="span"
                           className="opacity-50 strike"
                         />
-                    )}
+                      )}
                   </Text>
                 </AddToCartButton>
               )}
 
-              {
-                !selectedVariant.availableForSale && <h3>Out of Stock</h3>
-                // <p className='text-xxs py-2'>Currently out of stock. The product will be delivered within 10 days. </p>
-              }
-              {/* {selectedVariant.availableForSale ? (
-                <AddToCartButton
-                  lines={[
-                    {
-                      merchandiseId: selectedVariant.id,
-                      quantity: 1,
-                    },
-                  ]}
-                  className="bg-dark-blue border border-dark-blue py-3 w-full text-white text-xs uppercase mt-2 hover:bg-white hover:text-dark-blue"
-                  data-test="add-to-cart"
-                  analytics={{
-                    products: [
-                      {
-                        ...analytics.products[0],
-                        quantity: 1,
-                      },
-                    ],
-                    totalValue: parseFloat(analytics.products[0].price),
-                  }}
-                >
-                  <Text
-                    as="span"
-                    className="flex items-center justify-center gap-2"
-                  >
-                    <span>ADD TO CART</span> <span>·</span>{' '}
-                    <Money
-                      withoutTrailingZeros
-                      data={selectedVariant?.price!}
-                      as="span"
-                    />
-                    {selectedVariant?.price?.amount &&
-                      selectedVariant?.compareAtPrice?.amount &&
-                      selectedVariant?.price?.amount <
-                        selectedVariant?.compareAtPrice?.amount && (
-                        <Money
-                          withoutTrailingZeros
-                          data={selectedVariant?.compareAtPrice!}
-                          as="span"
-                          className="opacity-50 strike"
-                        />
-                      )}
-                  </Text>
-                </AddToCartButton>
+              {selectedVariant.availableForSale ? (
+                <></>
               ) : (
-                <button
-                  className="bg-dark-blue py-3 w-full text-white text-xs mt-2 disabled:opacity-70"
-                  disabled
-                >
-                  ADD TO CART
-                </button>
-              )} */}
+                // <AddToCartButton
+                //   lines={[
+                //     {
+                //       merchandiseId: selectedVariant.id,
+                //       quantity: 1,
+                //     },
+                //   ]}
+                //   className="bg-dark-blue border border-dark-blue py-3 w-full text-white text-xs uppercase mt-2 hover:bg-white hover:text-dark-blue"
+                //   data-test="add-to-cart"
+                //   analytics={{
+                //     products: [
+                //       {
+                //         ...analytics.products[0],
+                //         quantity: 1,
+                //       },
+                //     ],
+                //     totalValue: parseFloat(analytics.products[0].price),
+                //   }}
+                // >
+                //   <Text
+                //     as="span"
+                //     className="flex items-center justify-center gap-2"
+                //   >
+                //     <span>ADD TO CART</span> <span>·</span>{' '}
+                //     <Money
+                //       withoutTrailingZeros
+                //       data={selectedVariant?.price!}
+                //       as="span"
+                //     />
+                //     {selectedVariant?.price?.amount &&
+                //       selectedVariant?.compareAtPrice?.amount &&
+                //       selectedVariant?.price?.amount <
+                //         selectedVariant?.compareAtPrice?.amount && (
+                //         <Money
+                //           withoutTrailingZeros
+                //           data={selectedVariant?.compareAtPrice!}
+                //           as="span"
+                //           className="opacity-50 strike"
+                //         />
+                //       )}
+                //   </Text>
+                // </AddToCartButton>
+                <h3>Out of Stock</h3>
+                // <p className='text-xxs'>Currently out of stock. The product will be delivered within 10 days.</p>
+                // <button
+                //   className="bg-dark-blue py-3 w-full text-white text-xs mt-2 disabled:opacity-70"
+                //   disabled
+                // >
+                //   ADD TO CART
+                // </button>
+              )}
             </>
           ) : (
-            <button
-              className="bg-dark-blue py-3 w-full text-white text-xs mt-2 disabled:opacity-70"
-              disabled
-            >
-              ADD TO CART
-            </button>
-          )}
+            <>
+              <button
+                className="bg-dark-blue py-3 w-full text-white text-xs mt-2 disabled:opacity-70"
+                disabled
+              >
+                ADD TO CART
+              </button>
+              <div className='text-center pt-1'>
+                <a href="/shipping-methods" className='text-gray-400 text-xs underline'>Free Shipping</a>
+                &nbsp;&nbsp;
+                <a href="/warranty" className='text-gray-400 text-xs underline'>Warranty and return policy</a>
+              </div>
+            </>
+      )}
         </div>
       </div>
       <div
@@ -562,7 +518,6 @@ export function ProductForm() {
 
   const [currentSearchParams] = useSearchParams();
   // const transition = useTransition();
-
   const location = useLocation();
   /**
    * We update `searchParams` with in-flight request data from `transition` (if available)
@@ -925,17 +880,11 @@ const PRODUCT_QUERY = `#graphql
       title
       vendor
       handle
-      descriptionHtml
       description
+      descriptionHtml
       options {
         name
         values
-      }
-      discountPercent: metafield(namespace: "custom", key: "discount_percent") {
-        value
-      }
-      saveUpTo: metafield(namespace: "custom", key: "save_up_to") {
-        value
       }
       technology: metafield(namespace: "custom", key: "technology") {
         value

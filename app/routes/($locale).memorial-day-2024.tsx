@@ -60,7 +60,7 @@ const products = [
     original_price: "$2,099.00",
     price: "$1,679",
     button: "shop magnistretch",
-    link: "https://magniflex.us/mattresses/magnistretch/magnistretch-12",
+    link: "https://magniflex.us/mattresses/magnistretch?product=magnistretch-12",
     bottom: "save up to $860"
   },
   {
@@ -71,7 +71,7 @@ const products = [
     original_price: "$2,099.00",
     price: "$1,679",
     button: "shop magnistretch",
-    link: "https://magniflex.us/mattresses/magnistretch/magnistretch-12",
+    link: "https://magniflex.us/mattresses/magnistretch?product=magnistretch-12",
     bottom: "Save up to $860"
   },
   {
@@ -82,7 +82,7 @@ const products = [
     original_price: "$2,099.00",
     price: "$1,679",
     button: "shop magnistretch",
-    link: "https://magniflex.us/mattresses/magnistretch/magnistretch-12",
+    link: "https://magniflex.us/mattresses/magnistretch?product=magnistretch-12",
     bottom: "Save up to $860"
   },
   {
@@ -93,7 +93,7 @@ const products = [
     original_price: "$2,099.00",
     price: "$1,679",
     button: "shop magnistretch",
-    link: "https://magniflex.us/mattresses/magnistretch/magnistretch-12",
+    link: "https://magniflex.us/mattresses/magnistretch?product=magnistretch-12",
     bottom: "Save up to $860"
   },
   {
@@ -104,7 +104,7 @@ const products = [
     original_price: "$2,099.00",
     price: "$1,679",
     button: "shop magnistretch",
-    link: "https://magniflex.us/mattresses/magnistretch/magnistretch-12",
+    link: "https://magniflex.us/mattresses/magnistretch?product=magnistretch-12",
     bottom: "Save up to $860"
   },
 ]

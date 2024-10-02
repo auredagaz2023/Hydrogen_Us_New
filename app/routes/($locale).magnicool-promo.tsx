@@ -33,7 +33,7 @@ const products = [
     original_price: "$219.00",
     price: "$175.20",
     button: "shop magnicool 3d pillow",
-    link: "https://magniflex.us/pillows/magnicool/magnicool-3d-standard",
+    link: "https://magniflex.us/pillows/magnicool?product=magnicool-3d-standard",
     bottom: "save up to $43.80"
   },
   {
@@ -47,7 +47,7 @@ const products = [
     original_price: "$419.00",
     price: "$335.20",
     button: "shop magniccool 3d topper",
-    link: "https://magniflex.us/toppers/magnicool-3d-topper",
+    link: "https://magniflex.us/toppers/details/magnicool-3d-topper",
     bottom: "save up to $113.80"
   },
 ]

@@ -60,7 +60,9 @@ export const handle = {
 };
 
 export async function loader({params, request, context}: LoaderArgs) {
-  const {productSlug, collectionHandle} = params;
+  const url = new URL(request.url);
+  const productSlug = url.searchParams.get('product');
+  const {collectionHandle} = params;
 
   invariant(productSlug, 'Missing productSlug param');
   invariant(collectionHandle, 'Missing collectionHandle param');
@@ -475,7 +477,7 @@ export default function CollectionProducts() {
                           handle={handle}
                           selectedProduct={selectedProduct}
                           changeProduct={changeProduct}
-                          linkTo={`/pillows/${collectionHandle}/${slugify(
+                          linkTo={`/pillows/${collectionHandle}?product=${slugify(
                             product.title,
                           )}`}
                           closeModel={() => setHandle(undefined)}
@@ -545,7 +547,7 @@ export default function CollectionProducts() {
                       // <Disclosure.Button
                       //   as={Link}
                       <Link
-                        to={`/pillows/${collectionHandle}/${slugify(
+                        to={`/pillows/${collectionHandle}?product=${slugify(
                           product.title,
                         )}`}
                         key={index}

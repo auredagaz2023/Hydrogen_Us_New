@@ -42,7 +42,7 @@ const products = [
     original_price: "$2999",
     price: "$2,399",
     button: "shop dolce vita",
-    link: "https://magniflex.us/mattresses/dolce-vita/dolce-vita-dual-10",
+    link: "https://magniflex.us/mattresses/dolce-vita?product=dolce-vita-dual-10",
     bottom: "save up to $960"
   },
   {
@@ -58,7 +58,7 @@ const products = [
     original_price: "$2199",
     price: "$1,759",
     button: "Shop MAGNICOOL",
-    link: "https://magniflex.us/mattresses/magnicool/magnicool-10-firm",
+    link: "https://magniflex.us/mattresses/magnicool?product=magnicool-10-firm",
     bottom: "Save up to $580"
   },
   {
@@ -74,7 +74,7 @@ const products = [
     original_price: "$3,199",
     price: "$2,559",
     button: "Shop MAGNISTRETCH",
-    link: "https://magniflex.us/mattresses/magnistretch/magnistretch-12",
+    link: "https://magniflex.us/mattresses/magnistretch?product=magnistretch-12",
     bottom: "Save up to $860"
   },
   {
@@ -90,7 +90,7 @@ const products = [
     original_price: "$3,599",
     price: "$2,879",
     button: "Shop TOSCANA",
-    link: "https://magniflex.us/mattresses/magnifico/toscana-grande-12",
+    link: "https://magniflex.us/mattresses/magnifico?product=toscana-grande-12",
     bottom: "Save up to $900"
   },
 ]

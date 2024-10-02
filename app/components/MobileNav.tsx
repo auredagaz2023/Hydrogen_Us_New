@@ -74,18 +74,18 @@ export function MobileNav() {
         break;
 
       case 'Topper':
-        cardLink = `/toppers`;
+        cardLink = `/toppers/details`;
         break;
 
       case 'Beds and Bases':
-        cardLink = `/bed-bases`;
+        cardLink = `/bed-bases/details`;
         break;
 
       default:
         break;
     }
 
-    return `${cardLink}/${slugify(product.title)}`;
+    return `${cardLink}?product=${slugify(product.title)}`;
   };
 
   useEffect(() => {

@@ -48,7 +48,7 @@ const products = [
     original_price: "$2199",
     price: "$1,759",
     button: "Shop MAGNICOOL",
-    link: "https://magniflex.us/mattresses/magnicool/magnicool-10-firm",
+    link: "https://magniflex.us/mattresses/magnicool?product=magnicool-10-firm",
     bottom: "Save up to $580"
   },
   {
@@ -65,7 +65,7 @@ const products = [
     original_price: "$2999",
     price: "$2,399",
     button: "shop dolce vita",
-    link: "https://magniflex.us/mattresses/dolce-vita/dolce-vita-dual-10",
+    link: "https://magniflex.us/mattresses/dolce-vita?product=dolce-vita-dual-10",
     bottom: "save up to $960"
   },  
   {
@@ -82,7 +82,7 @@ const products = [
     original_price: "$3,199",
     price: "$2,559",
     button: "Shop MAGNISTRETCH",
-    link: "https://magniflex.us/mattresses/magnistretch/magnistretch-12",
+    link: "https://magniflex.us/mattresses/magnistretch?product=magnistretch-12",
     bottom: "Save up to $860"
   },
 ]
@@ -98,7 +98,7 @@ const coolestProducts = [
     description: "With its <span class='font-bold'>cool, breathable and temperature-regulating fabric</span>, it is designed to adapt perfectly to the body helping circulation during sleep.",
     button: "Shop Magnicool 3d Topper",
     bottom: "Save up to $104",
-    link: "https://magniflex.us/toppers/magnicool-3d-topper",
+    link: "https://magniflex.us/toppers/details/magnicool-3d-topper",
   },
   {
     backgroundColor: '#EAEFFB',
@@ -110,7 +110,7 @@ const coolestProducts = [
     description: "Due to its <span class='font-bold'>cooling and breathable fabric</span> in MagniCool 3D, it gives a soft support that is always cool to the touch",
     button: "Shop Magnicool 3d Pillow",
     bottom: "Save up to $44",
-    link: "https://magniflex.us/pillows/magnicool/magnicool-3d-standard",
+    link: "https://magniflex.us/pillows/magnicool?product=magnicool-3d-standard",
   },
   {
     backgroundColor: '#EAEFFB',
@@ -122,7 +122,7 @@ const coolestProducts = [
     description: "Combining an <span class='font-bold'>innovative cover in Outlast®</span> with an inner core in <span class='font-bold'>breathable Memoform</span> to guarantee a cool and dry sleep",
     button: "Shop Magnicool 3d Topper",
     bottom: "Save up to $104",
-    link: "https://magniflex.us/pillows/superiore/superiore-deluxe-standard",
+    link: "https://magniflex.us/pillows/superiore?product=superiore-deluxe-standard",
   }
 ]
 

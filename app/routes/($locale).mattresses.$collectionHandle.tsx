@@ -55,7 +55,9 @@ export const handle = {
 };
 
 export async function loader({params, request, context}: LoaderArgs) {
-  const {productSlug, collectionHandle} = params;
+  const url = new URL(request.url);
+  const productSlug = url.searchParams.get('product');
+  const {collectionHandle} = params;
 
   invariant(productSlug, 'Missing productSlug param');
   invariant(collectionHandle, 'Missing collectionHandle param');
@@ -259,7 +261,7 @@ export default function CollectionProducts() {
                                 handle={handle}
                                 selectedProduct={selectedProduct}
                                 changeProduct={changeProduct}
-                                linkTo={`/mattresses/${collectionHandle}/${slugify(
+                                linkTo={`/mattresses/${collectionHandle}?product=${slugify(
                                   product.title,
                                 )}`}
                               />
@@ -299,7 +301,7 @@ export default function CollectionProducts() {
                               handle={handle}
                               selectedProduct={selectedProduct}
                               changeProduct={changeProduct}
-                              linkTo={`/mattresses/${collectionHandle}/${slugify(
+                              linkTo={`/mattresses/${collectionHandle}?product=${slugify(
                                 product.title,
                               )}`}
                               closeModel={() => setHandle(undefined)}
@@ -330,7 +332,7 @@ export default function CollectionProducts() {
                               handle={handle}
                               selectedProduct={selectedProduct}
                               changeProduct={changeProduct}
-                              linkTo={`/mattresses/${collectionHandle}/${slugify(
+                              linkTo={`/mattresses/${collectionHandle}?product=${slugify(
                                 product.title,
                               )}`}
                             />
@@ -640,7 +642,7 @@ export default function CollectionProducts() {
                       // <Disclosure.Button
                       //   as={Link}
                       <Link
-                        to={`/mattresses/${collectionHandle}/${slugify(
+                        to={`/mattresses/${collectionHandle}?product=${slugify(
                           product.title,
                         )}`}
                         // reloadDocument

@@ -140,7 +140,7 @@ export const InnovazioneMagnicool = React.forwardRef<HTMLDivElement, any>(
                     </div>
                     <a
                       className="mb-2 lg:mb-0 font-bold bg-174860 text-white px-10 py-4 pointer uppercase text-xs hover:bg-2f88b1 float-right inline-block whitespace-nowrap"
-                      href="/mattresses/magnicool/magnicool-10-soft"
+                      href="/mattresses/magnicool?product=magnicool-10-soft"
                     >
                       Discover the product
                     </a>
