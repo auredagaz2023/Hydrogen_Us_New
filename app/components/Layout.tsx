@@ -68,8 +68,8 @@ import {
 
 import emailjs from '@emailjs/browser';
 
-import Logo_Img from '../assets/dark_logo.png';
-import Footer_logo_img from '../assets/white_logo.png';
+import Logo_Img from '../assets/magniflex-logo-pos.svg';
+import Footer_logo_img from '../assets/magniflex-logo-neg.svg';
 
 import {useIsHydrated} from '~/hooks/useIsHydrated';
 import {useCartFetchers} from '~/hooks/useCartFetchers';
