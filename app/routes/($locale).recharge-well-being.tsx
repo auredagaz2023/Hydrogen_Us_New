@@ -254,18 +254,7 @@ export default function Ricarica() {
               </div>
               <div className="w-full lg:w-8/12 xl:w-7/12 mt-6 lg:mt-0">
                 <p className="text-[1.1rem] lg:text-lg">
-                  Magniflex quality control begins with the selection of
-                  materials, and the choice of suppliers of Made in Italy
-                  products, and continues through the entire production cycle,
-                  which is checked at 9 separate stages. Close collaboration
-                  with various international certification institutes - such as
-                  ACA - American Chiropractic Association, AJA E UKAS, the
-                  University of Florence, and the Institute for Ethical and
-                  Environmental Certification - is a guarantee of the importance
-                  the company places on the pursuit of quality. Among the most
-                  relevant certifications received are those that focus on
-                  sustainability, such as: OEKO-TEX®, and GOTS (Global Organic
-                  Textile Standard).
+                  Magniflex quality control begins with the selection of materials and the choice of suppliers for products Designed in Italy, continuing through the entire production cycle, which is checked at 9 separate stages. Close collaboration with various international certification institutes – such as the ACA (American Chiropractic Association), AJA E UKAS, the University of Florence, and the Institute for Ethical and Environmental Certification – guarantees the company’s dedication to quality. Among the most relevant certifications received are those that focus on sustainability, such as OEKO-TEX® and GOTS (Global Organic Textile Standard).
                 </p>
               </div>
             </div>

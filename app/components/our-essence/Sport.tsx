@@ -82,22 +82,13 @@ export function Sport({keyframe}: TProps) {
             <Reveal triggerOnce duration={1000} keyframes={keyframe}>
               <div className="lg:w-8/12 xl:w-7/12">
                 <p className="text-subheading text-dark-blue font-bold mb-6 lg:text-3xl">
-                  We conquer champions from all over the world.
+                  We win over champions from all around the world.
                 </p>
                 <p className="text-text text-dark-blue mb-6 lg:text-xl">
-                  There is a link between the talented athletes and Magniflex
-                  that is part of a long tradition that goes from historical
-                  sponsorships in the world of cycling to the most recent
-                  collaborations in the world of rugby and sponsorship of the
-                  Italian international soccer team.
+                  There is a strong link between talented athletes and Magniflex, rooted in a long tradition that began with historic sponsorships in cycling and has expanded to recent collaborations in rugby, as well as sponsoring the Italian national soccer team.
                 </p>
                 <p className="text-text text-dark-blue mb-6 lg:text-xl">
-                  Like restful sleep, sport is a passion without borders, in
-                  Italy as in the rest of the world. It's been 20 years of
-                  Magniflex's presence in Japan that has led the company to bind
-                  to the most important sports events in the country, so that
-                  some of the most famous Japanese champions have become
-                  significant testimonials
+                  Just like restful sleep, sport is a passion without borders, both in Italy and worldwide. For over 20 years, Magniflex’s presence in Japan has tied the company to major sporting events in the country, with some of Japan's most famous athletes becoming prominent brand ambassadors.
                 </p>
               </div>
             </Reveal>

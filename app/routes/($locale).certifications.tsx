@@ -12,6 +12,7 @@ import Cert8_Img from '~/assets/Brand/Logistica-sostenibile_1.webp';
 import Cert9_Img from '~/assets/Brand/Aca_1.webp';
 import Cert10_Img from '~/assets/Brand/MED.webp';
 import Cert11_Img from '~/assets/Brand/oeko-step.webp';
+import Cert12_Img from '~/assets/Brand/certipur-us.svg'
 
 export const handle = {
   seo: {
@@ -80,6 +81,11 @@ const CERTIFICATIONS = [
     title: 'OEKO-TEX STEP',
     desc: 'STeP (Sustainable Textile Production) Certification is an evaluation system that ensures the application of high standards and best practices in the management of its environmental performance, social responsibility, production quality, and protection of workers’ health and safety. This Certification, therefore, recognizes a corporate approach focused on the use of environmentally-friendly technologies and products, efficient use of resources and the maintenance, and development of sustainable production conditions.',
   },
+  {
+    image: Cert12_Img,
+    title: "CertiPUR-US",
+    desc: "A widely recognized safety and environmental certification program specifically for foam materials used in mattresses and other home products. It ensures that the foams have been tested, are non-toxic, environmentally responsible, and meet strict standards for content, emissions, and durability."
+  }
 ];
 
 export default function Certificazioni() {

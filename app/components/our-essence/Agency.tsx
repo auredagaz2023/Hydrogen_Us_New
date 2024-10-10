@@ -69,12 +69,10 @@ export function Agency({keyframe}: TProps) {
                   <div className="bg-white py-4 px-6 md:p-12 md:pb-6">
                     <div className="mt-12 md:m-12">
                       <p className="text-text text-gold mb-4 lg:text-xl lg:mt-0">
-                        MADE IN ITALY
+                        DESIGNED IN ITALY
                       </p>
                       <p className="text-subheading text-dark-blue text-lg font-semibold md:text-2xl">
-                        The artisan sensibility and the Italian ingenuity create
-                        unique products that make “Made in Italy” the guarantee
-                        of quality worldwide.
+                        The artisan sensibility and Italian ingenuity create unique products that make “<span className='font-bold'>Designed in Italy</span>” a guarantee of quality worldwide.
                       </p>
                     </div>
                   </div>
@@ -97,11 +95,12 @@ export function Agency({keyframe}: TProps) {
               </div>
               <div className="px-3 w-full lg:w-5/12 lg:ml-offset-1 xl:w-5/12 2xl:w-3/12">
                 <p className="text-xl text-8c8c8c my-4">
-                  Today, Magniflex is a leading international company,
-                  considered a spokesperson for restful sleep, Made in Italy,
-                  throughout the world. Our clients all over the world are aware
-                  of the unparalleled passion and dedication Magniflex puts into
-                  making mattresses.
+                  Today, Magniflex is a leading international 
+                  company, considered a spokesperson for 
+                  restful sleep, <span className='font-bold'>Designed in Italy</span>, throughout the 
+                  world. Our clients across the globe recognize the 
+                  unparalleled passion and dedication Magniflex puts 
+                  into designing mattresses.
                 </p>
               </div>
             </div>
@@ -117,13 +116,15 @@ export function Agency({keyframe}: TProps) {
                   The quality of materials and skills at
                 </p>
                 <p className="text-text text-dark-blue mb-6 lg:text-2xl">
-                  Magniflex is synonymous with excellence. The company's
-                  products have always been characterized by the real added
-                  value offered to the clients - quality. This is possible
-                  because Magniflex uses 100% Italian materials and employs the
-                  skills of specialized technicians and more than 180
-                  professionals who work side by side, sharing their passion and
-                  know-how.
+                  Magniflex is synonymous with excellence. 
+                  The company's products have always been characterized by 
+                  the real added value offered to clients – quality. 
+                  This is possible because Magniflex products are inspired 
+                  by <span className='font-bold'>Italian design and proudly manufactured in the USA.</span> 
+                  Our skilled technicians and a team of over 180 professionals 
+                  work side by side, <span className='font-bold'>combining Italian craftsmanship with American 
+                  manufacturing,</span> sharing their passion and expertise to deliver 
+                  the best sleep solutions.
                 </p>
               </div>
               <div className="px-3 w-full lg:w-1/2 xl:w-6/12 xl:ml-offset-1">
