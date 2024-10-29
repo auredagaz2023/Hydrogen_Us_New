@@ -27,12 +27,12 @@ const DATA = {
         {
             image: essenceSliderImage_3,
             title: "2000s",
-            desc: "Alessanderx SpA is born: the company that produces 10.000 mattresses per day.The strategic expansion proceeds into Asia, the Middle East, Eastern Europe, and the USA.New Magniflex showrooms are opened in Singapore, Prague, Milan, and Manila."
+            desc: "Alessanderx SpA is born: the company that produces 10.000 mattresses per day. The strategic expansion proceeds into Asia, the Middle East, Eastern Europe, and the USA. New Magniflex showrooms are opened in Singapore, Prague, Milan, and Manila."
         },
         {
             image: essenceSliderImage_4,
             title: "From 2010 to today",
-            desc: "The showrooms in Bangalore, Rome, Bratislava, Osaka, Shanghai, Riyadh, Sofia, Beijing, Dongguan, Ivory Coast, and Miami are open.The company expands its distribution into Greece, Algeria, Poland, Macedonia, the Dominican Republic, Colombia, Serbia, Turkey, and Kyrgyzstan.The launch of the MagniSmartech takes place. Distribution reaches 99 countries."
+            desc: "The showrooms in Bangalore, Rome, Bratislava, Osaka, Shanghai, Riyadh, Sofia, Beijing, Dongguan, Ivory Coast, and Miami are open. The company expands its distribution into Greece, Algeria, Poland, Macedonia, the Dominican Republic, Colombia, Serbia, Turkey, and Kyrgyzstan. The launch of the MagniSmartech takes place. Distribution reaches 99 countries."
         },
         {
             image: essenceSliderImage_5,

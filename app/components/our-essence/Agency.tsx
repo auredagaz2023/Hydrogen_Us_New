@@ -66,7 +66,7 @@ export function Agency({keyframe}: TProps) {
                   delay={100}
                   triggerOnce
                 >
-                  <div className="bg-white py-4 px-6 md:p-12 md:pb-6">
+                  <div className="bg-white h-full py-4 px-6 md:p-12 md:pb-6">
                     <div className="mt-12 md:m-12">
                       <p className="text-text text-gold mb-4 lg:text-xl lg:mt-0">
                         DESIGNED IN ITALY
