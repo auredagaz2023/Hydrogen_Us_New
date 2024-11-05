@@ -20,7 +20,7 @@ export function DropdownMenu({menuTitle, children}: Props) {
         leaveTo="transform opacity-0 h-0"
       >
         <Menu.Items
-          className={`fixed right-0 top-[65px] md:top-narrow-sticky xxl:top-wide-sticky w-screen h-screen-no-nav-mobile xl:h-screen-no-nav-desktop bg-white pb-10 max-w-menu-width ${
+          className={`fixed right-0 top-[90px] md:top-narrow-sticky xxl:top-wide-sticky w-screen h-screen-no-nav-mobile xl:h-screen-no-nav-desktop bg-white pb-10 max-w-menu-width ${
             menuTitle == 'SALES' ? 'hidden' : ''
           }`}
         >
