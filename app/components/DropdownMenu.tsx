@@ -7,20 +7,27 @@ type Props = {
 };
 
 export function DropdownMenu({menuTitle, children}: Props) {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState(0);
 
   useEffect(() => {
+      // Function to update the window width
       const handleResize = () => {
           setWindowWidth(window.innerWidth);
       };
 
-      // Add event listener
+      // Set the initial window width when the component mounts
+      handleResize();
+
+      // Add event listener for window resize
       window.addEventListener('resize', handleResize);
 
-      // Cleanup event listener on unmount
-      return () => window.removeEventListener('resize', handleResize);
+      // Cleanup the event listener on component unmount
+      return () => {
+          window.removeEventListener('resize', handleResize);
+      };
   }, []);
 
+  // Determine the top offset based on the current window width
   const topOffset = windowWidth < 1280 ? '90px' : '140px';
 
   return (
