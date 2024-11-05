@@ -3046,6 +3046,9 @@ select{
 .resize-none{
   resize: none;
 }
+.resize{
+  resize: both;
+}
 .snap-start{
   scroll-snap-align: start;
 }
