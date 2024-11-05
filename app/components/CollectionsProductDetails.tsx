@@ -9,12 +9,14 @@ import {Link} from '@remix-run/react';
 import {ProductWithMetafields} from '~/lib/type';
 import {slugify} from '~/routes/($locale).news';
 
-export function ProductDetails({
+export function CollectionsProductDetails({
   product,
   collection,
+  collectionHandle,
   comfortLevels,
 }: {
   collection: Collection;
+  collectionHandle: any,
   product: Product;
   comfortLevels?: {
     name: string;
@@ -34,30 +36,27 @@ export function ProductDetails({
   };
 
   const getCardLink = (collection: Collection, product: Product) => {
-    console.log('get card link')
-    console.log('collection', collection)
-    console.log('product', product.productType)
-    let cardLink = '';
-    switch (product.productType) {
-      case 'Mattress':
-        cardLink = `/mattresses`;
-        break;
+    let cardLink = '/mattresses/'+collectionHandle;
+    // switch (product.productType) {
+    //   case 'Mattress':
+    //     cardLink = `/mattresses`;
+    //     break;
 
-      case 'Pillow':
-        cardLink = `/pillows`;
-        break;
+    //   case 'Pillow':
+    //     cardLink = `/pillows`;
+    //     break;
 
-      case 'Topper':
-        cardLink = `/toppers/details`;
-        break;
+    //   case 'Topper':
+    //     cardLink = `/toppers/details`;
+    //     break;
 
-      case 'Beds and Bases':
-        cardLink = `/bed-bases/details`;
-        break;
+    //   case 'Beds and Bases':
+    //     cardLink = `/bed-bases/details`;
+    //     break;
 
-      default:
-        break;
-    }
+    //   default:
+    //     break;
+    // }
 
     return `${cardLink}?product=${slugify(product.title)}`;
   };

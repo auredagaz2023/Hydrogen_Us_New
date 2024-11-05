@@ -12,6 +12,7 @@ import {LoaderFunctionArgs, json} from '@shopify/remix-oxygen';
 import invariant from 'tiny-invariant';
 import {CollectionHeading} from '~/components/CollectionHeading';
 import {CollectionLinks} from '~/components/CollectionLinks';
+import { CollectionsProductDetails } from '~/components/CollectionsProductDetails';
 import {ProductDetails} from '~/components/ProductDetails';
 import {TestMattressWidget} from '~/components/TestMattressWidget';
 import {PRODUCT_CARD_FRAGMENT} from '~/data/fragments';
@@ -66,8 +67,8 @@ export async function loader({params, request, context}: LoaderFunctionArgs) {
 }
 
 export default function CategoryCollections() {
-  const {contentfulCollections, collection} = useLoaderData<typeof loader>();
-
+  const {contentfulCollections, collection={}, analytics} = useLoaderData<typeof loader>();
+  const { collectionHandle } = analytics
   const getComfortLevels = () => {
     const comfortLevels: {
       name: string;
@@ -163,9 +164,10 @@ export default function CategoryCollections() {
           {collection &&
             sortProductsByType(collection.products.nodes as ProductType[]).map(
               (product: ProductType, index: number) => (
-                <ProductDetails
+                <CollectionsProductDetails
                   product={product}
                   collection={collection as CollectionType}
+                  collectionHandle={collectionHandle}
                   key={index}
                   comfortLevels={getComfortLevels()}
                 />

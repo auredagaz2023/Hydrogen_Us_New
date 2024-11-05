@@ -2479,6 +2479,9 @@ select{
 .h-\[55px\]{
   height: 55px;
 }
+.h-\[65px\]{
+  height: 65px;
+}
 .h-\[690px\]{
   height: 690px;
 }
@@ -4413,6 +4416,9 @@ select{
 }
 .pr-8{
   padding-right: 2rem;
+}
+.pr-\[10px\]{
+  padding-right: 10px;
 }
 .pr-\[11px\]{
   padding-right: 11px;

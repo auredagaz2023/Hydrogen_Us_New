@@ -117,7 +117,7 @@ export function DesktopHeaderNew({openCart}: {openCart: () => void}) {
       <div className="w-full bg-white px-3 md:px-6 py-3 border-b border-[#e9ecef]">
         <div className="flex flex-wrap px-0 lg:px-2 xl:px-6">
           <Link to={`/`} className="w-5/12 md:w-3/12 lg:w-2/12 max-w-xxs">
-            <img src={Logo_Img} alt="site log img" className="w-full" />
+            <img src={Logo_Img} alt="site log img" className="h-[65px]" />
           </Link>
           <div className="hidden menu-list xl:block grow self-center justify-self-end text-right">
             {mainMenuList.map((menuItem, index) => (
