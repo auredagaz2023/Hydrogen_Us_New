@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import DesktopHeaderPng from '~/assets/blackfriday2024/desktop/header.png'
 import CheckIconSvg from '~/assets/blackfriday2024/checkmark.svg'
-import MobileHeaderVideo from '~/assets/Landing-Independent/Mobile/Header/magniflex-4-july-header.mp4'
+import MobileHeaderPng from '~/assets/blackfriday2024/mobile/magniflex-back-friday-header-mobile.png'
 import freeshippingsvg from  '~/assets/Landing/Desktop/icons/free-shipping.svg'
 import trialsvg from '~/assets/Landing/Desktop/icons/trial.svg'
-import starsvg from '~/assets/Landing-Independent/Desktop/icons/star.svg'
+import starsvg from '~/assets/Landing/Desktop/icons/star.svg'
 import dolcevitapng from '~/assets/blackfriday2024/desktop/Products/Images/01-dolce-vita.jpg'
 import virtuosopng from '~/assets/blackfriday2024/desktop/Products/Images/02-virtuoso-elegante.jpg'
 import toscanapng from '~/assets/blackfriday2024/desktop/Products/Images/03-toscana-grande-12.jpg'
@@ -158,6 +158,7 @@ function leading() {
           <video className='block md:hidden w-full' autoPlay loop muted> 
               <source src={MobileHeaderVideo} type='video/mp4'/>
           </video> */}
+          <img src={MobileHeaderPng} className='w-full md:hidden'  alt="" />
           <img src={DesktopHeaderPng} className='w-full hidden md:block'  alt="" />
       </section>
       <div className='flex overflow:hidden px-[32px] text-[13px] leading-[34px] justify-center items-start md:items-center flex-col md:flex-row md:space-x-nav bg-[#BAA388] w-100 text-white md:h-[50px] py-2'>
