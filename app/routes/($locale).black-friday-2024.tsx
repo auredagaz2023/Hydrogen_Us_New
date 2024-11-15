@@ -197,7 +197,7 @@ function leading() {
             <video className='hidden lg:block' autoPlay loop muted width={632}> 
               <source src={desktopDualCoreVideo} type='video/mp4'/>
             </video>            
-            <video className='block lg:hidden' autoPlay loop muted width={632}> 
+            <video className='block lg:hidden w-full' autoPlay loop muted width={632}> 
               <source src={mobileDualCoreVideo} type='video/mp4'/>
             </video>            
               {/* <iframe
@@ -305,7 +305,7 @@ function leading() {
                   onMouseOver={()=>handleHover(index)}
                   onMouseOut={handleUnhover} 
                   alt="product_img" 
-                  className='lg:hidden'
+                  className='lg:hidden w-full block'
                   style={{
                     transition: '0.3s all ease' // Apply a smooth transition effect
                   }}
