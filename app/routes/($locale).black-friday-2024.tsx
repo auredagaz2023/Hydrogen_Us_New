@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import DesktopHeaderPng from '~/assets/blackfriday2024/desktop/header.png'
+import DesktopHeaderPng from '~/assets/blackfriday2024/desktop/header.jpg'
 import CheckIconSvg from '~/assets/blackfriday2024/checkmark.svg'
 import MobileHeaderPng from '~/assets/blackfriday2024/mobile/magniflex-back-friday-header-mobile.jpg'
 import freeshippingsvg from  '~/assets/Landing/Desktop/icons/free-shipping.svg'
