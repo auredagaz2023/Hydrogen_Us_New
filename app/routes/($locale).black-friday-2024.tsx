@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import DesktopHeaderPng from '~/assets/blackfriday2024/desktop/header.png'
 import CheckIconSvg from '~/assets/blackfriday2024/checkmark.svg'
-import MobileHeaderPng from '~/assets/blackfriday2024/mobile/magniflex-back-friday-header-mobile.png'
+import MobileHeaderPng from '~/assets/blackfriday2024/mobile/magniflex-back-friday-header-mobile.jpg'
 import freeshippingsvg from  '~/assets/Landing/Desktop/icons/free-shipping.svg'
 import trialsvg from '~/assets/Landing/Desktop/icons/trial.svg'
 import starsvg from '~/assets/Landing/Desktop/icons/star.svg'
@@ -19,6 +19,10 @@ import mobileDolcevitapng from '~/assets/blackfriday2024/mobile/Products/01-dolc
 import mobileVirtuosopng from '~/assets/blackfriday2024/mobile/Products/02-virtuoso-elegante.jpg'
 import mobileToscanapng from '~/assets/blackfriday2024/mobile/Products/03-toscana-grande-12.jpg'
 import mobilePillowpng from '~/assets/blackfriday2024/mobile/Products/04-pillows.jpg'
+import desktopDualCoreSection from '~/assets/blackfriday2024/DualCoreSection/desktop.jpg'
+import mobileDualCoreSection from '~/assets/blackfriday2024/DualCoreSection/mobile.jpg'
+import desktopDualCoreVideo from '~/assets/blackfriday2024/DualCoreSection/Video/desktop.mp4'
+import mobileDualCoreVideo from '~/assets/blackfriday2024/DualCoreSection/Video/mobile.mp4'
 
 const EMAILJS_SERVICE_ID = 'orders-mx-mail';
 const EMAILJS_PUBLIC_KEY = 'S4HKNw2-KC7dMdcU4';
@@ -54,7 +58,7 @@ const products = [
     original_price: "$6,399",
     price: "$5,119",
     button: "Shop VIRTUOSO ELEGANTE",
-    link: "https://magniflex.us/mattresses/magnicool?product=magnicool-10-firm",
+    link: "https://magniflex.us/mattresses/magnifico?product=virtuoso-elegante",
     bottom: "Save up to $580"
   },
   {
@@ -82,9 +86,9 @@ const products = [
     name: "MAGNIFLEX PILLOWS",
     description: "Explore the comfort, support, freshness, breathability, and many more qualities designed to enhance your sleep experience",
     free: true,
-    button: "Shop TOSCANA",
-    link: "https://magniflex.us/mattresses/magnifico?product=toscana-grande-12",
-    bottom: "Save up to $900"
+    button: "Shop Pillows",
+    link: "https://magniflex.us/category/pillows",
+    bottom: "Save up to $229"
   },
 ]
 
@@ -181,17 +185,22 @@ function leading() {
       </div>
       <div className='px-0 md:px-[110px] py-[20px] relative'>
         <div className='w-full md:w-[60%] py-[20px]' style={{backgroundColor:'#BAA3888C'}}>
-          <div className='mx-[30px] text-white text-center h-auto md:h-[132px] flex flex-col items-center justify-center'>
+          {/* <div className='mx-[30px] text-white text-center h-auto md:h-[132px] flex flex-col items-center justify-center'>
             <div className='text-[32px] md:text-[35px]' style={{lineHeight:'35px'}}>Dual Core Technology,</div>
             <div className='text-[25px]' style={{lineHeight: '35px'}}>
               Tailored comfort within a single double mattress.
             </div>
-          </div>
+          </div> */}
+          <img className='hidden md:block' src={desktopDualCoreSection}/>
+          <img className='md:hidden' src={mobileDualCoreSection}/>
           <div className='static md:absolute top-[196px] right-[68px] z-[100]'>
-            {/* <video autoPlay loop muted width={632}> 
-              <source src='https://www.youtube.com/watch?v=jjIeKW9fDfU' type='video/mp4'/>
-            </video>             */}
-              <iframe
+            <video className='hidden md:block' autoPlay loop muted width={632}> 
+              <source src={desktopDualCoreVideo} type='video/mp4'/>
+            </video>            
+            <video className='block md:hidden' autoPlay loop muted width={632}> 
+              <source src={mobileDualCoreVideo} type='video/mp4'/>
+            </video>            
+              {/* <iframe
                 className="w-full aspect-video flex justify-center items-center"
                 src="https://www.youtube.com/watch?v=jjIeKW9fDfU"
                 title="Tecnologia Dual Core Magniflex"
@@ -200,9 +209,9 @@ function leading() {
                 <svg width="63" height="63" viewBox="0 0 63 63" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M31.5 0C14.0963 0 0 14.0963 0 31.5C0 48.9038 14.0963 63 31.5 63C48.9038 63 63 48.9038 63 31.5C63 14.0963 48.9038 0 31.5 0ZM46.6987 33.075L25.4363 45.2812C24.255 45.99 22.68 45.1238 22.68 43.7063V19.2938C22.68 17.8763 24.255 17.01 25.4363 17.7188L46.6987 29.925C47.88 30.6338 47.88 32.3663 46.6987 33.075Z" fill="white"/>
                 </svg>
-              </iframe>
+              </iframe> */}
           </div>
-          <div className='w-full md:mx-[30px] md:px-[30px] mx-0 px-[30px]'>
+          {/* <div className='w-full md:mx-[30px] md:px-[30px] mx-0 px-[30px]'>
             <div className='text-[#174860]'>
               <div className='text-[25px] leading-[29px] font-[600] mt-[29px] ml-[36px] mt-[10px]'>
                 Custom Comfort
@@ -246,7 +255,7 @@ function leading() {
                 </div>
               </div> 
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className='bg-white text-[#174860] text-[35px] font-[600] text-center leading-[24px] py-[24px] px-[20px] mb-[24px] md:mb-[55px]'>

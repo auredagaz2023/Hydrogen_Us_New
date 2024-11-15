@@ -2555,9 +2555,6 @@ select{
 .h-test{
   height: calc(100vh - 60px);
 }
-.h-\[132px\]{
-  height: 132px;
-}
 .max-h-0{
   max-height: 0px;
 }
@@ -4647,6 +4644,9 @@ select{
 .text-\[30px\]{
   font-size: 30px;
 }
+.text-\[32px\]{
+  font-size: 32px;
+}
 .text-\[35px\]{
   font-size: 35px;
 }
@@ -4721,9 +4721,6 @@ select{
 }
 .text-xxs{
   font-size: 11px;
-}
-.text-\[32px\]{
-  font-size: 32px;
 }
 .font-\[200\]{
   font-weight: 200;
