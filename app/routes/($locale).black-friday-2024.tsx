@@ -25,7 +25,7 @@ import desktopDualCoreVideo from '~/assets/blackfriday2024/DualCoreSection/Video
 import mobileDualCoreVideo from '~/assets/blackfriday2024/DualCoreSection/Video/mobile.mp4'
 
 const EMAILJS_SERVICE_ID = 'orders-mx-mail';
-const EMAILJS_PUBLIC_KEY = 'S4HKNw2-KC7dMdcU4';
+const EMAILJS_PUBLIC_KEY = 'S4HKNw2-KC7dlgcU4';
 const EMAILJS_SUBSCRIPTION_TEMPLATE_ID = 'mx-usa-form-subscription';
 
 const products = [
@@ -152,60 +152,52 @@ function leading() {
   return (
     <div>
       {/* <FadeIn>
-        <img src={desktopHeader} loading='lazy' alt="header" className='hidden md:block' />
-        <img src={mobileHeader} loading='lazy' alt="header" className='md:hidden' />
+        <img src={desktopHeader} loading='lazy' alt="header" className='hidden lg:block' />
+        <img src={mobileHeader} loading='lazy' alt="header" className='lg:hidden' />
       </FadeIn> */}
-      <section id='hero' className='bg-hero bg-no-repeat bg-center bg-cover relative w-full h-full md:h-auto h-scroll'>
-          {/* <video className='hidden md:block' autoPlay loop muted > 
-              <source className='hidden md:block' src={DesktopHeaderVideo} type='video/mp4'/>
+      <section id='hero' className='bg-hero bg-no-repeat bg-center bg-cover relative w-full h-full lg:h-auto h-scroll'>
+          {/* <video className='hidden lg:block' autoPlay loop muted > 
+              <source className='hidden lg:block' src={DesktopHeaderVideo} type='video/mp4'/>
           </video>
-          <video className='block md:hidden w-full' autoPlay loop muted> 
+          <video className='block lg:hidden w-full' autoPlay loop muted> 
               <source src={MobileHeaderVideo} type='video/mp4'/>
           </video> */}
-          <div className='w-full md:hidden'>
-            <img src={MobileHeaderPng} alt="" />
-          </div>
-          <div className='w-full hidden md:block' >
-            <img src={DesktopHeaderPng}  alt="" />
-          </div>
+          <img src={MobileHeaderPng} className='w-full lg:hidden'  alt="" />
+          <img src={DesktopHeaderPng} className='w-full hidden lg:block'  alt="" />
       </section>
-      <div className='flex overflow:hidden px-[32px] text-[13px] leading-[34px] justify-center items-start md:items-center flex-col md:flex-row md:space-x-nav bg-[#BAA388] w-100 text-white md:h-[50px] py-2'>
-        <div  className='flex gap-[24px] md:gap-2 h-[34px] items-center'>
+      <div className='flex overflow:hidden px-[32px] text-[13px] leading-[34px] justify-center items-start lg:items-center flex-col lg:flex-row lg:space-x-nav bg-[#BAA388] w-100 text-white lg:h-[50px] py-2'>
+        <div  className='flex gap-[24px] lg:gap-2 h-[34px] items-center'>
           <img width={32} src={freeshippingsvg}></img>
           <span className='uppercase'>Free shipping</span>
         </div>
-        <div className='flex gap-[24px] md:gap-2 h-[34px] items-center'>
+        <div className='flex gap-[24px] lg:gap-2 h-[34px] items-center'>
           <img width={32} src={trialsvg} alt="" />
           <span className='uppercase'>90-NIGHT SLEEP TRIAL</span>
         </div>
-        <div className='flex gap-[24px] md:gap-2 h-[34px] items-center'>
+        <div className='flex gap-[24px] lg:gap-2 h-[34px] items-center'>
           <img width={32} src={starsvg} alt="" />
           <span className='uppercase'>10-Year Warranty ON MATTRESSES</span>
         </div>
       </div>
-      <div className='bg-white text-[#174860] leading-[29px] text-[17.5px] text-center pt-[96px] pb-[64px] md:pt-[72px] md:pb-[32px] px-[30px] md:px-0'>
+      <div className='bg-white text-[#174860] leading-[29px] text-[17.5px] text-center pt-[96px] pb-[64px] lg:pt-[72px] lg:pb-[32px] px-[30px] lg:px-0'>
         Black Friday is the perfect time to treat yourself to a better night's sleep. <br/>
         <div><span className='font-bold'>Enjoy 20% off</span>  our Dual Core mattresses, saving you <span className="font-bold">up to $1,480. </span> Plus, <span className='font-bold'>get a free pillow</span> with every pillow purchase.</div>
       </div>
-      <div className='px-0 md:px-[110px] py-[20px] relative'>
-        <div className='w-full md:w-[60%] py-[20px]' style={{backgroundColor:'#BAA3888C'}}>
-          {/* <div className='mx-[30px] text-white text-center h-auto md:h-[132px] flex flex-col items-center justify-center'>
-            <div className='text-[32px] md:text-[35px]' style={{lineHeight:'35px'}}>Dual Core Technology,</div>
+      <div className='px-0 lg:px-[110px] py-[20px] relative'>
+        <div className='w-full lg:w-[60%] py-[20px]' style={{backgroundColor:'#BAA3888C'}}>
+          {/* <div className='mx-[30px] text-white text-center h-auto lg:h-[132px] flex flex-col items-center justify-center'>
+            <div className='text-[32px] lg:text-[35px]' style={{lineHeight:'35px'}}>Dual Core Technology,</div>
             <div className='text-[25px]' style={{lineHeight: '35px'}}>
               Tailored comfort within a single double mattress.
             </div>
           </div> */}
-          <div className='hidden md:block'>
-            <img src={desktopDualCoreSection}/>
-          </div>
-          <div className='md:hidden' >
-            <img src={mobileDualCoreSection}/>
-          </div>
-          <div className='static md:absolute top-[196px] right-[68px] z-[100]'>
-            <video className='hidden md:block' autoPlay loop muted width={632}> 
+          <img className='hidden lg:block' src={desktopDualCoreSection}/>
+          <img className='lg:hidden' src={mobileDualCoreSection}/>
+          <div className='static lg:absolute top-[196px] right-[68px] z-[100]'>
+            <video className='hidden lg:block' autoPlay loop muted width={632}> 
               <source src={desktopDualCoreVideo} type='video/mp4'/>
             </video>            
-            <video className='block md:hidden' autoPlay loop muted width={632}> 
+            <video className='block lg:hidden' autoPlay loop muted width={632}> 
               <source src={mobileDualCoreVideo} type='video/mp4'/>
             </video>            
               {/* <iframe
@@ -219,7 +211,7 @@ function leading() {
                 </svg>
               </iframe> */}
           </div>
-          {/* <div className='w-full md:mx-[30px] md:px-[30px] mx-0 px-[30px]'>
+          {/* <div className='w-full lg:mx-[30px] lg:px-[30px] mx-0 px-[30px]'>
             <div className='text-[#174860]'>
               <div className='text-[25px] leading-[29px] font-[600] mt-[29px] ml-[36px] mt-[10px]'>
                 Custom Comfort
@@ -266,21 +258,21 @@ function leading() {
           </div> */}
         </div>
       </div>
-      <div className='bg-white text-[#174860] text-[35px] font-[600] text-center leading-[24px] py-[24px] px-[20px] mb-[24px] md:mb-[55px]'>
+      <div className='bg-white text-[#174860] text-[35px] font-[600] text-center leading-[24px] py-[24px] px-[20px] mb-[24px] lg:mb-[55px]'>
         Discover our  <span className='italic'>Dual Core</span> mattresses
       </div>
       <div className='grid grid-cols-1 lg:grid-cols-2'>
       {
         products.map((product:any, index)=>{
           return (
-            <div key={index} className='px-[32px] md:px-12 pb-32 relative'>
+            <div key={index} className='px-[32px] :px-12 pb-32 relative'>
               <div className='relative h-auto'>
                 <img
                   src={product.roll_img}
                   onMouseOver={() => handleHover(index)}
                   onMouseOut={handleUnhover}
                   alt="product_img"
-                  className='hidden md:block absolute'
+                  className='hidden lg:block absolute'
                   style={{
                     objectFit: 'cover',
                     opacity: hoveredIndex === index ? 1 : 0,
@@ -292,7 +284,7 @@ function leading() {
                   onMouseOver={() => handleHover(index)}
                   onMouseOut={handleUnhover}
                   alt="product_img"
-                  className='hidden md:block absolute'
+                  className='hidden lg:block absolute'
                   style={{
                     objectFit: 'cover',
                     opacity: hoveredIndex !== index ? 1 : 0,
@@ -304,7 +296,7 @@ function leading() {
                   onMouseOver={() => handleHover(index)}
                   onMouseOut={handleUnhover}
                   alt="product_img"
-                  className='hidden md:block'
+                  className='hidden lg:block'
                   style={{
                     visibility: 'hidden'
                   }}
@@ -313,7 +305,7 @@ function leading() {
                   onMouseOver={()=>handleHover(index)}
                   onMouseOut={handleUnhover} 
                   alt="product_img" 
-                  className='md:hidden'
+                  className='lg:hidden'
                   style={{
                     transition: '0.3s all ease' // Apply a smooth transition effect
                   }}
@@ -323,7 +315,7 @@ function leading() {
               <div className='flex flex-col items-center px-12'>
                 <a  href={product.link} className='mt-[20px] text-[27.5px] lg:text-[22px] text-[#174860] leading-[24px] font-bold uppercase text-center hover:underline' >{product.name}</a>
                 <hr className='my-[20px] lg:hidden block border-0 clear-both, w-[96%] bg-[#174860] h-[1px]'  />
-                <div className='mt-[20px] text-[17px] font-semibold md:font-normal text-[#174860] leading-[25px] text-center'>{product.description}</div>
+                <div className='mt-[20px] text-[17px] font-semibold lg:font-normal text-[#174860] leading-[25px] text-center'>{product.description}</div>
                 <div className='mt-[30px] lg:mt-[25px] text-[17px] lg:text-[15px] text-center'>
                   {product.bestfor &&
                     <>
@@ -384,7 +376,7 @@ function leading() {
             id="email" 
             placeholder='Enter e-mail' 
             style={{outline:'none', boxShadow:'none'}}
-            className='w-full md:w-[400px] text-center text-[16px] font-[24px] bg-[#F6F6F6] border border-t-0 border-l-0 border-r-0 border-b-1 border-[#174860] my-[20px] outline-none'/>
+            className='w-full lg:w-[400px] text-center text-[16px] font-[24px] bg-[#F6F6F6] border border-t-0 border-l-0 border-r-0 border-b-1 border-[#174860] my-[20px] outline-none'/>
           <br />
           <button type='submit' className='border border-[#556268] text-[#174860] text-[17px] lg:text-[13px] font-semibold px-6 py-3 hover:bg-[#174860] hover:text-white uppercase'>subscribe</button>
         </form>
@@ -392,7 +384,7 @@ function leading() {
           <img className='w-full h-auto' src={magniflexlogo} alt="" />
         </div>
         <hr className='text-[#0a2430] my-[20px] hidden lg:block border-[#888888]' />
-        {/* <div className='text-[12px] sm:text-[16px] md:text-[20px] lg:text-[23px] text-center leading-[100px] font-semibold py-[30px] lg:py-0'>At Night, We Bring Life to Your Days.</div>
+        {/* <div className='text-[12px] sm:text-[16px] lg:text-[20px] lg:text-[23px] text-center leading-[100px] font-semibold py-[30px] lg:py-0'>At Night, We Bring Life to Your Days.</div>
         <div className='flex gap-[26px] items-center justify-center mt-[35px] mb-[40px]'>
           <a href="https://www.facebook.com/MagniflexUS">
             <FaFacebookF className='h-[26px]'/>
