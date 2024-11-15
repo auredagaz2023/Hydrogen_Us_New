@@ -6339,11 +6339,6 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
     margin-right: 1.5rem;
   }
 
-  .md\:mx-\[30px\]{
-    margin-left: 30px;
-    margin-right: 30px;
-  }
-
   .md\:mx-auto{
     margin-left: auto;
     margin-right: auto;
@@ -6463,10 +6458,6 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
 
   .md\:h-28{
     height: 7rem;
-  }
-
-  .md\:h-\[132px\]{
-    height: 132px;
   }
 
   .md\:h-\[17px\]{
@@ -6895,11 +6886,6 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
     padding-right: 2.25rem;
   }
 
-  .md\:px-\[110px\]{
-    padding-left: 110px;
-    padding-right: 110px;
-  }
-
   .md\:px-\[135px\]{
     padding-left: 135px;
     padding-right: 135px;
@@ -6913,11 +6899,6 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
   .md\:px-\[26px\]{
     padding-left: 26px;
     padding-right: 26px;
-  }
-
-  .md\:px-\[30px\]{
-    padding-left: 30px;
-    padding-right: 30px;
   }
 
   .md\:py-12{
@@ -7248,6 +7229,11 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
     margin-right: 0.75rem;
   }
 
+  .lg\:mx-\[30px\]{
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+
   .lg\:my-12{
     margin-top: 3rem;
     margin-bottom: 3rem;
@@ -7276,6 +7262,10 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
 
   .lg\:mb-8{
     margin-bottom: 2rem;
+  }
+
+  .lg\:mb-\[55px\]{
+    margin-bottom: 55px;
   }
 
   .lg\:ml-\[8\%\]{
@@ -7328,6 +7318,10 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
 
   .lg\:aspect-\[3\/2\]{
     aspect-ratio: 3/2;
+  }
+
+  .lg\:h-\[132px\]{
+    height: 132px;
   }
 
   .lg\:h-\[15px\]{
@@ -7441,6 +7435,10 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
 
   .lg\:w-\[400px\]{
     width: 400px;
+  }
+
+  .lg\:w-\[60\%\]{
+    width: 60%;
   }
 
   .lg\:w-\[65\%\]{
@@ -7659,6 +7657,11 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
     padding-right: 2rem;
   }
 
+  .lg\:px-\[110px\]{
+    padding-left: 110px;
+    padding-right: 110px;
+  }
+
   .lg\:px-\[15\%\]{
     padding-left: 15%;
     padding-right: 15%;
@@ -7667,6 +7670,11 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
   .lg\:px-\[20\%\]{
     padding-left: 20%;
     padding-right: 20%;
+  }
+
+  .lg\:px-\[30px\]{
+    padding-left: 30px;
+    padding-right: 30px;
   }
 
   .lg\:px-\[50px\]{
@@ -7906,6 +7914,10 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
     font-size: 25px;
   }
 
+  .lg\:text-\[35px\]{
+    font-size: 35px;
+  }
+
   .lg\:text-\[40px\]{
     font-size: 40px;
   }
@@ -7931,6 +7943,10 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
   .lg\:text-xl{
     font-size: 1.25rem;
     line-height: 1.75rem;
+  }
+
+  .lg\:font-normal{
+    font-weight: 400;
   }
 
   .lg\:leading-normal{
