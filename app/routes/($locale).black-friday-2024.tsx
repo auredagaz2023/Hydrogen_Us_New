@@ -195,8 +195,12 @@ function leading() {
               Tailored comfort within a single double mattress.
             </div>
           </div> */}
-          <img className='hidden md:block' src={desktopDualCoreSection}/>
-          <img className='md:hidden' src={mobileDualCoreSection}/>
+          <div className='hidden md:block'>
+            <img src={desktopDualCoreSection}/>
+          </div>
+          <div className='md:hidden' >
+            <img src={mobileDualCoreSection}/>
+          </div>
           <div className='static md:absolute top-[196px] right-[68px] z-[100]'>
             <video className='hidden md:block' autoPlay loop muted width={632}> 
               <source src={desktopDualCoreVideo} type='video/mp4'/>
