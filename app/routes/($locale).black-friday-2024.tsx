@@ -59,7 +59,7 @@ const products = [
     price: "$5,119",
     button: "Shop VIRTUOSO ELEGANTE",
     link: "https://magniflex.us/mattresses/magnifico?product=virtuoso-elegante",
-    bottom: "Save up to $580"
+    bottom: "Save up to $1,480"
   },
   {
     advance: "Ultimate ALL-NATURAL SLEEP",
@@ -337,9 +337,9 @@ function leading() {
                   </div>
                 }
                 {product?.free && (
-                  <div className="mt-[25px] text-[#839BB1] text-[13px] leading-[27.5px] text-center">
-                    <span className="text-[#D50613]">
-                      Get a free pillow
+                  <div className="mt-[25px] text-[#839BB1] text-[15px] leading-[27.5px] text-center">
+                    <span className="text-[#D50613] font-bold">
+                      Get a free pillow 
                     </span>
                     with every pillow purchased
                   </div>
