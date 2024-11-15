@@ -162,8 +162,12 @@ function leading() {
           <video className='block md:hidden w-full' autoPlay loop muted> 
               <source src={MobileHeaderVideo} type='video/mp4'/>
           </video> */}
-          <img src={MobileHeaderPng} className='w-full md:hidden'  alt="" />
-          <img src={DesktopHeaderPng} className='w-full hidden md:block'  alt="" />
+          <div className='w-full md:hidden'>
+            <img src={MobileHeaderPng} alt="" />
+          </div>
+          <div className='w-full hidden md:block' >
+            <img src={DesktopHeaderPng}  alt="" />
+          </div>
       </section>
       <div className='flex overflow:hidden px-[32px] text-[13px] leading-[34px] justify-center items-start md:items-center flex-col md:flex-row md:space-x-nav bg-[#BAA388] w-100 text-white md:h-[50px] py-2'>
         <div  className='flex gap-[24px] md:gap-2 h-[34px] items-center'>
