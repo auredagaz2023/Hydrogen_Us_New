@@ -749,52 +749,52 @@ select{
   padding-right: 2em;
   padding-left: 2em;
 }
-@media (min-width: 32em){
+@media (min-width: 512px){
 
   .container{
-    max-width: 32em;
+    max-width: 512px;
   }
 }
-@media (min-width: 48em){
+@media (min-width: 768px){
 
   .container{
-    max-width: 48em;
+    max-width: 768px;
   }
 }
-@media (min-width: 62em){
+@media (min-width: 992px){
 
   .container{
-    max-width: 62em;
+    max-width: 992px;
   }
 }
-@media (min-width: 75em){
+@media (min-width: 1200px){
 
   .container{
-    max-width: 75em;
+    max-width: 1200px;
   }
 }
-@media (min-width: 80em){
+@media (min-width: 1280px){
 
   .container{
-    max-width: 80em;
+    max-width: 1280px;
   }
 }
-@media (min-width: 96em){
+@media (min-width: 1536px){
 
   .container{
-    max-width: 96em;
+    max-width: 1536px;
   }
 }
-@media (min-width: 105em){
+@media (min-width: 1680px){
 
   .container{
-    max-width: 105em;
+    max-width: 1680px;
   }
 }
-@media (min-width: 120em){
+@media (min-width: 1920px){
 
   .container{
-    max-width: 120em;
+    max-width: 1920px;
   }
 }
 .prose{
@@ -1660,14 +1660,14 @@ select{
   font-size: 1.125rem;
   line-height: 1.75rem;
 }
-@media (min-width: 48em){
+@media (min-width: 768px){
 
   .article img{
     margin-left: -2rem;
     margin-right: -2rem;
   }
 }
-@media (min-width: 62em){
+@media (min-width: 992px){
 
   .article img{
     margin-left: -4rem;
@@ -5566,7 +5566,7 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
     transform: rotate(360deg);
   }
 }
-@media (min-width: 32em){
+@media (min-width: 512px){
 
   .sm\:container{
     width: 100%;
@@ -5576,63 +5576,63 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
     padding-left: 2em;
   }
 
-  @media (min-width: 32em){
+  @media (min-width: 512px){
 
     .sm\:container{
-      max-width: 32em;
+      max-width: 512px;
     }
   }
 
-  @media (min-width: 48em){
+  @media (min-width: 768px){
 
     .sm\:container{
-      max-width: 48em;
+      max-width: 768px;
     }
   }
 
-  @media (min-width: 62em){
+  @media (min-width: 992px){
 
     .sm\:container{
-      max-width: 62em;
+      max-width: 992px;
     }
   }
 
-  @media (min-width: 75em){
+  @media (min-width: 1200px){
 
     .sm\:container{
-      max-width: 75em;
+      max-width: 1200px;
     }
   }
 
-  @media (min-width: 80em){
+  @media (min-width: 1280px){
 
     .sm\:container{
-      max-width: 80em;
+      max-width: 1280px;
     }
   }
 
-  @media (min-width: 96em){
+  @media (min-width: 1536px){
 
     .sm\:container{
-      max-width: 96em;
+      max-width: 1536px;
     }
   }
 
-  @media (min-width: 105em){
+  @media (min-width: 1680px){
 
     .sm\:container{
-      max-width: 105em;
+      max-width: 1680px;
     }
   }
 
-  @media (min-width: 120em){
+  @media (min-width: 1920px){
 
     .sm\:container{
-      max-width: 120em;
+      max-width: 1920px;
     }
   }
 }
-@media (min-width: 48em){
+@media (min-width: 768px){
 
   .md\:container{
     width: 100%;
@@ -5642,59 +5642,59 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
     padding-left: 2em;
   }
 
-  @media (min-width: 32em){
+  @media (min-width: 512px){
 
     .md\:container{
-      max-width: 32em;
+      max-width: 512px;
     }
   }
 
-  @media (min-width: 48em){
+  @media (min-width: 768px){
 
     .md\:container{
-      max-width: 48em;
+      max-width: 768px;
     }
   }
 
-  @media (min-width: 62em){
+  @media (min-width: 992px){
 
     .md\:container{
-      max-width: 62em;
+      max-width: 992px;
     }
   }
 
-  @media (min-width: 75em){
+  @media (min-width: 1200px){
 
     .md\:container{
-      max-width: 75em;
+      max-width: 1200px;
     }
   }
 
-  @media (min-width: 80em){
+  @media (min-width: 1280px){
 
     .md\:container{
-      max-width: 80em;
+      max-width: 1280px;
     }
   }
 
-  @media (min-width: 96em){
+  @media (min-width: 1536px){
 
     .md\:container{
-      max-width: 96em;
+      max-width: 1536px;
     }
   }
 
-  @media (min-width: 105em){
+  @media (min-width: 1680px){
 
     .md\:container{
-      max-width: 105em;
+      max-width: 1680px;
     }
   }
 
-  @media (min-width: 120em){
+  @media (min-width: 1920px){
 
     .md\:container{
-      max-width: 120em;
+      max-width: 1920px;
     }
   }
 }
@@ -6094,7 +6094,7 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
 :where([data-headlessui-state~="selected"]) .ui-selected\:font-semibold{
   font-weight: 600;
 }
-@media (min-width: 32em){
+@media (min-width: 512px){
 
   .sm\:bottom-auto{
     bottom: auto;
@@ -6259,7 +6259,7 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
     font-size: 16px;
   }
 }
-@media (min-width: 48em){
+@media (min-width: 768px){
 
   .md\:absolute{
     position: absolute;
@@ -7141,7 +7141,7 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
     color: rgba(0, 0, 0, var(--tw-text-opacity));
   }
 }
-@media (min-width: 62em){
+@media (min-width: 992px){
 
   .lg\:static{
     position: static;
@@ -7977,7 +7977,7 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
     color: rgba(255, 255, 255, var(--tw-text-opacity));
   }
 }
-@media (min-width: 75em){
+@media (min-width: 1200px){
 
   .xl\:left-\[8\%\]{
     left: 8%;
@@ -8164,7 +8164,7 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
     line-height: 1.75rem;
   }
 }
-@media (min-width: 96em){
+@media (min-width: 1536px){
 
   .\32xl\:right-\[5\%\]{
     right: 5%;
@@ -8231,7 +8231,7 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
     letter-spacing: 0.48px;
   }
 }
-@media (min-width: 80em){
+@media (min-width: 1280px){
 
   .xxl\:top-\[118px\]{
     top: 118px;
@@ -8295,7 +8295,7 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
     line-height: 1.45;
   }
 }
-@media (min-width: 105em){
+@media (min-width: 1680px){
 
   .\33xl\:right-\[10\%\]{
     right: 10%;
@@ -8319,7 +8319,7 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
     padding-top: 5rem;
   }
 }
-@media (max-width: 48em){
+@media (max-width: 768px){
 
   .sm-max\:pt-2{
     padding-top: 0.5rem;

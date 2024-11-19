@@ -40,21 +40,21 @@ module.exports = {
         'test-header': '#9fcee3',
       },
       screens: {
-        sm: '32em',
-        md: '48em',
-        lg: '62em',
-        xl: '75em',
-        '2xl': '96em',
-        xxl: '80em',
-        '3xl': '105em',
-        xxxl: '120em',
-        'sm-max': {max: '48em'},
-        'sm-only': {min: '32em', max: '48em'},
-        'md-only': {min: '48em', max: '62em'},
-        'lg-only': {min: '62em', max: '75em'},
-        'xl-only': {min: '75em', max: '96em'},
-        '2xl-only': {min: '96em'},
-      },
+        sm: '512px',        // 32em
+        md: '768px',        // 48em
+        lg: '992px',        // 62em
+        xl: '1200px',       // 75em
+        '2xl': '1536px',    // 96em
+        xxl: '1280px',      // 80em
+        '3xl': '1680px',    // 105em
+        xxxl: '1920px',     // 120em
+        'sm-max': { max: '768px' },        // 48em
+        'sm-only': { min: '512px', max: '768px' }, // 32em to 48em
+        'md-only': { min: '768px', max: '992px' }, // 48em to 62em
+        'lg-only': { min: '992px', max: '1200px' }, // 62em to 75em
+        'xl-only': { min: '1200px', max: '1536px' }, // 75em to 96em
+        '2xl-only': { min: '1536px' },    // 96em
+    },    
       spacing: {
         nav: 'var(--height-nav)',
         screen: 'var(--screen-height, 100vh)',
