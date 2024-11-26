@@ -1,5 +1,3 @@
-// app/routes/lookbook.tsx
-
 import React from 'react';
 
 const Lookbook = () => {
