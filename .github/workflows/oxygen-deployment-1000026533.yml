@@ -4,13 +4,7 @@ on: [push]
 permissions:
   contents: read
   deployments: write
-
-routing:
-  redirects:
-    - source: /mattresses/magnifico/:productSlug
-      destination: /mattresses/magnifico?product=:productSlug
-      permanent: true # 301 redirect
-
+  
 jobs:
   deploy:
     name: Deploy to Oxygen
