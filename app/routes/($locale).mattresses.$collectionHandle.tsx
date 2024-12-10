@@ -233,7 +233,7 @@ export default function CollectionProducts() {
                         <tr>
                           <th className='border border-slate-300 py-4 text-[#212529]' >Model</th>
                           <th className='border border-slate-300 py-4 text-[#212529]'>Comfort</th>
-                          <th className='border border-slate-300 py-4 text-[#212529]'>Beniefits</th>
+                          <th className='border border-slate-300 py-4 text-[#212529]'>Benefits</th>
                           {/* <th className='border border-slate-300'>Materials</th> */}
                           <th className='border border-slate-300 py-4 text-[#212529]'>Technology</th>
                         </tr>
