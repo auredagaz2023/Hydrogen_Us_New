@@ -350,8 +350,11 @@ export function ProductContent({
                             ) => (
                               <p className="text-174860 text-sm" key={index}>
                                 {(content as ContentfulParagraph).content.map(
-                                  (text, index: number) => (
-                                    <span key={index}>{text.value}</span>
+                                  // (text, index: number) => (
+                                  //   <span key={index}>{text.value}</span>
+                                  // ),
+                                  (text:any, index: number) => (
+                                    <span key={index} className={`${text?.marks?.[0]?.type=='bold' ? 'font-bold' : ''}`}>{text.value}</span>
                                   ),
                                 )}
                               </p>
