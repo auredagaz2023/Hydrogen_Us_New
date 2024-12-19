@@ -33,7 +33,7 @@ export async function loader({params, request, context}: LoaderArgs) {
     } else if (productSlug=='toscana-grande-12') {
       product = 'toscana-cotton-grande-dual-12'
     }
-  } else if (collectionHandle=='magnicool') {
+  } else if (collectionHandle=='magnicool' && productSlug=='magnicool-12-gel') {
     product = 'magnicool-gel-12'
   }
   // const product = (productSlug=='toscana-grande-12' && collectionHandle=='magnifico') ? 'toscana-cotton-grande-dual-12' : productSlug
