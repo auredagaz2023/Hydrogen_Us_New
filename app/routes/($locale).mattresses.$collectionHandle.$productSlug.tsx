@@ -28,13 +28,13 @@ export async function loader({params, request, context}: LoaderArgs) {
   const {collectionHandle, productSlug} = params;
   let product = productSlug
   if (collectionHandle=='magnifico') {
-    if (productSlug=='magnicool-12-gel') {
-      product = 'magnicool-gel-12'
-    } else if (productSlug=='cotton-lux') {
+    if (productSlug=='cotton-lux') {
       product = 'toscana-cotton-lux'
     } else if (productSlug=='toscana-grande-12') {
       product = 'toscana-cotton-grande-dual-12'
     }
+  } else if (collectionHandle=='magnicool') {
+    product = 'magnicool-gel-12'
   }
   // const product = (productSlug=='toscana-grande-12' && collectionHandle=='magnifico') ? 'toscana-cotton-grande-dual-12' : productSlug
   invariant(productSlug, 'Missing productSlug param');
