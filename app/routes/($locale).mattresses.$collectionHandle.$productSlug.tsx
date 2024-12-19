@@ -26,9 +26,9 @@ export async function loader({params, request, context}: LoaderArgs) {
   const url = new URL(request.url);
   // const productSlug = url.searchParams.get('product');
   const {collectionHandle, productSlug} = params;
-
+  const product = (productSlug=='toscana-grande-12' && collectionHandle=='magnifico') ? 'toscana-cotton-grande-dual-12' : productSlug
   invariant(productSlug, 'Missing productSlug param');
   invariant(collectionHandle, 'Missing collectionHandle param');
-  const redirectUrl = `https://magniflex.us/mattresses/${collectionHandle}?product=${productSlug}`;
+  const redirectUrl = `https://magniflex.us/mattresses/${collectionHandle}?product=${product}`;
   return redirect(redirectUrl)
 }
