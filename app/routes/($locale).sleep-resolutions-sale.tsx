@@ -58,7 +58,7 @@ const products = [
     original_price: "$2,699",
     price: "$1,889",
     button: "Shop MAGNICOOL",
-    link: "https://magniflex.us/mattresses/magnifico?product=virtuoso-elegante",
+    link: "https://magniflex.us/mattresses/magnicool?product=magnicool-10-firm",
     bottom: "Save up to $1,680"
   },
   {
@@ -74,7 +74,7 @@ const products = [
     original_price: "$3,199",
     price: "$2,239",
     button: "Shop MAGNISTRETCH",
-    link: "https://magniflex.us/mattresses/magnifico?product=toscana-grande-12",
+    link: "https://magniflex.us/mattresses/magnistretch?product=magnistretch-12",
     bottom: "Save up to $2,280"
   },
   {
