@@ -6,6 +6,7 @@ import snowFlake02 from '~/assets/Sleep-Resolutions-2024/snowflake-02.png'
 import snowFlake03 from '~/assets/Sleep-Resolutions-2024/snowflake-03.png'
 import snowFlake04 from '~/assets/Sleep-Resolutions-2024/snowflake-04.png'
 import snowFlake05 from '~/assets/Sleep-Resolutions-2024/snowflake-05.png'
+import snowFlakeMobile from '~/assets/Sleep-Resolutions-2024/snowflake-mobile.png'
 import freeshippingsvg from  '~/assets/Landing/Desktop/icons/free-shipping.svg'
 import trialsvg from '~/assets/Landing/Desktop/icons/trial.svg'
 import starsvg from '~/assets/Landing/Desktop/icons/star.svg'
@@ -188,7 +189,7 @@ function leading() {
         <div className='font-bold text-[25px] leading-[55px] text-center'>Save up to $2,520 now!</div>        
       </div>
       
-      <div className='bg-white text-[#C60226] text-[35px] font-[600] flex justify-center leading-[24px] py-[24px] px-[20px] mb-[24px] lg:mb-[55px]'>
+      <div className='bg-white text-[#C60226] text-[35px] font-[600] hidden md:flex justify-center leading-[24px] py-[24px] px-[20px] mb-[24px] lg:mb-[55px]'>
         <div className='relative h-[81px] text-center flex justify-center items-center' style={{minWidth:'646px'}}>
           <img className='absolute top-0 left-0' src={snowFlake01}></img>
           <img className='absolute top-[39px] left-[54px]' src={snowFlake02}></img>
@@ -199,6 +200,11 @@ function leading() {
             Explore our collections
           </div>
         </div>
+      </div>
+      <div className='bg-white text-[#C60226] text-[35px] font-[600] flex flex-col items-center text-center'>
+          <img src={snowFlakeMobile}/>
+          <div>Explore</div>
+          <div>our collections</div>
       </div>
       <div className='grid grid-cols-1 lg:grid-cols-2'>
       {
