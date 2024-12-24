@@ -201,7 +201,7 @@ function leading() {
           </div>
         </div>
       </div>
-      <div className='bg-white text-[#C60226] text-[35px] font-[600] flex flex-col items-center text-center'>
+      <div className='bg-white mb-[43px] text-[#C60226] text-[35px] font-[600] flex flex-col items-center text-center'>
           <img src={snowFlakeMobile}/>
           <div>Explore</div>
           <div>our collections</div>
