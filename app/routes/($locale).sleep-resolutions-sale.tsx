@@ -169,7 +169,7 @@ function leading() {
           {/* <img src={MobileHeaderPng} className='w-full lg:hidden'  alt="" />
           <img src={DesktopHeaderPng} className='w-full hidden lg:block'  alt="" /> */}
       </section>
-      <div className='flex overflow:hidden px-[32px] text-[13px] leading-[34px] justify-center items-start lg:items-center flex-col lg:flex-row lg:space-x-nav bg-[#C60226] w-100 text-white lg:h-[50px] py-2'>
+      <div className='flex overflow:hidden px-[32px] text-[13px] leading-[34px] justify-center items-center flex-col lg:flex-row lg:space-x-nav bg-[#C60226] w-100 text-white lg:h-[50px] py-2'>
         <div  className='flex gap-[24px] lg:gap-2 h-[34px] items-center'>
           <img width={32} src={freeshippingsvg}></img>
           <span className='uppercase'>Free shipping</span>
