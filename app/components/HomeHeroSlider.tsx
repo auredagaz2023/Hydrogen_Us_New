@@ -111,7 +111,7 @@ export function HomeHeroSlider() {
                     <div onClick={handleClickSlide} className='w-full hover:cursor-pointer'>
                       <div className="block md:hidden">
                         { assets.filter((asset:any)=>{return asset.sys.id==item.fields.mobileCover.sys.id})[0].fields.file.url?.includes('videos.ctfassets.net') ?
-                          <video loop src={assets.filter((asset:any)=>{return asset.sys.id==item.fields.mobileCover.sys.id})[0].fields.file.url} alt="img1" />
+                          <video autoPlay loop muted src={assets.filter((asset:any)=>{return asset.sys.id==item.fields.mobileCover.sys.id})[0].fields.file.url} alt="img1" />
                           :
                           <img src={assets.filter((asset:any)=>{return asset.sys.id==item.fields.mobileCover.sys.id})[0].fields.file.url} alt="img1" />
                         }
@@ -119,7 +119,7 @@ export function HomeHeroSlider() {
                       <div className="hidden md:block">
                         {
                           assets.filter((asset:any)=>{return asset.sys.id==item.fields.cover.sys.id})[0].fields.file.url.includes('videos.ctfassets.net') ?
-                            <video loop src={assets.filter((asset:any)=>{return asset.sys.id==item.fields.cover.sys.id})[0].fields.file.url}/>
+                            <video autoPlay loop muted src={assets.filter((asset:any)=>{return asset.sys.id==item.fields.cover.sys.id})[0].fields.file.url}/>
                             :
                             <img src={assets.filter((asset:any)=>{return asset.sys.id==item.fields.cover.sys.id})[0].fields.file.url} alt="img2" />
                         }                       
