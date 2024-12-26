@@ -110,20 +110,19 @@ export function HomeHeroSlider() {
                 {item.fields.fullFrame ? (
                     <div onClick={handleClickSlide} className='w-full hover:cursor-pointer'>
                       <div className="block md:hidden">
-                        <img src={assets.filter((asset:any)=>{return asset.sys.id==item.fields.mobileCover.sys.id})[0].fields.file.url} alt="img1" />
+                        { assets.filter((asset:any)=>{return asset.sys.id==item.fields.mobileCover.sys.id})[0].fields.file.url?.includes('videos.ctfassets.net') ?
+                          <img src={assets.filter((asset:any)=>{return asset.sys.id==item.fields.mobileCover.sys.id})[0].fields.file.url} alt="img1" />
+                          :
+                          <video loop src={assets.filter((asset:any)=>{return asset.sys.id==item.fields.mobileCover.sys.id})[0].fields.file.url} alt="img1" />
+                        }
                       </div>
                       <div className="hidden md:block">
                         {
                           assets.filter((asset:any)=>{return asset.sys.id==item.fields.cover.sys.id})[0].fields.file.url.includes('videos.ctfassets.net') ?
-                            <video src={assets.filter((asset:any)=>{return asset.sys.id==item.fields.cover.sys.id})[0].fields.file.url}/>
+                            <video loop src={assets.filter((asset:any)=>{return asset.sys.id==item.fields.cover.sys.id})[0].fields.file.url}/>
                             :
                             <img src={assets.filter((asset:any)=>{return asset.sys.id==item.fields.cover.sys.id})[0].fields.file.url} alt="img2" />
-                        }
-                        <div>
-                          {
-                            assets.filter((asset:any)=>{return asset.sys.id==item.fields.cover.sys.id})[0].fields.file.url
-                          }
-                        </div>                        
+                        }                       
                       </div>
                     </div>
                   ) : (
