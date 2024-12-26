@@ -111,9 +111,9 @@ export function HomeHeroSlider() {
                     <div onClick={handleClickSlide} className='w-full hover:cursor-pointer'>
                       <div className="block md:hidden">
                         { assets.filter((asset:any)=>{return asset.sys.id==item.fields.mobileCover.sys.id})[0].fields.file.url?.includes('videos.ctfassets.net') ?
-                          <img src={assets.filter((asset:any)=>{return asset.sys.id==item.fields.mobileCover.sys.id})[0].fields.file.url} alt="img1" />
-                          :
                           <video loop src={assets.filter((asset:any)=>{return asset.sys.id==item.fields.mobileCover.sys.id})[0].fields.file.url} alt="img1" />
+                          :
+                          <img src={assets.filter((asset:any)=>{return asset.sys.id==item.fields.mobileCover.sys.id})[0].fields.file.url} alt="img1" />
                         }
                       </div>
                       <div className="hidden md:block">
