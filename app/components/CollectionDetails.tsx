@@ -179,7 +179,7 @@ export function CollectionDetails({
             ))}
         </div>
         {collection[summaryKey] && (
-          <div className="collection-description border-t border-border pt-5 mt-2 mb-5 text-[#212529] text-[14px] h-[7.5rem] overflow-hidden">
+          <div className="collection-description border-t border-border mt-5 pt-5 mt-2 mb-5 text-[#212529] text-[14px] h-[130px] overflow-hidden">
             {collection[summaryKey].value}
           </div>
         )}

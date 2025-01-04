@@ -130,6 +130,8 @@ export default function CategoryCollections() {
     return _products;
   };
 
+  console.log('collection products', collection)
+
   return (
     <>
       <div
@@ -250,6 +252,9 @@ const COLLECTION_QUERY = `#graphql
             value
           }
           saveUpTo: metafield(namespace: "custom", key: "save_up_to") {
+            value
+          }
+          shortDescription: metafield(namespace: "custom", key:"short_description_field") {
             value
           }
           technology: metafield(namespace: "custom", key: "technology") {

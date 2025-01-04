@@ -439,11 +439,11 @@ export function ProductContent({
           </Tab.Panel>
           <Tab.Panel
             as="div"
-            className="bg-f7 py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-center gap-5"
+            className="bg-f7 py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 justify-center gap-5"
           >
             {specifications && (
               <>
-                <div className="border-b border-b-border flex px-2">
+                <div className="border-b border-b-border grid grid-3 px-2">
                   <img
                     src={CollectionImg}
                     alt="specification collection"
@@ -533,7 +533,7 @@ export function ProductContent({
                     </p>
                   </div>
                 </div>
-                <div className="border-b border-b-border flex px-2">
+                {/* <div className="border-b border-b-border flex px-2">
                   <img
                     src={SupportImg}
                     alt="specification collection"
@@ -547,7 +547,7 @@ export function ProductContent({
                       {specifications.support}
                     </p>
                   </div>
-                </div>
+                </div> */}
                 <div className="border-b border-b-border flex px-2">
                   <img
                     src={MaterialImg}

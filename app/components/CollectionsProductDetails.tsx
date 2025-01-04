@@ -108,7 +108,7 @@ export function CollectionsProductDetails({
                   key={index}
                 >
                   <span
-                    className="w-2 h-2 block rounded-full mr-3"
+                    className="min-w-[8px] w-2 h-2 block rounded-full mr-3"
                     style={{backgroundColor: comfortLevel.color}}
                   ></span>
                   <span>{comfortLevel.name}</span>
@@ -116,8 +116,8 @@ export function CollectionsProductDetails({
               ))}
           </div>
         )}
-        <div className="collection-description border-t border-border pt-5 mt-2 mb-5 text-[#212529] text-[14px] h-[7.5rem] overflow-hidden">
-          {product.description}
+        <div className="collection-description border-t border-border mt-5 pt-5 mt-2 mb-5 text-[#212529] text-[14px] h-[7.5rem] overflow-hidden">
+          {product.shortDescription}
         </div>
         {minVtPrice && (
           <div className="collection-price border-t border-border pt-4 mb-2 mt-2 text-dark-blue text-sm font-semibold flex">

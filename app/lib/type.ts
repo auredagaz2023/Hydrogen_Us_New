@@ -62,6 +62,7 @@ export type ProductWithMetafields <T> = T & {
   benefits: { value: string },
   height: { value: number },
   comfortDescription: { value: string },
+  shortDescription: { value: string },
   productId: { value: string },
   shapeAndSize: { value: string },
   productCategory: { value: string }
