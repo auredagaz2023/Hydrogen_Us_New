@@ -982,14 +982,13 @@ function FooterNew() {
           </div>
           <div className="w-full md:w-1/2 lg:w-5/12 pr-3 pt-6 lg:pl-16">
             <p className="pt-6 leading-relaxed text-xxs text-white tracking-footer-wide">
-              Tel +39 057451011 - Fax +39 0574 5101.235 - info@magniflex.com
+              Manufactured by Magniflex USA Ltd., Inc.
               <br />
-              Magniflex: Prodotto da Alessanderx S.p.a.
+              3050 Biscayne Blvd, Ste 200 Miami, FL 33137 - USA
               <br />
-              Via San Leonardo da Porto Maurizio, 24/26/28 - 59100 Prato
+              Toll free number <a href='tel:+1-888-381-8481'>+1-888-381-8481</a>
               <br />
-              P.I. 01729090975 - Capitale sociale 1.000.000,00 euro (i.v.) - REA
-              PO/465133 - Codice fiscale 01246380461
+              <a href='mailto:orders@magniflex.us'>orders@magniflex.us</a>
             </p>
           </div>
           <div className="w-full md:w-1/2 lg:w-4/12 pr-3 pt-3 lg:pl-16">
