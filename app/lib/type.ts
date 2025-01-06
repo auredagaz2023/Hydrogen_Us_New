@@ -168,6 +168,7 @@ export type ContentfulProductSpecifications = {
   certifications: string[];
   collection: string;
   comfort: string;
+  cover: string[];
   extras: string[];
   height: number;
   materials: string[];

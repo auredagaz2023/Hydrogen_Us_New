@@ -20,7 +20,7 @@ import {ContentfulParagraph} from '~/routes/($locale).types';
 import {ContentfulEmbeddedAsset} from '~/routes/($locale).types';
 import CollectionImg from '../assets/icons/collection.png';
 import CertificationImg from '../assets/icons/certifications.png';
-import HeightImg from '../assets/icons/height.png';
+import ThicknessImg from '../assets/icons/height.png';
 import ExtraImg from '../assets/icons/extra.png';
 import CoverImg from '../assets/icons/cover.png';
 import ComfortImg from '../assets/icons/comfort-level.png';
@@ -135,7 +135,6 @@ export function ProductContent({
           }
         });
     })();
-    console.log('product info', product)
   }, [product]);
 
   return (
@@ -443,7 +442,7 @@ export function ProductContent({
           >
             {specifications && (
               <>
-                <div className="border-b border-b-border grid grid-3 px-2">
+                <div className="border-b border-b-border flex px-2">
                   <img
                     src={CollectionImg}
                     alt="specification collection"
@@ -475,36 +474,6 @@ export function ProductContent({
                 </div>
                 <div className="border-b border-b-border flex px-2">
                   <img
-                    src={HeightImg}
-                    alt="specification collection"
-                    className="w-8 h-8 mr-5"
-                  />
-                  <div className="pt-2 pb-3 md:pb-6">
-                    <p className="uppercase text-174860 text-xs my-0 font-bold">
-                      height
-                    </p>
-                    <p className="text-b09987 text-xs mt-2">
-                      {specifications.height}
-                    </p>
-                  </div>
-                </div>
-                <div className="border-b border-b-border flex px-2">
-                  <img
-                    src={ExtraImg}
-                    alt="specification collection"
-                    className="w-8 h-8 mr-5"
-                  />
-                  <div className="pt-2 pb-3 md:pb-6">
-                    <p className="uppercase text-174860 text-xs my-0 font-bold">
-                      extras
-                    </p>
-                    <p className="text-b09987 text-xs mt-2">
-                      {specifications.extras?.join(', ')}
-                    </p>
-                  </div>
-                </div>
-                <div className="border-b border-b-border flex px-2">
-                  <img
                     src={ComfortImg}
                     alt="specification collection"
                     className="w-8 h-8 mr-5"
@@ -518,36 +487,6 @@ export function ProductContent({
                     </p>
                   </div>
                 </div>
-                <div className="border-b border-b-border flex px-2">
-                  <img
-                    src={WarrantyImg}
-                    alt="specification collection"
-                    className="w-8 h-8 mr-5"
-                  />
-                  <div className="pt-2 pb-3 md:pb-6">
-                    <p className="uppercase text-174860 text-xs my-0 font-bold">
-                      Warranty
-                    </p>
-                    <p className="text-b09987 text-xs mt-2">
-                      {specifications.warranty}
-                    </p>
-                  </div>
-                </div>
-                {/* <div className="border-b border-b-border flex px-2">
-                  <img
-                    src={SupportImg}
-                    alt="specification collection"
-                    className="w-8 h-8 mr-5"
-                  />
-                  <div className="pt-2 pb-3 md:pb-6">
-                    <p className="uppercase text-174860 text-xs my-0 font-bold">
-                      Support
-                    </p>
-                    <p className="text-b09987 text-xs mt-2">
-                      {specifications.support}
-                    </p>
-                  </div>
-                </div> */}
                 <div className="border-b border-b-border flex px-2">
                   <img
                     src={MaterialImg}
@@ -578,6 +517,69 @@ export function ProductContent({
                     </p>
                   </div>
                 </div>
+                <div className="border-b border-b-border flex px-2">
+                  <img
+                    src={WarrantyImg}
+                    alt="specification collection"
+                    className="w-8 h-8 mr-5"
+                  />
+                  <div className="pt-2 pb-3 md:pb-6">
+                    <p className="uppercase text-174860 text-xs my-0 font-bold">
+                      Warranty
+                    </p>
+                    <p className="text-b09987 text-xs mt-2">
+                      {specifications.warranty}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="border-b border-b-border flex px-2">
+                  <img
+                    src={ThicknessImg}
+                    alt="specification collection"
+                    className="w-8 h-8 mr-5"
+                  />
+                  <div className="pt-2 pb-3 md:pb-6">
+                    <p className="uppercase text-174860 text-xs my-0 font-bold">
+                      Thickness
+                    </p>
+                    <p className="text-b09987 text-xs mt-2">
+                      {specifications.height}
+                    </p>
+                  </div>
+                </div>
+                <div className="border-b border-b-border flex px-2">
+                  <img
+                    src={ExtraImg}
+                    alt="specification collection"
+                    className="w-8 h-8 mr-5"
+                  />
+                  <div className="pt-2 pb-3 md:pb-6">
+                    <p className="uppercase text-174860 text-xs my-0 font-bold">
+                      extras
+                    </p>
+                    <p className="text-b09987 text-xs mt-2">
+                      {specifications.extras?.join(', ')}
+                    </p>
+                  </div>
+                </div>                                
+                {/* <div className="border-b border-b-border flex px-2">
+                  <img
+                    src={SupportImg}
+                    alt="specification collection"
+                    className="w-8 h-8 mr-5"
+                  />
+                  <div className="pt-2 pb-3 md:pb-6">
+                    <p className="uppercase text-174860 text-xs my-0 font-bold">
+                      Support
+                    </p>
+                    <p className="text-b09987 text-xs mt-2">
+                      {specifications.support}
+                    </p>
+                  </div>
+                </div> */}
+                
+                
               </>
             )}
           </Tab.Panel>

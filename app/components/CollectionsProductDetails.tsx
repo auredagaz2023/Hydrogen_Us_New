@@ -100,7 +100,7 @@ export function CollectionsProductDetails({
           {product.title}
         </Link>
         {product.productType === 'Mattress' && comfortLevels && (
-          <div className="collection-attributes border-t border-border pt-2 mt-2 mb-2 grid grid-cols-2 h-12">
+          <div className="collection-attributes border-t border-b py-2 mt-2 mb-2 grid grid-cols-2">
             {comfortLevels &&
               comfortLevels.map((comfortLevel, index) => (
                 <div
@@ -116,8 +116,8 @@ export function CollectionsProductDetails({
               ))}
           </div>
         )}
-        <div className="collection-description border-t border-border mt-5 pt-5 mt-2 mb-5 text-[#212529] text-[14px] h-[7.5rem] overflow-hidden">
-          {product.shortDescription}
+        <div className="collection-description mt-5 mt-2 mb-5 text-[#212529] text-[14px] overflow-hidden">
+          {product.shortDescriptions.value}
         </div>
         {minVtPrice && (
           <div className="collection-price border-t border-border pt-4 mb-2 mt-2 text-dark-blue text-sm font-semibold flex">

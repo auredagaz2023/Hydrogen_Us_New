@@ -254,7 +254,7 @@ const COLLECTION_QUERY = `#graphql
           saveUpTo: metafield(namespace: "custom", key: "save_up_to") {
             value
           }
-          shortDescription: metafield(namespace: "custom", key:"short_description_field") {
+          shortDescriptions: metafield(namespace: "custom", key: "short_descriptions") {
             value
           }
           technology: metafield(namespace: "custom", key: "technology") {
