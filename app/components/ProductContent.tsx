@@ -442,13 +442,13 @@ export function ProductContent({
           >
             {specifications && (
               <>
-                <div className="border-b border-b-border flex px-2">
+                <div className="border-b border-b-border flex px-[20px]">
                   <img
                     src={CollectionImg}
                     alt="specification collection"
-                    className="w-8 h-8 mr-5"
-                  />
-                  <div className="pt-2 pb-3 md:pb-6">
+                    className="w-[25px] h-[25px] mr-[16px]"
+                  />                  
+                  <div className="pb-3 md:pb-6">
                     <p className="uppercase text-174860 text-xs my-0 font-bold">
                       collection
                     </p>
@@ -457,13 +457,13 @@ export function ProductContent({
                     </p>
                   </div>
                 </div>
-                <div className="border-b border-b-border flex px-2">
+                <div className="border-b border-b-border flex px-[20px]">
                   <img
                     src={CertificationImg}
                     alt="specification collection"
-                    className="w-8 h-8 mr-5"
+                    className="w-[25px] h-[25px] mr-[16px]"
                   />
-                  <div className="pt-2 pb-3 md:pb-6">
+                  <div className="pb-3 md:pb-6">
                     <p className="uppercase text-174860 text-xs my-0 font-bold">
                       certifications
                     </p>
@@ -472,13 +472,13 @@ export function ProductContent({
                     </p>
                   </div>
                 </div>
-                <div className="border-b border-b-border flex px-2">
+                <div className="border-b border-b-border flex px-[20px]">
                   <img
                     src={ComfortImg}
                     alt="specification collection"
-                    className="w-8 h-8 mr-5"
+                    className="w-[25px] h-[25px] mr-[16px]"
                   />
-                  <div className="pt-2 pb-3 md:pb-6">
+                  <div className="pb-3 md:pb-6">
                     <p className="uppercase text-174860 text-xs my-0 font-bold">
                       Comfort Level
                     </p>
@@ -487,13 +487,13 @@ export function ProductContent({
                     </p>
                   </div>
                 </div>
-                <div className="border-b border-b-border flex px-2">
+                <div className="border-b border-b-border flex px-[20px]">
                   <img
                     src={MaterialImg}
                     alt="specification collection"
-                    className="w-8 h-8 mr-5"
+                    className="w-[25px] h-[25px] mr-[16px]"
                   />
-                  <div className="pt-2 pb-3 md:pb-6">
+                  <div className="pb-3 md:pb-6">
                     <p className="uppercase text-174860 text-xs my-0 font-bold">
                       Materials
                     </p>
@@ -502,13 +502,13 @@ export function ProductContent({
                     </p>
                   </div>
                 </div>
-                <div className="border-b border-b-border flex px-2">
+                <div className="border-b border-b-border flex px-[20px]">
                   <img
                     src={BenefitsImg}
                     alt="specification collection"
-                    className="w-8 h-8 mr-5"
+                    className="w-[25px] h-[25px] mr-[16px]"
                   />
-                  <div className="pt-2 pb-3 md:pb-6">
+                  <div className="pb-3 md:pb-6">
                     <p className="uppercase text-174860 text-xs my-0 font-bold">
                       Benefits
                     </p>
@@ -517,13 +517,13 @@ export function ProductContent({
                     </p>
                   </div>
                 </div>
-                <div className="border-b border-b-border flex px-2">
+                <div className="border-b border-b-border flex px-[20px]">
                   <img
                     src={WarrantyImg}
                     alt="specification collection"
-                    className="w-8 h-8 mr-5"
+                    className="w-[25px] h-[25px] mr-[16px]"
                   />
-                  <div className="pt-2 pb-3 md:pb-6">
+                  <div className="pb-3 md:pb-6">
                     <p className="uppercase text-174860 text-xs my-0 font-bold">
                       Warranty
                     </p>
@@ -533,13 +533,13 @@ export function ProductContent({
                   </div>
                 </div>
 
-                <div className="border-b border-b-border flex px-2">
+                <div className="border-b border-b-border flex px-[20px]">
                   <img
                     src={ThicknessImg}
                     alt="specification collection"
-                    className="w-8 h-8 mr-5"
+                    className="w-[25px] h-[25px] mr-[16px]"
                   />
-                  <div className="pt-2 pb-3 md:pb-6">
+                  <div className="pb-3 md:pb-6">
                     <p className="uppercase text-174860 text-xs my-0 font-bold">
                       Thickness
                     </p>
@@ -548,13 +548,13 @@ export function ProductContent({
                     </p>
                   </div>
                 </div>
-                <div className="border-b border-b-border flex px-2">
+                <div className="border-b border-b-border flex px-[20px]">
                   <img
                     src={ExtraImg}
                     alt="specification collection"
-                    className="w-8 h-8 mr-5"
+                    className="w-[25px] h-[25px] mr-[16px]"
                   />
-                  <div className="pt-2 pb-3 md:pb-6">
+                  <div className="pb-3 md:pb-6">
                     <p className="uppercase text-174860 text-xs my-0 font-bold">
                       extras
                     </p>
