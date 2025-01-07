@@ -117,7 +117,7 @@ export function CollectionsProductDetails({
           </div>
         )}
         <div className="collection-description mt-5 mt-2 mb-5 text-[#212529] text-[14px] overflow-hidden">
-          {product.shortDescriptions.value}
+          {product?.shortDescriptions?.value || ''}
         </div>
         {minVtPrice && (
           <div className="collection-price border-t border-border pt-4 mb-2 mt-2 text-dark-blue text-sm font-semibold flex">
