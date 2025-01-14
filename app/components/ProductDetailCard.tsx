@@ -108,7 +108,7 @@ export function ProductDetailCard({
               widths={[700]}
             />
           )}
-          {/* {productDiscount > 0 && (
+          {productDiscount > 0 && (
             <div className="absolute left-0 top-5 bg-red-600 text-white flex justify-end w-40 uppercase px-4">
               Promo -{productDiscount}%
             </div>
@@ -117,16 +117,16 @@ export function ProductDetailCard({
             <div className="absolute left-0 top-5 bg-red-600 text-white flex justify-end w-40 uppercase px-4">
               Promo -{productSaveUpTo}%
             </div>
-          )} */}
+          )}
         </div>
 
         <h3 className="text-dark-blue text-left text-[11px] mt-2 uppercase font-semibold">
           {collection.title}
-          {(productDiscount > 0 || productSaveUpTo) && (
+          {/* {(productDiscount > 0 || productSaveUpTo) && (
             <span className="text-red-500 w-40 uppercase px-4">
               Promo
             </span>
-          )}
+          )} */}
         </h3>
 
         {collection[summaryKey] && (

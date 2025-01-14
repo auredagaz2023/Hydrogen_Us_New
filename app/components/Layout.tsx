@@ -579,67 +579,67 @@ function DesktopHeaderNew({openCart}: {openCart: () => void}) {
                             <CollectionCardContent productData={data} />
                           )}
                           {activeMenu === 'Promo' && data?.promotions && (
-                            <></>
-                            // <div className="grid gird-cols-12 gap-[10px]">
-                            //   <div className="col-span-9 grid grid-cols-9 gap-8">
-                            //     {data.promotions.items
-                            //       .reverse()
-                            //       .map((promotion, index: number) => (
-                            //         <div
-                            //           key={index}
-                            //           className="col-span-3 product-tab"
-                            //         >
-                            //           {/* <p className="text-gold mb-1">{promotion.fields.label}</p> */}
-                            //           <div
-                            //             className="relative"
-                            //             style={{
-                            //               paddingBottom: '80%',
-                            //               width: '100%',
-                            //               backgroundImage: `url(${
-                            //                 data.promotions.includes.Asset.find(
-                            //                   (asset) =>
-                            //                     asset.sys.id ==
-                            //                     promotion.fields.coverImage.sys
-                            //                       .id,
-                            //                 )?.fields.file.url || ''
-                            //               })`,
-                            //               backgroundPosition: 'center',
-                            //               backgroundSize: 'cover',
-                            //             }}
-                            //           >
-                            //             <div className="absolute top-5 w-40 bg-red-600 text-white text-center py-1">
-                            //               Promo -{promotion.fields.discount}%
-                            //             </div>
-                            //           </div>
-                            //           <h3 className="text-dark-blue text-left text-[11px] mt-2 font-semibold">
-                            //             {promotion.fields.title}
-                            //           </h3>
-                            //           <div className="mt-3 text-left">
-                            //             {promotion.fields.description.content.map(
-                            //               (
-                            //                 content: ContentfulParagraph,
-                            //                 index: number,
-                            //               ) => (
-                            //                 <p
-                            //                   className="text-limit pr-4"
-                            //                   key={index}
-                            //                 >
-                            //                   {(
-                            //                     content as ContentfulParagraph
-                            //                   ).content.map((text, index) => (
-                            //                     <span key={index}>
-                            //                       {text.value}
-                            //                     </span>
-                            //                   ))}
-                            //                 </p>
-                            //               ),
-                            //             )}
-                            //           </div>
-                            //         </div>
-                            //       ))}
-                            //   </div>
-                            //   <div className="col-span-3"></div>
-                            // </div>
+                            // <></>
+                            <div className="grid gird-cols-12 gap-[10px]">
+                              <div className="col-span-9 grid grid-cols-9 gap-8">
+                                {data.promotions.items
+                                  .reverse()
+                                  .map((promotion, index: number) => (
+                                    <div
+                                      key={index}
+                                      className="col-span-3 product-tab"
+                                    >
+                                      {/* <p className="text-gold mb-1">{promotion.fields.label}</p> */}
+                                      <div
+                                        className="relative"
+                                        style={{
+                                          paddingBottom: '80%',
+                                          width: '100%',
+                                          backgroundImage: `url(${
+                                            data.promotions.includes.Asset.find(
+                                              (asset) =>
+                                                asset.sys.id ==
+                                                promotion.fields.coverImage.sys
+                                                  .id,
+                                            )?.fields.file.url || ''
+                                          })`,
+                                          backgroundPosition: 'center',
+                                          backgroundSize: 'cover',
+                                        }}
+                                      >
+                                        <div className="absolute top-5 w-40 bg-red-600 text-white text-center py-1">
+                                          Promo -{promotion.fields.discount}%
+                                        </div>
+                                      </div>
+                                      <h3 className="text-dark-blue text-left text-[11px] mt-2 font-semibold">
+                                        {promotion.fields.title}
+                                      </h3>
+                                      <div className="mt-3 text-left">
+                                        {promotion.fields.description.content.map(
+                                          (
+                                            content: ContentfulParagraph,
+                                            index: number,
+                                          ) => (
+                                            <p
+                                              className="text-limit pr-4"
+                                              key={index}
+                                            >
+                                              {(
+                                                content as ContentfulParagraph
+                                              ).content.map((text, index) => (
+                                                <span key={index}>
+                                                  {text.value}
+                                                </span>
+                                              ))}
+                                            </p>
+                                          ),
+                                        )}
+                                      </div>
+                                    </div>
+                                  ))}
+                              </div>
+                              <div className="col-span-3"></div>
+                            </div>
                           )}
                         </div>
                       )}

@@ -62,6 +62,7 @@ export function CartDetails({
   
   tempLines?.forEach((obj: any, index:number) => {
     const node = obj.node;
+    console.log('node!!!!!', node)
     const id = node.merchandise.product.id;
     const amount = parseFloat(node.cost.totalAmount.amount);
     if (sumObject[id]) {
@@ -240,6 +241,7 @@ function CartSummary({
     drawer: 'grid gap-4 p-6 border-t md:px-12',
     page: 'sticky top-nav grid gap-6 p-4 md:px-6 md:translate-y-4 bg-primary/5 rounded w-full',
   };
+  console.log('cost!!!!!!!!!!!!', cost)
 
   return (
     <section aria-labelledby="summary-heading" className={summary[layout]}>

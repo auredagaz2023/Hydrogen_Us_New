@@ -41,7 +41,7 @@ export function ContactOptions() {
             </a>
             <p className="text-sm pb-10">
               Our call center is at your service Monday to Friday 8:30 a.m. to
-              5:30 p.m.
+              5:00 p.m.
             </p>
             <div className='bg-[url("../assets/Contacts/arrow-right.svg")] bg-[length:75%_75%] bg-no-repeat bg-center bg-174860 h-8 w-8 rounded-full absolute -bottom-4 left-0 right-0 mx-auto my-0'></div>
           </a>
