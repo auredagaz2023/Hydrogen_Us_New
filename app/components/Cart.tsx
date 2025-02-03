@@ -92,6 +92,7 @@ export function CartDetails({
   });
 
   const lines = Object.keys(sumObject).map(id => (sumObject[id]));
+  console.log('lines!!!!!!!', lines)
 
   return (
     <div className={container[layout]}>
@@ -358,6 +359,7 @@ function CartLineQuantityAdjust({line}: {line: CartLine}) {
   useEffect(()=>{    
     const getCart = async ()=>{
       const cart = await root?.data.cart
+      console.log('cart!!!!!!!!', cart)
       const qty = cart.lines.edges.filter((edge:any)=>{return (edge.node.id == lineId && edge.node.cost.totalAmount.amount!='0.0')})[0]?.node.quantity
       setPrevQuantity(Number(Math.max(0, qty - 1).toFixed(0)))
       setNextQuantity(Number((qty + 1).toFixed(0)))

@@ -27,7 +27,7 @@ export function CollectionDetails({
     color: string;
   }[];
 }) {
-
+  console.log('collection!!!!!!!!!!!!!!', collection)
   const vtPrices: MoneyV2[] = [];
   collection.products.nodes.forEach((product) => {
     if (productType && product.productType === productType) {

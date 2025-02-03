@@ -451,6 +451,11 @@ const CART_QUERY = `#graphql
     discountCodes {
       code
     }
+    discountAllocations {
+      discountedAmount {
+        ...MoneyFragment
+      }
+    }
   }
 
   fragment MoneyFragment on MoneyV2 {

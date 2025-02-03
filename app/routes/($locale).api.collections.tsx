@@ -45,7 +45,7 @@ export const loader = async ({request, context: {storefront}}: LoaderFunctionArg
       language: storefront.i18n.language,
     },
   });
-
+  console.log('collections!!@#@#', collections)
   return json({collections});
 };
 
@@ -67,7 +67,7 @@ const COLLECTIONS_QUERY = `#graphql
   ) @inContext(country: $country, language: $language) {
     collections(first: $first, last: $last, before: $startCursor, after: $endCursor) {
       nodes {
-        id
+        id      
         title
         description
         handle
