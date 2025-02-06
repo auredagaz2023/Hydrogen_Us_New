@@ -39,11 +39,11 @@ const products = [
     description: "One mattress with 4 boards combinations and different comfort levels thanks to our Dual Core technology",
     bestfor: "couples with different sleep needs",
     fitness: "soft, medium-soft, medium-firm, firm",
-    original_price: "$2999",
-    price: "$2,399.20",
+    original_price: "$3,599",
+    price: "$2,519",
     button: "shop dolce vita",
-    link: "https://magniflex.us/mattresses/dolce-vita?product=dolce-vita-dual-10",
-    bottom: "save up to $959.80"
+    link: "https://magniflex.us/mattresses/dolce-vita?product=dolcevita-dual-10",
+    bottom: "save up to $2,520"
   },
   {
     advance: "ultimate coolness",
@@ -72,10 +72,10 @@ const products = [
     bestfor: "active people, back pain sufferers",
     fitness: "medium-firm, firm",
     original_price: "$3,199.00",
-    price: "$2,559.20",
+    price: "$2,239",
     button: "Shop MAGNISTRETCH",
     link: "https://magniflex.us/mattresses/magnistretch?product=magnistretch-12",
-    bottom: "Save up to $859.80"
+    bottom: "Save up to $2,280"
   },
   {
     advance: "For extra comfort and support",
@@ -172,7 +172,7 @@ function Landing() {
           <span className='uppercase'>10-Year Warranty ON MATTRESSES</span>
         </div>
       </div>
-      <div className='bg-white text-[#174860] landing-[29px] text-[17.5px] text-center pt-[96px] pb-[64px] md:pt-[72px] md:pb-[32px] px-[30px] md:px-[20%]'>
+      <div className='bg-white text-[#174860] landing-[29px] text-[17.5px] text-center pt-[96px] pb-[64px] md:pt-[72px] md:pb-[32px] px-[30px] md:px-[10%]'>
         <div className='font-bold mb-[20px]'>Celebrate Presidents’ Day with Monumental Savings!</div>
         <div>Experience the perfect blend of elegance and performance, crafted by Magniflex to deliver unparalleled rest.</div>
         <div>Enjoy 30% off our luxurious, extra-comfortable Italian mattresses and pillows and <span className='font-bold'>save up to $2,520.</span></div>
@@ -241,11 +241,11 @@ function Landing() {
                   <span className='text-[#839BB1]'>Firmness:</span> <span className='text-[#174860] text-[15px]'>{product.fitness}</span>
                 </div>
                 <div className='mt-[25px] text-[#839BB1] text-[13px] landing-[27.5px] text-center'>
-                  Queen starting at
+                  Starting at
                   <br />
-                  <span className='line-through'>{product.original_price}</span> <span className='text-red-600 text-[22px] landing-[27.5px]'>{product.price}</span>
+                  <span className='line-through'>{product.original_price}</span> <span className='text-red-600 text-[22px] landing-[27.5px] font-semibold'>{product.price}</span>
                 </div>
-                <a className='text-center mt-[15px] py-4 px-8 uppercase border border-[174860] bg-[#174860] hover:bg-white text-white hover:text-[#174860] text-[17.5px] lg:text-[13px] font-semibold' href={product.link}>{product.button}</a>
+                <a className='text-center mt-[15px] py-4 px-8 uppercase border border-[174860] hover:bg-[#174860] bg-white hover:text-white text-[#174860] text-[17.5px] lg:text-[13px] font-semibold' href={product.link}>{product.button}</a>
                 <div className='mt-[15px] uppercase text-[#174860] text-center text-[17px] lg:text-[13px] font-semibold'>{product.bottom}</div>
               </div>
             </div>
@@ -285,14 +285,14 @@ function Landing() {
         </div>
         <hr className='text-[#0a2430] my-[20px] hidden lg:block border-[#888888]' />
         <div className='text-[12px] sm:text-[16px] md:text-[20px] lg:text-[23px] text-center landing-[100px] font-semibold py-[30px] lg:py-0'>At Night, We Bring Life to Your Days.</div>
-        <div className='flex gap-[26px] items-center justify-center mt-[35px] mb-[40px]'>
+        {/* <div className='flex gap-[26px] items-center justify-center mt-[35px] mb-[40px]'>
           <a href="https://www.facebook.com/MagniflexUS">
             <FaFacebookF className='h-[26px]'/>
           </a>
           <a href="https://www.instagram.com/magniflex_usa/">
             <AiOutlineInstagram className='h-[35px] w-[35px]'/>
           </a>
-        </div>
+        </div> */}
       </div>
     </div>
   )

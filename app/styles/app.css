@@ -6953,6 +6953,11 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
     padding-right: 2.25rem;
   }
 
+  .md\:px-\[10\%\]{
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+
   .md\:px-\[135px\]{
     padding-left: 135px;
     padding-right: 135px;
