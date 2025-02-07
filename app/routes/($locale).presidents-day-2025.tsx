@@ -43,7 +43,8 @@ const products = [
     price: "$2,519",
     button: "shop dolce vita",
     link: "https://magniflex.us/mattresses/dolce-vita?product=dolcevita-dual-10",
-    bottom: "save up to $2,520"
+    bottom: "save up to $2,520",
+    mattress: true
   },
   {
     advance: "ultimate coolness",
@@ -59,7 +60,8 @@ const products = [
     price: "$1,889",
     button: "Shop MAGNICOOL",
     link: "https://magniflex.us/mattresses/magnicool?product=magnicool-10-firm",
-    bottom: "Save up to $1,680"
+    bottom: "Save up to $1,680",
+    mattress: true    
   },
   {
     advance: "Ultimate SPINE RELIEF",
@@ -75,7 +77,8 @@ const products = [
     price: "$2,239",
     button: "Shop MAGNISTRETCH",
     link: "https://magniflex.us/mattresses/magnistretch?product=magnistretch-12",
-    bottom: "Save up to $2,280"
+    bottom: "Save up to $2,280",
+    mattress: true
   },
   {
     advance: "For extra comfort and support",
@@ -241,11 +244,11 @@ function Landing() {
                   <span className='text-[#839BB1]'>Firmness:</span> <span className='text-[#174860] text-[15px]'>{product.fitness}</span>
                 </div>
                 <div className='mt-[25px] text-[#839BB1] text-[13px] landing-[27.5px] text-center'>
-                  Starting at
+                  {product?.mattress ? 'Queen starting at' : 'Starting at'}
                   <br />
                   <span className='line-through'>{product.original_price}</span> <span className='text-red-600 text-[22px] landing-[27.5px] font-semibold'>{product.price}</span>
                 </div>
-                <a className='text-center mt-[15px] py-4 px-8 uppercase border border-[174860] hover:bg-[#174860] bg-white hover:text-white text-[#174860] text-[17.5px] lg:text-[13px] font-semibold' href={product.link}>{product.button}</a>
+                <a className='text-center mt-[15px] py-4 px-8 uppercase border border-[#174860] hover:bg-[#174860] bg-white hover:text-white text-[#174860] hover:text-[17.5px] lg:text-[13px] font-semibold' href={product.link}>{product.button}</a>
                 <div className='mt-[15px] uppercase text-[#174860] text-center text-[17px] lg:text-[13px] font-semibold'>{product.bottom}</div>
               </div>
             </div>
