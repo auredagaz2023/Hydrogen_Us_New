@@ -957,7 +957,7 @@ function FooterNew() {
                   <FaFacebookF className="text-dark-blue" />
                 </span>
               </a>
-              <a href="https://www.instagram.com/magniflex_usa/">
+              <a href="https://www.instagram.com/magniflex_north_america">
                 <span className="w-6 h-6 rounded-full bg-white flex items-center justify-center">
                   <AiOutlineInstagram className="text-dark-blue" />
                 </span>
