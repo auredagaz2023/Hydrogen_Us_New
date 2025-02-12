@@ -27,6 +27,10 @@ export default function ProductCardContent({productData}) {
         productKey = 'topperId';
         break;
 
+      case 'Accessories':
+        productKey = 'accessoriesId';
+        break;
+
       default:
         productKey = 'mattressId';
         break;

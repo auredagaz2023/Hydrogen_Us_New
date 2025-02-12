@@ -45,7 +45,6 @@ export const loader = async ({request, context: {storefront}}: LoaderFunctionArg
       language: storefront.i18n.language,
     },
   });
-  console.log('collections!!@#@#', collections)
   return json({collections});
 };
 

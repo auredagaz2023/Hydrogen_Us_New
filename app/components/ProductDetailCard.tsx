@@ -19,8 +19,10 @@ export function ProductDetailCard({
   let coverImageKey:
     | 'mattressCoverImage'
     | 'pillowCoverImage'
-    | 'topperCoverImage';
-  let summaryKey: 'mattressSummary' | 'pillowSummary' | 'topperSummary';
+    | 'topperCoverImage'
+    | 'image'
+    ;
+  let summaryKey: 'mattressSummary' | 'pillowSummary' | 'topperSummary' | 'description';
 
   switch (productType) {
     case 'Mattress':
@@ -38,9 +40,14 @@ export function ProductDetailCard({
       summaryKey = 'topperSummary';
       break;
 
+    case 'Accessories':
+      coverImageKey = 'image';
+      summaryKey = 'description';
+      break;
+
     default:
-      coverImageKey = 'mattressCoverImage';
-      summaryKey = 'mattressSummary';
+      coverImageKey = 'image';
+      summaryKey = 'description';
       break;
   }
 
@@ -85,6 +92,10 @@ export function ProductDetailCard({
         cardLink = `/bed-bases/details`;
         break;
 
+      case 'Accessories':
+        cardLink = `/accessories/${collection.handle}`;
+        break;
+
       default:
         break;
     }
@@ -92,9 +103,11 @@ export function ProductDetailCard({
     return `${cardLink}?product=${slugify(
       collection.products.nodes.find(
         (product) => product.productType === productType,
-      )?.title || '',
+      )?.title || collection.products.nodes[0]?.title || '',
     )}`;
   };
+
+  console.log('collection!!!', collection)
 
   return (
     <div className="flex flex-col w-full product-tab">
@@ -103,7 +116,7 @@ export function ProductDetailCard({
           {collection[coverImageKey] && (
             <Image
               className="w-full h-full object-cover"
-              data={collection[coverImageKey].reference.image}
+              data={coverImageKey=='image' ? collection.image : collection[coverImageKey].reference.image}
               sizes="700"
               widths={[700]}
             />
@@ -131,7 +144,7 @@ export function ProductDetailCard({
 
         {collection[summaryKey] && (
           <p className="mt-3 text-left text-limit pr-4">
-            {collection[summaryKey].value}
+            {summaryKey=='description' ? collection.description : collection[summaryKey].value}
           </p>
         )}
       </Link>

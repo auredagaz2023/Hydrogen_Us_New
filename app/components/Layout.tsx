@@ -359,6 +359,11 @@ export const mainMenuList = [
     handle: 'pillows',
     productType: 'Pillow',
   },
+  {
+    title: 'ACCESSORIES',
+    handle: 'accessories',
+    productType: 'Accessories',
+  },
 ];
 
 function DesktopHeaderNew({openCart}: {openCart: () => void}) {
@@ -448,10 +453,16 @@ function DesktopHeaderNew({openCart}: {openCart: () => void}) {
       load('/api/collections');
     } else if (activeMenu == 'Mattress' || activeMenu == 'Pillow') {
       load(`/api/getProductsByCategory?productType=${activeMenu}`);
+    } else if (activeMenu == 'Accessories') {
+      load(`/api/accessories`);
     } else {
       load(`/api/getProductsByType?productType=${activeMenu}`);
     }
   }, [activeMenu]);
+
+  useEffect(()=>{
+    console.log('fetched data!!!', data)
+  }, [data])
 
   return (
     <header className="sticky top-0 z-50">
@@ -577,6 +588,12 @@ function DesktopHeaderNew({openCart}: {openCart: () => void}) {
                             )}
                           {activeMenu == 'Collection' && (
                             <CollectionCardContent productData={data} />
+                          )}
+                          {activeMenu == 'Accessories' && (
+                            <ProductCardContent
+                              productData={data}
+                              className="product-tab"
+                            />
                           )}
                           {activeMenu === 'Promo' && data?.promotions && (
                             // <></>
