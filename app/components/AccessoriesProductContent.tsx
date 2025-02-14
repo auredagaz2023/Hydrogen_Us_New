@@ -1,7 +1,7 @@
 import {Link} from '@remix-run/react';
 import {CollectionLinks} from '~/components/CollectionLinks';
 import {Image} from '@shopify/hydrogen';
-import Slider from 'react-slick';
+import Slider from 'react-slick';;
 
 import imgReviewPlaceholder from '../assets/review-placeholder.jpg';
 import {Product} from '@shopify/hydrogen/storefront-api-types';
@@ -30,6 +30,10 @@ import MaterialImg from '../assets/icons/materials.png';
 import BenefitsImg from '../assets/icons/benefits.png';
 import {RichText} from './Richtext';
 
+const CONTENTFUL_SPACE_ID = '7xbaxb2q56jj';
+const CONTENTFUL_ACCESS_TOKEN =
+  'yGGCia7N7dHraGe5fsBZkSHsms6QExEKbWy0XdKIn9g';
+
 export function AccessoriesProductContent({
   product,
   collectionID,
@@ -44,6 +48,7 @@ export function AccessoriesProductContent({
   const [specifications, setSpecifications] = useState<
     ContentfulProductSpecifications | undefined
   >(undefined);
+  const [videoGalleries, setVideoGalleries]= useState<any[]>([]);
   const [comfortLevel, setComfortLevel] = useState<
     ContentfulComfortLevel | undefined
   >(undefined);
@@ -57,7 +62,7 @@ export function AccessoriesProductContent({
   const settings = {
     dots: true,
     infinite: true,
-    arrows: false,
+    arrows: true,
     fade: true,
     speed: 500,
     autoplay: true,
@@ -66,78 +71,61 @@ export function AccessoriesProductContent({
   };
 
   useEffect(() => {
-    const CONTENTFUL_SPACE_ID = '7xbaxb2q56jj';
-    const CONTENTFUL_ACCESS_TOKEN =
-      'yGGCia7N7dHraGe5fsBZkSHsms6QExEKbWy0XdKIn9g';
+    // const client = createClient({
+    //   space: CONTENTFUL_SPACE_ID,
+    //   accessToken: CONTENTFUL_ACCESS_TOKEN,
+    //   environment: 'master'
+    // })
 
-    const productSheetEndpoint = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/environments/master/entries?select=fields.productId,fields.comfortLevel,fields.sleepStyle,fields.structure,fields.gallery,fields.structureImage,fields.materials,fields.specifications&access_token=${CONTENTFUL_ACCESS_TOKEN}&content_type=productSheet&fields.productId=${product.productId.value}`;
+    // const fetchSpecifications = async () => {
+    //   try {
+    //     const response = await client.getEntries({
+    //       content_type: 'specifications', // Content type
+    //       'fields.name': product.productId.value, // Filter by name
+    //     });
+    //     // setSpecifications(response?.items?.[0]?.fields)
+
+    //     console.log('Fetched Data:', response);
+    //   } catch (error) {
+    //     console.error('Error fetching data:', error);
+    //   }
+    // };
+
+    // fetchSpecifications()
+
+    const specificationsEndpoint = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/environments/master/entries?&access_token=${CONTENTFUL_ACCESS_TOKEN}&content_type=specifications&fields.name=${product.productId.value}`;
+    const videoGalleryEndpoint = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/environments/master/entries?&access_token=${CONTENTFUL_ACCESS_TOKEN}&content_type=videoGallery&fields.name=${product.productId.value}`;
 
     (async () => {
-      if (collectionID) {
-        const howItWorksEndpoint = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/environments/master/entries?select=fields.youtubeVideo,fields.name&access_token=${CONTENTFUL_ACCESS_TOKEN}&content_type=howItWorksElement&fields.name=${collectionID}`;
-        await fetch(howItWorksEndpoint)
-          .then((res) => res.json())
-          .then((res) => {
-            const response = res as unknown as ContentfulHowItWorks;
-            if (response.items.length > 0) {
-              setHowItWorks(response.items[0].fields.youtubeVideo);
-            } else {
-              setHowItWorks(undefined);
-            }
-          });
-      }
+      // if (collectionID) {
+      //   const howItWorksEndpoint = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/environments/master/entries?select=fields.youtubeVideo,fields.name&access_token=${CONTENTFUL_ACCESS_TOKEN}&content_type=howItWorksElement&fields.name=${collectionID}`;
+      //   await fetch(howItWorksEndpoint)
+      //     .then((res) => res.json())
+      //     .then((res) => {
+      //       const response = res as unknown as ContentfulHowItWorks;
+      //       if (response.items.length > 0) {
+      //         setHowItWorks(response.items[0].fields.youtubeVideo);
+      //       } else {
+      //         setHowItWorks(undefined);
+      //       }
+      //     });
+      // }
 
-      await fetch(productSheetEndpoint)
+      await fetch(specificationsEndpoint)
         .then((res) => res.json())
         .then((res) => {
           const response = res as unknown as ContentfulProductSheet;
-          setProductSheet(response);
-          const productSpecifications = response.includes?.Entry.find(
-            (entry) =>
-              entry.sys.id === response.items[0].fields.specifications.sys.id,
-          );
-          if (!productSpecifications) setSpecifications(undefined);
-          else
-            setSpecifications(
-              productSpecifications.fields as ContentfulProductSpecifications,
-            );
-
-          const productComfortLevel = response.includes?.Entry.find(
-            (entry) =>
-              entry.sys.id === response.items[0].fields.comfortLevel.sys.id,
-          );
-          if (!productComfortLevel) setComfortLevel(undefined);
-          else
-            setComfortLevel(
-              productComfortLevel.fields as ContentfulComfortLevel,
-            );
-
-          const galleryEntry = response.includes?.Entry.find(
-            (entry) => entry.sys.id === response.items[0].fields.gallery.sys.id,
-          );
-          if (galleryEntry) {
-            const galleryImages = (galleryEntry as unknown as GalleryEntry)
-              .fields.images;
-            setGalleryImages(
-              response.includes?.Asset.filter((asset) =>
-                galleryImages.some(
-                  (galleryImage) => galleryImage.sys.id === asset.sys.id,
-                ),
-              ).map((asset) => {
-                return {
-                  title: asset.fields.title,
-                  file: asset.fields.file,
-                };
-              }),
-            );
-          } else {
-            setGalleryImages(undefined);
-          }
+          setSpecifications(response?.items?.[0]?.fields)
         });
+      await fetch(videoGalleryEndpoint)
+        .then((res) => res.json())
+        .then((res:any) => {
+          setVideoGalleries(res?.includes?.Asset?.map(asset => asset?.fields))
+          console.log('res gallery', res?.includes?.Asset?.map(asset => asset?.fields))
+        })
     })();
   }, [product]);
 
-  console.log('product!!!', product)
   return (
     <div className="px-5 md:container py-16 md:pt-0 md:pb-24 lg:pb-28 lg:px-23">
       <div className="grid grid-cols-12 mb-5 lg:mb-16">
@@ -181,6 +169,180 @@ export function AccessoriesProductContent({
           </div>
         </div>
       </div>
+      <div
+        className="bg-f7 py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 justify-center gap-5"
+      >
+        {specifications && (
+          <>
+            <div className="border-b border-b-border flex px-[20px]">
+              <img
+                src={CollectionImg}
+                alt="specification collection"
+                className="w-[25px] h-[25px] mr-[16px]"
+              />                  
+              <div className="pb-3 md:pb-6">
+                <p className="uppercase text-174860 text-xs my-0 font-bold">
+                  collection
+                </p>
+                <p className="text-b09987 text-xs mt-2">
+                  {specifications.collection}
+                </p>
+              </div>
+            </div>
+            <div className="border-b border-b-border flex px-[20px]">
+              <img
+                src={CertificationImg}
+                alt="specification collection"
+                className="w-[25px] h-[25px] mr-[16px]"
+              />
+              <div className="pb-3 md:pb-6">
+                <p className="uppercase text-174860 text-xs my-0 font-bold">
+                  certifications
+                </p>
+                <p className="text-b09987 text-xs mt-2">
+                  {specifications.certifications?.join(', ')}
+                </p>
+              </div>
+            </div>
+            <div className="border-b border-b-border flex px-[20px]">
+              <img
+                src={ComfortImg}
+                alt="specification collection"
+                className="w-[25px] h-[25px] mr-[16px]"
+              />
+              <div className="pb-3 md:pb-6">
+                <p className="uppercase text-174860 text-xs my-0 font-bold">
+                  Comfort Level
+                </p>
+                <p className="text-b09987 text-xs mt-2">
+                  {specifications.comfort}
+                </p>
+              </div>
+            </div>
+            <div className="border-b border-b-border flex px-[20px]">
+              <img
+                src={MaterialImg}
+                alt="specification collection"
+                className="w-[25px] h-[25px] mr-[16px]"
+              />
+              <div className="pb-3 md:pb-6">
+                <p className="uppercase text-174860 text-xs my-0 font-bold">
+                  Materials
+                </p>
+                <p className="text-b09987 text-xs mt-2">
+                  {specifications.materials?.join(', ')}
+                </p>
+              </div>
+            </div>
+            <div className="border-b border-b-border flex px-[20px]">
+              <img
+                src={BenefitsImg}
+                alt="specification collection"
+                className="w-[25px] h-[25px] mr-[16px]"
+              />
+              <div className="pb-3 md:pb-6">
+                <p className="uppercase text-174860 text-xs my-0 font-bold">
+                  Benefits
+                </p>
+                <p className="text-b09987 text-xs mt-2">
+                  {specifications.benefits?.join(', ')}
+                </p>
+              </div>
+            </div>
+            <div className="border-b border-b-border flex px-[20px]">
+              <img
+                src={WarrantyImg}
+                alt="specification collection"
+                className="w-[25px] h-[25px] mr-[16px]"
+              />
+              <div className="pb-3 md:pb-6">
+                <p className="uppercase text-174860 text-xs my-0 font-bold">
+                  Warranty
+                </p>
+                <p className="text-b09987 text-xs mt-2">
+                  {specifications.warranty}
+                </p>
+              </div>
+            </div>
+
+            <div className="border-b border-b-border flex px-[20px]">
+              <img
+                src={ThicknessImg}
+                alt="specification collection"
+                className="w-[25px] h-[25px] mr-[16px]"
+              />
+              <div className="pb-3 md:pb-6">
+                <p className="uppercase text-174860 text-xs my-0 font-bold">
+                  Thickness
+                </p>
+                <p className="text-b09987 text-xs mt-2">
+                  {specifications.height}
+                </p>
+              </div>
+            </div>
+            <div className="border-b border-b-border flex px-[20px]">
+              <img
+                src={ExtraImg}
+                alt="specification collection"
+                className="w-[25px] h-[25px] mr-[16px]"
+              />
+              <div className="pb-3 md:pb-6">
+                <p className="uppercase text-174860 text-xs my-0 font-bold">
+                  extras
+                </p>
+                <p className="text-b09987 text-xs mt-2">
+                  {specifications.extras?.join(', ')}
+                </p>
+              </div>
+            </div>                                
+            {/* <div className="border-b border-b-border flex px-2">
+              <img
+                src={SupportImg}
+                alt="specification collection"
+                className="w-8 h-8 mr-5"
+              />
+              <div className="pt-2 pb-3 md:pb-6">
+                <p className="uppercase text-174860 text-xs my-0 font-bold">
+                  Support
+                </p>
+                <p className="text-b09987 text-xs mt-2">
+                  {specifications.support}
+                </p>
+              </div>
+            </div> */}
+            
+            
+          </>
+        )}
+      </div>
+      <>
+      {videoGalleries &&
+        <div className="my-12 relative" id="productGallery">
+          <Slider
+            {...settings}
+            afterChange={(currentSlide) => setGalleryIndex(currentSlide)}
+          >
+            {videoGalleries.map((videoGallery, index: number) => (
+              <div>
+                {/* <a href={videoGallery.file.url}>
+                  {videoGallery.description}
+                  </a> */}
+                <video className='w-full' autoPlay loop muted alt="img1" >
+                  <source 
+                    src={videoGallery.file.url}
+                    type="video/mp4"
+                  />
+                </video>
+              </div>
+            ))}
+          </Slider>
+          <span className="gallery-pagination">
+            {`00${galleryIndex + 1}`.slice(-2)} |{' '}
+            {`00${videoGalleries.length}`.slice(-2)}
+          </span>
+        </div>
+      }
+      </>
       <CollectionLinks />     
     </div>
   );

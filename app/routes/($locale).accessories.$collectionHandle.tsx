@@ -99,6 +99,12 @@ export async function loader({params, request, context}: LoaderArgs) {
 export default function CollectionProducts() {
   const {collection, product, collectionHandle, productType} =
     useLoaderData<typeof loader>();
+  const [sizeOptions, setSizeOptions] = useState<String[]>([])
+  const [colorOptions, setColorOptions] = useState<String[]>([])
+  const [selectedSize, setSelectedSize] = useState<String>('')
+  const [selectedColor, setSelectedColor] = useState<String>('')
+  const [sizeOptionTitle,  setSizeOptionTitle] = useState<String>('')
+  const [colorOptionTitle, setColorOptionTitle] = useState<String>('')
 
   const products = collection.products.nodes;
   const featuredImage = products[0].featuredImage;
@@ -150,6 +156,28 @@ export default function CollectionProducts() {
   useEffect(() => {
     setSelectedVariant(selectedProduct?.variants?.nodes[0]);
   }, []);
+
+  useEffect(() => {
+    console.log('selcted variants', selectedProduct?.variants.nodes)
+    const variants = selectedProduct?.variants.nodes
+    const colorOptions = Array.from(new Set(variants.map((variant:any) => variant.selectedOptions[0].value)))
+    const colorOptionTitle = variants?.[0]?.selectedOptions[0]?.name || ''
+    const selectedColor = colorOptions?.[0] || ''
+    const sizeOptions = Array.from(new Set(variants.map((variant:any) => variant.selectedOptions[1].value)))
+    const sizeOptionTitle = variants?.[0]?.selectedOptions[1]?.name || ''
+    const selectedSize = sizeOptions?.[0] || ''
+    setColorOptionTitle(colorOptionTitle)
+    setColorOptions(colorOptions)
+    setSelectedColor(selectedColor)
+    setSizeOptionTitle(sizeOptionTitle)
+    setSizeOptions(sizeOptions)
+    setSelectedSize(selectedSize)
+  }, [selectedProduct?.variants.nodes])
+
+  useEffect(()=>{
+    const selectedVariant = selectedProduct?.variants.nodes?.filter((variant:any) => variant.selectedOptions[1].value==selectedSize && variant.selectedOptions[0].value==selectedColor)?.[0]
+    setSelectedVariant(selectedVariant)
+  }, [selectedSize, selectedColor, selectedProduct?.variants.nodes])
 
   return (
     <div className="w-full pb-6 flex flex-wrap justify-between">
@@ -439,7 +467,7 @@ export default function CollectionProducts() {
               <Disclosure.Button className="flex w-full justify-between text-[13px] text-dark-blue">
                 <span>
                   {selectedVariant
-                    ? selectedVariant.selectedOptions[0]?.value
+                    ? selectedSize
                     : 'Select your size'}
                   <br />
                   <a href="#" className="text-8c8c8c text-xxs">
@@ -453,21 +481,21 @@ export default function CollectionProducts() {
               <Disclosure.Panel as="div" className="pt-3">
                 {({close}) => (
                   <>
-                    {flattenConnection(selectedProduct.variants).map(
-                      (variant: ProductVariant, index: number) => {
+                    {sizeOptions.map(
+                      (size: String, index: number) => {
                         return (
                           <Disclosure.Button
                             as="div"
                             className="flex items-center mb-4"
                             key={index}
                             onClick={() => {
-                              setSelectedVariant(variant);
+                              setSelectedSize(size);
                               // setHandle(undefined);
                               // close();
                             }}
                           >
                             <input
-                              checked={variant == selectedVariant}
+                              checked={size == selectedSize}
                               id="default-radio-1"
                               type="radio"
                               value=""
@@ -479,15 +507,7 @@ export default function CollectionProducts() {
                             </label> */}
                             {
                               <label className="radio-label ml-2 text-sm font-medium dark:text-gray-300">
-                                {
-                                  variant.compareAtPrice ? 
-                                  <>
-                                    {variant.selectedOptions[0]?.value } <span className='text-red-600'>&nbsp;&nbsp;&nbsp;Save ${(parseFloat(variant.compareAtPrice.amount)-parseFloat(variant.price.amount)).toFixed(2)}</span>
-                                  </> :
-                                  <>
-                                    {variant.selectedOptions[0]?.value }
-                                  </>
-                                }
+                                {size}
                               </label>
                             }
                           </Disclosure.Button>
@@ -516,6 +536,25 @@ export default function CollectionProducts() {
             </>
           )}
         </Disclosure>
+        <div className='p-5 border-t border-[#dee2e6]'>
+          <div className='font-semibold text-[13px] text-[#1c1072] mb-[20px]'>
+            Color
+          </div>
+          
+          <div className='flex flex-wrap gap-3'>
+          {colorOptions.map((color:String, index:number) => {
+            return (
+                <div className='flex flex-col items-center justify-center gap-[10px]'>
+                  <div onClick={()=>{setSelectedColor(color)}} className={`w-[20px] h-[20px] hover:cusor-pointer rounded-full bg-gray-300 border border-2 ${color==selectedColor ? 'border-[#033076]' : ''}`}>
+                  </div>
+                  <div className='text-[12px] text-[#1c1072]'>
+                    {color}
+                  </div>
+                </div>
+            )
+          })}
+          </div>
+        </div>
         <div className="product-quantity p-5 border-t border-b border-[#dee2e6] uppercase flex justify-between items-center text-[13px] text-dark-blue">
           <span>Quantity</span>
           <div className="qty-form flex items-center">

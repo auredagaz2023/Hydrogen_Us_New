@@ -81,6 +81,19 @@ export const PRODUCT_CARD_FRAGMENT = `#graphql
           name
           value
         }
+        metafields(identifiers: [{ namespace: "custom", key: "bedding_size" }]) {
+          key
+          value
+          reference {
+            ... on Metaobject {
+              type
+              fields {
+                key
+                value
+              }
+            }
+          }
+        }
         product {
           handle
           title
