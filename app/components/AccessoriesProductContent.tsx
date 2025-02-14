@@ -34,6 +34,46 @@ const CONTENTFUL_SPACE_ID = '7xbaxb2q56jj';
 const CONTENTFUL_ACCESS_TOKEN =
   'yGGCia7N7dHraGe5fsBZkSHsms6QExEKbWy0XdKIn9g';
 
+const CustomPrevArrow = (props) => {
+  const { onClick } = props;
+  return (
+    <div
+      className="custom-arrow custom-prev-arrow"
+      onClick={onClick}
+      style={{
+        position: 'absolute',
+        left: '-30px',
+        top: '50%',
+        transform: 'translateY(-50%)',
+        cursor: 'pointer',
+        zIndex: 1,
+      }}
+    >
+      <span className='font-bold text-[30px]'>&lt;</span>
+    </div>
+  );
+};
+
+const CustomNextArrow = (props) => {
+  const { onClick } = props;
+  return (
+    <div
+      className="custom-arrow custom-next-arrow"
+      onClick={onClick}
+      style={{
+        position: 'absolute',
+        right: '-30px',
+        top: '50%',
+        transform: 'translateY(-50%)',
+        cursor: 'pointer',
+        zIndex: 1,
+      }}
+    >
+      <span className='font-bold text-[30px]'>&gt;</span>
+    </div>
+  );
+};
+
 export function AccessoriesProductContent({
   product,
   collectionID,
@@ -68,6 +108,8 @@ export function AccessoriesProductContent({
     autoplay: true,
     slidesToShow: 1,
     slidesToScroll: 1,
+    prevArrow: <CustomPrevArrow />,
+    nextArrow: <CustomNextArrow />,
   };
 
   useEffect(() => {
@@ -317,16 +359,13 @@ export function AccessoriesProductContent({
       </div>
       <>
       {videoGalleries &&
-        <div className="my-12 relative" id="productGallery">
+        <div className="my-12 mx-6 relative" id="productGallery">
           <Slider
             {...settings}
             afterChange={(currentSlide) => setGalleryIndex(currentSlide)}
           >
             {videoGalleries.map((videoGallery, index: number) => (
               <div>
-                {/* <a href={videoGallery.file.url}>
-                  {videoGallery.description}
-                  </a> */}
                 <video className='w-full' autoPlay loop muted alt="img1" >
                   <source 
                     src={videoGallery.file.url}
