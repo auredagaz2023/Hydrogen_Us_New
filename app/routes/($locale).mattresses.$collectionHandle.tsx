@@ -152,6 +152,7 @@ export default function CollectionProducts() {
     infinite: true,
   };
 
+
   return (
     <div className="w-full pb-6 flex flex-wrap justify-between">
       <div className="w-full lg:w-9/12">

@@ -360,7 +360,7 @@ export const mainMenuList = [
     productType: 'Pillow',
   },
   {
-    title: 'ACCESSORIES',
+    title: 'BEDDING',
     handle: 'accessories',
     productType: 'Accessories',
   },
@@ -527,9 +527,12 @@ function DesktopHeaderNew({openCart}: {openCart: () => void}) {
                                   }`}
                                   reloadDocument
                                 >
-                                  {menuItem.productType == 'Collection' ? (
+                                  {menuItem.productType == 'Collection'? (
                                     <span>ALL COLLECTIONS &gt;</span>
                                   ) : (
+                                    menuItem.productType == 'Accessories' ?
+                                    <></>
+                                    :
                                     <span>All MODELS &gt;</span>
                                   )}
                                 </Link>

@@ -2018,6 +2018,10 @@ select{
   margin-left: 1rem;
   margin-right: 1rem;
 }
+.mx-6{
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
 .mx-\[21px\]{
   margin-left: 21px;
   margin-right: 21px;
@@ -2093,10 +2097,6 @@ select{
 .my-auto{
   margin-top: auto;
   margin-bottom: auto;
-}
-.mx-6{
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
 }
 .-mb-8{
   margin-bottom: -2rem;
@@ -2841,6 +2841,9 @@ select{
 .w-\[550px\]{
   width: 550px;
 }
+.w-\[75\%\]{
+  width: 75%;
+}
 .w-\[96\%\]{
   width: 96%;
 }
@@ -2862,9 +2865,6 @@ select{
 }
 .w-screen{
   width: 100vw;
-}
-.w-\[80\%\]{
-  width: 80%;
 }
 .min-w-4{
   min-width: 1rem;

@@ -8,6 +8,7 @@ import {json, LoaderArgs} from '@shopify/remix-oxygen';
 import {
   Collection as CollectionType,
   Image as ImageType,
+  Metaobject,
   Product,
   ProductVariant,
 } from '@shopify/hydrogen/storefront-api-types';
@@ -70,6 +71,24 @@ export async function loader({params, request, context}: LoaderArgs) {
       language: context.storefront.i18n.language,
     },
   });
+  
+  const GIDS = collection?.products?.nodes?.[0]?.color?.value;
+
+  if (!GIDS) {
+    throw new Error("No GIDs found in the color metafield.");
+  }
+
+    // Parse the JSON string to get the GID array
+  const gidArray = JSON.parse(GIDS);
+
+  // Step 2: Fetch the metaobjects using the GIDs
+  const { nodes: colorOptions } = await context.storefront.query<{
+    nodes: Array<Metaobject>;
+  }>(COLOR_OPTION_QUERY, {
+    variables: {
+      ids: gidArray,
+    },
+  });
 
   if (!collection) {
     throw new Response(null, {status: 404});
@@ -88,6 +107,7 @@ export async function loader({params, request, context}: LoaderArgs) {
     collectionHandle,
     collection,
     product,
+    colorOptions,
     analytics: {
       pageType: AnalyticsPageType.collection,
       collectionHandle,
@@ -97,7 +117,7 @@ export async function loader({params, request, context}: LoaderArgs) {
 }
 
 export default function CollectionProducts() {
-  const {collection, product, collectionHandle, productType} =
+  const {colorOptions:colorVariants, collection, product, collectionHandle, productType} =
     useLoaderData<typeof loader>();
   const [sizeOptions, setSizeOptions] = useState<String[]>([])
   const [colorOptions, setColorOptions] = useState<String[]>([])
@@ -158,7 +178,6 @@ export default function CollectionProducts() {
   }, []);
 
   useEffect(() => {
-    console.log('selcted variants', selectedProduct?.variants.nodes)
     const variants = selectedProduct?.variants.nodes
     const colorOptions = Array.from(new Set(variants.map((variant:any) => variant.selectedOptions[0].value)))
     const colorOptionTitle = variants?.[0]?.selectedOptions[0]?.name || ''
@@ -178,6 +197,19 @@ export default function CollectionProducts() {
     const selectedVariant = selectedProduct?.variants.nodes?.filter((variant:any) => variant.selectedOptions[1].value==selectedSize && variant.selectedOptions[0].value==selectedColor)?.[0]
     setSelectedVariant(selectedVariant)
   }, [selectedSize, selectedColor, selectedProduct?.variants.nodes])
+
+  const colorMap = colorVariants.reduce((acc:any, metaobject:any) => {
+    // Find the label and color fields
+    const labelField = metaobject.fields.find((field:any) => field.key === "label");
+    const colorField = metaobject.fields.find((field:any) => field.key === "color");
+  
+    // Add the label and color to the result object
+    if (labelField && colorField) {
+      acc[labelField.value] = colorField.value;
+    }
+  
+    return acc;
+  }, {});
 
   return (
     <div className="w-full pb-6 flex flex-wrap justify-between">
@@ -282,10 +314,6 @@ export default function CollectionProducts() {
               handle && (
                 <div className="absolute left-0 right-0 bottom-full px-10 py-12 grid grid-cols-3 bg-white">
                   {(products as ProductWithMetafields<Product>[])
-                    .filter((product) => {
-                      if (!productType) return true;
-                      else return product.productType == productType;
-                    })
                     .map((product, index) => {
                       const minPrice = product.variants.nodes.sort(
                         (a, b) =>
@@ -298,7 +326,7 @@ export default function CollectionProducts() {
                           index={index}
                           minPrice={minPrice}
                           product={product}
-                          productType={productType}
+                          productType={product?.productType}
                           handle={handle}
                           selectedProduct={selectedProduct}
                           changeProduct={changeProduct}
@@ -340,12 +368,6 @@ export default function CollectionProducts() {
               </Disclosure.Button>
               <Disclosure.Panel as="div" className="pt-3">
                 {(products as Product[])
-                  .filter((product: Product) => {
-                    if (!productType) return true;
-                    else {
-                      return product.productType == productType;
-                    }
-                  })
                   .map((product: Product, index: number) => {
                     const productImage = product.featuredImage
                       ? product.featuredImage
@@ -465,7 +487,7 @@ export default function CollectionProducts() {
           {({open}) => (
             <>
               <Disclosure.Button className="flex w-full justify-between text-[13px] text-dark-blue">
-                <span>
+                <span className='text-left'>
                   {selectedVariant
                     ? selectedSize
                     : 'Select your size'}
@@ -545,7 +567,7 @@ export default function CollectionProducts() {
           {colorOptions.map((color:String, index:number) => {
             return (
                 <div className='flex flex-col items-center justify-center gap-[10px]'>
-                  <div onClick={()=>{setSelectedColor(color)}} className={`w-[20px] h-[20px] hover:cusor-pointer rounded-full bg-gray-300 border border-2 ${color==selectedColor ? 'border-[#033076]' : ''}`}>
+                  <div onClick={()=>{setSelectedColor(color)}} className={`w-[20px] h-[20px] hover:cusor-pointer rounded-full border border-2 ${color==selectedColor ? 'border-[#033076]' : ''}`} style={{backgroundColor:colorMap?.[color] || '#ffffff'}}>
                   </div>
                   <div className='text-[12px] text-[#1c1072]'>
                     {color}
@@ -682,7 +704,7 @@ export default function CollectionProducts() {
         </div>
       </div>
       <div
-        className="lg:px-0 px-0 w-full lg:w-9/12 border-t-[30px] border-[#f7f7f7]"
+        className="w-full lg:px-0 px-0 border-t-[30px] border-[#f7f7f7]"
         id="productDetails"
       >
         <AccessoriesProductContent
@@ -695,6 +717,20 @@ export default function CollectionProducts() {
   );
 }
 
+const COLOR_OPTION_QUERY = `#graphql
+query GetMetaobjects($ids: [ID!]!) {
+  nodes(ids: $ids) {
+    ... on Metaobject {
+      id
+      type
+      fields {
+        key
+        value
+      }
+    }
+  }
+}
+`
 const COLLECTION_QUERY = `#graphql
   ${PRODUCT_CARD_FRAGMENT}
   query CollectionDetails(

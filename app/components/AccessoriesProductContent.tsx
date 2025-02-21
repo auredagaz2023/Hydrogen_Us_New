@@ -170,7 +170,7 @@ export function AccessoriesProductContent({
 
   return (
     <div className="px-5 md:container py-16 md:pt-0 md:pb-24 lg:pb-28 lg:px-23">
-      <div className="grid grid-cols-12 mb-5 lg:mb-16">
+      <div className="grid grid-cols-12 mb-5 lg:mb-16 w-full lg:w-9/12">
         <div className="lg:text-center col-span-12 lg:col-span-4">          
           {product.images.nodes[0] && (
             <Image
@@ -181,29 +181,29 @@ export function AccessoriesProductContent({
         </div>
         <div className="col-span-12 lg:col-start-6 lg:col-span-8 pt-8">
           {product.productType === 'Mattress' && product.headline && (
-            <h5 className="text-[#022d83] font-semibold pb-8 text-[24px]">
+            <h5 className="text-[#022d83] font-semibold pb-8 text-[16px]">
               {product.headline.value}
             </h5>
           )}
           <div
-            className="prose border-t border-gray-200 pt-6 text-[#022d8e] text-[20px]"
+            className="prose border-t border-gray-200 pt-6 text-[#022d8e] text-[16px]"
             dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
           ></div>
           <div className="max-w-5xl mx-auto my-5">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 justify-start items-start mt-8">
               <div>
-                <div className="text-[#406080] text-[20px] font-semibold uppercase mb-4">
+                <div className="text-[#406080] text-[14px] font-semibold uppercase mb-4">
                   technology
                 </div>
-                <div className="text-174860 text-[16px]">
+                <div className="text-174860 text-[12px]">
                   <RichText data={JSON.parse(product.technology.value)} />
                 </div>
               </div>
               <div>
-                <div className="text-[#1c1072] text-[20px] font-semibold uppercase mb-4">
+                <div className="text-[#1c1072] text-[14px] font-semibold uppercase mb-4">
                   Benefits
                 </div>
-                <div className="text-174860 text-[16px]">
+                <div className="text-174860 text-[12px]">
                   <RichText data={JSON.parse(product.benefits.value)} />
                 </div>
               </div>   
@@ -212,7 +212,7 @@ export function AccessoriesProductContent({
         </div>
       </div>
       <div
-        className="bg-f7 py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 justify-center gap-5"
+        className="bg-f7 py-8 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 justify-center gap-5"
       >
         {specifications && (
           <>

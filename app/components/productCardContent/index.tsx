@@ -13,7 +13,7 @@ export default function ProductCardContent({productData}) {
       name: string;
       color: string;
     }[] = [];
-    let productKey: 'mattressId' | 'pillowId' | 'topperId';
+    let productKey: 'mattressId' | 'pillowId' | 'topperId' | 'accessoryId';
     switch (productData?.productType) {
       case 'Mattress':
         productKey = 'mattressId';
@@ -28,7 +28,7 @@ export default function ProductCardContent({productData}) {
         break;
 
       case 'Accessories':
-        productKey = 'accessoriesId';
+        productKey = 'accessoryId';
         break;
 
       default:
@@ -38,16 +38,16 @@ export default function ProductCardContent({productData}) {
 
     const contentfulCollectionItem =
       productData.contentfulCollections.items.find(
-        (item) => item.fields.name == collection[productKey]?.value,
+        (item:any) => item.fields.name == collection[productKey]?.value,
       );
     if (
       contentfulCollectionItem &&
       contentfulCollectionItem.fields.comfortLevels
     ) {
-      contentfulCollectionItem.fields.comfortLevels.forEach((comfortLevel) => {
+      contentfulCollectionItem.fields.comfortLevels.forEach((comfortLevel:any) => {
         comfortLevels.push(
           productData.contentfulCollections.includes.Entry.find(
-            (link) => link.sys.id === comfortLevel.sys.id,
+            (link:any) => link.sys.id === comfortLevel.sys.id,
           )!.fields,
         );
       });
@@ -59,23 +59,62 @@ export default function ProductCardContent({productData}) {
   return (
     <>
       <div className="p-4">
-        <div className="grid grid-cols-4">
-          <div className="col-span-3 gap-4 grid grid-cols-3">
-            {Object.keys(productData).length > 1 &&
-              productData.collections?.map((collection, index) => (
-                <ProductDetailCard
-                  productType={productData.productType}
-                  collection={
-                    collection as CollectionWithMetafields<Collection>
-                  }
-                  comfortLevels={getComfortLevels(
-                    collection as CollectionWithMetafields<Collection>,
-                  )}
-                  key={index}
-                  className="col-span-1"
-                />
-              ))}
-          </div>
+        <div className="">
+          {productData?.productType == 'Accessories' ?
+            <div className='w-[75%]'>
+              <div className='text-[13px] text-[#174860] text-left font-bold mb-[10px]'>Matress protectors</div>
+              <div className="col-span-3 gap-4 grid grid-cols-3">
+                {productData.collections?.slice(0,3)?.map((collection:any, index:number) => (
+                  <ProductDetailCard
+                    productType={productData.productType}
+                    collection={
+                      collection as CollectionWithMetafields<Collection>
+                    }
+                    comfortLevels={getComfortLevels(
+                      collection as CollectionWithMetafields<Collection>,
+                    )}
+                    key={index}
+                    className="col-span-1"
+                  />
+                ))}
+              </div>
+              <div className='text-left text-[13px] text-[#174860] font-bold mt-[20px] mb-[10px]' style={{color:'#174860!important'}}>Bed Sheets</div>
+              <div className="col-span-3 gap-4 grid grid-cols-3">
+                {productData.collections?.slice(3,6)?.map((collection:any, index:number) => (
+                  <ProductDetailCard
+                    productType={productData.productType}
+                    collection={
+                      collection as CollectionWithMetafields<Collection>
+                    }
+                    comfortLevels={getComfortLevels(
+                      collection as CollectionWithMetafields<Collection>,
+                    )}
+                    key={index}
+                    className="col-span-1"
+                  />
+                ))}
+              </div>  
+            </div>
+            :
+            <div className='grid grid-cols-4'>
+              <div className="col-span-3 gap-4 grid grid-cols-3">
+                {Object.keys(productData).length > 1 &&
+                  productData.collections?.map((collection:any, index:number) => (
+                    <ProductDetailCard
+                      productType={productData.productType}
+                      collection={
+                        collection as CollectionWithMetafields<Collection>
+                      }
+                      comfortLevels={getComfortLevels(
+                        collection as CollectionWithMetafields<Collection>,
+                      )}
+                      key={index}
+                      className="col-span-1"
+                    />
+                  ))}
+              </div>
+            </div>
+          }
           <div className="col-span-1">
             {productData && productData.productType == 'Mattress' && (
               <div className="h-full flex flex-col align-center justify-end pl-8 pr-8">
