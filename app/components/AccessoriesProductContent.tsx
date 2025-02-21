@@ -163,7 +163,6 @@ export function AccessoriesProductContent({
         .then((res) => res.json())
         .then((res:any) => {
           setVideoGalleries(res?.includes?.Asset?.map(asset => asset?.fields))
-          console.log('res gallery', res?.includes?.Asset?.map(asset => asset?.fields))
         })
     })();
   }, [product]);

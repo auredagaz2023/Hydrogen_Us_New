@@ -179,22 +179,54 @@ export default function CollectionProducts() {
 
   useEffect(() => {
     const variants = selectedProduct?.variants.nodes
-    const colorOptions = Array.from(new Set(variants.map((variant:any) => variant.selectedOptions[0].value)))
-    const colorOptionTitle = variants?.[0]?.selectedOptions[0]?.name || ''
-    const selectedColor = colorOptions?.[0] || ''
-    const sizeOptions = Array.from(new Set(variants.map((variant:any) => variant.selectedOptions[1].value)))
-    const sizeOptionTitle = variants?.[0]?.selectedOptions[1]?.name || ''
-    const selectedSize = sizeOptions?.[0] || ''
+    const colorOptionTitle = "Color"; // The name to match
+
+    // Step 1: Extract the selected options with the given name
+    const colorOptions = variants
+      .map((variant) => variant.selectedOptions.find((item) => item?.name === colorOptionTitle))
+      .filter(Boolean); // Remove undefined values
+
+    // Step 2: Remove duplicates using a Map
+    const uniqueColorOptions = Array.from(
+      new Map(colorOptions.map((item) => [item.value, item])).values()
+    ).map(
+      item => item?.value
+    );
+    const selectedColor = uniqueColorOptions?.[0] || ''
+    const sizeOptionTitle = "Bedding size";
+
+    // Step 1: Extract the selected options with the given name
+    const sizeOptions = variants
+      .map((variant) => variant.selectedOptions.find((item) => item?.name === sizeOptionTitle))
+      .filter(Boolean); // Remove undefined values
+
+    // Step 2: Remove duplicates using a Map
+    const uniqueSizeOptions = Array.from(
+      new Map(sizeOptions.map((item) => [item.value, item])).values()
+    ).map(
+      item => item?.value
+    );;
+
+    const selectedSize = uniqueSizeOptions?.[0] || ''
     setColorOptionTitle(colorOptionTitle)
-    setColorOptions(colorOptions)
+    setColorOptions(uniqueColorOptions)
     setSelectedColor(selectedColor)
     setSizeOptionTitle(sizeOptionTitle)
-    setSizeOptions(sizeOptions)
+    setSizeOptions(uniqueSizeOptions)
     setSelectedSize(selectedSize)
+    console.log('color options!!', uniqueColorOptions)
+    console.log('size options!!', uniqueSizeOptions)
+    console.log('selected color', selectedColor)
+    console.log('selected size', selectedSize)
   }, [selectedProduct?.variants.nodes])
 
   useEffect(()=>{
-    const selectedVariant = selectedProduct?.variants.nodes?.filter((variant:any) => variant.selectedOptions[1].value==selectedSize && variant.selectedOptions[0].value==selectedColor)?.[0]
+    console.log('selected size shit!!!!!',  selectedSize)
+    const filteredVariantsBySize = selectedProduct.variants.nodes.filter(node => node.selectedOptions.some(option=> (option.name=="Bedding size" && option.value==selectedSize )))
+    const selectedVariant = selectedColor ? filteredVariantsBySize?.filter(node => node.selectedOptions.some(option=> (option.name=="Color" && option.value==selectedColor )))?.[0] : filteredVariantsBySize?.[0]
+    // console.log('size vaaa!!', selectedProduct?.variants.nodes?.filter((variant:any) => variant.selectedOptions.find((option:any) => option.name==sizeOptionTitle)?.value==selectedSize))
+    // const selectedVariant = selectedProduct?.variants.nodes?.filter((variant:any) => variant.selectedOptions[1].value==selectedSize && variant.selectedOptions[0].value==selectedColor)?.[0]
+    console.log('selected variant', selectedVariant)
     setSelectedVariant(selectedVariant)
   }, [selectedSize, selectedColor, selectedProduct?.variants.nodes])
 
@@ -512,8 +544,6 @@ export default function CollectionProducts() {
                             key={index}
                             onClick={() => {
                               setSelectedSize(size);
-                              // setHandle(undefined);
-                              // close();
                             }}
                           >
                             <input
@@ -524,9 +554,6 @@ export default function CollectionProducts() {
                               name="default-radio"
                               className="w-4 h-4 text-[#181a1b] bg-gray-100 border-gray-300 focus:text-[#181818] dark:text-red-200"
                             />
-                            {/* <label className="radio-label ml-2 text-sm font-medium dark:text-gray-300">
-                              {variant.selectedOptions[0].value}
-                            </label> */}
                             {
                               <label className="radio-label ml-2 text-sm font-medium dark:text-gray-300">
                                 {size}
@@ -558,25 +585,27 @@ export default function CollectionProducts() {
             </>
           )}
         </Disclosure>
-        <div className='p-5 border-t border-[#dee2e6]'>
-          <div className='font-semibold text-[13px] text-[#1c1072] mb-[20px]'>
-            Color
-          </div>
-          
-          <div className='flex flex-wrap gap-3'>
-          {colorOptions.map((color:String, index:number) => {
-            return (
-                <div className='flex flex-col items-center justify-center gap-[10px]'>
-                  <div onClick={()=>{setSelectedColor(color)}} className={`w-[20px] h-[20px] hover:cusor-pointer rounded-full border border-2 ${color==selectedColor ? 'border-[#033076]' : ''}`} style={{backgroundColor:colorMap?.[color] || '#ffffff'}}>
+        {colorOptions?.length>0 && 
+          <div className='p-5 border-t border-[#dee2e6]'>
+            <div className='font-semibold text-[13px] text-[#1c1072] mb-[20px]'>
+              Color
+            </div>
+            
+            <div className='flex flex-wrap gap-3'>
+            {colorOptions.map((color:String, index:number) => {
+              return (
+                  <div className='flex flex-col items-center justify-center gap-[10px]'>
+                    <div onClick={()=>{setSelectedColor(color)}} className={`w-[20px] h-[20px] hover:cusor-pointer rounded-full border border-2 ${color==selectedColor ? 'border-[#033076]' : ''}`} style={{backgroundColor:colorMap?.[color] || '#ffffff'}}>
+                    </div>
+                    <div className='text-[12px] text-[#1c1072]'>
+                      {color}
+                    </div>
                   </div>
-                  <div className='text-[12px] text-[#1c1072]'>
-                    {color}
-                  </div>
-                </div>
-            )
-          })}
+              )
+            })}
+            </div>
           </div>
-        </div>
+        }
         <div className="product-quantity p-5 border-t border-b border-[#dee2e6] uppercase flex justify-between items-center text-[13px] text-dark-blue">
           <span>Quantity</span>
           <div className="qty-form flex items-center">

@@ -459,11 +459,7 @@ function DesktopHeaderNew({openCart}: {openCart: () => void}) {
       load(`/api/getProductsByType?productType=${activeMenu}`);
     }
   }, [activeMenu]);
-
-  useEffect(()=>{
-    console.log('fetched data!!!', data)
-  }, [data])
-
+  
   return (
     <header className="sticky top-0 z-50">
       <div className="hidden xxl:flex bg-dark-blue flex-row w-full items-center justify-end text-white uppercase text-xxs px-3 pt-3 pb-[14px]">
