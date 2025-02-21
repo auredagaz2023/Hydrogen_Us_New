@@ -2162,6 +2162,9 @@ select{
 .mb-\[140px\]{
   margin-bottom: 140px;
 }
+.mb-\[15px\]{
+  margin-bottom: 15px;
+}
 .mb-\[20px\]{
   margin-bottom: 20px;
 }
@@ -4950,11 +4953,6 @@ select{
   color: rgba(2, 45, 131, 1);
   color: rgba(2, 45, 131, var(--tw-text-opacity));
 }
-.text-\[\#022d8e\]{
-  --tw-text-opacity: 1;
-  color: rgba(2, 45, 142, 1);
-  color: rgba(2, 45, 142, var(--tw-text-opacity));
-}
 .text-\[\#030C2A\]{
   --tw-text-opacity: 1;
   color: rgba(3, 12, 42, 1);
@@ -4978,6 +4976,11 @@ select{
   color: rgba(24, 26, 27, 1);
   color: rgba(24, 26, 27, var(--tw-text-opacity));
 }
+.text-\[\#184860\]{
+  --tw-text-opacity: 1;
+  color: rgba(24, 72, 96, 1);
+  color: rgba(24, 72, 96, var(--tw-text-opacity));
+}
 .text-\[\#1c1072\]{
   --tw-text-opacity: 1;
   color: rgba(28, 16, 114, 1);
@@ -4992,11 +4995,6 @@ select{
   --tw-text-opacity: 1;
   color: rgba(37, 141, 202, 1);
   color: rgba(37, 141, 202, var(--tw-text-opacity));
-}
-.text-\[\#406080\]{
-  --tw-text-opacity: 1;
-  color: rgba(64, 96, 128, 1);
-  color: rgba(64, 96, 128, var(--tw-text-opacity));
 }
 .text-\[\#839BB1\]{
   --tw-text-opacity: 1;

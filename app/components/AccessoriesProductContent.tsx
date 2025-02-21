@@ -28,6 +28,8 @@ import WarrantyImg from '../assets/icons/warranty.png';
 import SupportImg from '../assets/icons/support.png';
 import MaterialImg from '../assets/icons/materials.png';
 import BenefitsImg from '../assets/icons/benefits.png';
+import leftArrowPng from '../assets/arrows/icon-l.png'
+import rightArrowPng from '../assets/arrows/icon-r.png'
 import {RichText} from './Richtext';
 
 const CONTENTFUL_SPACE_ID = '7xbaxb2q56jj';
@@ -49,7 +51,8 @@ const CustomPrevArrow = (props) => {
         zIndex: 1,
       }}
     >
-      <span className='font-bold text-[30px]'>&lt;</span>
+      {/* <span className='font-bold text-[30px]'>&lt;</span> */}
+      <img src={leftArrowPng} />
     </div>
   );
 };
@@ -69,7 +72,8 @@ const CustomNextArrow = (props) => {
         zIndex: 1,
       }}
     >
-      <span className='font-bold text-[30px]'>&gt;</span>
+      {/* <span className='font-bold text-[30px]'>&gt;</span> */}
+      <img src={rightArrowPng} />
     </div>
   );
 };
@@ -185,24 +189,24 @@ export function AccessoriesProductContent({
             </h5>
           )}
           <div
-            className="prose border-t border-gray-200 pt-6 text-[#022d8e] text-[16px]"
+            className="prose border-t border-gray-200 pt-6 text-[#184860] text-[13px]"
             dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
           ></div>
           <div className="max-w-5xl mx-auto my-5">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 justify-start items-start mt-8">
               <div>
-                <div className="text-[#406080] text-[14px] font-semibold uppercase mb-4">
+                <div className="text-[#184860] text-[14px] font-semibold uppercase mb-4">
                   technology
                 </div>
-                <div className="text-174860 text-[12px]">
+                <div className="text-[#184860] text-[12px]">
                   <RichText data={JSON.parse(product.technology.value)} />
                 </div>
               </div>
               <div>
-                <div className="text-[#1c1072] text-[14px] font-semibold uppercase mb-4">
+                <div className="text-[#184860] text-[14px] font-semibold uppercase mb-4">
                   Benefits
                 </div>
-                <div className="text-174860 text-[12px]">
+                <div className="text-[#184860] text-[12px]">
                   <RichText data={JSON.parse(product.benefits.value)} />
                 </div>
               </div>   

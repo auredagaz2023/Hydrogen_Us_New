@@ -224,9 +224,6 @@ export default function CollectionProducts() {
     console.log('selected size shit!!!!!',  selectedSize)
     const filteredVariantsBySize = selectedProduct.variants.nodes.filter(node => node.selectedOptions.some(option=> (option.name=="Bedding size" && option.value==selectedSize )))
     const selectedVariant = selectedColor ? filteredVariantsBySize?.filter(node => node.selectedOptions.some(option=> (option.name=="Color" && option.value==selectedColor )))?.[0] : filteredVariantsBySize?.[0]
-    // console.log('size vaaa!!', selectedProduct?.variants.nodes?.filter((variant:any) => variant.selectedOptions.find((option:any) => option.name==sizeOptionTitle)?.value==selectedSize))
-    // const selectedVariant = selectedProduct?.variants.nodes?.filter((variant:any) => variant.selectedOptions[1].value==selectedSize && variant.selectedOptions[0].value==selectedColor)?.[0]
-    console.log('selected variant', selectedVariant)
     setSelectedVariant(selectedVariant)
   }, [selectedSize, selectedColor, selectedProduct?.variants.nodes])
 
