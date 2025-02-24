@@ -62,7 +62,7 @@ export default function ProductCardContent({productData}) {
         <div className="">
           {productData?.productType == 'Accessories' ?
             <div className='w-[75%]'>
-              <div className='text-[13px] text-[#174860] text-left font-bold mb-[15px]'>Matress protectors</div>
+              <div className='text-[13px] text-[#174860] text-left font-bold mb-[20px]'>Matress protectors</div>
               <div className="col-span-3 gap-4 grid grid-cols-3">
                 {productData.collections?.slice(0,3)?.map((collection:any, index:number) => (
                   <ProductDetailCard
@@ -78,7 +78,7 @@ export default function ProductCardContent({productData}) {
                   />
                 ))}
               </div>
-              <div className='text-left text-[13px] text-[#174860] font-bold mt-[20px] mb-[15px]' style={{color:'#174860!important'}}>Bed Sheets</div>
+              <div className='text-left text-[13px] text-[#174860] font-bold mt-[20px] mb-[20px]' style={{color:'#174860!important'}}>Bed Sheets</div>
               <div className="col-span-3 gap-4 grid grid-cols-3">
                 {productData.collections?.slice(3,6)?.map((collection:any, index:number) => (
                   <ProductDetailCard

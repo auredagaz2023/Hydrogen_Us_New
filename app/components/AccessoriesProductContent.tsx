@@ -52,7 +52,7 @@ const CustomPrevArrow = (props) => {
       }}
     >
       {/* <span className='font-bold text-[30px]'>&lt;</span> */}
-      <img src={leftArrowPng} />
+      <img src={leftArrowPng} width={25} height={25}/>
     </div>
   );
 };
@@ -73,7 +73,7 @@ const CustomNextArrow = (props) => {
       }}
     >
       {/* <span className='font-bold text-[30px]'>&gt;</span> */}
-      <img src={rightArrowPng} />
+      <img src={rightArrowPng} width={25} height={25}/>
     </div>
   );
 };
@@ -234,7 +234,7 @@ export function AccessoriesProductContent({
                 </p>
               </div>
             </div>
-            <div className="border-b border-b-border flex px-[20px]">
+            {/* <div className="border-b border-b-border flex px-[20px]">
               <img
                 src={CertificationImg}
                 alt="specification collection"
@@ -248,8 +248,8 @@ export function AccessoriesProductContent({
                   {specifications.certifications?.join(', ')}
                 </p>
               </div>
-            </div>
-            <div className="border-b border-b-border flex px-[20px]">
+            </div> */}
+            {/* <div className="border-b border-b-border flex px-[20px]">
               <img
                 src={ComfortImg}
                 alt="specification collection"
@@ -263,7 +263,7 @@ export function AccessoriesProductContent({
                   {specifications.comfort}
                 </p>
               </div>
-            </div>
+            </div> */}
             <div className="border-b border-b-border flex px-[20px]">
               <img
                 src={MaterialImg}
@@ -294,7 +294,7 @@ export function AccessoriesProductContent({
                 </p>
               </div>
             </div>
-            <div className="border-b border-b-border flex px-[20px]">
+            {/* <div className="border-b border-b-border flex px-[20px]">
               <img
                 src={WarrantyImg}
                 alt="specification collection"
@@ -308,9 +308,9 @@ export function AccessoriesProductContent({
                   {specifications.warranty}
                 </p>
               </div>
-            </div>
+            </div> */}
 
-            <div className="border-b border-b-border flex px-[20px]">
+            {/* <div className="border-b border-b-border flex px-[20px]">
               <img
                 src={ThicknessImg}
                 alt="specification collection"
@@ -339,7 +339,7 @@ export function AccessoriesProductContent({
                   {specifications.extras?.join(', ')}
                 </p>
               </div>
-            </div>                                
+            </div>                                 */}
             {/* <div className="border-b border-b-border flex px-2">
               <img
                 src={SupportImg}
