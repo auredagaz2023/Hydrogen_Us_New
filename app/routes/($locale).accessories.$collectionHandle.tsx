@@ -102,11 +102,64 @@ export async function loader({params, request, context}: LoaderArgs) {
     throw new Response(null, {status: 404});
   }
 
+  // Step 1: Parse the `gid` values from the `productImages` metafield
+  const variantImageGids = [...new Set(product.variants.nodes
+    .map((variant) => {
+      try {
+        return JSON.parse(variant.productImages?.value || '[]');
+      } catch (error) {
+        console.error("Failed to parse metafield value:", error);
+        return [];
+      }
+    })
+    .flat())];
+  // Step 2: Fetch the image URLs using the `gid` values
+  const {nodes: mediaImages} = await context.storefront.query<{
+    nodes: Array<{
+      id: string;
+      image: {
+        url: string;
+        altText: string;
+      };
+    }>;
+  }>(
+    `#graphql
+    query MediaImages($ids: [ID!]!) {
+      nodes(ids: $ids) {
+        ... on MediaImage {
+          id
+          image {
+            url
+            altText
+          }
+        }
+      }
+    }`,
+    {
+      variables: {
+        ids: variantImageGids,
+      },
+    },
+  );
+  // Step 3: Map the image URLs back to the variants
+  const variantsWithImages = product.variants.nodes.map((variant) => {
+    const gids = JSON.parse(variant.productImages?.value || '[]');
+    const images = mediaImages.filter((media) => gids.includes(media.id));
+    return {
+      ...variant,
+      images,
+    };
+  });
   return json({
     productType: 'Accessories',
     collectionHandle,
     collection,
-    product,
+    product: {
+      ...product,
+      variants: {
+        nodes: variantsWithImages
+      }
+    },
     colorOptions,
     analytics: {
       pageType: AnalyticsPageType.collection,
@@ -125,6 +178,7 @@ export default function CollectionProducts() {
   const [selectedColor, setSelectedColor] = useState<String>('')
   const [sizeOptionTitle,  setSizeOptionTitle] = useState<String>('')
   const [colorOptionTitle, setColorOptionTitle] = useState<String>('')
+  const [variantProductImages, setVariantProductImages] = useState<String[]>([])
 
   const products = collection.products.nodes;
   const featuredImage = products[0].featuredImage;
@@ -214,19 +268,58 @@ export default function CollectionProducts() {
     setSizeOptionTitle(sizeOptionTitle)
     setSizeOptions(uniqueSizeOptions)
     setSelectedSize(selectedSize)
-    console.log('color options!!', uniqueColorOptions)
-    console.log('size options!!', uniqueSizeOptions)
-    console.log('selected color', selectedColor)
-    console.log('selected size', selectedSize)
   }, [selectedProduct?.variants.nodes])
 
-  useEffect(()=>{
-    console.log('selected size shit!!!!!',  selectedSize)
-    const filteredVariantsBySize = selectedProduct.variants.nodes.filter(node => node.selectedOptions.some(option=> (option.name=="Bedding size" && option.value==selectedSize )))
-    const selectedVariant = selectedColor ? filteredVariantsBySize?.filter(node => node.selectedOptions.some(option=> (option.name=="Color" && option.value==selectedColor )))?.[0] : filteredVariantsBySize?.[0]
-    setSelectedVariant(selectedVariant)
-  }, [selectedSize, selectedColor, selectedProduct?.variants.nodes])
-
+  useEffect(() => {
+    const filteredVariantsBySize = selectedProduct.variants.nodes.filter(
+      (node) =>
+        node.selectedOptions.some(
+          (option) => option.name === "Bedding size" && option.value === selectedSize,
+        ),
+    );
+  
+    const selectedVariant = selectedColor
+      ? filteredVariantsBySize.filter((node) =>
+          node.selectedOptions.some(
+            (option) => option.name === "Color" && option.value === selectedColor,
+          ),
+        )[0]
+      : filteredVariantsBySize[0];
+  
+    setSelectedVariant(selectedVariant);
+  
+    let variantProductImages = [];
+    let variantImages = [];
+  
+    try {
+      // Step 1: Parse the `gid` values from `variantProductImages`
+      variantProductImages = JSON.parse(selectedVariant?.productImages?.value || "[]");
+  
+      // Step 2: Parse the `variantImages` (assuming it contains `gid` and `url`)
+      variantImages = JSON.parse(selectedVariant?.images?.value || "[]");
+  
+      if (!Array.isArray(variantProductImages) || !Array.isArray(variantImages)) {
+        console.error("Parsed values are not arrays:", {
+          variantProductImages,
+          variantImages,
+        });
+        variantProductImages = [];
+        variantImages = [];
+      }
+    } catch (error) {
+      console.error("Failed to parse metafield values:", error);
+      variantProductImages = [];
+      variantImages = [];
+    }
+  
+    // Step 3: Sort `variantImages` based on the order of `gid` values in `variantProductImages`
+    const sortedVariantImages = variantProductImages
+      .map((gid) => variantImages.find((image) => image.id === gid))
+      .filter(Boolean); // Remove undefined values (if any `gid` is not found)
+  
+    // Step 5: Update the state with the sorted image URLs
+    setVariantProductImages(sortedVariantImages);
+  }, [selectedSize, selectedColor, selectedProduct?.variants.nodes]);
   const colorMap = colorVariants.reduce((acc:any, metaobject:any) => {
     // Find the label and color fields
     const labelField = metaobject.fields.find((field:any) => field.key === "label");
@@ -256,7 +349,7 @@ export default function CollectionProducts() {
                     <div className="w-full h-[350px] sm:h-[480px] md:h-[500px] lg:h-auto aspect-[100/55]">
                       <Image
                         className="w-full h-full object-cover"
-                        data={productImage}
+                        data={ productImage}
                         sizes="1500"
                         widths={[
                           350, 460, 580, 660, 780, 900, 1100, 1240, 1360, 1440,
@@ -299,7 +392,7 @@ export default function CollectionProducts() {
                 (navImage: ImageType, index: number) => (
                   <Image
                     key={index}
-                    data={navImage}
+                    data={index<2 ? {...navImage, url:variantProductImages?.[index] ?? navImage?.url} : navImage}
                     sizes="60"
                     widths={[60]}
                     alt={
@@ -588,7 +681,7 @@ export default function CollectionProducts() {
               Color
             </div>
             
-            <div className='flex flex-wrap gap-3'>
+            <div className='w-full grid grid-cols-3'>
             {colorOptions.map((color:String, index:number) => {
               return (
                   <div className='flex flex-col items-center justify-center gap-[10px]'>

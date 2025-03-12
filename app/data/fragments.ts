@@ -112,6 +112,9 @@ export const PRODUCT_CARD_FRAGMENT = `#graphql
           handle
           title
         }
+        productImages: metafield(namespace: "custom", key: "product_images") {
+          value
+        }
       }
     }
   }
