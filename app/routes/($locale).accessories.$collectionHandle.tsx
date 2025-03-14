@@ -333,6 +333,8 @@ export default function CollectionProducts() {
     return acc;
   }, {});
 
+  console.log('selected variant!!!', selectedVariant)
+
   return (
     <div className="w-full pb-6 flex flex-wrap justify-between">
       <div className="w-full lg:w-9/12">
@@ -392,7 +394,7 @@ export default function CollectionProducts() {
                 (navImage: ImageType, index: number) => (
                   <Image
                     key={index}
-                    data={index<2 ? {...navImage, url:variantProductImages?.[index] ?? navImage?.url} : navImage}
+                    data={index<2 ? {...navImage, url:selectedVariant?.images?.[index]?.image?.url ?? navImage?.url} : navImage}
                     sizes="60"
                     widths={[60]}
                     alt={
