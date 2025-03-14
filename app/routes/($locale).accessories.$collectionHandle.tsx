@@ -351,7 +351,8 @@ export default function CollectionProducts() {
                     <div className="w-full h-[350px] sm:h-[480px] md:h-[500px] lg:h-auto aspect-[100/55]">
                       <Image
                         className="w-full h-full object-cover"
-                        data={ productImage}
+                        data={index<2 ? {...productImage, url:selectedVariant?.images?.[index]?.image?.url ?? productImage?.url} : productImage}
+                        // data={ productImage}
                         sizes="1500"
                         widths={[
                           350, 460, 580, 660, 780, 900, 1100, 1240, 1360, 1440,
