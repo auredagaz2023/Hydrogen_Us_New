@@ -118,6 +118,9 @@ export default function CollectionProducts() {
     ProductVariant | undefined
   >(undefined);
   const [homePromotion, setHomePromotion] = useState<any>(undefined);
+  const [pillowPromoTopLabel, setPillowPromoTopLabel] = useState('')
+  const [pillowPromoLabel, setPillowPromoLabel] = useState('')
+  const [pillowPromoSubLabel, setPillowPromoSubLabel] = useState('')
   const [quantity, setQuantity] = useState<number>(1);
   const [productImagesSwiper, setProductImagesSwiper] = useState<
     SwiperType | undefined
@@ -170,10 +173,14 @@ export default function CollectionProducts() {
         .then((res) => res.json())
         .then((res:any) => {
           setHomePromotion(res as any);
-          if(productType=='Pillow' && res?.items[0].fields.pillowPromoLabelExclude?.filter((item:string)=>(item.toLowerCase()==product.title.toLowerCase()))?.length==0)
+          const activeHomePromotion = res?.items[0].fields;
+          setPillowPromoTopLabel(activeHomePromotion?.pillowPromoTopLabel)
+          setPillowPromoLabel(activeHomePromotion?.pillowPromoLabel)
+          setPillowPromoSubLabel(activeHomePromotion?.pillowPromoSubLabel)
+          if(productType=='Pillow' && activeHomePromotion?.pillowPromoLabelExclude?.filter((item:string)=>(item.toLowerCase()==product.title.toLowerCase()))?.length==0)
           {
-            setQuantity(res.items[0].fields.pillowDefaultQuantity);
-          }        
+            setQuantity(activeHomePromotion.pillowDefaultQuantity);
+          }
         });
     })();
   }, []);
@@ -201,11 +208,14 @@ export default function CollectionProducts() {
                         ]}
                       />
                     </div>
-                  </SwiperSlide>
+                  </SwiperSlide>                  
                 ),
               )}
             </FadeIn>
           </Swiper>
+          <div className="absolute left-0 top-10 flex justify-end bg-red-600 text-white px-2 py-2 z-101">
+            {pillowPromoTopLabel}
+          </div>
           {(selectedProduct as ProductWithMetafields<Product>)
             .discountPercent && (
             <div className="absolute left-0 top-10 flex justify-end bg-red-600 text-white w-48 px-2 py-2 z-10">
@@ -227,7 +237,7 @@ export default function CollectionProducts() {
             className={`${
               (selectedProduct as ProductWithMetafields<Product>)
                 .discountPercent || (selectedProduct as ProductWithMetafields<Product>)
-                .saveUpTo
+                .saveUpTo || pillowPromoTopLabel
                 ? 'top-[90px]'
                 : 'top-[25px]'
             } imageNavigation absolute left-5 w-10 md:w-16 z-10`}
@@ -827,23 +837,35 @@ export default function CollectionProducts() {
           {selectedVariant ? (
             <>
               {selectedVariant.availableForSale && (
-                <AddToCartButton
-                  lines={[
-                    {
-                      merchandiseId: selectedVariant.id,
-                      quantity: quantity,
-                    },
-                  ]}
-                  className="bg-dark-blue border border-dark-blue py-3 w-full text-white text-xs uppercase mt-2 hover:bg-white hover:text-dark-blue"
-                  data-test="add-to-cart"
-                >
-                  <Text
-                    as="span"
-                    className="flex items-center justify-center gap-2"
+                <>
+                  {pillowPromoLabel && pillowPromoSubLabel && productType=='Pillow' &&
+                    <div className='bg-red-600 text-white p-3 font-semibold'>
+                      <div className='text-[12px]'>
+                        {pillowPromoLabel}
+                      </div>
+                      <div className='text-[10px] font-normal'>
+                        {pillowPromoSubLabel}
+                      </div>
+                    </div>
+                  }
+                  <AddToCartButton
+                    lines={[
+                      {
+                        merchandiseId: selectedVariant.id,
+                        quantity: quantity,
+                      },
+                    ]}
+                    className="bg-dark-blue border border-dark-blue py-3 w-full text-white text-xs uppercase mt-2 hover:bg-white hover:text-dark-blue"
+                    data-test="add-to-cart"
                   >
-                    <span>ADD TO CART</span>
-                  </Text>
-                </AddToCartButton>
+                    <Text
+                      as="span"
+                      className="flex items-center justify-center gap-2"
+                    >
+                      <span>ADD TO CART</span>
+                    </Text>
+                  </AddToCartButton>
+                </>
               )}
 
               {!selectedVariant.availableForSale && (

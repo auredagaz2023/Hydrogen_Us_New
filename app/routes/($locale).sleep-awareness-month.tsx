@@ -1,25 +1,30 @@
 import { useEffect, useRef, useState } from 'react'
-import desktopHeader from '~/assets/Presidents-Day-2025/Desktop/Header/magniflex-presidents-day-header-desktop.jpg'
-import mobileHeader from '~/assets/Presidents-Day-2025/Mobile/Header/magniflex-presidents-day-header-mobile.jpg'
-import freeshippingsvg from  '~/assets/Landing/Desktop/icons/free-shipping.svg'
-import trialsvg from '~/assets/Landing/Desktop/icons/trial.svg'
-import starsvg from '~/assets/Landing/Desktop/icons/star.svg'
-import dolcevitapng from '~/assets/Presidents-Day-2025/Desktop/Products/Images/01-dolce-vita.jpg'
-import magnicoolpng from '~/assets/Presidents-Day-2025/Desktop/Products/Images/02-magnicool.jpg'
-import magnistretchpng from '~/assets/Presidents-Day-2025/Desktop/Products/Images/03-magnistretch.jpg'
-import pillowpng from '~/assets/Presidents-Day-2025/Desktop/Products/Images/04-pillows.jpg'
+import desktopHeader from '~/assets/sleep-awareness-month/Desktop/Header/magniflex-ca-national-sleep-awareness-month-header-desktop.jpg'
+import mobileHeader from '~/assets/sleep-awareness-month/Mobile/Header/magniflex-ca-national-sleep-awareness-month-header-mobile.jpg'
 
-import dolcevitapng_roll from '~/assets/Presidents-Day-2025/Desktop/Products/Roll/01-dolce-vita-roll.jpg'
-import magnicoolpng_roll from '~/assets/Presidents-Day-2025/Desktop/Products/Roll/02-magnicool-roll.jpg'
-import magnistretchpng_roll from '~/assets/Presidents-Day-2025/Desktop/Products/Roll/03-magnistretch-roll.jpg'
-import pillowpng_roll from '~/assets/Presidents-Day-2025/Desktop/Products/Roll/05-pillows-roll.jpg'
+import benefitBarGif from '~/assets/sleep-awareness-month/magniflex-landing-benefit-bar.gif'
+import benefitBarGifMobile from '~/assets/sleep-awareness-month/magniflex-landing-benefit-bar-mobile-A.gif.mp4'
+
+import dolcevitapng from '~/assets/sleep-awareness-month/Desktop/Products/Images/01-dolce-vita.jpg'
+import magnicoolpng from '~/assets/sleep-awareness-month/Desktop/Products/Images/02-magnicool.jpg'
+import magnistretchpng from '~/assets/sleep-awareness-month/Desktop/Products/Images/03-magnistretch.jpg'
+import magnificopng from '~/assets/sleep-awareness-month/Desktop/Products/Images/04-magnifico.jpg'
+import classicopng from '~/assets/sleep-awareness-month/Desktop/Products/Images/05-classico.jpg'
+
+import dolcevitapng_roll from '~/assets/sleep-awareness-month/Desktop/Products/Roll/01-dolce-vita-roll.jpg'
+import magnicoolpng_roll from '~/assets/sleep-awareness-month/Desktop/Products/Roll/02-magnicool-roll.jpg'
+import magnistretchpng_roll from '~/assets/sleep-awareness-month/Desktop/Products/Roll/03-magnistretch-roll.jpg'
+import magnificopng_roll from '~/assets/sleep-awareness-month/Desktop/Products/Roll/04-magnifico-roll.jpg'
+import classicopng_roll from '~/assets/sleep-awareness-month/Desktop/Products/Roll/05-classico-roll.jpg'
 
 import magniflexlogo from '~/assets/Landing/Desktop/magniflex.svg'
 import emailjs from '@emailjs/browser';
-import mobileDolcevitapng from '~/assets/Presidents-Day-2025/Mobile/Products/01-dolce-vita.jpg'
-import mobileMagnicoolpng from '~/assets/Presidents-Day-2025/Mobile/Products/02-magnicool.jpg'
-import mobileMagnistretchpng from '~/assets/Presidents-Day-2025/Mobile/Products/03-magnistretch.jpg'
-import mobilePillowpng from '~/assets/Presidents-Day-2025/Mobile/Products/04-pillows.jpg'
+import mobileDolcevitapng from '~/assets/sleep-awareness-month/Mobile/Products/01-dolce-vita.jpg'
+import mobileMagnicoolpng from '~/assets/sleep-awareness-month/Mobile/Products/02-magnicool.jpg'
+import mobileMagnistretchpng from '~/assets/sleep-awareness-month/Mobile/Products/03-magnistretch.jpg'
+import mobileMagnificopng from '~/assets/sleep-awareness-month/Mobile/Products/04-magnifico.jpg'
+import mobileClassicopng from '~/assets/sleep-awareness-month/Mobile/Products/05-classico.jpg'
+
 import {FaFacebookF} from 'react-icons/fa';
 import {AiOutlineInstagram} from 'react-icons/ai';
 import FadeIn from '~/components/FadeIn'
@@ -35,14 +40,12 @@ const products = [
     roll_img: dolcevitapng_roll,
     mobile_img: mobileDolcevitapng,
     name: "dolce vita",
-    description: "One mattress with 4 boards combinations and different comfort levels thanks to our Dual Core technology",
+    description: "One mattress with 4 layers combinations and different comfort levels thanks to our Dual Core technology",
     bestfor: "couples with different sleep needs",
     fitness: "soft, medium-soft, medium-firm, firm",
-    original_price: "$3,599",
-    price: "$2,519",
+    price: "$3,099",
     button: "shop dolce vita",
-    link: "https://magniflex.us/mattresses/dolce-vita?product=dolcevita-dual-10",
-    bottom: "save up to $2,520",
+    link: "https://magniflex.us/mattresses/dolce-vita?product=dolcevita-dual-10",    
     mattress: true
   },
   {
@@ -52,19 +55,17 @@ const products = [
     roll_img: magnicoolpng_roll,
     mobile_img: mobileMagnicoolpng,
     name: "magnicool",
-    description: "The innovative mattress whose materials and cover fabrics offer unparalleled freshness and air circulation",
+    description: "The innovative mattress, designed with premium materials and cover fabrics, delivers unmatched freshness and superior air circulation",
     bestfor: "cool night lovers",
     fitness: "medium-soft, medium-firm",
-    original_price: "$2,699",
-    price: "$1,889",
+    price: "$2,229",
     button: "Shop MAGNICOOL",
     link: "https://magniflex.us/mattresses/magnicool?product=magnicool-10-firm",
-    bottom: "Save up to $1,680",
     mattress: true    
   },
   {
     advance: "Ultimate SPINE RELIEF",
-    advance_color:"#000028",
+    advance_color:"#9AA8A9",
     img: magnistretchpng,
     roll_img: magnistretchpng_roll,
     mobile_img:mobileMagnistretchpng,
@@ -72,44 +73,47 @@ const products = [
     description: "Its patented checkered and stretching construction ensures differentiated zone support and stretching of the spine",
     bestfor: "active people, back pain sufferers",
     fitness: "medium-firm, firm",
-    original_price: "$3,199.00",
-    price: "$2,239",
+    price: "$2,699",    
     button: "Shop MAGNISTRETCH",
     link: "https://magniflex.us/mattresses/magnistretch?product=magnistretch-12",
-    bottom: "Save up to $2,280",
     mattress: true
   },
   {
-    advance: "For extra comfort and support",
-    advance_color:"#707F62",
-    img: pillowpng,
-    roll_img: pillowpng_roll,
-    mobile_img: mobilePillowpng,
-    name: "MAGNIFLEX PILLOWS ",
-    description: "Explore the comfort, support, freshness, breathability, and many more qualities designed to enhance your sleep experience",
-    bestfor: "ergonomic design, cooling fabrics, natural fibers",
-    fitness: "deeper, more comfortable, and restorative sleep",
-    original_price: "$129",
-    price: "$90",
-    button: "Shop Pillows",
-    link: "https://magniflex.us/category/pillows",
-    bottom: "Save up to $81"
-  },
+    advance: "ULTIMATE COMFORT",
+    advance_color:"#A6682C",
+    img: magnificopng,
+    roll_img: magnificopng_roll,
+    mobile_img: mobileMagnificopng,
+    name: "MAGNIFICO ",
+    description: "The excellence of traditional materials combined with the innovation of new technologies to produce timeless comfort",
+    bestfor: "discerning sleepers seeking ultimate comfort",
+    fitness: "super-soft, medium-soft, medium-firm",
+    price: "$2,899",
+    button: "Shop Magnifico",
+    link: "https://magniflex.us/mattresses/magnifico?product=toscana-cotton-lux-10",
+  }
 ]
 
 function Landing() {
-  const formRef = useRef<HTMLElement>(null);
+  const formRef = useRef<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
   const [error, setError] = useState<string | undefined>(undefined);
   const [hoveredIndex, setHoveredIndex] = useState(-1);
   const [showEmailError, setShowEmailError] = useState(false);
+  const [hoveredClassico, setHoveredClassico] = useState(false)
 
   const handleHover = (index:number) => {
     setHoveredIndex(index);
   }
   const handleUnhover = () => {
     setHoveredIndex(-1);
+  };
+  const handleHoverClassico = () => {
+    setHoveredClassico(true)
+  }
+  const handleUnhoverClassico = () => {
+    setHoveredClassico(false)
   };
   const sendEmail = async () => {
     setLoading(true);
@@ -160,24 +164,28 @@ function Landing() {
         <img src={desktopHeader} loading='lazy' alt="header" className='hidden md:block' />
         <img src={mobileHeader} loading='lazy' alt="header" className='md:hidden' />
       </FadeIn>
-      <div className='flex overflow:hidden px-[32px] text-[13px] landing-[34px] justify-center items-start md:items-center flex-col md:flex-row md:space-x-nav bg-[#174960] w-100 text-white md:h-[50px] py-2'>
-        <div  className='flex gap-[24px] md:gap-2 h-[34px] items-center'>
-          <img width={32} src={freeshippingsvg}></img>
-          <span className='uppercase'>Free shipping</span>
-        </div>
-        <div className='flex gap-[24px] md:gap-2 h-[34px] items-center'>
-          <img width={32} src={trialsvg} alt="" />
-          <span className='uppercase'>90-NIGHT SLEEP TRIAL</span>
-        </div>
-        <div className='flex gap-[24px] md:gap-2 h-[34px] items-center'>
-          <img width={32} src={starsvg} alt="" />
-          <span className='uppercase'>10-Year Warranty ON MATTRESSES</span>
-        </div>
+      <div className='flex overflow:hidden md:h-[61px] h-auto px-[0px] md:px-[32px] py-[0px] text-[13px] landing-[34px] justify-center items-start md:items-center flex-col md:flex-row md:space-x-nav w-100 text-white'>
+        <img src={benefitBarGif} className='h-[61px] object-cover hidden md:block'></img>
+        <video className='md:hidden w-full' autoPlay loop muted > 
+            <source className='' src={benefitBarGifMobile} type='video/mp4'/>
+        </video>
       </div>
       <div className='bg-white text-[#174860] landing-[29px] text-[17.5px] text-center pt-[96px] pb-[64px] md:pt-[72px] md:pb-[32px] px-[30px] md:px-[10%]'>
-        <div className='font-bold mb-[20px]'>Celebrate Presidents’ Day with Monumental Savings!</div>
-        <div>Experience the perfect blend of elegance and performance, crafted by Magniflex to deliver unparalleled rest.</div>
-        <div>Enjoy 30% off our luxurious, extra-comfortable Italian mattresses and pillows and <span className='font-bold'>save up to $2,520.</span></div>
+        <div className=''>
+          Designed for ultimate relaxation, our mattresses bring together
+        </div>
+        <div>
+          <span className='font-bold'>advanced sleep technology</span> and <span className='font-bold'>premium comfort.</span> 
+        </div>
+        <div>          
+          To celebrate the month dedicated to the importance of good sleep,
+        </div>
+        <div>  
+          we’re offering a <span className='font-bold'>free Classico pillow with every mattress purchase</span>
+        </div>
+        <div>
+          – a precious gift to help you wake up truly refreshed every day.
+        </div>        
       </div>
       <div className='bg-white text-[#174860] text-[35px] font-[600] text-center landing-[24px] py-[24px] px-[20px] mb-[24px] md:mb-[55px]'>
         Explore our collections
@@ -233,7 +241,7 @@ function Landing() {
                 />
               </div>
               <div style={{color:product.advance_color}} className={`mt-[24px] lg:mt-[38px] text-[17px] lg:text-[13px] text-[${product.advance_color}] uppercase text-center font-bold`}>{product.advance}</div>
-              <div className='flex flex-col items-center px-12'>
+              <div className='flex flex-col items-center md:px-12'>
                 <a  href={product.link} className='mt-[20px] text-[27.5px] lg:text-[22px] text-[#174860] landing-[24px] font-bold uppercase text-center hover:underline' >{product.name}</a>
                 <hr className='my-[20px] lg:hidden block border-0 clear-both, w-[96%] bg-[#174860] h-[1px]'  />
                 <div className='mt-[20px] text-[17px] font-semibold md:font-normal text-[#174860] landing-[25px] text-center'>{product.description}</div>
@@ -243,7 +251,7 @@ function Landing() {
                   <span className='text-[#839BB1]'>Firmness:</span> <span className='text-[#174860] text-[15px]'>{product.fitness}</span>
                 </div>
                 <div className='mt-[25px] text-[#839BB1] text-[13px] landing-[27.5px] text-center'>
-                  {product?.mattress ? 'Queen starting at' : 'Starting at'}
+                  {product?.mattress ? 'Starting at' : 'Starting at'}
                   <br />
                   <span className='line-through'>{product.original_price}</span> <span className='text-red-600 text-[22px] landing-[27.5px] font-semibold'>{product.price}</span>
                 </div>
@@ -254,6 +262,74 @@ function Landing() {
           )
         })
       }
+      </div>
+      <div className='flex items-center justify-center'>
+        <div className='w-full md:w-1/2 px-[32px] md:px-12 pb-32 relative'>
+          <div className='relative h-auto'>
+            <img
+              src={classicopng_roll}
+              onMouseOver={handleHoverClassico}
+              onMouseOut={handleUnhoverClassico}
+              alt="product_img"
+              className='hidden md:block absolute'
+              style={{
+                objectFit: 'cover',
+                opacity: hoveredClassico ? 1 : 0,
+                transition: 'opacity 0.5s ease'
+              }}
+            />
+            {/* <img
+              src={classicopng}
+              onMouseOver={handleHoverClassico}
+              onMouseOut={handleUnhoverClassico}
+              alt="product_img"
+              className='hidden md:block absolute'
+              style={{
+                objectFit: 'cover',
+                opacity: hoveredClassico ? 1 : 0,
+                transition: 'opacity 0.5s ease'
+              }}
+            /> */}
+            <img
+              src={classicopng}
+              onMouseOver={handleHoverClassico}
+              onMouseOut={handleUnhoverClassico}
+              alt="product_img"
+              className='hidden md:block'
+              style={{
+                objectFit: 'cover',
+                opacity: hoveredClassico ? 0 : 1,
+                transition: 'opacity 0.5s ease'
+              }}
+            />
+            <img src={mobileClassicopng} 
+              onMouseOver={handleHoverClassico}
+              onMouseOut={handleUnhoverClassico} 
+              alt="product_img" 
+              className='md:hidden'
+              style={{
+                transition: '0.3s all ease' // Apply a smooth transition effect
+              }}
+            />
+          </div>
+          <div style={{color:'#575756'}} className={`mt-[24px] lg:mt-[38px] text-[17px] lg:text-[13px] text-[#575756] uppercase text-center font-bold`}>performance and essentiality</div>
+          <div className='flex flex-col items-center md:px-12'>
+            <a  href={'https://magniflex.us/mattresses/classico?product=classico-9'} className='mt-[20px] text-[27.5px] lg:text-[22px] text-[#174860] landing-[24px] font-bold uppercase text-center hover:underline' >CLASSICO</a>
+            <hr className='my-[20px] lg:hidden block border-0 clear-both, w-[96%] bg-[#174860] h-[1px]'  />
+            <div className='mt-[20px] text-[17px] font-semibold md:font-normal text-[#174860] landing-[25px] text-center'>The perfect combination of performance and essentiality for a mattress with built-in massaging system designed to meet every sleep need.</div>
+            <div className='mt-[30px] lg:mt-[25px] text-[17px] lg:text-[15px] text-center'>
+              <span className='text-[#839BB1]'>Best for:</span> <span className='text-[#174860] text-[15px]'> quality sleep lover, restorative sleep seekers</span>
+              <br />
+              <span className='text-[#839BB1]'>Firmness:</span> <span className='text-[#174860] text-[15px]'>medium-firm</span>
+            </div>
+            <div className='mt-[25px] text-[#839BB1] text-[13px] landing-[27.5px] text-center'>
+              {'Starting at'}
+              <br />
+              <span className='text-red-600 text-[22px] landing-[27.5px] font-semibold'>$2,499</span>
+            </div>
+            <a className='text-center mt-[15px] py-4 px-8 uppercase border border-[#174860] hover:bg-[#174860] bg-white hover:text-white text-[#174860] hover:text-[17.5px] lg:text-[13px] font-semibold' href={'https://magniflex.us/mattresses/classico?product=classico-9'}>SHOP CLASSICO</a>
+          </div>
+        </div>
       </div>
       <div className='flex flex-col mt-4 bg-[#f6f6f6] px-[30px] lg:p-4 pt-[40px] lg:pt-0'>
         <form onSubmit={(e) => handleSubmit(e)} ref={formRef} className='flex flex-col items-center lg:py-8'>

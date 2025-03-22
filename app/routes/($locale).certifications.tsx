@@ -51,11 +51,11 @@ const CERTIFICATIONS = [
     title: 'UNIVERSITY OF FLORENCE',
     desc: 'Tests and studies conducted on ergonomics in collaboration with the University of Florence.',
   },
-  {
-    image: Cert6_Img,
-    title: '100% MADE IN ITALY',
-    desc: '100% Made in Italy Quality Certificate. Certifies that all the design, production, and supplies of raw materials took place in Italy.',
-  },
+  // {
+  //   image: Cert6_Img,
+  //   title: '100% MADE IN ITALY',
+  //   desc: '100% Made in Italy Quality Certificate. Certifies that all the design, production, and supplies of raw materials took place in Italy.',
+  // },
   {
     image: Cert7_Img,
     title: 'GOTS (GLOBAL ORGANIC TEXTILE STANDARD)',

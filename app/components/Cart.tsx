@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import {useEffect, useRef, useState} from 'react';
+import {useRef} from 'react';
 import {useScroll} from 'react-use';
 import {flattenConnection, Image, Money} from '@shopify/hydrogen';
 import {
@@ -18,8 +18,9 @@ import type {
   CartLine,
   CartLineUpdateInput,
 } from '@shopify/hydrogen/storefront-api-types';
-import {useFetcher, useMatches} from '@remix-run/react';
+import {useFetcher} from '@remix-run/react';
 import {CartAction} from '~/lib/type';
+import renderRichText from '~/lib/renderRichText';
 
 type Layouts = 'page' | 'drawer';
 
@@ -57,46 +58,9 @@ export function CartDetails({
     page: 'w-full pb-12 grid md:grid-cols-2 md:items-start gap-8 md:gap-8 lg:gap-12',
   };
 
-  const sumObject: { [key: string]: any } = {};
-  const tempLines = cart?.lines.edges.map(line => ({ ...line }));
-  
-  tempLines?.forEach((obj: any, index:number) => {
-    const node = obj.node;
-    console.log('node!!!!!', node)
-    const id = node.merchandise.product.id;
-    const amount = parseFloat(node.cost.totalAmount.amount);
-    if (sumObject[id]) {
-      if (amount !== 0 && node.quantity!=0) {
-        sumObject[id].id = node.id;
-        sumObject[id].cost.totalAmount.amount = 
-          (parseFloat(sumObject[id].cost.totalAmount.amount)+parseInt(node.quantity) * parseFloat(node.cost.amountPerQuantity.amount)).toString();
-      }
-      sumObject[id].quantity += node.quantity;
-    } else {
-      sumObject[id] = {
-        id: node.id,
-        quantity: node.quantity,
-        cost: {
-          compareAtAmountPerQuantity: node.cost.compareAtAmountPerQuantity,
-          amountPerQuantity: node.cost.amountPerQuantity,
-          totalAmount: {
-            amount: amount!=0 ? (parseInt(node.quantity) * parseFloat(node.cost.amountPerQuantity.amount)).toString(): 0,
-            currencyCode: node.cost.totalAmount.currencyCode
-          }
-        },
-        merchandise: node.merchandise,
-        attributes: node.attributes
-
-      };
-    }
-  });
-
-  const lines = Object.keys(sumObject).map(id => (sumObject[id]));
-  console.log('lines!!!!!!!', lines)
-
   return (
     <div className={container[layout]}>
-      <CartLines lines={lines} layout={layout} />
+      <CartLines lines={cart?.lines} layout={layout} />
       {!isZeroCost && (
         <CartSummary cost={cart.cost} layout={layout}>
           {/* <CartDiscounts discountCodes={cart.discountCodes} /> */}
@@ -178,13 +142,12 @@ function UpdateDiscountForm({children}: {children: React.ReactNode}) {
 
 function CartLines({
   layout = 'drawer',
-  lines
+  lines: cartLines,
 }: {
   layout: Layouts;
-  lines: any
+  lines: CartType['lines'] | undefined;
 }) {
-  // const currentLines = cartLines ? flattenConnection(cartLines) : [];
-
+  const currentLines = cartLines ? flattenConnection(cartLines) : [];
   const scrollRef = useRef(null);
   const {y} = useScroll(scrollRef);
 
@@ -202,7 +165,7 @@ function CartLines({
       className={className}
     >
       <ul className="grid gap-6 md:gap-10">
-        {lines.map((line:any) => (
+        {currentLines.map((line) => (
           <CartLineItem key={line.id} line={line as CartLine} />
         ))}
       </ul>
@@ -242,7 +205,6 @@ function CartSummary({
     drawer: 'grid gap-4 p-6 border-t md:px-12',
     page: 'sticky top-nav grid gap-6 p-4 md:px-6 md:translate-y-4 bg-primary/5 rounded w-full',
   };
-  console.log('cost!!!!!!!!!!!!', cost)
 
   return (
     <section aria-labelledby="summary-heading" className={summary[layout]}>
@@ -280,52 +242,58 @@ function CartLineItem({line}: {line: CartLine}) {
   if (typeof quantity === 'undefined' || !merchandise?.product) return null;
 
   return (
-    <li key={id} className="flex gap-4">
-      <div className="flex-shrink">
-        {merchandise.image && (
-          <Image
-            width={220}
-            height={220}
-            data={merchandise.image}
-            className="object-cover object-center w-24 h-24 border rounded md:w-28 md:h-28"
-            alt={merchandise.title}
-          />
-        )}
-      </div>
+    <li key={id}>
+      <div className="flex gap-4">
+        <div className="flex-shrink">
+          {merchandise.image && (
+            <Image
+              width={220}
+              height={220}
+              data={merchandise.image}
+              className="object-cover object-center w-24 h-24 border rounded md:w-28 md:h-28"
+              alt={merchandise.title}
+            />
+          )}
+        </div>
+        <div className="flex justify-between flex-grow">
+          <div className="grid gap-2">
+            <Heading as="h3" size="copy">
+              {merchandise?.product?.handle ? (
+                <Link to={`/products/${merchandise.product.handle}`}>
+                  {merchandise?.product?.title || ''}
+                </Link>
+              ) : (
+                <Text>{merchandise?.product?.title || ''}</Text>
+              )}
+            </Heading>
 
-      <div className="flex justify-between flex-grow">
-        <div className="grid gap-2">
-          <Heading as="h3" size="copy">
-            {merchandise?.product?.handle ? (
-              <Link to={`/products/${merchandise.product.handle}`}>
-                {merchandise?.product?.title || ''}
-              </Link>
-            ) : (
-              <Text>{merchandise?.product?.title || ''}</Text>
-            )}
-          </Heading>
+            <div className="grid pb-2">
+              {(merchandise?.selectedOptions || []).map((option) => (
+                <Text color="subtle" key={option.name}>
+                  {option.name}: {option.value}
+                </Text>
+              ))}
+            </div>
 
-          <div className="grid pb-2">
-            {(merchandise?.selectedOptions || []).map((option) => (
-              <Text color="subtle" key={option.name}>
-                {option.name}: {option.value}
-              </Text>
-            ))}
-          </div>
-
-          <div className="flex items-center gap-2">
-            <div className="flex justify-start text-copy">
-              <CartLineQuantityAdjust line={line} />
+            <div className="flex items-center gap-2">
+              <div className="flex justify-start text-copy">
+                <CartLineQuantityAdjust line={line} />
+              </div>
             </div>
           </div>
+          <div className="flex flex-col justify-between items-end">
+            <ItemRemoveButton lineIds={[id]} />
+            <Text>
+              <CartLinePrice line={line} as="span" />
+            </Text>
+          </div>
         </div>
-        <div className="flex flex-col justify-between items-end">
-          <ItemRemoveButton lineIds={[id]} />
-          <Text>
-            <CartLinePrice line={line} as="span" />
-          </Text>
-        </div>
-      </div>
+      </div>      
+      {/* <div
+        className="bg-[#fec63c] p-5 font-bold text-[#174860] text-[12px] text-dark-blue"
+        dangerouslySetInnerHTML={{__html:renderRichText(JSON.parse((line?.merchandise?.product)?.upsellingMessage?.value))}}
+      >        
+      </div> */}
     </li>
   );
 }
@@ -352,28 +320,15 @@ function ItemRemoveButton({lineIds}: {lineIds: CartLine['id'][]}) {
 function CartLineQuantityAdjust({line}: {line: CartLine}) {
   if (!line || typeof line?.quantity === 'undefined') return null;
   const {id: lineId, quantity} = line;
-  const [prevQuantity, setPrevQuantity] = useState<number>(-1);
-  const [nextQuantity, setNextQuantity] = useState<number>(-1);
-  const [root] = useMatches()
-
-  useEffect(()=>{    
-    const getCart = async ()=>{
-      const cart = await root?.data.cart
-      console.log('cart!!!!!!!!', cart)
-      const qty = cart.lines.edges.filter((edge:any)=>{return (edge.node.id == lineId && edge.node.cost.totalAmount.amount!='0.0')})[0]?.node.quantity
-      setPrevQuantity(Number(Math.max(0, qty - 1).toFixed(0)))
-      setNextQuantity(Number((qty + 1).toFixed(0)))
-    }
-    getCart()
-  },[root]) 
+  const prevQuantity = Number(Math.max(0, quantity - 1).toFixed(0));
+  const nextQuantity = Number((quantity + 1).toFixed(0));
 
   return (
     <>
       <label htmlFor={`quantity-${lineId}`} className="sr-only">
         Quantity, {quantity}
       </label>
-      {prevQuantity!=-1 && nextQuantity!=-1 &&
-        <div className="flex items-center border rounded">
+      <div className="flex items-center border rounded">
         <UpdateCartButton lines={[{id: lineId, quantity: prevQuantity}]}>
           <button
             name="decrease-quantity"
@@ -400,7 +355,7 @@ function CartLineQuantityAdjust({line}: {line: CartLine}) {
             <span>&#43;</span>
           </button>
         </UpdateCartButton>
-      </div>}
+      </div>
     </>
   );
 }

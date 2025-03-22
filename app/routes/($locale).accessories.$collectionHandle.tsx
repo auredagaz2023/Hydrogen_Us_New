@@ -54,15 +54,128 @@ export const handle = {
   seo,
 };
 
-export async function loader({params, request, context}: LoaderArgs) {
+// export async function loader({params, request, context}: LoaderArgs) {
+//   const url = new URL(request.url);
+//   const productSlug = url.searchParams.get('product');
+//   const {collectionHandle} = params;
+
+//   invariant(productSlug, 'Missing productSlug param');
+//   invariant(collectionHandle, 'Missing collectionHandle param');
+
+//   const {collection} = await context.storefront.query<{
+//     collection: CollectionWithMetafields<CollectionType>;
+//   }>(COLLECTION_QUERY, {
+//     variables: {
+//       handle: collectionHandle,
+//       country: context.storefront.i18n.country,
+//       language: context.storefront.i18n.language,
+//     },
+//   });
+//   const GIDS = collection?.products?.nodes?.[0]?.color?.value;
+//   if (!GIDS) {
+//     throw new Error("No GIDs found in the color metafield.");
+//   }
+
+//     // Parse the JSON string to get the GID array
+//   const gidArray = JSON.parse(GIDS);
+
+//   // Step 2: Fetch the metaobjects using the GIDs
+//   const { nodes: colorOptions } = await context.storefront.query<{
+//     nodes: Array<Metaobject>;
+//   }>(COLOR_OPTION_QUERY, {
+//     variables: {
+//       ids: gidArray,
+//     },
+//   });
+
+//   if (!collection) {
+//     throw new Response(null, {status: 404});
+//   }
+
+//   const product = collection.products.nodes.find(
+//     (p) => slugify(p.title) === productSlug,
+//   );
+
+//   if (!product) {
+//     throw new Response(null, {status: 404});
+//   }
+
+//   // Step 1: Parse the `gid` values from the `productImages` metafield
+//   const variantImageGids = [...new Set(product.variants.nodes
+//     .map((variant) => {
+//       try {
+//         return JSON.parse(variant.productImages?.value || '[]');
+//       } catch (error) {
+//         console.error("Failed to parse metafield value:", error);
+//         return [];
+//       }
+//     })
+//     .flat())];
+//   // Step 2: Fetch the image URLs using the `gid` values
+//   const {nodes: mediaImages} = await context.storefront.query<{
+//     nodes: Array<{
+//       id: string;
+//       image: {
+//         url: string;
+//         altText: string;
+//       };
+//     }>;
+//   }>(
+//     `#graphql
+//     query MediaImages($ids: [ID!]!) {
+//       nodes(ids: $ids) {
+//         ... on MediaImage {
+//           id
+//           image {
+//             url
+//             altText
+//           }
+//         }
+//       }
+//     }`,
+//     {
+//       variables: {
+//         ids: variantImageGids,
+//       },
+//     },
+//   );
+//   // Step 3: Map the image URLs back to the variants
+//   const variantsWithImages = product.variants.nodes.map((variant) => {
+//     const gids = JSON.parse(variant.productImages?.value || '[]');
+//     const images = mediaImages.filter((media) => gids.includes(media.id));
+//     return {
+//       ...variant,
+//       images,
+//     };
+//   });
+//   return json({
+//     productType: 'Accessories',
+//     collectionHandle,
+//     collection,
+//     product: {
+//       ...product,
+//       variants: {
+//         nodes: variantsWithImages
+//       }
+//     },
+//     colorOptions,
+//     analytics: {
+//       pageType: AnalyticsPageType.collection,
+//       collectionHandle,
+//       resourceId: collection.id,
+//     },
+//   });
+// }
+export async function loader({ params, request, context }: LoaderArgs) {
   const url = new URL(request.url);
   const productSlug = url.searchParams.get('product');
-  const {collectionHandle} = params;
+  const { collectionHandle } = params;
 
   invariant(productSlug, 'Missing productSlug param');
   invariant(collectionHandle, 'Missing collectionHandle param');
 
-  const {collection} = await context.storefront.query<{
+  // Fetch the collection
+  const { collection } = await context.storefront.query<{
     collection: CollectionWithMetafields<CollectionType>;
   }>(COLLECTION_QUERY, {
     variables: {
@@ -71,38 +184,42 @@ export async function loader({params, request, context}: LoaderArgs) {
       language: context.storefront.i18n.language,
     },
   });
-  
-  const GIDS = collection?.products?.nodes?.[0]?.color?.value;
-
-  if (!GIDS) {
-    throw new Error("No GIDs found in the color metafield.");
-  }
-
-    // Parse the JSON string to get the GID array
-  const gidArray = JSON.parse(GIDS);
-
-  // Step 2: Fetch the metaobjects using the GIDs
-  const { nodes: colorOptions } = await context.storefront.query<{
-    nodes: Array<Metaobject>;
-  }>(COLOR_OPTION_QUERY, {
-    variables: {
-      ids: gidArray,
-    },
-  });
 
   if (!collection) {
-    throw new Response(null, {status: 404});
+    throw new Response(null, { status: 404 });
   }
 
+  // Find the product in the collection
   const product = collection.products.nodes.find(
     (p) => slugify(p.title) === productSlug,
   );
 
   if (!product) {
-    throw new Response(null, {status: 404});
+    throw new Response(null, { status: 404 });
   }
 
-  // Step 1: Parse the `gid` values from the `productImages` metafield
+  // Handle color options (if they exist)
+  let colorOptions: Array<Metaobject> = [];
+  try {
+    const GIDS = collection?.products?.nodes?.[0]?.color?.value;
+    if (GIDS) {
+      const gidArray = JSON.parse(GIDS);
+      const { nodes: fetchedColorOptions } = await context.storefront.query<{
+        nodes: Array<Metaobject>;
+      }>(COLOR_OPTION_QUERY, {
+        variables: {
+          ids: gidArray,
+        },
+      });
+      colorOptions = fetchedColorOptions || [];
+    }
+  } catch (error) {
+    console.error("Error fetching color options:", error);
+    // If there's an error, default to an empty array
+    colorOptions = [];
+  }
+
+  // Handle variant images
   const variantImageGids = [...new Set(product.variants.nodes
     .map((variant) => {
       try {
@@ -113,8 +230,9 @@ export async function loader({params, request, context}: LoaderArgs) {
       }
     })
     .flat())];
-  // Step 2: Fetch the image URLs using the `gid` values
-  const {nodes: mediaImages} = await context.storefront.query<{
+
+  // Fetch the image URLs using the `gid` values
+  const { nodes: mediaImages } = await context.storefront.query<{
     nodes: Array<{
       id: string;
       image: {
@@ -141,7 +259,8 @@ export async function loader({params, request, context}: LoaderArgs) {
       },
     },
   );
-  // Step 3: Map the image URLs back to the variants
+
+  // Map the image URLs back to the variants
   const variantsWithImages = product.variants.nodes.map((variant) => {
     const gids = JSON.parse(variant.productImages?.value || '[]');
     const images = mediaImages.filter((media) => gids.includes(media.id));
@@ -150,6 +269,7 @@ export async function loader({params, request, context}: LoaderArgs) {
       images,
     };
   });
+
   return json({
     productType: 'Accessories',
     collectionHandle,
@@ -157,10 +277,10 @@ export async function loader({params, request, context}: LoaderArgs) {
     product: {
       ...product,
       variants: {
-        nodes: variantsWithImages
-      }
+        nodes: variantsWithImages,
+      },
     },
-    colorOptions,
+    colorOptions, // This will be an empty array if no color options are found
     analytics: {
       pageType: AnalyticsPageType.collection,
       collectionHandle,

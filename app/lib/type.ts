@@ -65,7 +65,8 @@ export type ProductWithMetafields <T> = T & {
   shortDescription: { value: string },
   productId: { value: string },
   shapeAndSize: { value: string },
-  productCategory: { value: string }
+  productCategory: { value: string },
+  upsellingMessage: { value: string }
 }
 
 export type ContentfulCollection = {

@@ -36,6 +36,7 @@ import {RxMinusCircled, RxPlusCircled} from 'react-icons/rx';
 import Slider, {type Settings} from 'react-slick';
 import {useMediaQuery} from '~/hooks/useMediaQuery';
 import FadeIn from '~/components/FadeIn';
+import renderRichText from '~/lib/renderRichText';
 
 const seo: SeoHandleFunction<typeof loader> = ({data}) => ({
   title: data?.product?.seo?.title,
@@ -151,7 +152,6 @@ export default function CollectionProducts() {
     arrows: true,
     infinite: true,
   };
-
 
   return (
     <div className="w-full pb-6 flex flex-wrap justify-between">
@@ -851,6 +851,18 @@ export default function CollectionProducts() {
             </button>
           </div>
         </div>
+        {
+          (selectedProduct as ProductWithMetafields<Product>)?.upsellingMessage?.value && (
+            <div className="pt-[16px]">
+              <div
+                className="bg-[#fec63c] p-5 font-bold text-[#174860] text-[12px] text-dark-blue"
+                dangerouslySetInnerHTML={{
+                  __html: renderRichText(JSON.parse((selectedProduct as ProductWithMetafields<Product>)?.upsellingMessage?.value)),
+                }}
+              />
+            </div>
+          )
+        }
         {selectedVariant && (
           <div className="product-price p-5 text-dark-blue text-cusSubheading lg:text-[20px]">
             {(selectedProduct as ProductWithMetafields<Product>)
@@ -1085,6 +1097,9 @@ const COLLECTION_QUERY = `#graphql
             value
           }
           saveUpTo: metafield(namespace: "custom", key: "save_up_to") {
+            value
+          }
+          upsellingMessage: metafield(namespace: "custom", key: "upselling_message") {
             value
           }
           technology: metafield(namespace: "custom", key: "technology") {

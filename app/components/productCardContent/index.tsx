@@ -26,11 +26,11 @@ export default function ProductCardContent({productData}) {
       case 'Topper':
         productKey = 'topperId';
         break;
-
+      
       case 'Accessories':
         productKey = 'accessoryId';
         break;
-
+  
       default:
         productKey = 'mattressId';
         break;
@@ -38,16 +38,16 @@ export default function ProductCardContent({productData}) {
 
     const contentfulCollectionItem =
       productData.contentfulCollections.items.find(
-        (item:any) => item.fields.name == collection[productKey]?.value,
+        (item) => item.fields.name == collection[productKey]?.value,
       );
     if (
       contentfulCollectionItem &&
       contentfulCollectionItem.fields.comfortLevels
     ) {
-      contentfulCollectionItem.fields.comfortLevels.forEach((comfortLevel:any) => {
+      contentfulCollectionItem.fields.comfortLevels.forEach((comfortLevel) => {
         comfortLevels.push(
           productData.contentfulCollections.includes.Entry.find(
-            (link:any) => link.sys.id === comfortLevel.sys.id,
+            (link) => link.sys.id === comfortLevel.sys.id,
           )!.fields,
         );
       });
@@ -62,7 +62,7 @@ export default function ProductCardContent({productData}) {
         <div className="">
           {productData?.productType == 'Accessories' ?
             <div className='w-[75%]'>
-              <div className='text-[13px] text-[#174860] text-left font-bold mb-[20px]'>Matress protectors</div>
+              <div className='text-[13px] text-[#174860] text-left font-bold mb-[20px]'>Mattress protectors</div>
               <div className="col-span-3 gap-4 grid grid-cols-3">
                 {productData.collections?.slice(0,3)?.map((collection:any, index:number) => (
                   <ProductDetailCard
@@ -113,21 +113,21 @@ export default function ProductCardContent({productData}) {
                     />
                   ))}
               </div>
+              <div className="col-span-1">
+                {productData && productData.productType == 'Mattress' && (
+                  <div className="h-full flex flex-col align-center justify-end pl-8 pr-8">
+                    <h2 className="w-full mb-8 text-lg text-[#258dca] text-clip text-left">
+                      Find the perfect mattress for you.
+                    </h2>
+                    <div className="w-full flex justify-between text-gray-500">
+                      <span>BEGIN TEST</span>
+                      <span>&gt;</span>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           }
-          <div className="col-span-1">
-            {productData && productData.productType == 'Mattress' && (
-              <div className="h-full flex flex-col align-center justify-end pl-8 pr-8">
-                <h2 className="w-full mb-8 text-lg text-[#258dca] text-clip text-left">
-                  Find the perfect mattress for you.
-                </h2>
-                <div className="w-full flex justify-between text-gray-500">
-                  <span>BEGIN TEST</span>
-                  <span>&gt;</span>
-                </div>
-              </div>
-            )}
-          </div>
           {/* <div className=" col-span-1 flex items-center align-bottom p-6"></div> */}
         </div>
       </div>

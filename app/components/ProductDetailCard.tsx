@@ -1,8 +1,9 @@
 import {Collection, Product} from '@shopify/hydrogen/storefront-api-types';
 import {Image} from '@shopify/hydrogen';
 import {Link} from '@remix-run/react';
-import {CollectionWithMetafields, ProductWithMetafields} from '~/lib/type';
+import {CollectionWithMetafields, ContentfulProductSheet, ProductWithMetafields} from '~/lib/type';
 import {slugify} from '~/routes/($locale).news';
+import { useEffect, useState } from 'react';
 
 export function ProductDetailCard({
   collection,
@@ -16,13 +17,12 @@ export function ProductDetailCard({
     color: string;
   }[];
 }) {
+  const [pillowTopLabel, setPillowTopLabel] = useState('');
   let coverImageKey:
     | 'mattressCoverImage'
     | 'pillowCoverImage'
-    | 'topperCoverImage'
-    | 'image'
-    ;
-  let summaryKey: 'mattressSummary' | 'pillowSummary' | 'topperSummary' | 'description';
+    | 'topperCoverImage';
+  let summaryKey: 'mattressSummary' | 'pillowSummary' | 'topperSummary';
 
   switch (productType) {
     case 'Mattress':
@@ -46,8 +46,8 @@ export function ProductDetailCard({
       break;
 
     default:
-      coverImageKey = 'image';
-      summaryKey = 'description';
+      coverImageKey = 'mattressCoverImage';
+      summaryKey = 'mattressSummary';
       break;
   }
 
@@ -94,7 +94,7 @@ export function ProductDetailCard({
 
       case 'Accessories':
         cardLink = `/accessories/${collection.handle}`;
-        break;
+        break;  
 
       default:
         break;
@@ -107,7 +107,20 @@ export function ProductDetailCard({
     )}`;
   };
 
-  console.log('collection!!!', collection)
+  useEffect(() => {
+    const CONTENTFUL_SPACE_ID = '7xbaxb2q56jj';
+    const CONTENTFUL_ACCESS_TOKEN =
+      'yGGCia7N7dHraGe5fsBZkSHsms6QExEKbWy0XdKIn9g';
+
+    const activePromotionsEndpoint = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/environments/master/entries?select=fields.pillowPromoTopLabel&access_token=${CONTENTFUL_ACCESS_TOKEN}&content_type=activePromotions`;
+    (async () => {
+      await fetch(activePromotionsEndpoint)
+        .then((res) => res.json())
+        .then((res) => {
+          setPillowTopLabel(res?.items?.[0]?.fields?.pillowPromoTopLabel ?? '')
+        });
+    })();
+  }, [])
 
   return (
     <div className="flex flex-col w-full product-tab">
@@ -120,6 +133,11 @@ export function ProductDetailCard({
               sizes="700"
               widths={[700]}
             />
+          )}
+          {productType=='Pillow' && pillowTopLabel && (
+            <div className="absolute left-0 top-5 bg-red-600 text-white flex justify-end w-40 uppercase px-4">
+              {pillowTopLabel}
+            </div>
           )}
           {productDiscount > 0 && (
             <div className="absolute left-0 top-5 bg-red-600 text-white flex justify-end w-40 uppercase px-4">
@@ -144,7 +162,7 @@ export function ProductDetailCard({
 
         {collection[summaryKey] && (
           <p className="mt-3 text-left text-limit pr-4">
-            {summaryKey=='description' ? collection.description : collection[summaryKey].value}
+            {collection[summaryKey].value}
           </p>
         )}
       </Link>

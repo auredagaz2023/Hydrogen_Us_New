@@ -419,6 +419,9 @@ const CART_QUERY = `#graphql
                 handle
                 title
                 id
+                upsellingMessage: metafield(namespace: "custom", key: "upselling_message") {
+                  value
+                }
               }
               selectedOptions {
                 name

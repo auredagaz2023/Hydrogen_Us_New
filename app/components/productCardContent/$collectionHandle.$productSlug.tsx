@@ -910,6 +910,9 @@ const COLLECTION_QUERY = `#graphql
           }
           saveUpTo: metafield(namespace: "custom", key: "save_up_to") {
             value
+          }          
+          upsellingMessage: meta(namespace: "custom", key: "upselling_message") {
+            value
           }
           technology: metafield(namespace: "custom", key: "technology") {
             value

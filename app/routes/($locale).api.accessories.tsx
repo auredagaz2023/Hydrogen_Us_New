@@ -58,7 +58,6 @@ export async function loader({params, request, context}: LoaderFunctionArgs) {
     return res.json();
   });
   let contentfulCollections = response as unknown as ContentfulCollection;
-
   return json({
     contentfulCollections,
     collections: filteredCollections,

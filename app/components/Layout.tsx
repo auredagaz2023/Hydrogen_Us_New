@@ -455,11 +455,13 @@ function DesktopHeaderNew({openCart}: {openCart: () => void}) {
       load(`/api/getProductsByCategory?productType=${activeMenu}`);
     } else if (activeMenu == 'Accessories') {
       load(`/api/accessories`);
-    } else {
+    }  else {
       load(`/api/getProductsByType?productType=${activeMenu}`);
     }
   }, [activeMenu]);
-  
+
+  console.log('data!!!', data)
+
   return (
     <header className="sticky top-0 z-50">
       <div className="hidden xxl:flex bg-dark-blue flex-row w-full items-center justify-end text-white uppercase text-xxs px-3 pt-3 pb-[14px]">
