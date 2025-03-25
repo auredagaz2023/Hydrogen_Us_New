@@ -511,7 +511,7 @@ export default function CollectionProducts() {
                         }}
                       >
                         <div
-                          className="w-20 bg-cover bg-center self-stretch"
+                          className="w-20 min-w-[80px] bg-cover bg-center self-stretch"
                           style={{
                             backgroundImage: `url("${productImage.url}")`,
                           }}
