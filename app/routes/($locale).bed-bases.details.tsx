@@ -122,7 +122,7 @@ export async function loader({params, request, context}: LoaderArgs) {
   };
 
   return defer({
-    product,
+    product: {...product, productType:'Beds and bases'},
     analytics: {
       pageType: AnalyticsPageType.product,
       resourceId: product.id,

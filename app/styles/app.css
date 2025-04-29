@@ -2887,14 +2887,14 @@ select{
 .min-w-\[4rem\]{
   min-width: 4rem;
 }
+.min-w-\[80px\]{
+  min-width: 80px;
+}
 .min-w-\[8px\]{
   min-width: 8px;
 }
 .min-w-full{
   min-width: 100%;
-}
-.min-w-\[80px\]{
-  min-width: 80px;
 }
 .max-w-0{
   max-width: 0px;
@@ -4994,11 +4994,6 @@ select{
   --tw-text-opacity: 1;
   color: rgba(24, 26, 27, 1);
   color: rgba(24, 26, 27, var(--tw-text-opacity));
-}
-.text-\[\#184860\]{
-  --tw-text-opacity: 1;
-  color: rgba(24, 72, 96, 1);
-  color: rgba(24, 72, 96, var(--tw-text-opacity));
 }
 .text-\[\#1c1072\]{
   --tw-text-opacity: 1;

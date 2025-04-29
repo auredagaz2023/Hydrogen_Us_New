@@ -29,6 +29,10 @@ import SupportImg from '../assets/icons/support.png';
 import MaterialImg from '../assets/icons/materials.png';
 import BenefitsImg from '../assets/icons/benefits.png';
 import {RichText} from './Richtext';
+import ContentfulRichTextDisplay from './CustomRichTextRenderer';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import SimpleRichTextRenderer from './CustomRichTextRenderer';
+import CustomRichTextRenderer from './CustomRichTextRenderer';
 
 export function ProductContent({
   product,
@@ -70,7 +74,7 @@ export function ProductContent({
     const CONTENTFUL_ACCESS_TOKEN =
       'yGGCia7N7dHraGe5fsBZkSHsms6QExEKbWy0XdKIn9g';
 
-    const productSheetEndpoint = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/environments/master/entries?select=fields.productId,fields.comfortLevel,fields.sleepStyle,fields.structure,fields.gallery,fields.structureImage,fields.materials,fields.specifications&access_token=${CONTENTFUL_ACCESS_TOKEN}&content_type=productSheet&fields.productId=${product.productId.value}`;
+    const productSheetEndpoint = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${CONTENTFUL_ACCESS_TOKEN}&content_type=productSheet&fields.productId=${product.productId.value}`;
 
     (async () => {
       if (collectionID) {
@@ -91,6 +95,7 @@ export function ProductContent({
         .then((res) => res.json())
         .then((res) => {
           const response = res as unknown as ContentfulProductSheet;
+          console.log('response!!!', response)
           setProductSheet(response);
           const productSpecifications = response.includes?.Entry.find(
             (entry) =>
@@ -136,7 +141,8 @@ export function ProductContent({
         });
     })();
   }, [product]);
-
+console.log('product!!!!', product)
+console.log('specifications text!', productSheet?.items?.[0]?.fields?.specificationsText?.content)
   return (
     <div className="px-5 md:container py-16 md:py-24 lg:py-28">
       <div className="grid grid-cols-12 mb-5 lg:mb-16">
@@ -153,7 +159,7 @@ export function ProductContent({
           )}
         </div>
         <div className="col-span-12 lg:col-start-6 lg:col-span-6 pt-8">
-          {product.productType === 'Mattress' && product.headline && (
+          {product.headline && (
             <h5 className="text-174860 font-semibold pb-8 text-xl">
               {product.headline.value}
             </h5>
@@ -295,7 +301,7 @@ export function ProductContent({
             className="text-center text-174860 uppercase text-sm cursor-pointer outline-none basis-1/2 lg:basis-1/4 grow-0 shrink-0 flex justify-center items-center"
           >
             <span className="py-2 mb-2 lg:py-4 ui-selected:border-b-B09987 ui-selected:font-semibold ui-selected:border-b-2">
-              Materials
+              {product?.productType=='Beds and bases' ? 'Specifications' : 'Materials'}
             </span>
           </Tab>
           <Tab
@@ -385,6 +391,7 @@ export function ProductContent({
             className="bg-f7 px-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 py-8 gap-8 lg:gap-12"
           >
             {productSheet &&
+              (product.productType!='Beds and bases' ?
               productSheet.items[0]?.fields?.materials?.map(
                 (material, index) => {
                   const productMaterial = productSheet.includes.Entry.find(
@@ -434,7 +441,16 @@ export function ProductContent({
                     </div>
                   );
                 },
-              )}
+              )
+              :
+              <>
+              {
+                <CustomRichTextRenderer content={productSheet?.items?.[0]?.fields?.specificationsText}/>
+              }
+                {/* {productSheet?.items?.[0]?.fields?.specificationsText?.content && <ContentfulRichTextDisplay content={productSheet?.items?.[0]?.fields?.specificationsText?.content}/>} */}
+              </>
+              )
+            }
           </Tab.Panel>
           <Tab.Panel
             as="div"
@@ -457,7 +473,7 @@ export function ProductContent({
                     </p>
                   </div>
                 </div>
-                <div className="border-b border-b-border flex px-[20px]">
+                {/* <div className="border-b border-b-border flex px-[20px]">
                   <img
                     src={CertificationImg}
                     alt="specification collection"
@@ -471,8 +487,8 @@ export function ProductContent({
                       {specifications.certifications?.join(', ')}
                     </p>
                   </div>
-                </div>
-                <div className="border-b border-b-border flex px-[20px]">
+                </div> */}
+                {/* <div className="border-b border-b-border flex px-[20px]">
                   <img
                     src={ComfortImg}
                     alt="specification collection"
@@ -486,7 +502,7 @@ export function ProductContent({
                       {specifications.comfort}
                     </p>
                   </div>
-                </div>
+                </div> */}
                 <div className="border-b border-b-border flex px-[20px]">
                   <img
                     src={MaterialImg}

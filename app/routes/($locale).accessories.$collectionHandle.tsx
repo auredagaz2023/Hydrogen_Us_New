@@ -440,7 +440,7 @@ export default function CollectionProducts() {
     // Step 5: Update the state with the sorted image URLs
     setVariantProductImages(sortedVariantImages);
   }, [selectedSize, selectedColor, selectedProduct?.variants.nodes]);
-  const colorMap = colorVariants.reduce((acc:any, metaobject:any) => {
+  const colorMap = colorVariants?.reduce((acc:any, metaobject:any) => {
     // Find the label and color fields
     const labelField = metaobject.fields.find((field:any) => field.key === "label");
     const colorField = metaobject.fields.find((field:any) => field.key === "color");
@@ -453,7 +453,6 @@ export default function CollectionProducts() {
     return acc;
   }, {});
 
-  console.log('selected variant!!!', selectedVariant)
 
   return (
     <div className="w-full pb-6 flex flex-wrap justify-between">

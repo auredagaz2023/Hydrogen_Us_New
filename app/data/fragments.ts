@@ -45,6 +45,20 @@ export const PRODUCT_CARD_FRAGMENT = `#graphql
     publishedAt
     handle
     productType
+    color: metafield(namespace: "shopify", key: "color-pattern") {
+      key
+      value
+      reference {
+        ... on Metaobject {
+          id
+          type
+          fields {
+            key
+            value
+          }
+        }
+      }
+    }
     featuredImage {
       url
       altText

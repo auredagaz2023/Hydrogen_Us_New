@@ -165,9 +165,24 @@ export function AccessoriesProductContent({
         });
       await fetch(videoGalleryEndpoint)
         .then((res) => res.json())
-        .then((res:any) => {
-          setVideoGalleries(res?.includes?.Asset?.map(asset => asset?.fields))
-        })
+        .then((res: any) => {
+          // First find the video gallery entry
+          const galleryEntry = res.items.find((item: any) => item.sys.contentType.sys.id === 'videoGallery');
+          
+          if (galleryEntry && galleryEntry.fields.videos) {
+            // Get the array of video references in order
+            const videoRefs = galleryEntry.fields.videos;
+            
+            // Map these to the actual assets while preserving order
+            const orderedVideos = videoRefs.map((ref: any) => {
+              const assetId = ref.sys.id;
+              return res.includes.Asset.find((asset: any) => asset.sys.id === assetId)?.fields;
+            }).filter(Boolean); // filter out any undefined entries
+            
+            setVideoGalleries(orderedVideos);
+            console.log('Ordered video assets:', orderedVideos);
+          }
+        });
     })();
   }, [product]);
 
@@ -183,30 +198,30 @@ export function AccessoriesProductContent({
           )}
         </div>
         <div className="col-span-12 lg:col-start-6 lg:col-span-8 pt-8">
-          {product.productType === 'Mattress' && product.headline && (
+          {product.headline && (
             <h5 className="text-[#022d83] font-semibold pb-8 text-[16px]">
               {product.headline.value}
             </h5>
           )}
           <div
-            className="prose border-t border-gray-200 pt-6 text-[#184860] text-[13px]"
+            className="border-t border-gray-200 pt-6 text-[13px] text-black"
             dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
           ></div>
           <div className="max-w-5xl mx-auto my-5">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 justify-start items-start mt-8">
               <div>
-                <div className="text-[#184860] text-[14px] font-semibold uppercase mb-4">
+                <div className="text-black text-[14px] font-semibold uppercase mb-4">
                   technology
                 </div>
-                <div className="text-[#184860] text-[12px]">
+                <div className="text-black text-[12px]">
                   <RichText data={JSON.parse(product.technology.value)} />
                 </div>
               </div>
               <div>
-                <div className="text-[#184860] text-[14px] font-semibold uppercase mb-4">
+                <div className="text-black text-[14px] font-semibold uppercase mb-4">
                   Benefits
                 </div>
-                <div className="text-[#184860] text-[12px]">
+                <div className="text-black text-[12px]">
                   <RichText data={JSON.parse(product.benefits.value)} />
                 </div>
               </div>   
