@@ -174,22 +174,26 @@ export function ProductContent({
       {(
         <div className="max-w-5xl mx-auto my-5">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-20 justify-start items-start mt-8">
-            <div>
-              <div className="text-174860 text-md font-semibold uppercase mb-4">
-                technology
+            {product?.technology?.value &&
+              <div>
+                <div className="text-174860 text-md font-semibold uppercase mb-4">
+                  technology
+                </div>
+                <div className="text-174860 text-sm">
+                  <RichText data={JSON.parse(product.technology.value)} />
+                </div>
               </div>
-              <div className="text-174860 text-sm">
-                <RichText data={JSON.parse(product.technology.value)} />
+            }
+            {product?.shapeAndSize?.value &&
+              <div>
+                <div className="text-174860 text-md font-semibold uppercase mb-4">
+                  shape and size
+                </div>
+                <div className="text-174860 text-sm">
+                  <RichText data={JSON.parse(product.shapeAndSize.value)} />
+                </div>
               </div>
-            </div>
-            <div>
-              <div className="text-174860 text-md font-semibold uppercase mb-4">
-                shape and size
-              </div>
-              <div className="text-174860 text-sm">
-                <RichText data={JSON.parse(product.shapeAndSize.value)} />
-              </div>
-            </div>
+            }
             {product.productType === 'Pillow' && comfortLevel && (
               <>
                 <div>
@@ -207,70 +211,73 @@ export function ProductContent({
               </>
             )}
           </div>
-          <div className="mt-8">
-            {productSheet && productSheet?.items[0]?.fields?.sleepStyle && (
-              <>
-                <div className="text-174860 text-md font-semibold uppercase mb-4">
-                  A great pillow for
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-                  {productSheet.items[0].fields.sleepStyle.map(
-                    (item, index) => {
-                      const sleepStyle = productSheet.includes.Entry.find(
-                        (entry) => entry.sys.id === item.sys.id,
-                      )!.fields as {
-                        title: string;
-                        description: ContentfulDocument;
-                        picture: {
-                          sys: {id: string};
+          {product?.productType === 'Pillow' && 
+
+            <div className="mt-8">
+              {productSheet && productSheet?.items[0]?.fields?.sleepStyle && (
+                <>
+                  <div className="text-174860 text-md font-semibold uppercase mb-4">
+                    A great pillow for
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+                    {productSheet.items[0].fields.sleepStyle.map(
+                      (item, index) => {
+                        const sleepStyle = productSheet.includes.Entry.find(
+                          (entry) => entry.sys.id === item.sys.id,
+                        )!.fields as {
+                          title: string;
+                          description: ContentfulDocument;
+                          picture: {
+                            sys: {id: string};
+                          };
                         };
-                      };
-                      const sleepStyleImage = productSheet.includes.Asset.find(
-                        (asset) => asset.sys.id === sleepStyle.picture.sys.id,
-                      )!;
-                      return (
-                        <div key={index}>
-                          <img
-                            src={sleepStyleImage.fields.file.url}
-                            alt={`sleep style ${sleepStyle.title}`}
-                            className="w-[240px] md:w-full"
-                          />
-                          <p className="text-blue-600 text-smm font-semibold mt-2 md:mt-8">
-                            {sleepStyle.title}
-                          </p>
-                          <div className="mt-3">
-                            {sleepStyle.description.content
-                              .filter(
-                                (content) => content.nodeType === 'paragraph',
-                              )
-                              .map(
-                                (
-                                  content:
-                                    | ContentfulParagraph
-                                    | ContentfulEmbeddedAsset,
-                                  index: number,
-                                ) => (
-                                  <p
-                                    className="text-gray-800 text-xs"
-                                    key={index}
-                                  >
-                                    {(
-                                      content as ContentfulParagraph
-                                    ).content.map((text, index) => (
-                                      <span key={index}>{text.value}</span>
-                                    ))}
-                                  </p>
-                                ),
-                              )}
+                        const sleepStyleImage = productSheet.includes.Asset.find(
+                          (asset) => asset.sys.id === sleepStyle.picture.sys.id,
+                        )!;
+                        return (
+                          <div key={index}>
+                            <img
+                              src={sleepStyleImage.fields.file.url}
+                              alt={`sleep style ${sleepStyle.title}`}
+                              className="w-[240px] md:w-full"
+                            />
+                            <p className="text-blue-600 text-smm font-semibold mt-2 md:mt-8">
+                              {sleepStyle.title}
+                            </p>
+                            <div className="mt-3">
+                              {sleepStyle.description.content
+                                .filter(
+                                  (content) => content.nodeType === 'paragraph',
+                                )
+                                .map(
+                                  (
+                                    content:
+                                      | ContentfulParagraph
+                                      | ContentfulEmbeddedAsset,
+                                    index: number,
+                                  ) => (
+                                    <p
+                                      className="text-gray-800 text-xs"
+                                      key={index}
+                                    >
+                                      {(
+                                        content as ContentfulParagraph
+                                      ).content.map((text, index) => (
+                                        <span key={index}>{text.value}</span>
+                                      ))}
+                                    </p>
+                                  ),
+                                )}
+                            </div>
                           </div>
-                        </div>
-                      );
-                    },
-                  )}
-                </div>
-              </>
-            )}
-          </div>
+                        );
+                      },
+                    )}
+                  </div>
+                </>
+              )}
+            </div>
+          }
         </div>
       )}
       <Tab.Group as="div">
