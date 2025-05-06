@@ -141,8 +141,7 @@ export function ProductContent({
         });
     })();
   }, [product]);
-console.log('product!!!!', product)
-console.log('specifications text!', productSheet?.items?.[0]?.fields?.specificationsText?.content)
+
   return (
     <div className="px-5 md:container py-16 md:py-24 lg:py-28">
       <div className="grid grid-cols-12 mb-5 lg:mb-16">
@@ -160,18 +159,19 @@ console.log('specifications text!', productSheet?.items?.[0]?.fields?.specificat
         </div>
         <div className="col-span-12 lg:col-start-6 lg:col-span-6 pt-8">
           {product.headline && (
-            <h5 className="text-174860 font-semibold pb-8 text-xl">
+            <h5 className="text-[#174860] font-semibold pb-8 text-xl">
               {product.headline.value}
             </h5>
           )}
           {/* <p className="text-black text-sm">{product.description}</p> */}
           <div
-            className="prose border-t border-gray-200 pt-6 text-black text-md"
+            className="prose border-t border-gray-200 pt-6 text-black text-md text-[16px]"
             dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
           ></div>
         </div>
       </div>
-      {product.productType === 'Pillow' && (
+      {/* {product.productType === 'Pillow' && ( */}
+      {(
         <div className="max-w-5xl mx-auto my-5">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-20 justify-start items-start mt-8">
             <div>
@@ -190,7 +190,7 @@ console.log('specifications text!', productSheet?.items?.[0]?.fields?.specificat
                 <RichText data={JSON.parse(product.shapeAndSize.value)} />
               </div>
             </div>
-            {comfortLevel && (
+            {product.productType === 'Pillow' && comfortLevel && (
               <>
                 <div>
                   <div className="text-174860 text-md font-semibold uppercase mb-4">
