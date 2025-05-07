@@ -948,7 +948,11 @@ export default function CollectionProducts() {
         className="w-full lg:px-0 px-0 border-t-[30px] border-[#f7f7f7]"
         id="productDetails"
       >
-        <AccessoriesProductContent
+        {/* <AccessoriesProductContent
+          product={selectedProduct as ProductWithMetafields<Product>}
+          collectionID={collection?.collectionId?.value}
+        /> */}
+        <ProductContent
           product={selectedProduct as ProductWithMetafields<Product>}
           collectionID={collection?.collectionId?.value}
         />

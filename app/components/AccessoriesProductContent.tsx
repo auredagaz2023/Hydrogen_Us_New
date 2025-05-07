@@ -199,7 +199,7 @@ export function AccessoriesProductContent({
         </div>
         <div className="col-span-12 lg:col-start-6 lg:col-span-8 pt-8">
           {product.headline && (
-            <h5 className="text-[#022d83] font-semibold pb-8 text-[16px]">
+            <h5 className="text-[#174860] font-semibold pb-8 text-xl">
               {product.headline.value}
             </h5>
           )}
@@ -208,7 +208,7 @@ export function AccessoriesProductContent({
             dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
           ></div>
           <div className="max-w-5xl mx-auto my-5">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 justify-start items-start mt-8">
+            {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 justify-start items-start mt-8">
               <div>
                 <div className="text-black text-[14px] font-semibold uppercase mb-4">
                   technology
@@ -225,6 +225,29 @@ export function AccessoriesProductContent({
                   <RichText data={JSON.parse(product.benefits.value)} />
                 </div>
               </div>   
+            </div> */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-20 justify-start items-start mt-8">
+              {product?.technology?.value &&
+                <div>
+                  <div className="text-174860 text-md font-semibold uppercase mb-4">
+                    technology
+                  </div>
+                  <div className="text-174860 text-sm">
+                    <RichText data={JSON.parse(product.technology.value)} />
+                  </div>
+                </div>
+              }
+              {product?.benefits?.value &&
+                <div>
+                  <div className="text-174860 text-md font-semibold uppercase mb-4">
+                    benefits
+                  </div>
+                  <div className="text-174860 text-sm">
+                    <RichText data={JSON.parse(product?.benefits?.value)} />
+                  </div>
+                </div>
+              }
+              
             </div>
           </div>
         </div>

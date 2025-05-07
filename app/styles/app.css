@@ -4967,11 +4967,6 @@ select{
   color: rgba(208, 148, 103, 1);
   color: rgba(208, 148, 103, var(--tw-text-opacity));
 }
-.text-\[\#022d83\]{
-  --tw-text-opacity: 1;
-  color: rgba(2, 45, 131, 1);
-  color: rgba(2, 45, 131, var(--tw-text-opacity));
-}
 .text-\[\#030C2A\]{
   --tw-text-opacity: 1;
   color: rgba(3, 12, 42, 1);
