@@ -189,10 +189,11 @@ export function AccessoriesProductContent({
   return (
     <div className="px-5 md:container py-16 md:pt-0 md:pb-24 lg:pb-28 lg:px-23">
       <div className="grid grid-cols-12 mb-5 lg:mb-16 w-full lg:w-9/12">
-        <div className="lg:text-center col-span-12 lg:col-span-4">          
+        <div className="lg:text-center col-span-12 lg:col-span-4 pt-8">          
           {product.images.nodes[0] && (
             <Image
-              className="inline-block w-[320px] lg:w-full lg:pl-20 object-contain"
+              className="inline-block w-[320px] lg:w-full"
+              sizes="320 800"
               data={product.images.nodes[0]}
             />
           )}
@@ -204,9 +205,11 @@ export function AccessoriesProductContent({
             </h5>
           )}
           <div
-            className="border-t border-gray-200 pt-6 text-[13px] text-black"
+            className="prose border-t border-gray-200 pt-6 text-black text-md text-[16px]"
             dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
           ></div>
+        </div>
+      </div>
           <div className="max-w-5xl mx-auto my-5">
             {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 justify-start items-start mt-8">
               <div>
@@ -250,8 +253,6 @@ export function AccessoriesProductContent({
               
             </div>
           </div>
-        </div>
-      </div>
       <div
         className="bg-f7 py-8 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 justify-center gap-5"
       >
