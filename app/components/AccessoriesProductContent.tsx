@@ -210,7 +210,7 @@ export function AccessoriesProductContent({
           ></div>
         </div>
       </div>
-          <div className="max-w-5xl mx-auto my-5">
+          <div className="max-w-5xl mx-auto mt-5 mb-12">
             {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 justify-start items-start mt-8">
               <div>
                 <div className="text-black text-[14px] font-semibold uppercase mb-4">

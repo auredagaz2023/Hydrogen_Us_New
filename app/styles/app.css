@@ -2342,6 +2342,9 @@ select{
 .mt-\[35px\]{
   margin-top: 35px;
 }
+.mb-\[48px\]{
+  margin-bottom: 48px;
+}
 .box-border{
   box-sizing: border-box;
 }
@@ -4100,10 +4103,6 @@ select{
 }
 .fill-blue-600{
   fill: #2563eb;
-}
-.object-contain{
-  -o-object-fit: contain;
-     object-fit: contain;
 }
 .object-cover{
   -o-object-fit: cover;
@@ -7941,10 +7940,6 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
 
   .lg\:pl-16{
     padding-left: 4rem;
-  }
-
-  .lg\:pl-20{
-    padding-left: 5rem;
   }
 
   .lg\:pl-6{
