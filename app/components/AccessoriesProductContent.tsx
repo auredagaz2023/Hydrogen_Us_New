@@ -172,7 +172,7 @@ export function AccessoriesProductContent({
           if (galleryEntry && galleryEntry.fields.videos) {
             // Get the array of video references in order
             const videoRefs = galleryEntry.fields.videos;
-            
+            console.log('video refs!!!', res)
             // Map these to the actual assets while preserving order
             const orderedVideos = videoRefs.map((ref: any) => {
               const assetId = ref.sys.id;
