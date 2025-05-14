@@ -96,7 +96,7 @@ const products = [
     original_price: "3,999",
     button: "Shop Magnifico",
     link: "https://magniflex.us/mattresses/magnifico?product=toscana-cotton-lux-10",
-    bottom: "SAVE UP TO $1500"
+    bottom: "SAVE UP TO $1500."
   }
 ]
 
@@ -179,7 +179,7 @@ function Landing() {
           This Memorial Day, treat yourself to more space and comfort for less.
         </div>
         <div>
-          Get a King mattress for the price of a Queen, or a Queen for the price of a Full,
+          Get a King mattress for the price of a Queen, or a Queen for the price of a Full<span className='hidden md:block'>,</span>
         </div>
         <div>          
           and enjoy premium rest and unmatched value - <span className='font-bold'>saving up to $1,500.</span>
