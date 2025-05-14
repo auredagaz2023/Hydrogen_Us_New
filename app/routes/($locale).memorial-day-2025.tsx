@@ -179,9 +179,8 @@ function Landing() {
           This Memorial Day, treat yourself to more space and comfort for less.
         </div>
         <div>
-          Get a King mattress for the price of a Queen, or a Queen for the price of a Full<span className='hidden md:block'>,</span>
-        </div>
-        <div>          
+          Get a King mattress for the price of a Queen, or a Queen for the price of a Full<span className='hidden md:block'>,</span> 
+          <br className='hidden md:block'/>          
           and enjoy premium rest and unmatched value - <span className='font-bold'>saving up to $1,500.</span>
         </div>
       </div>
