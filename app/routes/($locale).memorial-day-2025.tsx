@@ -96,7 +96,7 @@ const products = [
     original_price: "3,999",
     button: "Shop Magnifico",
     link: "https://magniflex.us/mattresses/magnifico?product=toscana-cotton-lux-10",
-    bottom: "SAVE UP TO $1500."
+    bottom: "SAVE UP TO $1,500"
   }
 ]
 
