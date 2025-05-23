@@ -186,6 +186,7 @@ export default function App() {
           defer
           src="//js-eu1.hs-scripts.com/26099639.js"
         ></script>
+        <script src="//code.tidio.co/lrlmjfwi8cxioagyk9wddkzfw9ktmh0m.js" async></script>
       </head>
       <body>
         <Layout
