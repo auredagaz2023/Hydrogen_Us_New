@@ -109,7 +109,7 @@ export function AccessoriesProductContent({
     arrows: true,
     fade: true,
     speed: 500,
-    autoplay: true,
+    autoplay: false,
     slidesToShow: 1,
     slidesToScroll: 1,
     prevArrow: <CustomPrevArrow />,
