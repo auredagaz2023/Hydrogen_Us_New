@@ -104,6 +104,19 @@ export function AccessoriesProductContent({
 
   const ALPHABETS = 'ABCDEFGHIJKLMNOP';
 
+  const playVideoAt = (index) => {
+    const videos = document.querySelectorAll('#productGallery video');
+    const target = videos[index];
+    if (target) {
+      const playPromise = target.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((e) =>
+          console.warn('Autoplay blocked:', e)
+        );
+      }
+    }
+  };
+
   const settings = {
     dots: true,
     infinite: true,
@@ -115,29 +128,20 @@ export function AccessoriesProductContent({
     slidesToScroll: 1,
     prevArrow: <CustomPrevArrow />,
     nextArrow: <CustomNextArrow />,
-    afterChange: (current) => {
-      setGalleryIndex(current);
+    afterChange: (currentSlide) => {
+      setGalleryIndex(currentSlide);
       setTimeout(() => {
-        // Delay ensures the DOM has updated
-        const videos = document.querySelectorAll('#productGallery video');
-        if (videos[current]) {
-          videos[current].play().catch((e) => {
-            console.warn("Autoplay failed:", e);
-          });
-        }
-      }, 100);
-    }
+        playVideoAt(currentSlide);
+      }, 100); // allow DOM transition to complete
+    },
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      const firstVideo = document.querySelector('#productGallery video');
-      if (firstVideo) {
-        firstVideo.play().catch((err) => {
-          console.warn("Autoplay blocked:", err);
-        });
-      }
-    }, 300); // 300ms after mount
+    // Force playback once the DOM is stable
+    const timer = setTimeout(() => {
+      playVideoAt(0); // explicitly play first video
+    }, 500); // give Slick time to complete initial render
+    return () => clearTimeout(timer);
   }, []);
   
   
@@ -447,7 +451,7 @@ export function AccessoriesProductContent({
                   className="w-full"
                   muted
                   playsInline
-                  // no autoplay or loop
+                  preload="auto"
                   controls={false}
                 >
                   <source src={videoGallery.file.url} type="video/mp4" />
