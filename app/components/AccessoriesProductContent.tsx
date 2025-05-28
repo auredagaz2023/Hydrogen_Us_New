@@ -211,14 +211,6 @@ export function AccessoriesProductContent({
     });
   }, [videoGalleries]); 
 
-  useEffect(()=>{
-    setTimeout(()=>{
-      if (sliderRef.current) {
-        sliderRef.current.slickNext();
-      }
-    }, 300)
-  }, [])
-
   return (
     <div className="px-5 md:container py-16 md:pt-0 md:pb-24 lg:pb-28 lg:px-23">
       <div className="grid grid-cols-12 mb-5 lg:mb-16 w-full lg:w-9/12">
