@@ -115,9 +115,30 @@ export function AccessoriesProductContent({
     slidesToScroll: 1,
     prevArrow: <CustomPrevArrow />,
     nextArrow: <CustomNextArrow />,
-    afterChange: (currentSlide) => {
-      setGalleryIndex(currentSlide);
-    },
+    const settings = {
+      dots: true,
+      infinite: true,
+      arrows: true,
+      fade: true,
+      speed: 500,
+      autoplay: false,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      prevArrow: <CustomPrevArrow />,
+      nextArrow: <CustomNextArrow />,
+      afterChange: (current) => {
+        setGalleryIndex(current);
+        setTimeout(() => {
+          // Delay ensures the DOM has updated
+          const videos = document.querySelectorAll('#productGallery video');
+          if (videos[current]) {
+            videos[current].play().catch((e) => {
+              console.warn("Autoplay failed:", e);
+            });
+          }
+        }, 100);
+      }
+    };
   };
 
   useEffect(() => {
@@ -421,7 +442,13 @@ export function AccessoriesProductContent({
           <Slider ref={sliderRef} {...settings}>
             {videoGalleries.map((videoGallery, index) => (
               <div key={index}>
-                <video className="w-full" autoPlay muted>
+                <video
+                  className="w-full"
+                  muted
+                  playsInline
+                  // no autoplay or loop
+                  controls={false}
+                >
                   <source src={videoGallery.file.url} type="video/mp4" />
                 </video>
               </div>
