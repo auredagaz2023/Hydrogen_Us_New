@@ -447,6 +447,7 @@ export function AccessoriesProductContent({
                   className="w-full"
                   muted
                   playsInline
+                  preload="auto"
                   // no autoplay or loop
                   controls={false}
                 >
