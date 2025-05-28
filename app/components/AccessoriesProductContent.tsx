@@ -131,11 +131,8 @@ export function AccessoriesProductContent({
 
   useEffect(() => {
     setTimeout(() => {
-      const firstVideo = document.querySelector('#productGallery video');
-      if (firstVideo) {
-        firstVideo.play().catch((err) => {
-          console.warn("Autoplay blocked:", err);
-        });
+      if (sliderRef.current) {
+        sliderRef.current.slickNext();
       }
     }, 300); // 300ms after mount
   }, []);
