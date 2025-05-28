@@ -14,7 +14,7 @@ import {
   ProductWithMetafields,
 } from '~/lib/type';
 import {Tab} from '@headlessui/react';
-import {useEffect, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {ContentfulDocument} from '~/routes/($locale).types';
 import {ContentfulParagraph} from '~/routes/($locale).types';
 import {ContentfulEmbeddedAsset} from '~/routes/($locale).types';
@@ -100,6 +100,7 @@ export function AccessoriesProductContent({
     {title: string; file: {url: string}}[] | undefined
   >(undefined);
   const [galleryIndex, setGalleryIndex] = useState<number>(1);
+  const sliderRef = useRef(null);
 
   const ALPHABETS = 'ABCDEFGHIJKLMNOP';
 
@@ -185,6 +186,18 @@ export function AccessoriesProductContent({
         });
     })();
   }, [product]);
+
+  useEffect(() => {
+    // Attach 'ended' listener after mount
+    const videos = document.querySelectorAll('#productGallery video');
+    videos.forEach((video) => {
+      video.onended = () => {
+        if (sliderRef.current) {
+          sliderRef.current.slickNext();
+        }
+      };
+    });
+  }, [videoGalleries]); 
 
   return (
     <div className="px-5 md:container py-16 md:pt-0 md:pb-24 lg:pb-28 lg:px-23">
@@ -400,19 +413,13 @@ export function AccessoriesProductContent({
         )}
       </div>
       <>
-      {videoGalleries &&
+      {videoGalleries && (
         <div className="my-12 mx-6 relative" id="productGallery">
-          <Slider
-            {...settings}
-            afterChange={(currentSlide) => setGalleryIndex(currentSlide)}
-          >
-            {videoGalleries.map((videoGallery, index: number) => (
-              <div>
-                <video className='w-full' autoPlay loop muted alt="img1" >
-                  <source 
-                    src={videoGallery.file.url}
-                    type="video/mp4"
-                  />
+          <Slider ref={sliderRef} {...settings}>
+            {videoGalleries.map((videoGallery, index) => (
+              <div key={index}>
+                <video className="w-full" autoPlay muted controls>
+                  <source src={videoGallery.file.url} type="video/mp4" />
                 </video>
               </div>
             ))}
@@ -422,6 +429,7 @@ export function AccessoriesProductContent({
             {`00${videoGalleries.length}`.slice(-2)}
           </span>
         </div>
+      )
       }
       </>
       <CollectionLinks />     
