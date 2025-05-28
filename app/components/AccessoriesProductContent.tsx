@@ -99,7 +99,7 @@ export function AccessoriesProductContent({
   const [galleryImages, setGalleryImages] = useState<
     {title: string; file: {url: string}}[] | undefined
   >(undefined);
-  const [galleryIndex, setGalleryIndex] = useState<number>(0);
+  const [galleryIndex, setGalleryIndex] = useState<number>(2);
   const sliderRef = useRef(null);
 
   const ALPHABETS = 'ABCDEFGHIJKLMNOP';
@@ -133,6 +133,7 @@ export function AccessoriesProductContent({
     setTimeout(() => {
       if (sliderRef.current) {
         sliderRef.current.slickNext();
+        setGalleryIndex(0)
       }
     }, 300); // 300ms after mount
   }, []);
