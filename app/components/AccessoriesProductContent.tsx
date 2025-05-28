@@ -133,7 +133,6 @@ export function AccessoriesProductContent({
     setTimeout(() => {
       if (sliderRef.current) {
         sliderRef.current.slickNext();
-        setGalleryIndex(0)
       }
     }, 300); // 300ms after mount
   }, []);
