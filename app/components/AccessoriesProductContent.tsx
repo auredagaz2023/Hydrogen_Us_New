@@ -130,14 +130,17 @@ export function AccessoriesProductContent({
   };
 
   useEffect(() => {
-    // Explicitly play the first video
-    const firstVideo = document.querySelector('#productGallery video');
-    if (firstVideo) {
-      firstVideo.play().catch((err) => {
-        console.warn("Autoplay error on first video:", err);
-      });
-    }
-  }, []);  
+    setTimeout(() => {
+      const firstVideo = document.querySelector('#productGallery video');
+      if (firstVideo) {
+        firstVideo.play().catch((err) => {
+          console.warn("Autoplay blocked:", err);
+        });
+      }
+    }, 300); // 300ms after mount
+  }, []);
+  
+  
 
   useEffect(() => {
     // const client = createClient({
