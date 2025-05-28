@@ -179,13 +179,13 @@ export default function App() {
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <Links />
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8ZQTL2qrSTWiK6gnZ5uYotq5LdfsGJPw&libraries=places"></script>
-        <script
+        {/* <script
           type="text/javascript"
           id="hs-script-loader"
           async
           defer
           src="//js-eu1.hs-scripts.com/26099639.js"
-        ></script>
+        ></script> */}
         <script src="//code.tidio.co/lrlmjfwi8cxioagyk9wddkzfw9ktmh0m.js" async></script>
       </head>
       <body>
