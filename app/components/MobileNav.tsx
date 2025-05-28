@@ -48,6 +48,12 @@ export function MobileNav() {
       productType: 'Pillows',
     },
     {
+      title: 'BEDDING',
+      link: '/accessories',
+      disabled: false,
+      productType: 'Accessories',
+    },
+    {
       title: 'SALES',
       link: '/sales',
       disabled: false,

@@ -299,9 +299,9 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
                 <li className="py-2 mb-2 border-[#dee2e6] border-b">
                   <Link to="/return-policy">Return policy</Link>
                 </li>
-                <li className="py-2 mb-2 border-[#dee2e6] border-b">
+                {/* <li className="py-2 mb-2 border-[#dee2e6] border-b">
                   <Link to="/terms-of-use">Terms of use</Link>
-                </li>
+                </li> */}
                 <li className="py-2 mb-2 border-[#dee2e6] border-b">
                   <Link to="/privacy-policy">Privacy Policy</Link>
                 </li>
