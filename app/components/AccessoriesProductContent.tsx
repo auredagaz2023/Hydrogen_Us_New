@@ -129,16 +129,6 @@ export function AccessoriesProductContent({
     }
   };
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     if (sliderRef.current) {
-  //       sliderRef.current.slickNext();
-  //     }
-  //   }, 300); // 300ms after mount
-  // }, []);
-  
-  
-
   useEffect(() => {
     // const client = createClient({
     //   space: CONTENTFUL_SPACE_ID,
