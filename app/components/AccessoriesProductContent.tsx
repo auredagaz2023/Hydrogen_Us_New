@@ -129,13 +129,13 @@ export function AccessoriesProductContent({
     }
   };
 
-  useEffect(() => {
-    setTimeout(() => {
-      if (sliderRef.current) {
-        sliderRef.current.slickNext();
-      }
-    }, 300); // 300ms after mount
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     if (sliderRef.current) {
+  //       sliderRef.current.slickNext();
+  //     }
+  //   }, 300); // 300ms after mount
+  // }, []);
   
   
 
