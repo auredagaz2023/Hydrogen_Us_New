@@ -115,6 +115,9 @@ export function AccessoriesProductContent({
     slidesToScroll: 1,
     prevArrow: <CustomPrevArrow />,
     nextArrow: <CustomNextArrow />,
+    afterChange: (currentSlide) => {
+      setGalleryIndex(currentSlide);
+    },
   };
 
   useEffect(() => {
@@ -415,10 +418,10 @@ export function AccessoriesProductContent({
       <>
       {videoGalleries && (
         <div className="my-12 mx-6 relative" id="productGallery">
-          <Slider ref={sliderRef} {...settings} afterChange={(currentSlide) => setGalleryIndex(currentSlide)}>
+          <Slider ref={sliderRef} {...settings}>
             {videoGalleries.map((videoGallery, index) => (
               <div key={index}>
-                <video className="w-full" autoPlay muted controls>
+                <video className="w-full" autoPlay muted>
                   <source src={videoGallery.file.url} type="video/mp4" />
                 </video>
               </div>
