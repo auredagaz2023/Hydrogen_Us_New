@@ -115,30 +115,18 @@ export function AccessoriesProductContent({
     slidesToScroll: 1,
     prevArrow: <CustomPrevArrow />,
     nextArrow: <CustomNextArrow />,
-    const settings = {
-      dots: true,
-      infinite: true,
-      arrows: true,
-      fade: true,
-      speed: 500,
-      autoplay: false,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      prevArrow: <CustomPrevArrow />,
-      nextArrow: <CustomNextArrow />,
-      afterChange: (current) => {
-        setGalleryIndex(current);
-        setTimeout(() => {
-          // Delay ensures the DOM has updated
-          const videos = document.querySelectorAll('#productGallery video');
-          if (videos[current]) {
-            videos[current].play().catch((e) => {
-              console.warn("Autoplay failed:", e);
-            });
-          }
-        }, 100);
-      }
-    };
+    afterChange: (current) => {
+      setGalleryIndex(current);
+      setTimeout(() => {
+        // Delay ensures the DOM has updated
+        const videos = document.querySelectorAll('#productGallery video');
+        if (videos[current]) {
+          videos[current].play().catch((e) => {
+            console.warn("Autoplay failed:", e);
+          });
+        }
+      }, 100);
+    }
   };
 
   useEffect(() => {
