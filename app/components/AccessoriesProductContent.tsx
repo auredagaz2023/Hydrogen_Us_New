@@ -130,6 +130,16 @@ export function AccessoriesProductContent({
   };
 
   useEffect(() => {
+    // Explicitly play the first video
+    const firstVideo = document.querySelector('#productGallery video');
+    if (firstVideo) {
+      firstVideo.play().catch((err) => {
+        console.warn("Autoplay error on first video:", err);
+      });
+    }
+  }, []);  
+
+  useEffect(() => {
     // const client = createClient({
     //   space: CONTENTFUL_SPACE_ID,
     //   accessToken: CONTENTFUL_ACCESS_TOKEN,
