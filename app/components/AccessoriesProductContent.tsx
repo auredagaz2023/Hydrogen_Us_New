@@ -99,7 +99,7 @@ export function AccessoriesProductContent({
   const [galleryImages, setGalleryImages] = useState<
     {title: string; file: {url: string}}[] | undefined
   >(undefined);
-  const [galleryIndex, setGalleryIndex] = useState<number>(1);
+  const [galleryIndex, setGalleryIndex] = useState<number>(0);
   const sliderRef = useRef(null);
 
   const ALPHABETS = 'ABCDEFGHIJKLMNOP';
