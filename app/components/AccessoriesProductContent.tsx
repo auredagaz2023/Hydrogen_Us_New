@@ -415,7 +415,7 @@ export function AccessoriesProductContent({
       <>
       {videoGalleries && (
         <div className="my-12 mx-6 relative" id="productGallery">
-          <Slider ref={sliderRef} {...settings}>
+          <Slider ref={sliderRef} {...settings} afterChange={(currentSlide) => setGalleryIndex(currentSlide)}>
             {videoGalleries.map((videoGallery, index) => (
               <div key={index}>
                 <video className="w-full" autoPlay muted controls>
