@@ -99,7 +99,7 @@ export function AccessoriesProductContent({
   const [galleryImages, setGalleryImages] = useState<
     {title: string; file: {url: string}}[] | undefined
   >(undefined);
-  const [galleryIndex, setGalleryIndex] = useState<number>(2);
+  const [galleryIndex, setGalleryIndex] = useState<number>(0);
   const sliderRef = useRef(null);
 
   const ALPHABETS = 'ABCDEFGHIJKLMNOP';
@@ -129,13 +129,13 @@ export function AccessoriesProductContent({
     }
   };
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     if (sliderRef.current) {
-  //       sliderRef.current.slickNext();
-  //     }
-  //   }, 300); // 300ms after mount
-  // }, []);
+  useEffect(() => {
+    setTimeout(() => {
+      if (sliderRef.current) {
+        sliderRef.current.slickNext();
+      }
+    }, 300); // 300ms after mount
+  }, []);
   
   
 
