@@ -118,7 +118,13 @@ export function AccessoriesProductContent({
     nextArrow: <CustomNextArrow />,
     afterChange: (current) => {
       setGalleryIndex(current);
+      const videos = document.querySelectorAll('#productGallery video');
+      if (videos[current]) {
+        videos[current].currentTime = 0;
+        videos[current].play().catch((e) => {});
+      }
     }
+    
   };  
 
   useEffect(() => {
