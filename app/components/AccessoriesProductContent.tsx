@@ -100,6 +100,7 @@ export function AccessoriesProductContent({
     {title: string; file: {url: string}}[] | undefined
   >(undefined);
   const [galleryIndex, setGalleryIndex] = useState<number>(0);
+  const [videoLoading, setVideoLoading] = useState<boolean[]>([]);
   const sliderRef = useRef(null);
 
   const ALPHABETS = 'ABCDEFGHIJKLMNOP';
@@ -115,17 +116,8 @@ export function AccessoriesProductContent({
     slidesToScroll: 1,
     prevArrow: <CustomPrevArrow />,
     nextArrow: <CustomNextArrow />,
-    afterChange: (current) => {
+    afterChange: (current: number) => {
       setGalleryIndex(current);
-      setTimeout(() => {
-        // Delay ensures the DOM has updated
-        const videos = document.querySelectorAll('#productGallery video');
-        if (videos[current]) {
-          videos[current].play().catch((e) => {
-            console.warn("Autoplay failed:", e);
-          });
-        }
-      }, 100);
     }
   };
 
@@ -201,6 +193,7 @@ export function AccessoriesProductContent({
 
   useEffect(() => {
     // Attach 'ended' listener after mount
+    setVideoLoading(new Array(videoGalleries.length).fill(true));
     const videos = document.querySelectorAll('#productGallery video');
     videos.forEach((video) => {
       video.onended = () => {
@@ -429,12 +422,22 @@ export function AccessoriesProductContent({
         <div className="my-12 mx-6 relative" id="productGallery">
           <Slider ref={sliderRef} {...settings}>
             {videoGalleries.map((videoGallery, index) => (
-              <div key={index}>
+              <div key={index} className="relative">
+                {videoLoading[index] && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/50 text-white z-10">
+                    Loading...
+                  </div>
+                )}
                 <video
                   className="w-full"
                   muted
                   playsInline
-                  // no autoplay or loop
+                  onCanPlay={(e) => {
+                    const updated = [...videoLoading];
+                    updated[index] = false;
+                    setVideoLoading(updated);
+                    (e.currentTarget as HTMLVideoElement).play().catch(() => {});
+                  }}
                   controls={false}
                 >
                   <source src={videoGallery.file.url} type="video/mp4" />
@@ -442,13 +445,12 @@ export function AccessoriesProductContent({
               </div>
             ))}
           </Slider>
-          <span className="gallery-pagination">
-            {`00${galleryIndex + 1}`.slice(-2)} |{' '}
-            {`00${videoGalleries.length}`.slice(-2)}
+
+          <span className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-sm z-20">
+            {`00${galleryIndex + 1}`.slice(-2)} | {`00${videoGalleries.length}`.slice(-2)}
           </span>
         </div>
-      )
-      }
+      )}
       </>
       <CollectionLinks />     
     </div>
