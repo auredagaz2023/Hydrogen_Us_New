@@ -107,19 +107,19 @@ export function AccessoriesProductContent({
 
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: true, // loops to first after last
     arrows: true,
     fade: true,
     speed: 500,
-    autoplay: false,
+    autoplay: false, // we manually control autoplay per video
     slidesToShow: 1,
     slidesToScroll: 1,
     prevArrow: <CustomPrevArrow />,
     nextArrow: <CustomNextArrow />,
-    afterChange: (current: number) => {
+    afterChange: (current) => {
       setGalleryIndex(current);
     }
-  };
+  };  
 
   useEffect(() => {
     // const client = createClient({
@@ -192,17 +192,17 @@ export function AccessoriesProductContent({
   }, [product]);
 
   useEffect(() => {
-    // Attach 'ended' listener after mount
-    setVideoLoading(new Array(videoGalleries.length).fill(true));
     const videos = document.querySelectorAll('#productGallery video');
-    videos.forEach((video) => {
+    videos.forEach((video, index) => {
       video.onended = () => {
-        if (sliderRef.current) {
-          sliderRef.current.slickNext();
-        }
+        setTimeout(() => {
+          if (sliderRef.current) {
+            sliderRef.current.slickNext(); // Advance to next video
+          }
+        }, 200); // Small delay to ensure carousel updates
       };
     });
-  }, [videoGalleries]); 
+  }, [videoGalleries]);  
 
   return (
     <div className="px-5 md:container py-16 md:pt-0 md:pb-24 lg:pb-28 lg:px-23">
