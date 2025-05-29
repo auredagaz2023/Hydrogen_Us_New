@@ -197,23 +197,6 @@ export function AccessoriesProductContent({
     })();
   }, [product]);
 
-  const [videoGalleries, setVideoGalleries] = useState<any[]>([]);
-  const [galleryIndex, setGalleryIndex] = useState<number>(0);
-  const sliderRef = useRef<any>(null);
-
-  const settings = {
-    infinite: true,
-    arrows: false,
-    fade: true,
-    speed: 500,
-    autoplay: false,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    afterChange: (current) => {
-      setGalleryIndex(current);
-    }
-  };
-
   useEffect(() => {
     const videos = document.querySelectorAll('#productGallery video');
     videos.forEach((video, index) => {
@@ -233,6 +216,15 @@ export function AccessoriesProductContent({
       }
     });
   }, [galleryIndex, videoGalleries]);
+
+  useEffect(() => {
+    setVideoLoading(new Array(videoGalleries.length).fill(true));
+    document.querySelectorAll('#productGallery video').forEach(video => {
+      video.pause();
+      video.removeAttribute('src');
+      video.load();
+    });    
+  }, [videoGalleries]);
 
   // useEffect(() => {
   //   const videos = document.querySelectorAll('#productGallery video');
@@ -463,7 +455,7 @@ export function AccessoriesProductContent({
       <>
       {videoGalleries && (
         <div className="my-12 mx-6 relative" id="productGallery">
-          <Slider ref={sliderRef} {...settings}>
+          <Slider key={product.productId.value} ref={sliderRef} {...settings}>
             {videoGalleries.map((videoGallery, index) => (
               <div key={index} className="relative">
                 {videoLoading[index] && (
