@@ -191,18 +191,55 @@ export function AccessoriesProductContent({
     })();
   }, [product]);
 
+  const [videoGalleries, setVideoGalleries] = useState<any[]>([]);
+  const [galleryIndex, setGalleryIndex] = useState<number>(0);
+  const sliderRef = useRef<any>(null);
+
+  const settings = {
+    infinite: true,
+    arrows: false,
+    fade: true,
+    speed: 500,
+    autoplay: false,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    afterChange: (current) => {
+      setGalleryIndex(current);
+    }
+  };
+
   useEffect(() => {
     const videos = document.querySelectorAll('#productGallery video');
     videos.forEach((video, index) => {
-      video.onended = () => {
-        setTimeout(() => {
+      // Reset all video event listeners
+      video.pause();
+      video.currentTime = 0;
+      video.onended = null;
+
+      // Add onended only to active video
+      if (index === galleryIndex) {
+        video.play().catch((e) => console.warn('Autoplay failed', e));
+        video.onended = () => {
           if (sliderRef.current) {
-            sliderRef.current.slickNext(); // Advance to next video
+            sliderRef.current.slickNext();
           }
-        }, 200); // Small delay to ensure carousel updates
-      };
+        };
+      }
     });
-  }, [videoGalleries]);  
+  }, [galleryIndex, videoGalleries]);
+
+  // useEffect(() => {
+  //   const videos = document.querySelectorAll('#productGallery video');
+  //   videos.forEach((video, index) => {
+  //     video.onended = () => {
+  //       setTimeout(() => {
+  //         if (sliderRef.current) {
+  //           sliderRef.current.slickNext(); // Advance to next video
+  //         }
+  //       }, 200); // Small delay to ensure carousel updates
+  //     };
+  //   });
+  // }, [videoGalleries]);  
 
   return (
     <div className="px-5 md:container py-16 md:pt-0 md:pb-24 lg:pb-28 lg:px-23">
