@@ -52,6 +52,7 @@ export function CartDetails({
 }) {
   // @todo: get optimistic cart cost
   const isZeroCost = !cart || cart?.cost?.subtotalAmount?.amount === '0.0';
+  console.log('cart details!!!', cart)
 
   const container = {
     drawer: 'grid grid-cols-1 h-screen-no-nav grid-rows-[1fr_auto]',

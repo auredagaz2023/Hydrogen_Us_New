@@ -101,16 +101,23 @@ export function CollectionDetails({
         cardLink = `/bed-bases/details`;
         break;
 
-      default:
+      case "Accessories":
+        cardLink = `/accessories/${collection.handle}`;
         break;
     }
-
+    if (productType == "Accessories") {
+      return `${cardLink}?product=${slugify(
+        collection.products.nodes?.[0]?.title || '',
+      )}`;
+    }
     return `${cardLink}?product=${slugify(
       collection.products.nodes.find(
         (product) => product.productType === productType,
       )?.title || '',
     )}`;
   };
+
+  console.log('products!!!!', collection.products)
 
   return (
     <div className="w-full px-3 xl:px-6 md:w-1/2 lg:w-4/12 mt-6 mb-12 ">
@@ -162,21 +169,22 @@ export function CollectionDetails({
         >
           {collection.title}
         </Link>
-        <div className="collection-attributes border-t border-border pt-2 mt-2 mb-2 grid grid-cols-2 h-12">
-          {comfortLevels &&
-            comfortLevels.map((comfortLevel, index) => (
-              <div
-                className="attr flex flex-row text-dark-blue text-xxs pl-4 relative py-2px pr-1 items-center uppercase"
-                key={index}
-              >
-                <span
-                  className="w-2 h-2 block rounded-full mr-3"
-                  style={{backgroundColor: comfortLevel.color}}
-                ></span>
-                <span>{comfortLevel.name}</span>
-              </div>
-            ))}
-        </div>
+          {comfortLevels?.length>0 &&
+            <div className="collection-attributes border-t border-border pt-2 mt-2 mb-2 grid grid-cols-2 h-12">
+              {comfortLevels?.map((comfortLevel, index) => (
+                <div
+                  className="attr flex flex-row text-dark-blue text-xxs pl-4 relative py-2px pr-1 items-center uppercase"
+                  key={index}
+                >
+                  <span
+                    className="w-2 h-2 block rounded-full mr-3"
+                    style={{backgroundColor: comfortLevel.color}}
+                  ></span>
+                  <span>{comfortLevel.name}</span>
+                </div>
+              ))}
+            </div>
+        }
         {collection[summaryKey] && (
           <div className="collection-description border-t border-border mt-5 pt-5 mt-2 mb-5 text-[#212529] text-[14px] h-[130px] overflow-hidden">
             {collection[summaryKey].value}

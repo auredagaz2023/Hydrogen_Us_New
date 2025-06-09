@@ -29,7 +29,6 @@ export const handle = {
 };
 
 export async function loader({params, request, context}: LoaderArgs) {
-
   const productType = 'Accessories';
   invariant(productType, 'Missing productType param');
 
@@ -47,13 +46,11 @@ export async function loader({params, request, context}: LoaderArgs) {
   }
 
   const collectionNodes = flattenConnection(collections);
-  console.log('collection nodes!!!', collectionNodes)
   const filteredCollections = collectionNodes.filter((collectionNode) =>
     collectionNode.products.nodes.some(
       (productNode) => (productNode.productType === 'Mattress protector'),
     ),
   );
-  console.log('filteredCollections nodes!!!', filteredCollections)
 
   if (filteredCollections.length == 0) {
     throw new Response(null, {status: 404});
