@@ -99,6 +99,9 @@ export const PRODUCT_CARD_FRAGMENT = `#graphql
           handle
           title
         }
+        discount: metafield(namespace: "custom", key: "discount") {
+          value
+        }
       }
     }
   }

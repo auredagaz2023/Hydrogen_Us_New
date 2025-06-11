@@ -90,7 +90,7 @@ export default function CollectionProducts() {
     SwiperType | undefined
   >(undefined);
   const [handle, setHandle] = useState<string | undefined>(undefined);
-
+  const [discount, setDiscount] = useState<any>(undefined)
   const [promoLabel, setPromoLabel] = useState('');
 
   const refDisclosureButton = useRef<HTMLButtonElement>(null);
@@ -144,6 +144,11 @@ export default function CollectionProducts() {
         });
     })();
   }, []);
+
+  useEffect(()=>{
+    const discount = selectedVariant?.discount?.value ?? (selectedProduct as ProductWithMetafields<Product>).discountPercent?.value
+    setDiscount(discount)
+  }, [selectedProduct, selectedVariant])
 
   return (
     <div className="w-full pb-6 flex flex-wrap justify-between">
@@ -726,8 +731,7 @@ export default function CollectionProducts() {
                 <span className="font-bold text-red-600 text-sm">
                   PROMO&nbsp;
                   {
-                    (selectedProduct as ProductWithMetafields<Product>)
-                      .discountPercent.value
+                    discount
                   }
                   %
                 </span>
@@ -741,9 +745,7 @@ export default function CollectionProducts() {
                         ...selectedVariant.price,
                         amount: (
                           (parseInt(selectedVariant.price.amount) *
-                            (100 -
-                              (selectedProduct as ProductWithMetafields<Product>)
-                                .discountPercent.value)) /
+                            (100 - discount)) /
                           100
                         ).toString(),
                       }}

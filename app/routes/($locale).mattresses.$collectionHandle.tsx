@@ -113,6 +113,7 @@ export default function CollectionProducts() {
   const [selectedVariant, setSelectedVariant] = useState<
     ProductVariant | undefined
   >(undefined);
+  const [discount, setDiscount] = useState<any>(undefined);
   const [quantity, setQuantity] = useState<number>(1);
   const [productImagesSwiper, setProductImagesSwiper] = useState<
     SwiperType | undefined
@@ -152,6 +153,11 @@ export default function CollectionProducts() {
     arrows: true,
     infinite: true,
   };
+
+  useEffect(()=>{
+    const discount = selectedVariant?.discount?.value ?? (selectedProduct as ProductWithMetafields<Product>).discountPercent?.value
+    setDiscount(discount)
+  }, [selectedProduct, selectedVariant])
 
   return (
     <div className="w-full pb-6 flex flex-wrap justify-between">
@@ -871,8 +877,7 @@ export default function CollectionProducts() {
                 <span className="font-bold text-red-600 text-sm">
                   PROMO&nbsp;
                   {
-                    (selectedProduct as ProductWithMetafields<Product>)
-                      .discountPercent.value
+                    discount
                   }
                   %
                 </span>
@@ -886,11 +891,9 @@ export default function CollectionProducts() {
                         ...selectedVariant.price,
                         amount: (
                           (parseInt(selectedVariant.price.amount) *
-                            (100 -
-                              (selectedProduct as ProductWithMetafields<Product>)
-                                .discountPercent.value)) /
-                          100
-                        ).toString(),
+                            (100 - discount) / 100
+                        ).toString()
+                        )
                       }}
                     />
                   </span>
