@@ -709,8 +709,13 @@ export default function CollectionProducts() {
                                 {
                                   variant.compareAtPrice ? 
                                   <>
-                                    {variant.selectedOptions[0].value } <span className='text-red-600'>&nbsp;&nbsp;&nbsp;Save ${(parseFloat(variant.compareAtPrice.amount)-parseFloat(variant.price.amount)).toFixed(2)}</span>
+                                    {variant.selectedOptions[0].value } <span className='text-red-600'>&nbsp;&nbsp;&nbsp;Save ${parseFloat(variant.compareAtPrice.amount)-parseFloat(variant.price.amount)}</span>
                                   </> :
+                                  variant?.discount?.value ?
+                                  <div className='flex gap-1 flex-wrap items-center'>
+                                    <div className='py-1'>{variant.selectedOptions[0].value }</div> <div className='text-white bg-red-600 font-semibold text-xxs px-2 py-1'>&nbsp;-{variant.discount.value}% PROMO</div>
+                                  </div>
+                                  :
                                   <>
                                     {variant.selectedOptions[0].value }
                                   </>
