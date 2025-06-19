@@ -279,18 +279,31 @@ function Landing() {
                 <a  href={product.link} className='mt-[20px] text-[27.5px] lg:text-[22px] text-[#174860] landing-[24px] font-bold uppercase text-center hover:underline' >{product.name}</a>
                 <hr className='my-[20px] lg:hidden block border-0 clear-both, w-[96%] bg-[#174860] h-[1px]'  />
                 <div className='mt-[20px] text-[17px] font-semibold md:font-normal text-[#174860] landing-[25px] text-center'>{product.description}</div>
-                <div className='mt-[30px] lg:mt-[25px] text-[17px] lg:text-[15px] text-center'>
-                  <span className='text-[#839BB1]'>Best for:</span> <span className='text-[#174860] text-[15px]'>{product.bestfor}</span>
-                  <br />
-                  <span className='text-[#839BB1]'>Firmness:</span> <span className='text-[#174860] text-[15px]'>{product.fitness}</span>
-                </div>
-                <div className='mt-[25px] text-[#839BB1] text-[13px] landing-[27.5px] text-center'>
-                  King starting at
-                  <br className='hidden lg:block'/>
-                  <span className='lg:hidden'>&nbsp;</span>
-                  <span className='line-through'>{product.original_price}</span>&nbsp;&nbsp; <span className='text-red-600 text-[22px] landing-[27.5px] font-semibold'>{product.price}</span>
-                </div>
-                <a className='text-center mt-[15px] py-4 px-8 uppercase border border-[#174860] hover:bg-[#174860] bg-[#174860] lg:bg-white lg:hover:text-white text-white lg:text-[#174860] hover:text-[17.5px] lg:text-[13px] font-semibold' href={product.link}>{product.button}</a>
+                {(product.bestfor || product.fitness) &&
+                  <>
+                    <div className='mt-[30px] lg:mt-[25px] text-[17px] lg:text-[15px] text-center'>
+                      {product.bestfor &&
+                        <>
+                          <span className='text-[#839BB1]'>Best for:</span> <span className='text-[#174860] text-[15px]'>{product.bestfor}</span>                    
+                        </>
+                      }
+                      <br />
+                      {product.fitness &&
+                        <>
+                          <span className='text-[#839BB1]'>Firmness:</span> <span className='text-[#174860] text-[15px]'>{product.fitness}</span>
+                        </>
+                      }
+                    </div>                  
+                  </>
+                }
+                {(product.original_price || product.price) &&
+                  <div className='mt-[25px] text-[#839BB1] text-[13px] landing-[27.5px] text-center'>
+                    {product?.mattress ? 'Queen starting at' : 'Starting at'}
+                    <br />
+                    <span className='line-through'>{product.original_price}</span> <span className='text-red-600 text-[22px] landing-[27.5px] font-semibold'>{product.price}</span>
+                  </div>
+                }
+                <a className='text-center mt-[15px] py-4 px-8 uppercase border border-[#174860] hover:bg-[#174860] bg-white hover:text-white text-[#174860] hover:text-[17.5px] lg:text-[13px] font-semibold' href={product.link}>{product.button}</a>
                 <div className='mt-[15px] uppercase text-[#174860] text-center text-[17px] lg:text-[13px] font-semibold'>{product.bottom}</div>
               </div>
             </div>
