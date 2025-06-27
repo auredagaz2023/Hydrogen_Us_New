@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import desktopHeader from '~/assets/Independent-Day-2025/Desktop/Header/magniflex-us-4th-of-july-header-desktop.jpg'
 import mobileHeader from '~/assets/Independent-Day-2025/Mobile/Header/Magniflex_header_mobile.jpg'
-import freeshippingsvg from  '~/assets/Landing/Desktop/icons/free-shipping.svg'
-import trialsvg from '~/assets/Landing/Desktop/icons/trial.svg'
-import starsvg from '~/assets/Landing/Desktop/icons/star.svg'
+
+import benefitBarGif from '~/assets/sleep-awareness-month/magniflex-landing-benefit-bar.gif'
+import benefitBarGifMobile from '~/assets/sleep-awareness-month/magniflex-landing-benefit-bar-mobile-A.gif.mp4'
+
 import dolcevitapng from '~/assets/Independent-Day-2025/Desktop/Products/Images/01-dolce-vita.jpg'
 import magnicoolpng from '~/assets/Independent-Day-2025/Desktop/Products/Images/02-magnicool.jpg'
 import magnistretchpng from '~/assets/Independent-Day-2025/Desktop/Products/Images/03-magnistretch.jpg'
@@ -46,7 +47,7 @@ const products = [
     bestfor: "couples with different sleep needs",
     fitness: "soft, medium-soft, medium-firm, firm",
     original_price: "$3,099",
-    price: "$2,179",
+    price: "$2,170",
     button: "shop dolce vita",
     link: "https://magniflex.us/mattresses/dolce-vita?product=dolcevita-dual-10",
     bottom: "save up to $2,519",
@@ -99,7 +100,7 @@ const products = [
     original_price: "$2,899",
     price: "$2,030",
     button: "Shop Magnifico",
-    link: "https://magniflex.us/mattresses/magnistretch?product=magnistretch-12",
+    link: "https://magniflex.us/mattresses/magnifico?product=toscana-cotton-lux-10",
     bottom: "Save up to $3,959",
     mattress: true
   },
@@ -116,7 +117,7 @@ const products = [
     original_price: "$2,499",
     price: "$1,750",
     button: "Shop Classico",
-    link: "https://magniflex.us/mattresses/magnistretch?product=magnistretch-12",
+    link: "https://magniflex.us/mattresses/classico?product=classico-9",
     bottom: "Save up to $1,499",
     mattress: true
   },  
@@ -201,7 +202,7 @@ function Landing() {
         <img src={desktopHeader} loading='lazy' alt="header" className='w-full hidden md:block' />
         <img src={mobileHeader} loading='lazy' alt="header" className='w-full md:hidden' />
       </FadeIn>
-      <div className='flex overflow:hidden px-[32px] text-[13px] landing-[34px] justify-center items-start md:items-center flex-col md:flex-row md:space-x-nav bg-[#174960] w-100 text-white md:h-[50px] py-2'>
+      {/* <div className='flex overflow:hidden px-[32px] text-[13px] landing-[34px] justify-center items-start md:items-center flex-col md:flex-row md:space-x-nav bg-[#174960] w-100 text-white md:h-[50px] py-2'>
         <div  className='flex gap-[24px] md:gap-2 h-[34px] items-center'>
           <img width={32} src={freeshippingsvg}></img>
           <span className='uppercase'>Free shipping</span>
@@ -214,6 +215,12 @@ function Landing() {
           <img width={32} src={starsvg} alt="" />
           <span className='uppercase'>10-Year Warranty ON MATTRESSES</span>
         </div>
+      </div> */}
+      <div className='flex overflow:hidden md:h-[61px] h-auto px-[0px] md:px-[32px] py-[0px] text-[13px] landing-[34px] justify-center items-start md:items-center flex-col md:flex-row md:space-x-nav w-100 text-white'>
+        <img src={benefitBarGif} className='h-[61px] object-cover hidden md:block'></img>
+        <video className='md:hidden w-full' autoPlay loop muted > 
+            <source className='' src={benefitBarGifMobile} type='video/mp4'/>
+        </video>
       </div>
       <div className='bg-white text-[#174860] landing-[29px] text-[17.5px] text-center pt-[96px] pb-[64px] md:pt-[72px] md:pb-[32px] px-[30px] md:px-[10%]'>        
         <div>Light up your nights this 4th of July!</div>
@@ -298,7 +305,7 @@ function Landing() {
                 }
                 {(product.original_price || product.price) &&
                   <div className='mt-[25px] text-[#839BB1] text-[13px] landing-[27.5px] text-center'>
-                    {product?.mattress ? 'Queen starting at' : 'Starting at'}
+                    {product?.mattress ? 'Starting at' : 'Starting at'}
                     <br />
                     <span className='line-through'>{product.original_price}</span> <span className='text-red-600 text-[22px] landing-[27.5px] font-semibold'>{product.price}</span>
                   </div>

@@ -241,7 +241,7 @@ const CollectionProductCard = (props: TProps) => {
             <FadeIn>
               <RichText
                 data={JSON.parse(product.benefits.value)}
-                className="truncate"
+                // className="truncate"
               />
             </FadeIn>
           )}
