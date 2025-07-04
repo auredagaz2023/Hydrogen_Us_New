@@ -2,6 +2,7 @@ import {keyframes} from '@emotion/react';
 import {Fade} from 'react-awesome-reveal';
 import {CollectionLinks} from '~/components/CollectionLinks';
 import WorldMap from '~/components/worldmap';
+import Ricarica_first_Img from '~/assets/Brand/bg-benessere-notte.jpg'
 import Ricarica1_Img from '~/assets/Brand/bg-dual-core.jpg';
 import Ricarica2_Img from '~/assets/Brand/benessere-notte.jpg';
 import Ricarica3_Img from '~/assets/Brand/benessere-risveglio.jpg';
@@ -63,10 +64,10 @@ export default function Ricarica() {
       </section>
       <section>
         <Fade duration={1000} triggerOnce>
-          <div className="flex flex-col-reverse md:flex-row text-174860 md:h-[770px]">
-            <div className="w-full pb-[65%] md:pb-0 md:w-1/2 bg-[url('../assets/Brand/bg-benessere-notte.jpg')] bg-cover bg-center"></div>
+          <div className="flex flex-col-reverse md:flex-row text-174860">
+            <img className="w-full object-cover pb-[65%] md:pb-0 md:w-1/2 bg-cover" src={Ricarica_first_Img}></img>
             <div className="w-full md:w-1/2 text-lg">
-              <div className="w-full md:w-10/12 md:max-w-[500px] mx-auto">
+              <div className="w-full md:w-[50%] lg:w-[66%] mx-auto">
                 <img
                   src={Ricarica2_Img}
                   alt="ricarica image 2"
@@ -175,9 +176,9 @@ export default function Ricarica() {
                 <div className="w-full flex">
                   <a
                     className="text-white bg-dark-blue text-xs uppercase py-2 px-8 border border-dark-blue font-semibold transition-all ease-in-out hover:bg-[#2f88b1] hover:border-[#2f88b1] hover:text-white"
-                    href="https://www.slowsleep.it/en/"
+                    href="https://www.magniflex.com/en/blog"
                   >
-                    GOT TO BLOG
+                    GO TO BLOG
                   </a>
                 </div>
               </div>

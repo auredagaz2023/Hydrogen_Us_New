@@ -1855,6 +1855,9 @@ select{
 .right-\[70px\]{
   right: 70px;
 }
+.right-\[80px\]{
+  right: 80px;
+}
 .top-0{
   top: 0px;
 }
@@ -2012,6 +2015,10 @@ select{
 .mx-0{
   margin-left: 0px;
   margin-right: 0px;
+}
+.mx-10{
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
 }
 .mx-2{
   margin-left: 0.5rem;
@@ -2185,6 +2192,9 @@ select{
 }
 .mb-\[43px\]{
   margin-bottom: 43px;
+}
+.mb-\[50px\]{
+  margin-bottom: 50px;
 }
 .mb-\[70px\]{
   margin-bottom: 70px;
@@ -2804,6 +2814,9 @@ select{
 }
 .w-\[24px\]{
   width: 24px;
+}
+.w-\[250px\]{
+  width: 250px;
 }
 .w-\[25\]{
   width: 25;
@@ -4003,9 +4016,6 @@ select{
 .bg-\[url\(\'\.\.\/assets\/Agency\/bg-tuscany-banner\.jpg\'\)\]{
   background-image: url('../assets/Agency/bg-tuscany-banner.jpg');
 }
-.bg-\[url\(\'\.\.\/assets\/Brand\/bg-benessere-notte\.jpg\'\)\]{
-  background-image: url('../assets/Brand/bg-benessere-notte.jpg');
-}
 .bg-\[url\(\'\.\.\/assets\/Brand\/bg-benessere-risveglio\.jpg\'\)\]{
   background-image: url('../assets/Brand/bg-benessere-risveglio.jpg');
 }
@@ -5001,6 +5011,11 @@ select{
   --tw-text-opacity: 1;
   color: rgba(33, 37, 41, 1);
   color: rgba(33, 37, 41, var(--tw-text-opacity));
+}
+.text-\[\#214869\]{
+  --tw-text-opacity: 1;
+  color: rgba(33, 72, 105, 1);
+  color: rgba(33, 72, 105, var(--tw-text-opacity));
 }
 .text-\[\#258dca\]{
   --tw-text-opacity: 1;
@@ -6743,6 +6758,10 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
     width: 400px;
   }
 
+  .md\:w-\[50\%\]{
+    width: 50%;
+  }
+
   .md\:w-\[60\%\]{
     width: 60%;
   }
@@ -7590,6 +7609,10 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
 
   .lg\:w-\[65\%\]{
     width: 65%;
+  }
+
+  .lg\:w-\[66\%\]{
+    width: 66%;
   }
 
   .lg\:w-\[800px\]{

@@ -10,6 +10,7 @@ import {SocialSlider} from './SocialSlider';
 
 import badge from '../assets/Home/magniflex-badge-60years.png';
 import sustainable from '../assets/Home/sustainable-development-goals.png';
+import medal from '../assets/Home/medal.png';
 import raccontidivitasx from '../assets/Home/racconti-di-vita-sx.jpg';
 import raccontidivitacenter from '../assets/Home/racconti-di-vita-center.jpg';
 import raccontidivitadx from '../assets/Home/racconti-di-vita-dx.jpg';
@@ -107,6 +108,13 @@ export function Home() {
                     className="mx-auto mb-6"
                   />
                 </div>
+                <div>
+                  <img
+                    src={medal}
+                    alt="medal"
+                    className="mx-auto mb-6"
+                  />
+                </div>
                 <div className="py-5 mb-4 px-4">
                   <p className="text-white font-semibold uppercase text-lg">
                     We believe in a sustainable future
@@ -135,14 +143,13 @@ export function Home() {
                 className="w-full"
               />
             </div>
-            <div className="w-1/2 float-right px-3 md:px-0">
-              {/* <p className="text-8c8c8c text-[16px] xl:text-xl my-5 font-medium mb-4">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                quam velit, vulputate.
-              </p> */}
+            <div className="w-1/2 float-left mx-10 mt-[20px] mb-[50px] md:px-0">
+              <p className="text-[20px] text-black xl:text-xl my-5 font-medium mb-4">
+              A quality sleep is the prerequisite for living a healthy life full of energy.
+              </p>
               <div className="flex mt-5">
                 <Link
-                  to="/"
+                  to="/recharge-well-being"
                   className="uppercase text-174860 font-semibold text-xs xl:text-sm border border-174860 py-3 px-3 md:px-9 transition hover:text-white hover:bg-174860"
                 >
                   Discover more
@@ -237,7 +244,7 @@ export function Home() {
                     wondered if it’s good for you?
                   </span>
                   <br />
-                  <Link to="https://www.slowsleep.it/en/afternoon-nap-yes-or-no">
+                  <Link to="https://www.magniflex.com/en/blog-article-en/afternoon-nap-yes-or-no">
                     <span className="text-8c8c8c border border-light-gray px-2 py-2 mx-4">
                       Read more
                     </span>
@@ -275,7 +282,7 @@ export function Home() {
                     functioning of the immune system.
                   </span>
                   <br />
-                  <Link to="https://www.slowsleep.it/en/sleep-and-the-immune-system">
+                  <Link to="https://www.magniflex.com/en/blog-article-en/sleep-and-the-immune-system">
                     <span className="text-8c8c8c border border-light-gray px-2 py-2 mx-4">
                       Read more
                     </span>

@@ -1,5 +1,6 @@
 import {Keyframes} from '@emotion/react';
 import Reveal, {Fade} from 'react-awesome-reveal';
+import EcovadisLogo from '~/assets/Environment/medal.png'
 import Logo_Img from '~/assets/Environment/logo.png';
 import Nature_Img from '~/assets/Environment/rispetto-natura.jpg';
 import Signor_img from '~/assets/Environment/signor-magniflex.jpg';
@@ -39,6 +40,19 @@ export function Environment({keyframe}: TProps) {
             </div>
             <div className="flex flex-wrap pt-12 md:mt-12">
               <div className="px-3 sm:w-10/12 md:w-8/12 lg:w-6/12 xl:w-5/12 xl:ml-offset-1">
+                <p className="text-text lg:text-xl text-black">
+                  For our performance in corporate sustainability, we have been awarded the bronze medal with EcoVadis. Magniflex reaches a scores that places it among the top 35% of companies with the best performance, according to EcoVadis.
+                </p>
+              </div>
+              <div className="px-3 sm:w-10/12 md:w-8/12 lg:w-5/12 xl:w-4/12 xl:ml-offset-1 2xl:w-3/12 2xl:ml-offset-1">
+                <img src={EcovadisLogo} className='w-[100px] mb-[50px]' alt="sustainability logo image" />
+                <a href='https://recognition.ecovadis.com/Z-H7EPm_X0GjWUzMFHsroQ' className="px-7 py-3 border text-xs border-dark-blue text-dark-blue uppercase mt-12">
+                  FIND OUT MORE
+                </a>
+              </div>
+            </div>
+            <div className="flex flex-wrap pt-12 md:mt-12">
+              <div className="px-3 sm:w-10/12 md:w-8/12 lg:w-6/12 xl:w-5/12 xl:ml-offset-1">
                 <p className="text-text lg:text-xl text-dark-blue">
                   Magniflex has also decided to embrace the UN's SDG project to
                   drive a clear and measurable environmental improvement
@@ -46,10 +60,10 @@ export function Environment({keyframe}: TProps) {
                 </p>
               </div>
               <div className="px-3 sm:w-10/12 md:w-8/12 lg:w-5/12 xl:w-4/12 xl:ml-offset-1 2xl:w-3/12 2xl:ml-offset-1">
-                <img src={Logo_Img} alt="sustainability logo image" />
-                <button className="px-7 py-3 border text-xs border-dark-blue text-dark-blue uppercase mt-12">
+                <img src={Logo_Img} className='mb-[50px]' alt="sustainability logo image" />
+                <a href='https://sdgs.un.org/goals' className="px-7 py-3 border text-xs border-dark-blue text-dark-blue uppercase mt-12">
                   FIND OUT MORE
-                </button>
+                </a>
               </div>
             </div>
           </div>

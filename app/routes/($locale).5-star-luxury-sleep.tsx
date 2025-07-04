@@ -27,7 +27,8 @@ import logo_1 from '~/assets/FiveStars/Logo/club18.webp';
 import logo_2 from '~/assets/FiveStars/Logo/club19.webp';
 import logo_3 from '~/assets/FiveStars/Logo/club05.webp';
 import logo_4 from '~/assets/FiveStars/Logo/club10.webp';
-import logo_5 from '~/assets/FiveStars/Logo/justme.webp';
+import logo_5 from '~/assets/FiveStars/Logo/Nobu-Hotel-beach-clubd.png'
+// import logo_5 from '~/assets/FiveStars/Logo/justme.webp';
 import logo_6 from '~/assets/FiveStars/Logo/penelope.webp';
 import logo_7 from '~/assets/FiveStars/Logo/logo-wi-ki-woo.webp';
 import logo_8 from '~/assets/FiveStars/Logo/club01.webp';
@@ -438,9 +439,9 @@ export default function Contatti(props: {keyframe: Keyframes}) {
                 <div className="text-center p-4 flex justify-center h-32">
                   <img src={logo_10} className="max-w" />
                 </div>
-                <div className="text-center p-4 flex justify-center h-32">
+                {/* <div className="text-center p-4 flex justify-center h-32">
                   <img src={logo_11} className="max-w" />
-                </div>
+                </div> */}
                 <div className="text-center p-4 flex justify-center h-32">
                   <img src={logo_12} className="max-w" />
                 </div>

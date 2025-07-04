@@ -7,10 +7,12 @@ import {RxChevronRight} from 'react-icons/rx';
 import Slider from 'react-slick';
 import img1 from '~/assets/Test/tab-slide-scopri-materasso-1.jpg';
 import img2 from '~/assets/Test/tab-slide-scopri-materasso-2.jpg';
-import img3 from '~/assets/Test/banner-scegli-il-materasso.jpg';
+import img3 from '~/assets/Test/tab-slide-scopri-materasso-3.jpg';
+import img4 from '~/assets/Test/tab-slide-scopri-materasso-4.jpg';
+
 import 'swiper/css/effect-fade';
 
-const images = [img1, img3, img1, img2];
+const images = [img1, img2, img3, img4];
 
 export function TestMattressWidget() {
   const [imageSwiper, setImageSwiper] = useState<SwiperType | undefined>(

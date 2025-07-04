@@ -22,8 +22,8 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
         <div className="lg:flex lg:flex-row">
           <div className="basis-full lg:basis-9/12 py-[140px]">
             <div className="max-w-[880px] mx-auto my-0 px-8">
-              <h1 className="text-5xl font-semibold my-8">Mattress Warranty</h1>
-              <p className="text-8c8c8c">
+              <h1 className="text-5xl text-[#174860] font-semibold my-8">Mattress Warranty</h1>
+              <p className="text-[#212529]">
                 Magniflex is pleased to provide you with a 10-year limited
                 warranty to protect against any potential workmanship or
                 material defects in our mattresses. The limited warranty for
@@ -50,7 +50,7 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
               <h4 className="text-xl font-semibold my-4">
                 Exclusions from Mattress Coverage:
               </h4>
-              <p className="text-8c8c8c">
+              <p className="text-[#212529]">
                 Our mattress limited warranty shall NOT apply in the following
                 circumstances:
                 <ul style={{listStyle: 'inherit'}} className="ml-8">
@@ -208,7 +208,7 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
               <h4 className=" text-xl font-semibold w-full my-4 text-center">
                 3-Year Limited Pillow Warranty
               </h4>
-              <p className="text-8c8c8c">
+              <p className="text-[#212529]">
                 Magniflex USA, Magniflex Canada Ltd ensures the quality of your
                 purchase with a comprehensive three (3) year warranty. During
                 this period, Magniflex, at its discretion and with handling
@@ -219,7 +219,7 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
               <h4 className="text-xl font-semibold my-4">
                 Covered by this Warranty:
               </h4>
-              <p className="text-8c8c8c">
+              <p className="text-[#212529]">
                 Our mattress limited warranty shall NOT apply in the following
                 circumstances:
                 <ul style={{listStyle: 'inherit'}} className="ml-8">
@@ -237,7 +237,7 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
               <h4 className="text-xl font-semibold my-4">
                 This Warranty Excludes
               </h4>
-              <p className="text-8c8c8c">
+              <p className="text-[#212529]">
                 <ul style={{listStyle: 'inherit'}} className="ml-8">
                   <li>
                     Normal softness increase that doesn't compromise the
@@ -254,13 +254,13 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
               <h4 className=" text-xl font-bold w-full my-4 text-center">
                 How to Initiate a Warranty Claim:
               </h4>
-              <p className="text-8c8c8c">
+              <p className="text-[#212529]">
                 Contact the authorized retailer from whom you purchased the
                 product. If your retailer is unavailable, reach out directly to
                 Magniflex at the following address:
               </p>
               <h4 className="text-xl font-semibold my-4">MAGNIFLEX USA LTD.</h4>
-              <p className="text-8c8c8c">
+              <p className="text-[#212529]">
                 <ul style={{listStyle: 'inherit'}} className="ml-8">
                   <li>3050 Biscayne Blvd, Ste 200</li>
                   <li>Miami, FL 33137</li>
@@ -273,13 +273,13 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
               <h4 className="text-xl font-semibold my-4">
                 Submit the following documents to the authorized retailer:
               </h4>
-              <p className="text-8c8c8c">
+              <p className="text-[#212529]">
                 Proof of purchase, indicating the date, location, and price of
                 the product. For further inquiries, contact Magniflex at the
                 provided details.
               </p>
               <br />
-              <p className="text-8c8c8c">
+              <p className="text-[#212529]">
                 Before any repair or replacement service is initiated, an
                 inspection by the authorized retailer or Magniflex may be
                 conducted to assess the product defect.

@@ -14,7 +14,7 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
               <h1 className="text-5xl font-semibold my-8">
                 How to receive your Magniflex product
               </h1>
-              <p className="text-8c8c8c">
+              <p className="text-[#212529]">
                 Magniflex shipments are free. We deliver by appointment and with
                 telephone notice. You can arrange the delivery day directly with
                 the courier, the product will be left at street level. <br />
@@ -24,7 +24,7 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
               </p>
               <br />
               <h4 className="text-xl font-semibold my-4">MATTRESSES</h4>
-              <p className="text-8c8c8c">
+              <p className="text-[#212529]">
                 To find out the actual delivery times for the products, contact
                 customer assistance on the toll-free number 800 030636 or send
                 an e-mail to{' '}
@@ -41,13 +41,13 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
               <br />
 
               <h4 className="text-xl font-semibold my-4">PILLOWS</h4>
-              <p className="text-8c8c8c">
+              <p className="text-[#212529]">
                 All lines within: 4 weeks (excluding Saturdays and Sundays).
               </p>
               <br />
 
               <h4 className="text-xl font-semibold my-4">NETWORKS</h4>
-              <p className="text-8c8c8c">
+              <p className="text-[#212529]">
                 The products with immediate availability will be shipped within
                 48 hours of receipt of payment. Unavailable products will be
                 shipped within 4 weeks of receiving payment.
@@ -55,34 +55,34 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
               <br />
 
               <h4 className="text-xl font-semibold my-4">SHEET</h4>
-              <p className="text-8c8c8c">
+              <p className="text-[#212529]">
                 All lines available within: 4 weeks (excluding Saturdays and
                 Sundays).
               </p>
               <br />
 
               <h4 className="text-xl font-semibold my-4">MATTRESS COVER</h4>
-              <p className="text-8c8c8c">
+              <p className="text-[#212529]">
                 All lines available within: 4 weeks (excluding Saturdays and
                 Sundays).
               </p>
               <br />
 
               <h4 className="text-xl font-semibold my-4">YOGA ACCESSORIES</h4>
-              <p className="text-8c8c8c">
+              <p className="text-[#212529]">
                 Futon Yoga within: 4 weeks (excluding Saturdays and Sundays).
               </p>
               <br />
 
               <h4 className="text-xl font-semibold my-4">PET</h4>
-              <p className="text-8c8c8c">
+              <p className="text-[#212529]">
                 All lines available within: 4 weeks (excluding Saturdays and
                 Sundays).
               </p>
               <br />
               <br />
               <h1 className="text-5xl font-semibold my-8">Returns</h1>
-              <p className="text-8c8c8c">
+              <p className="text-[#212529]">
                 All products purchased through the website www.magniflex.com can
                 be returned according to what is indicated in the Conditions of
                 Use published in the dedicated section, we invite you to
@@ -100,7 +100,7 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
               </p>
               <ol
                 type="1"
-                className="text-8c8c8c"
+                className="text-[#212529]"
                 style={{
                   marginLeft: '20px',
                   paddingLeft: '10px',
@@ -131,7 +131,7 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
                 </li>
               </ol>
               <br />
-              <p className="text-8c8c8c">
+              <p className="text-[#212529]">
                 In order for the return to be accepted, the goods must be intact
                 and packed correctly, in the original packaging. For any
                 clarification, please refer to{' '}
@@ -144,7 +144,7 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
                 .
               </p>
               <br />
-              <p className="text-8c8c8c">
+              <p className="text-[#212529]">
                 <strong className="text-dark-blue">
                   Wrong or defective item
                 </strong>
@@ -156,7 +156,7 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
                 arrange for collection and replacement.
               </p>
               <br />
-              <p className="text-8c8c8c">
+              <p className="text-[#212529]">
                 <strong className="text-dark-blue">
                   Replace the item or change the size
                 </strong>
@@ -172,7 +172,7 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
                 refund.
               </p>
               <br />
-              <p className="text-8c8c8c">
+              <p className="text-[#212529]">
                 <strong className="text-dark-blue">
                   Item return and refund
                 </strong>
@@ -190,7 +190,7 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
                 service and agree on the collection date and time.
               </p>
               <br />
-              <p className="text-8c8c8c">
+              <p className="text-[#212529]">
                 <strong className="text-dark-blue">Refund method</strong>
                 <br />
                 Once the shipment has been received, our quality control will

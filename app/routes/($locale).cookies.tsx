@@ -21,18 +21,18 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
       <div className="justify-center">
         <div className="lg:flex lg:flex-row">
           <div className="basis-full lg:basis-9/12 py-[140px]">
-            <div className="max-w-[880px] mx-auto my-0 px-8">
-              <h1 className="text-5xl font-semibold my-8 text-174860">
+            <div className="max-w-[880px] mx-auto my-0 px-8 text-[#212529]">
+              <h1 className="text-5xl text-[#174860] font-semibold my-8">
                 Cookies
               </h1>
-              <p>
+              <p className='text-[#212529]'>
                 We have created a Cookie Policy as part of our project not only
                 to comply with recent legislation, but also to ensure
                 transparency and clarity about what happens when you visit our
                 website.
               </p>
               <br />
-              <p>
+              <p className='text-[#212529]'>
                 A <strong>cookie</strong> is a piece of data that is stored on a
                 computer, tablet or mobile phone when you surf the internet so
                 that the computer, tablet or phone can be recognized at a later
@@ -40,16 +40,16 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
                 a natural person; they only recognize the device you are using.
               </p>
               <br />
-              <p>Cookies are distinguished:</p>
+              <p className='text-[#212529]'>Cookies are distinguished:</p>
               <br />
-              <p>
+              <p className='text-[#212529]'>
                 - based on the entity that installs them on the user's terminal,
                 depending on whether it is the owner of the site the user is
                 visiting or owned by a different site that installs cookies
                 through the site visited (third-party cookies)
               </p>
               <br />
-              <p>
+              <p className='text-[#212529]'>
                 - based on the purpose of each cookie: some cookies are used by
                 the site to function correctly and make life easier for users by
                 remembering, for example, if they are authenticated or allowing
@@ -57,7 +57,7 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
                 cookies)
               </p>
               <br />
-              <p>
+              <p className='text-[#212529]'>
                 - other cookies that allow the site that installed them to
                 monitor user navigation also for the purpose of sending
                 advertising and/or offering services in line with the
@@ -69,7 +69,7 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
                 </strong>
               </p>
               <br />
-              <p>
+              <p className='text-[#212529]'>
                 Furthermore, these cookies are used to collect information on
                 how users use the site. We use the information to compile
                 reports and to help us improve the site. The cookies collect
@@ -78,13 +78,13 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
                 the pages they have visited.
               </p>
               <br />
-              <p>
+              <p className='text-[#212529]'>
                 If cookies are not enabled on your computer, tablet or mobile
                 phone, your experience on the website may be limited (for
                 example, you may not be able to navigate fully).
               </p>
               <br />
-              <p>
+              <p className='text-[#212529]'>
                 What information do we take <br />
                 <br />
                 For a comprehensive list of the cookies we collect see the

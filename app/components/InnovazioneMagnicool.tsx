@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Keyframes} from '@emotion/react';
 import {Fade, Reveal} from 'react-awesome-reveal';
 
@@ -8,17 +8,78 @@ import Magnicool2_Img from '~/assets/Brand/materasso-magnicool1.jpg';
 export const InnovazioneMagnicool = React.forwardRef<HTMLDivElement, any>(
   (props: {keyframe: Keyframes}, ref) => {
     const {keyframe} = props;
-
+    const [imgState, setImgState] = useState(false)
     return (
       <div ref={ref}>
         <section className="pb-16 md:pb-24 lg:pb-28">
           <div className="px-3 sm:container	box-border py-8 text-text text-gold uppercase lg:text-xl mb-5">
             <div className="max-w-7xl mx-auto">MAGNICOOL</div>
           </div>
-          <div
-            className="w-full h-[430px] md:h-[550px] lg:h-[770px] bg-cover bg-center"
-            style={{backgroundImage: `url("${Magnicool1_Img}")`}}
-          ></div>
+          <section className="pb-16 md:pb-24 lg:pb-28">
+            <Fade duration={1000} triggerOnce>
+              <div className="px-3 sm:container">
+                <div className=" max-w-7xl mx-auto flex flex-wrap justify-between text-174860">
+                  <div className="w-full lg:w-7/12 mb-12 lg:px-3">
+                    <a
+                      className="video-modal-btn video-image-btn relative"
+                      role="button"
+                      onClick={()=>setImgState(true)}
+                    >
+                      <img src={Magnicool1_Img} alt="Magnistretch image 9" />
+                    </a>                    
+                  </div>
+                  <div className="w-full lg:w-5/12 xxl-4/12 lg:px-3">
+                    <p className="text-text lg:text-[20px]">
+                      <p className="mb-6">
+                        <strong className="block mb-1 md:my-2">
+                          Thermal resistance tests
+                        </strong>
+                          Show that MagniCool has a resistance and heat release index that is twice as high as standard.
+                      </p>
+                      <p className="mb-6">
+                        <strong className="block mb-1 md:my-2">
+                          Unparalleled freshness
+                        </strong>
+                          Thousands of microparticles distributed between the fibres ensure that the temperature is lowered, giving
+                          an instant sensation of freshness.
+                      </p>
+                      {imgState && (
+                        <div
+                          className="video-modal z-50"
+                          id="InnovazioneMagnistretchModal"
+                        >
+                          <div className="basis-6/12">
+                            <button
+                              type="button"
+                              style={{
+                                filter:
+                                  'invert(1) grayscale(100%) brightness(200%)',
+                              }}
+                              onClick={() => setImgState(false)}
+                            >
+                              <svg width="20" height="20" viewBox="0 0 20 20">
+                                <path
+                                  d="M10 10l5.09-5.09L10 10l5.09 5.09L10 10zm0 0L4.91 4.91 10 10l-5.09 5.09L10 10z"
+                                  stroke="currentColor"
+                                  fill="none"
+                                  fill-rule="evenodd"
+                                ></path>
+                              </svg>
+                            </button>
+                            <iframe
+                              className="w-full aspect-video"
+                              src="https://youtu.be/embed/DfmKtGoEzkE"
+                              allowFullScreen
+                            ></iframe>
+                          </div>
+                        </div>
+                      )}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </Fade>
+          </section>
         </section>
         <section className="pb-16 md:pb-24 lg:pb-28">
           <Fade duration={1000} triggerOnce>

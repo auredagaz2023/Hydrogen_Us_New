@@ -28,7 +28,7 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
                 1. Identity of the data controller. Data protection officer.
                 Contact data
               </h4>
-              <p className="text-8c8c8c">
+              <p className="text-[#212529]">
                 In compliance with the obligations set forth in Articles 12, 13,
                 and 14 of Regulation (EU) 2016/679 (General Data Protection
                 Regulation, hereinafter “GDPR”) and set forth in current
@@ -51,7 +51,7 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
               <br />
 
               <h4 className="text-xl font-semibold my-4">2. Definitions</h4>
-              <p className="text-8c8c8c">
+              <p className="text-[#212529]">
                 For the purposes of the above mentioned legislation, the
                 following definitions apply: <br />
                 <br />
@@ -112,7 +112,7 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
                 nature of the disclosure of data. Consequences in case of
                 failure to provide data
               </h4>
-              <p className="text-8c8c8c">
+              <p className="text-[#212529]">
                 The Data Controller processes personal data referring to the
                 user as "data subject", as they are provided voluntarily or
                 legitimately found. <br />
@@ -130,7 +130,7 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
                 In particular, the following personal data are processed:
               </p>
               <br />
-              <p className="text-8c8c8c ml-4">
+              <p className="text-[#212529] ml-4">
                 <strong className="text-dark-blue leading-7">
                   3.1. Data relating to the operation of this site
                 </strong>
@@ -151,7 +151,7 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
                 other data held by third parties.
               </p>
               <br />
-              <p className="text-8c8c8c ml-4">
+              <p className="text-[#212529] ml-4">
                 <strong className="text-dark-blue leading-7">
                   3.2. Data relating to promotional and profiling activities
                 </strong>
@@ -204,7 +204,7 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
                 intended. Legal basis of the processing
               </h4>
               <br />
-              <p className="text-8c8c8c">
+              <p className="text-[#212529]">
                 Below are the purposes of the processing of personal data
                 referring to the user (data subject), i.e. both those acquired
                 automatically through navigation and those voluntarily provided
@@ -215,7 +215,7 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
                 the Controller relating to the service requested.
               </p>
               <br />
-              <p className="text-8c8c8c ml-4">
+              <p className="text-[#212529] ml-4">
                 <strong className="text-dark-blue leading-7">
                   4.1. Data relating to the functioning of this website
                 </strong>
@@ -239,7 +239,7 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
                 its use (art. 6 (1f) GDPR).
               </p>
               <br />
-              <p className="text-8c8c8c ml-4">
+              <p className="text-[#212529] ml-4">
                 <strong className="text-dark-blue leading-7">
                   4.2. Data relating to promotional activities (referred to as
                   marketing) and/or market research
@@ -338,7 +338,7 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
                 outside the EU
               </h4>
               <br />
-              <p className="text-8c8c8c">
+              <p className="text-[#212529]">
                 The personal data provided by the persons to whom such data
                 refer (data), directly or indirectly, will be processed in a
                 mainly automated form, with logic strictly related to the
@@ -415,13 +415,13 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
 
               <h4 className="text-xl font-semibold my-4">6. Storage period</h4>
               <br />
-              <p className="text-8c8c8c">
+              <p className="text-[#212529]">
                 The personal data communicated by the data subject or in any
                 case processed by the Controller, are saved for the time
                 necessary to fulfill the specific purposes, as indicated below.
               </p>
               <br />
-              <p className="text-8c8c8c ml-4">
+              <p className="text-[#212529] ml-4">
                 <strong className="text-dark-blue leading-7">
                   6.1. Data relating to the functioning of this website
                 </strong>
@@ -443,7 +443,7 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
                 statutory storage period and/or for any legal requirements.
               </p>
               <br />
-              <p className="text-8c8c8c ml-4">
+              <p className="text-[#212529] ml-4">
                 <strong className="text-dark-blue leading-7">
                   6.2. Data relating to promotional and/or market research
                   activities
@@ -470,7 +470,7 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
                 7. Rights of the data subject
               </h4>
               <br />
-              <p className="text-8c8c8c">
+              <p className="text-[#212529]">
                 In relation to the described processing of personal data, the
                 data subject may at any time contact the Controller at the
                 addresses indicated in point 1, without any formality, in order
@@ -606,7 +606,7 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
 
               <h4 className="text-xl font-semibold my-4">8. COOKIES</h4>
               <br />
-              <p className="text-8c8c8c">
+              <p className="text-[#212529]">
                 The Italian Data Protection Authority considers session,
                 functionality, and (only in certain specific conditions)
                 analytics cookies as technical cookies. In particular, the
@@ -768,7 +768,7 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
 
               <h4 className="text-xl font-semibold my-4">9. Klarna</h4>
               <br />
-              <p className="text-8c8c8c">
+              <p className="text-[#212529]">
                 Per poter offrire all'utente i metodi di pagamento di Klarna, al
                 checkout potremmo trasmettere a Klarna i dati personali
                 dell'utente sotto forma di recapiti e dettagli dell'ordine, in

@@ -18,12 +18,13 @@ import thumb3 from '~/assets/Brand/thumb3.svg';
 import thumb4 from '~/assets/Brand/thumb4.svg';
 import ArrowRight from '~/assets/arrow-right.svg';
 import ArrowLeft from '~/assets/arrow-left.svg';
+import { Link } from './Link';
 
 const thumbs = [
-  {thumb: thumb1, title: 'SOFT - SOFT'},
-  {thumb: thumb2, title: 'SOFT - FIRM'},
-  {thumb: thumb3, title: 'FIRM - SOFT'},
-  {thumb: thumb4, title: 'FIRM - FIRM'},
+  {thumb: thumb1, title: 'FIRM - FIRM'},
+  {thumb: thumb2, title: 'FIRM - SOFT'},
+  {thumb: thumb3, title: 'SOFT - FIRM'},
+  {thumb: thumb4, title: 'SOFT - SOFT'},
 ];
 
 export const InnovazioneDualCore = React.forwardRef<HTMLDivElement, any>(
@@ -200,7 +201,7 @@ export const InnovazioneDualCore = React.forwardRef<HTMLDivElement, any>(
                         </button>
                         <iframe
                           className="w-full aspect-video"
-                          src=" https://www.youtube.com/watch?embeds_referring_euri=https%3A%2F%2Fb2c.magniflex.com%2F&source_ve_path=MTY0NTAz&feature=emb_share&v=jjIeKW9fDfU?autoplay=1&amp;modestbranding=1&amp;showinfo=0&amp;loop=1"
+                          src="https://youtu.be/NQO9MCy9HWA"
                           allowFullScreen
                         ></iframe>
                       </div>
@@ -254,12 +255,12 @@ export const InnovazioneDualCore = React.forwardRef<HTMLDivElement, any>(
                         Mattress with <strong>Dual Core</strong> technology
                       </p>
                     </div>
-                    <a
+                    <Link
                       className="mb-2 lg:mb-0 font-bold bg-174860 text-white px-10 py-4 pointer uppercase text-xs hover:bg-2f88b1 float-right inline-block whitespace-nowrap"
-                      href="/mattresses/dolce-vita?product=dolce-vita-dual-10"
+                      to="/mattresses/dolce-vita?product=dolcevita-dual-10"
                     >
                       Discover the product
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

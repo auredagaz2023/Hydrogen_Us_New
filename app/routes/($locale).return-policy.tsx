@@ -7,22 +7,22 @@ export default function ReturnPolicy() {
         <div className="basis-full lg:basis-9/12 pt-[50px] pb-[140px]">
           <div className="max-w-[880px] mx-auto my-0 px-8 text-[11px] md:text-[16px]">
             <h1
-              className="mt-18 mb-4 xl:mb-6  text-black font-bold landing-[1.15]"
+              className="mt-18 mb-4 xl:mb-6  text-[#212529] font-bold landing-[1.15]"
             >
               Magniflex USA Ltd Return Policy
             </h1>
-            <p className='landing-[1.15]  text-black font-normal mb-4 xl:mb-6'>
+            <p className='landing-[1.15]  text-[#212529] font-normal mb-4 xl:mb-6'>
               At Magniflex USA Ltd, we're dedicated to ensuring you experience the ultimate night's sleep.
             </p>
-            <p className='landing-[1.15]  text-black font-normal mb-4 xl:mb-6'>
+            <p className='landing-[1.15]  text-[#212529] font-normal mb-4 xl:mb-6'>
               Our commitment to quality is evident in our use of premium materials, meticulous attention to 
               detail, and exceptional craftsmanship. We proudly stand behind our products, offering you  
               the confidence to purchase directly from us.
             </p>
-            <p className="mt-18 mb-4 xl:mb-6  text-black font-bold landing-[1.15]">
+            <p className="mt-18 mb-4 xl:mb-6  text-[#212529] font-bold landing-[1.15]">
               Mattresses 
             </p>
-            <p className="mt-18 mb-4 xl:mb-6  landing-[1.15] text-dark-blue">
+            <p className="mt-18 mb-4 xl:mb-6  landing-[1.15] text-[#212529]">
               At Magniflex, we're dedicated to ensuring you enjoy the ultimate sleep comfort. 
               If, for any reason, you find yourself dissatisfied with your Magniflex product purchased 
               directly from our website, please do not hesitate to contact us at <span className='font-bold'>1-888-381-8481</span> or via 
@@ -40,11 +40,11 @@ export default function ReturnPolicy() {
               Your comfort is our priority.
             </p>
             <h1
-              className="mt-18 mb-4 xl:mb-6  text-black font-bold landing-[1.15]"
+              className="mt-18 mb-4 xl:mb-6  text-[#212529] font-bold landing-[1.15]"
             >
               Foundations and Adjustable Basis
             </h1>
-            <p className='landing-[1.15]  text-black font-normal mb-4 xl:mb-6'>
+            <p className='landing-[1.15]  text-[#212529] font-normal mb-4 xl:mb-6'>
               While we regret to inform you that returns cannot be accommodated for foundations and adjustable bases, 
               we are dedicated to ensuring your satisfaction. If you experience any concerns with your base, 
               please feel free to reach out to us at <span className='font-bold'>786-233-8805</span>. 
@@ -52,11 +52,11 @@ export default function ReturnPolicy() {
               assist you with any inquiries or issues you may have.
             </p>
             <h1
-              className="mt-18 mb-4 xl:mb-6  text-black font-bold landing-[1.15]"
+              className="mt-18 mb-4 xl:mb-6  text-[#212529] font-bold landing-[1.15]"
             >
               Pillows, Bed Linens,Mattress Protectors, Mattress Toppers and Other Accessories 
             </h1>
-            <p className='landing-[1.15]  text-black font-normal mb-4 xl:mb-6'>
+            <p className='landing-[1.15]  text-[#212529] font-normal mb-4 xl:mb-6'>
               Given the intimate nature of these items, returns are exclusively accepted in the event of 
               damage upon delivery or product defects.Please note that for pillows, 
               returns are only accepted in cases of defects.

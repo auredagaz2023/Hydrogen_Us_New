@@ -29,7 +29,7 @@ export function SostenibilitaSlider() {
     prevArrow: <img src={ArrowRight} id="prevArrow-1" alt="arrow-left" />,
   };
   return (
-    <div id="SostenibilitaSlider" className="w-full py-16 lg:py-32">
+    <div id="SostenibilitaSlider" className="w-full bg-f7 py-16 lg:py-32">
       <div className="container flex justify-start items-center text-174860 mb-4">
         <div>
           <h5 className="text-[1.1rem] lg:text-xl">MAGNIFLEX'S GOALS</h5>

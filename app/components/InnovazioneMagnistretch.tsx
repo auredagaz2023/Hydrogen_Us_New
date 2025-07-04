@@ -272,6 +272,7 @@ export const InnovazioneMagnistretch = React.forwardRef<HTMLDivElement, any>(
             <div className="px-3 sm:container">
               <div className="max-w-7xl mx-auto flex flex-wrap justify-between">
                 <div className="w-full sm:w-4/12 mb-4 sm:px-3">
+                  <div>Why MagniStretch</div>
                   <a
                     className="video-modal-btn video-image-btn relative"
                     onClick={() => handleClickImage1()}
@@ -310,7 +311,7 @@ export const InnovazioneMagnistretch = React.forwardRef<HTMLDivElement, any>(
                         </button>
                         <iframe
                           className="w-full aspect-video"
-                          src="https://www.youtube.com/embed/jjIeKW9fDfU?rel=0&loop=0"
+                          src="https://www.youtube.com/embed/bBxfAvlVYdA?rel=0&loop=0"
                           title="Tecnologia Dual Core Magniflex"
                           allowFullScreen
                         ></iframe>
@@ -319,6 +320,7 @@ export const InnovazioneMagnistretch = React.forwardRef<HTMLDivElement, any>(
                   )}
                 </div>
                 <div className="w-full sm:w-4/12 mb-4 sm:px-3">
+                  <div>How it works</div>
                   <a
                     className="video-modal-btn video-image-btn relative"
                     onClick={() => handleClickImage2()}
@@ -353,7 +355,7 @@ export const InnovazioneMagnistretch = React.forwardRef<HTMLDivElement, any>(
                         </button>
                         <iframe
                           className="w-full aspect-video"
-                          src="https://www.youtube.com/embed/nsVK_xRqzhk?autoplay=1&amp;modestbranding=1&amp;showinfo=0&amp;loop=1"
+                          src="https://www.youtube.com/embed/FXDGX4Dc5K4?autoplay=1&amp;modestbranding=1&amp;showinfo=0&amp;loop=1"
                           title="Tecnologia Dual Core Magniflex"
                           allowFullScreen
                         ></iframe>
@@ -362,6 +364,7 @@ export const InnovazioneMagnistretch = React.forwardRef<HTMLDivElement, any>(
                   )}
                 </div>
                 <div className="w-full sm:w-4/12 mb-4 sm:px-3">
+                  <div>Approved by Medical Professionals</div>
                   <a
                     className="video-modal-btn video-image-btn relative"
                     onClick={() => handleClickImage3()}
@@ -396,7 +399,7 @@ export const InnovazioneMagnistretch = React.forwardRef<HTMLDivElement, any>(
                         </button>
                         <iframe
                           className="w-full aspect-video"
-                          src="https://www.youtube.com/embed/Lox5kCylvwQ?autoplay=1&amp;modestbranding=1&amp;showinfo=0&amp;loop=1"
+                          src="https://www.youtube.com/embed/WcMRRCPQFZ8?autoplay=1&amp;modestbranding=1&amp;showinfo=0&amp;loop=1"
                           title="Tecnologia Dual Core Magniflex"
                           allowFullScreen
                         ></iframe>
