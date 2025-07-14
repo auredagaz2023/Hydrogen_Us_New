@@ -5012,11 +5012,6 @@ select{
   color: rgba(33, 37, 41, 1);
   color: rgba(33, 37, 41, var(--tw-text-opacity));
 }
-.text-\[\#214869\]{
-  --tw-text-opacity: 1;
-  color: rgba(33, 72, 105, 1);
-  color: rgba(33, 72, 105, var(--tw-text-opacity));
-}
 .text-\[\#258dca\]{
   --tw-text-opacity: 1;
   color: rgba(37, 141, 202, 1);

@@ -37,26 +37,26 @@ export function CollectionsProductDetails({
 
   const getCardLink = (collection: Collection, product: Product) => {
     let cardLink = '/mattresses/'+collectionHandle;
-    // switch (product.productType) {
-    //   case 'Mattress':
-    //     cardLink = `/mattresses`;
-    //     break;
+    switch (product.productType) {
+      case 'Mattress':
+        cardLink = `/mattresses`;
+        break;
 
-    //   case 'Pillow':
-    //     cardLink = `/pillows`;
-    //     break;
+      case 'Pillow':
+        cardLink = `/pillows`;
+        break;
 
-    //   case 'Topper':
-    //     cardLink = `/toppers/details`;
-    //     break;
+      case 'Topper':
+        cardLink = `/toppers/details`;
+        break;
 
-    //   case 'Beds and Bases':
-    //     cardLink = `/bed-bases/details`;
-    //     break;
+      case 'Beds and Bases':
+        cardLink = `/bed-bases/details`;
+        break;
 
-    //   default:
-    //     break;
-    // }
+      default:
+        break;
+    }
 
     return `${cardLink}?product=${slugify(product.title)}`;
   };
