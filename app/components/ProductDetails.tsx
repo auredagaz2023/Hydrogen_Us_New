@@ -34,9 +34,6 @@ export function ProductDetails({
   };
 
   const getCardLink = (collection: Collection, product: Product) => {
-    console.log('get card link')
-    console.log('collection', collection)
-    console.log('product', product.productType)
     let cardLink = '';
     switch (product.productType) {
       case 'Mattress':

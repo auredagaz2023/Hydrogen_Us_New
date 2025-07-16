@@ -1,5 +1,4 @@
 const CustomRichTextRenderer = ({ content }) => {
-  console.log('custom rich text renderer', content.content)
   const renderNode = (node, index) => {
     switch (node.nodeType) {
       case 'paragraph':

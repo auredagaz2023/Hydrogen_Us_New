@@ -20,8 +20,6 @@ export const action: ActionFunction = async ({
   context,
   params: {lang, id, resetToken},
 }) => {
-  console.log('token', resetToken);
-  console.log('id', id);
   if (
     !id ||
     !resetToken ||
@@ -38,7 +36,6 @@ export const action: ActionFunction = async ({
   const password = formData.get('password');
   const passwordConfirm = formData.get('passwordConfirm');
 
-  console.log('passowrd', password);
   if (
     !password ||
     !passwordConfirm ||

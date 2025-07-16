@@ -183,7 +183,6 @@ export function AccessoriesProductContent({
           if (galleryEntry && galleryEntry.fields.videos) {
             // Get the array of video references in order
             const videoRefs = galleryEntry.fields.videos;
-            console.log('video refs!!!', res)
             // Map these to the actual assets while preserving order
             const orderedVideos = videoRefs.map((ref: any) => {
               const assetId = ref.sys.id;
@@ -191,7 +190,6 @@ export function AccessoriesProductContent({
             }).filter(Boolean); // filter out any undefined entries
             
             setVideoGalleries(orderedVideos);
-            console.log('Ordered video assets:', orderedVideos);
           }
         });
     })();

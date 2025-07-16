@@ -117,8 +117,6 @@ export function CollectionDetails({
     )}`;
   };
 
-  console.log('products!!!!', collection.products)
-
   return (
     <div className="w-full px-3 xl:px-6 md:w-1/2 lg:w-4/12 mt-6 mb-12 ">
       <div className="collection-image w-full aspect-[10/7] relative">

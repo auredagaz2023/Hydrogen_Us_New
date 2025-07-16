@@ -95,7 +95,6 @@ export function ProductContent({
         .then((res) => res.json())
         .then((res) => {
           const response = res as unknown as ContentfulProductSheet;
-          console.log('response!!!', response)
           setProductSheet(response);
           const productSpecifications = response.includes?.Entry.find(
             (entry) =>
