@@ -116,8 +116,8 @@ export function ProductContent({
               productComfortLevel.fields as ContentfulComfortLevel,
             );
 
-          const galleryEntry = response.includes?.Entry.find(
-            (entry) => entry.sys.id === response.items[0].fields.gallery.sys.id,
+          const galleryEntry = response.includes?.Entry?.find(
+            (entry) => entry?.sys?.id === response?.items[0]?.fields?.gallery?.sys?.id,
           );
           if (galleryEntry) {
             const galleryImages = (galleryEntry as unknown as GalleryEntry)
@@ -380,11 +380,11 @@ export function ProductContent({
               {productSheet && (
                 <img
                   src={
-                    productSheet.includes?.Asset.find(
+                    productSheet.includes?.Asset?.find(
                       (asset) =>
-                        asset.sys.id ===
-                        productSheet.items[0]?.fields.structureImage.sys.id,
-                    )?.fields.file.url
+                        asset?.sys?.id ===
+                        productSheet?.items[0]?.fields?.structureImage?.sys?.id,
+                    )?.fields?.file?.url
                   }
                   className="w-full h-auto"
                   alt="product structure image"
