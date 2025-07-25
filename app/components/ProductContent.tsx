@@ -140,7 +140,6 @@ export function ProductContent({
         });
     })();
   }, [product]);
-  console.log('product share and size!!!',product.shapeAndSize.value)
 
   return (
     <div className="px-5 md:container py-16 md:py-24 lg:py-28">
@@ -190,7 +189,7 @@ export function ProductContent({
                   shape and size
                 </div>
                 <div className="text-174860 text-sm">
-                  {/* {JSON.parse(product?.shapeAndSize?.value)?.children?.map((node, i) => {
+                  {JSON.parse(product?.shapeAndSize?.value)?.children?.map((node, i) => {
                     if (node.type === "paragraph") {
                       return (
                         <p key={i}>
@@ -206,8 +205,8 @@ export function ProductContent({
                       );
                     }
                     return null;
-                  })} */}
-                  <RichText data={JSON.parse(product.shapeAndSize.value)} />
+                  })}
+                  {/* <RichText data={JSON.parse(product.shapeAndSize.value)} /> */}
                 </div>
               </div>
             }
@@ -231,7 +230,7 @@ export function ProductContent({
           {product?.productType === 'Pillow' && 
 
             <div className="mt-8">
-              {productSheet && productSheet?.items[0]?.fields?.sleepStyle && (
+              {/* {productSheet && productSheet?.items[0]?.fields?.sleepStyle && (
                 <>
                   <div className="text-174860 text-md font-semibold uppercase mb-4">
                     A great pillow for
@@ -292,7 +291,7 @@ export function ProductContent({
                     )}
                   </div>
                 </>
-              )}
+              )} */}
             </div>
           }
         </div>
