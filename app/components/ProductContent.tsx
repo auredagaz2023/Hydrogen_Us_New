@@ -140,6 +140,7 @@ export function ProductContent({
         });
     })();
   }, [product]);
+  console.log('product share and size!!!',product.shapeAndSize.value)
 
   return (
     <div className="px-5 md:container py-16 md:py-24 lg:py-28">
@@ -189,6 +190,23 @@ export function ProductContent({
                   shape and size
                 </div>
                 <div className="text-174860 text-sm">
+                  {/* {JSON.parse(product?.shapeAndSize?.value)?.children?.map((node, i) => {
+                    if (node.type === "paragraph") {
+                      return (
+                        <p key={i}>
+                          {node.children.map((child, j) => {
+                            const parts = child.value.split("\n");
+                            return parts.map((line, k) => (
+                              <div key={`${j}-${k}`}>
+                                {line}
+                              </div>
+                            ));
+                          })}
+                        </p>
+                      );
+                    }
+                    return null;
+                  })} */}
                   <RichText data={JSON.parse(product.shapeAndSize.value)} />
                 </div>
               </div>
