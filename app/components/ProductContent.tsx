@@ -571,22 +571,23 @@ export function ProductContent({
                     </p>
                   </div>
                 </div>
-
-                <div className="border-b border-b-border flex px-[20px]">
-                  <img
-                    src={ThicknessImg}
-                    alt="specification collection"
-                    className="w-[25px] h-[25px] mr-[16px]"
-                  />
-                  <div className="pb-3 md:pb-6">
-                    <p className="uppercase text-174860 text-xs my-0 font-bold">
-                      Thickness
-                    </p>
-                    <p className="text-b09987 text-xs mt-2">
-                      {specifications.height}
-                    </p>
+                {product.productType !== 'Pillow' &&
+                  <div className="border-b border-b-border flex px-[20px]">
+                    <img
+                      src={ThicknessImg}
+                      alt="specification collection"
+                      className="w-[25px] h-[25px] mr-[16px]"
+                    />
+                    <div className="pb-3 md:pb-6">
+                      <p className="uppercase text-174860 text-xs my-0 font-bold">
+                        Thickness
+                      </p>
+                      <p className="text-b09987 text-xs mt-2">
+                        {specifications.height}
+                      </p>
+                    </div>
                   </div>
-                </div>
+                }
                 <div className="border-b border-b-border flex px-[20px]">
                   <img
                     src={ExtraImg}
