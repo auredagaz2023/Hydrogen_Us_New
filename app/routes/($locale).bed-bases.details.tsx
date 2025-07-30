@@ -54,6 +54,7 @@ import {Swiper as SwiperType} from 'swiper/types/index';
 import {BsChevronDown} from 'react-icons/bs';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import {RxMinusCircled, RxPlusCircled} from 'react-icons/rx';
+import affirm_banner from '~/assets/magniflex-us-banner-affirm-product-page-02.jpg'
 
 const seo: SeoHandleFunction<typeof loader> = ({data}) => {
   const media = flattenConnection<MediaConnection>(data.product.media).find(
@@ -454,6 +455,9 @@ export default function Product() {
               </div>
             </>
       )}
+        </div>
+        <div className='absolute px-5 py-8 bg-white'>
+          <img src={affirm_banner}></img>
         </div>
       </div>
       <div

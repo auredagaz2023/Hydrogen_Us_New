@@ -37,6 +37,7 @@ import Slider, {type Settings} from 'react-slick';
 import {useMediaQuery} from '~/hooks/useMediaQuery';
 import FadeIn from '~/components/FadeIn';
 import renderRichText from '~/lib/renderRichText';
+import affirm_banner from '../assets/magniflex-us-banner-affirm-product-page-02.jpg'
 
 const seo: SeoHandleFunction<typeof loader> = ({data}) => ({
   title: data?.product?.seo?.title,
@@ -606,7 +607,7 @@ export default function CollectionProducts() {
           </div>
         </div>
       </div>
-      <div className="w-full lg:w-3/12 bg-white lg:border-l-[30px] lg:border-[#f7f7f7] pb-3">
+      <div className="w-full lg:w-3/12 bg-white lg:border-l-[30px] lg:border-[#f7f7f7] pb-3 relative">
         <FadeIn>
           <h1 className="product-title text-cusSubheading text-dark-blue font-semibold lg:text-[25px] mt-[15px] mb-[10px] p-5">
             {selectedProduct.title}
@@ -1021,6 +1022,9 @@ export default function CollectionProducts() {
               </div>
             </>
           )}
+        </div>
+        <div className='absolute px-5 py-8 bg-white'>
+          <img src={affirm_banner}></img>
         </div>
       </div>
       <div

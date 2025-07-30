@@ -3,8 +3,72 @@ import {Link} from '@remix-run/react';
 export function CollectionLinks() {
   return (
     <div className="flex flex-row flex-wrap justify-between items-center bg-f7 py-12 lg:py-24">
-      <div className="sm:container grid grid-cols-2 md:grid-cols-5">
-        <div className="border-E4E4E4 border-r border-b md:border-b-0 px-4 md:px-12 pb-8 md:pb-0">
+      <div className="sm:container grid grid-cols-2 md:grid-cols-3">
+        <div className="border-E4E4E4 border-r border-b md:border-b-0 px-4 md:px-12 pt-8 md:pt-0">
+          <span>
+          <svg
+            id="Livello_1"
+            viewBox="0 0 40 40"
+            width="40px"
+            height="40px"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g transform="scale(0.313)"> {/* 40 / 127.9 ≈ 0.313 */}
+              <g>
+                <path
+                  fill="#17485e"
+                  d="M16.8,77.4c-6.3,0-11.5-5.2-11.5-11.5V29.5h107.3v-12.7c0-8.7-7.1-15.8-15.8-15.8H16.8C8.1,1,1,8.1,1,16.8v49.1
+                      c0,8.7,7.1,15.8,15.8,15.8h79.3v-4.3H16.8ZM5.3,16.8c0-6.3,5.2-11.5,11.5-11.5h80c6.3,0,11.5,5.2,11.5,11.5v8.3H5.3v-8.3Z"
+                />
+                <path
+                  fill="#17485e"
+                  d="M112.7,65.9c0-1.2-.9-2.2-2.2-2.2s-2.2.9-2.2,2.2,0,1.1-.1,1.6h4.4c0-.5,0-1.1,0-1.6Z"
+                />
+              </g>
+              <path
+                fill="#17485e"
+                d="M126.4,59.7c-.5-1.6-1.5-3-2.7-4.1v-7.3c0-7.2-5.9-13.1-13.1-13.1s-13.1,5.9-13.1,13.1v7.3c-1.2,1.1-2.2,2.5-2.7,4.1
+                    -.9,2.7-.6,5.7.8,8.2,2.3,4,6.8,8.5,13.5,13.3.4.3.9.5,1.5.5s1.1-.2,1.5-.5c6.7-4.8,11.3-9.3,13.6-13.3,1.4-2.5,1.7-5.5.8-8.2ZM110.5,38
+                    c5.7,0,10.3,4.6,10.3,10.3v5.5c-.6-.3-1.3-.4-1.9-.5v-4.7c0-4.7-3.8-8.5-8.4-8.5s-8.5,3.8-8.5,8.5v4.7c-.6.1-1.2.3-1.9.5v-5.5
+                    c0-5.7,4.6-10.3,10.3-10.3ZM110.5,56.7c-1.2-1.3-3.1-2.9-5.6-3.4v-4.7c0-3.1,2.5-5.6,5.6-5.6s5.6,2.5,5.6,5.6v4.8
+                    c-2.6.5-4.5,2.2-5.6,3.4Z"
+              />
+              <path
+                fill="#ffffff"
+                d="M108.6,64.6c1.6-1.7,4.5-.6,4.5,1.8s-.8,2.2-1.9,2.5v1.8c0,1-1.5,1-1.5,0v-1.8c-1.8-.5-2.5-2.8-1.1-4.3"
+              />
+            </g>
+          </svg>
+          </span>
+          <div className="text-174860 font-semibold text-lg md:text-base my-4">
+            Find the nearest store
+          </div>
+          <Link
+            to={`/store-locator`}
+            className="hover:underline decoration-[#174860] relative flex justify-between"
+          >
+            <div className="text-B09987 font-semibold text-sm">Find</div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              xmlnsXlink="http://www.w3.org/1999/xlink"
+              version="1.1"
+              id="Livello_1"
+              x="0px"
+              y="0px"
+              width="15px"
+              height="15px"
+              viewBox="0 0 36 36"
+              enableBackground="new 0 0 36 36"
+              xmlSpace="preserve"
+            >
+              <polygon
+                fill="#174860"
+                points="10.575,0.538 9.161,1.952 24.718,17.508 8.454,33.771 9.868,35.186 27.546,17.508 "
+              />
+            </svg>
+          </Link>
+        </div>
+        <div className="border-E4E4E4 border-r border-b md:border-b-0 px-4 md:px-12 pt-8 md:pt-0">
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +119,7 @@ export function CollectionLinks() {
           </Link>
         </div>
 
-        <div className="border-E4E4E4 md:border-r border-b md:border-b-0 px-4 md:px-12 pb-8 md:pb-0">
+        <div className="border-E4E4E4 border-r md:border-r-0 border-b md:border-b-0 px-4 md:px-12 pt-8 md:pt-0">
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +169,7 @@ export function CollectionLinks() {
           </Link>
         </div>
 
-        <div className="border-E4E4E4 border-r px-4 md:px-12 hidden md:block">
+        <div className="border-E4E4E4 border-r px-4 md:px-12 hidden md:block pt-0 md:pt-8">
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -158,7 +222,7 @@ export function CollectionLinks() {
           </Link>
         </div>
 
-        <div className="border-E4E4E4 border-r px-4 md:px-12 pt-8 md:pt-0">
+        <div className="border-E4E4E4 border-r border-b md:border-b-0 px-4 md:px-12 pt-8">
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -211,7 +275,7 @@ export function CollectionLinks() {
           </Link>
         </div>
 
-        <div className="px-4 md:px-12 pt-8 md:pt-0">
+        <div className="px-4 md:px-12 pt-8 border-r md:border-r-0 border-b md:border-b-0">
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"

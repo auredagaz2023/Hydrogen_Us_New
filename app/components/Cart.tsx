@@ -20,6 +20,7 @@ import type {
 } from '@shopify/hydrogen/storefront-api-types';
 import {useFetcher} from '@remix-run/react';
 import {CartAction} from '~/lib/type';
+import affirm_banner from '../assets/magniflex-us-banner-affirm-cart-02.jpg'
 import renderRichText from '~/lib/renderRichText';
 
 type Layouts = 'page' | 'drawer';
@@ -67,6 +68,9 @@ export function CartDetails({
           <CartCheckoutActions checkoutUrl={cart.checkoutUrl} />
         </CartSummary>
       )}
+      <div className='w-full px-6 md:px-12'>
+        <img src={affirm_banner}></img>
+      </div>
     </div>
   );
 }

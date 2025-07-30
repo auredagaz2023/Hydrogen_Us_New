@@ -156,7 +156,7 @@ export function ProductContent({
             />
           )}
         </div>
-        <div className="col-span-12 lg:col-start-6 lg:col-span-6 pt-8">
+        <div className="col-span-12 lg:col-start-6 lg:col-span-4 pt-8">
           {product.headline && (
             <h5 className="text-[#174860] font-semibold pb-8 text-xl">
               {product.headline.value}

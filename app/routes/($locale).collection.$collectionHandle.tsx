@@ -29,6 +29,7 @@ import AnchorLink from 'react-anchor-link-smooth-scroll';
 import CollectionProductCard from '~/components/CollectionProductCard';
 import {RxMinusCircled, RxPlusCircled} from 'react-icons/rx';
 import FadeIn from '~/components/FadeIn';
+import affirm_banner from '~/assets/magniflex-us-banner-affirm-product-page-02.jpg'
 
 const seo: SeoHandleFunction<typeof loader> = ({data}) => ({
   title: data?.collection?.seo?.title,
@@ -811,6 +812,9 @@ export default function CollectionProducts() {
               ADD TO CART
             </button>
           )}
+        </div>
+        <div className='absolute px-5 py-8 bg-white'>
+          <img src={affirm_banner}></img>
         </div>
       </div>
       <div

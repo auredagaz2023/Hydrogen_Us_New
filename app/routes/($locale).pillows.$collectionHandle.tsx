@@ -34,6 +34,7 @@ import CollectionProductCard from '~/components/CollectionProductCard';
 import {slugify} from '~/routes/($locale).news';
 import {RxMinusCircled, RxPlusCircled} from 'react-icons/rx';
 import FadeIn from '~/components/FadeIn';
+import affirm_banner from '~/assets/magniflex-us-banner-affirm-product-page-02.jpg'
 
 const contentfulEndpoint = `https://cdn.contentful.com/spaces/7xbaxb2q56jj/entries/6CZ0VtYrPTikwSp1XmXPXM?access_token=yGGCia7N7dHraGe5fsBZkSHsms6QExEKbWy0XdKIn9g`;
 
@@ -915,6 +916,9 @@ export default function CollectionProducts() {
               ADD TO CART
             </button>
           )}
+        </div>
+        <div className='absolute px-5 py-8 bg-white'>
+          <img src={affirm_banner}></img>
         </div>
       </div>
       <div

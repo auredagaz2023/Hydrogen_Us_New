@@ -18,6 +18,7 @@ import certificazioni from '../assets/Home/certificazioni.png';
 import blog_1 from '../assets/Home/blog1.jpg';
 import blog_2 from '../assets/Home/blog2.jpg';
 import blog_3 from '../assets/Home/blog3.jpg';
+import affirm_banner from '../assets/Home/magniflex-us-banner-affirm-home-02.jpg'
 
 export function Home() {
   return (
@@ -25,8 +26,15 @@ export function Home() {
       <Fade duration={1000}>
         <HomeHeroSlider />
       </Fade>
-      <Fade duration={1000}>
-        <CollectionLinks />
+      <Fade duration={1000} className='bg-f7'>
+        <div className='flex flex-col md:flex-row w-full'>
+          <div className='flex items-center justify-center w-full md:w-[40%] px-[30px] lg:px-[80px] bg-f7'>
+            <img className='lg:h-[80%] md:h-[50%] max-h-[400px] object-fit' src={affirm_banner}></img>
+          </div>
+          <div className='w-full md:w-[60%]'>
+            <CollectionLinks />
+          </div>
+        </div>
       </Fade>
       <Reveal duration={1000}>
         <div className="container pt-24">

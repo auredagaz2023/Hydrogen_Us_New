@@ -34,6 +34,7 @@ import CollectionProductCard from '~/components/CollectionProductCard';
 import {slugify} from '~/routes/($locale).news';
 import {RxMinusCircled, RxPlusCircled} from 'react-icons/rx';
 import FadeIn from '~/components/FadeIn';
+import affirm_banner from '~/assets/magniflex-us-banner-affirm-product-page-02.jpg'
 
 const contentfulEndpoint = `https://cdn.contentful.com/spaces/7xbaxb2q56jj/entries/6CZ0VtYrPTikwSp1XmXPXM?access_token=yGGCia7N7dHraGe5fsBZkSHsms6QExEKbWy0XdKIn9g`;
 
@@ -470,7 +471,7 @@ export default function CollectionProducts() {
           </div>
         </div>
       </div>
-      <div className="w-full lg:w-3/12 bg-white lg:border-l-[30px] lg:border-[#f7f7f7] pb-3">
+      <div className="w-full lg:w-3/12 bg-white lg:border-l-[30px] lg:border-[#f7f7f7] pb-3 relative">
         <FadeIn>
           { 
           productType=='Pillow' && homePromotion?.items[0].fields?.pillowPromoLabelExclude?.filter((item:string)=>(item.toLowerCase()==product.title.toLowerCase()))?.length==0  &&
@@ -862,6 +863,9 @@ export default function CollectionProducts() {
               ADD TO CART
             </button>
           )}
+        </div>
+        <div className='absolute px-5 py-8 bg-white'>
+          <img src={affirm_banner}></img>
         </div>
       </div>
       <div
