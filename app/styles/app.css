@@ -2644,9 +2644,6 @@ select{
 .max-h-\[33px\]{
   max-height: 33px;
 }
-.max-h-\[400px\]{
-  max-height: 400px;
-}
 .max-h-\[535px\]{
   max-height: 535px;
 }
@@ -6614,10 +6611,6 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
     height: 350px;
   }
 
-  .md\:h-\[50\%\]{
-    height: 50%;
-  }
-
   .md\:h-\[500px\]{
     height: 500px;
   }
@@ -7516,10 +7509,6 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
     height: 770px;
   }
 
-  .lg\:h-\[80\%\]{
-    height: 80%;
-  }
-
   .lg\:h-auto{
     height: auto;
   }
@@ -7627,6 +7616,10 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
 
   .lg\:w-full{
     width: 100%;
+  }
+
+  .lg\:w-\[40\%\]{
+    width: 40%;
   }
 
   .lg\:max-w-7xl{
@@ -7937,6 +7930,11 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
   .lg\:py-\[86px\]{
     padding-top: 86px;
     padding-bottom: 86px;
+  }
+
+  .lg\:px-\[40px\]{
+    padding-left: 40px;
+    padding-right: 40px;
   }
 
   .lg\:pb-10{

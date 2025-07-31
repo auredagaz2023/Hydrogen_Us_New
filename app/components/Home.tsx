@@ -27,11 +27,11 @@ export function Home() {
         <HomeHeroSlider />
       </Fade>
       <Fade duration={1000} className='bg-f7'>
-        <div className='flex flex-col md:flex-row w-full'>
-          <div className='flex items-center justify-center w-full md:w-[40%] px-[30px] lg:px-[80px] bg-f7'>
-            <img className='lg:h-[80%] md:h-[50%] max-h-[400px] object-fit' src={affirm_banner}></img>
+        <div className='flex flex-col lg:flex-row w-full'>
+          <div className='flex items-center justify-center w-full lg:w-[40%] px-[30px] lg:px-[40px] bg-f7'>
+            <img className='w-full' src={affirm_banner}></img>
           </div>
-          <div className='w-full md:w-[60%]'>
+          <div className='w-full lg:w-[60%]'>
             <CollectionLinks />
           </div>
         </div>
