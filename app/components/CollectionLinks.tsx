@@ -41,7 +41,7 @@ export function CollectionLinks() {
           </svg>
           </span>
           <div className="text-174860 font-semibold text-lg md:text-base my-4">
-            Find the nearest store
+            Pay over time with Affirm
           </div>
           <Link
             to={`/store-locator`}
