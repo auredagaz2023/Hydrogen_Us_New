@@ -93,7 +93,7 @@ export function CollectionLinks() {
           <div className="text-174860 font-semibold text-lg md:text-base my-4">
             Find the nearest store
           </div>
-          {/* <Link
+          <Link
             to={`/store-locator`}
             className="hover:underline decoration-[#174860] relative flex justify-between"
           >
@@ -116,7 +116,7 @@ export function CollectionLinks() {
                 points="10.575,0.538 9.161,1.952 24.718,17.508 8.454,33.771 9.868,35.186 27.546,17.508 "
               />
             </svg>
-          </Link> */}
+          </Link>
         </div>
 
         <div className="border-E4E4E4 border-r md:border-r-0 border-b md:border-b-0 px-4 md:px-12 pt-8 md:pt-0">
@@ -141,7 +141,7 @@ export function CollectionLinks() {
           <div className="text-174860 font-semibold text-lg md:text-base my-4">
             Free shipping across US
           </div>
-          {/* <Link
+          <Link
             to={`/shipping-methods`}
             className="relative flex justify-between"
           >
@@ -166,7 +166,7 @@ export function CollectionLinks() {
                 points="10.575,0.538 9.161,1.952 24.718,17.508 8.454,33.771 9.868,35.186 27.546,17.508 "
               />
             </svg>
-          </Link> */}
+          </Link>
         </div>
 
         <div className="border-E4E4E4 border-r px-4 md:px-12 hidden md:block pt-0 md:pt-8">
@@ -194,7 +194,7 @@ export function CollectionLinks() {
           <div className="text-174860 font-semibold text-lg md:text-base my-4">
             Check shipping options
           </div>
-          {/* <Link
+          <Link
             to={`/shipping-methods`}
             className="hover:underline decoration-[#174860] relative flex justify-between"
           >
@@ -219,7 +219,7 @@ export function CollectionLinks() {
                 points="10.575,0.538 9.161,1.952 24.718,17.508 8.454,33.771 9.868,35.186 27.546,17.508 "
               />
             </svg>
-          </Link> */}
+          </Link>
         </div>
 
         <div className="border-E4E4E4 border-r border-b md:border-b-0 px-4 md:px-12 pt-8">
@@ -247,7 +247,7 @@ export function CollectionLinks() {
           <div className="text-174860 font-semibold text-lg md:text-base my-4">
             Try your mattress in store
           </div>
-          {/* <Link
+          <Link
             to={`/store-locator`}
             className="hover:underline decoration-[#174860] relative flex justify-between"
           >
@@ -272,7 +272,7 @@ export function CollectionLinks() {
                 points="10.575,0.538 9.161,1.952 24.718,17.508 8.454,33.771 9.868,35.186 27.546,17.508 "
               />
             </svg>
-          </Link> */}
+          </Link>
         </div>
 
         <div className="px-4 md:px-12 pt-8 border-r md:border-r-0 border-b md:border-b-0">
@@ -300,7 +300,7 @@ export function CollectionLinks() {
           <div className="text-174860 font-semibold text-lg md:text-base my-4">
             Ask support to our customer care
           </div>
-          {/* <Link
+          <Link
             to={`/contacts`}
             className="hover:underline decoration-[#174860] relative flex justify-between"
           >
@@ -325,7 +325,7 @@ export function CollectionLinks() {
                 points="10.575,0.538 9.161,1.952 24.718,17.508 8.454,33.771 9.868,35.186 27.546,17.508 "
               />
             </svg>
-          </Link> */}
+          </Link>
         </div>
       </div>
     </div>
