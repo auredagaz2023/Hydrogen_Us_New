@@ -43,11 +43,13 @@ export function CollectionLinks() {
           <div className="text-174860 font-semibold text-lg md:text-base my-4">
             Pay over time with Affirm
           </div>
-          {/* <Link
-            to={`/store-locator`}
+          <Link
+            to={`https://www.affirm.com/disclosures`}
+            target="_blank"
+            rel="noopener noreferrer"
             className="hover:underline decoration-[#174860] relative flex justify-between"
           >
-            <div className="text-B09987 font-semibold text-sm">Find</div>
+            <div className="text-B09987 font-semibold text-sm">See disclosures</div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -66,7 +68,7 @@ export function CollectionLinks() {
                 points="10.575,0.538 9.161,1.952 24.718,17.508 8.454,33.771 9.868,35.186 27.546,17.508 "
               />
             </svg>
-          </Link> */}
+          </Link>
         </div>
         <div className="border-E4E4E4 border-r border-b md:border-b-0 px-4 md:px-12 pt-8 md:pt-0">
           <span>
