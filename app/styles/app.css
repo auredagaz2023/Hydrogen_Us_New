@@ -2012,6 +2012,9 @@ select{
 .m-6{
   margin: 1.5rem;
 }
+.m-auto{
+  margin: auto;
+}
 .mx-0{
   margin-left: 0px;
   margin-right: 0px;
@@ -2107,6 +2110,10 @@ select{
 .my-auto{
   margin-top: auto;
   margin-bottom: auto;
+}
+.my-\[40px\]{
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 .-mb-8{
   margin-bottom: -2rem;
@@ -2354,6 +2361,9 @@ select{
 }
 .mt-\[35px\]{
   margin-top: 35px;
+}
+.mt-\[80px\]{
+  margin-top: 80px;
 }
 .box-border{
   box-sizing: border-box;
@@ -2884,6 +2894,9 @@ select{
 }
 .w-screen{
   width: 100vw;
+}
+.w-\[400px\]{
+  width: 400px;
 }
 .min-w-4{
   min-width: 1rem;
@@ -3858,6 +3871,11 @@ select{
   background-color: rgba(247, 247, 247, 1);
   background-color: rgba(247, 247, 247, var(--tw-bg-opacity));
 }
+.bg-\[\#f9f9f9\]{
+  --tw-bg-opacity: 1;
+  background-color: rgba(249, 249, 249, 1);
+  background-color: rgba(249, 249, 249, var(--tw-bg-opacity));
+}
 .bg-\[\#fec63c\]{
   --tw-bg-opacity: 1;
   background-color: rgba(254, 198, 60, 1);
@@ -4636,6 +4654,9 @@ select{
 }
 .pt-\[96px\]{
   padding-top: 96px;
+}
+.pt-\[80px\]{
+  padding-top: 80px;
 }
 .text-left{
   text-align: left;
@@ -6749,10 +6770,6 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
     width: 330px;
   }
 
-  .md\:w-\[40\%\]{
-    width: 40%;
-  }
-
   .md\:w-\[400px\]{
     width: 400px;
   }
@@ -7590,6 +7607,10 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
     width: 36px;
   }
 
+  .lg\:w-\[40\%\]{
+    width: 40%;
+  }
+
   .lg\:w-\[400px\]{
     width: 400px;
   }
@@ -7618,8 +7639,8 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
     width: 100%;
   }
 
-  .lg\:w-\[40\%\]{
-    width: 40%;
+  .lg\:w-\[50\%\]{
+    width: 50%;
   }
 
   .lg\:max-w-7xl{
@@ -7842,6 +7863,11 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
     padding-right: 30px;
   }
 
+  .lg\:px-\[40px\]{
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
   .lg\:px-\[50px\]{
     padding-left: 50px;
     padding-right: 50px;
@@ -7850,11 +7876,6 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
   .lg\:px-\[70px\]{
     padding-left: 70px;
     padding-right: 70px;
-  }
-
-  .lg\:px-\[80px\]{
-    padding-left: 80px;
-    padding-right: 80px;
   }
 
   .lg\:py-0{
@@ -7930,11 +7951,6 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
   .lg\:py-\[86px\]{
     padding-top: 86px;
     padding-bottom: 86px;
-  }
-
-  .lg\:px-\[40px\]{
-    padding-left: 40px;
-    padding-right: 40px;
   }
 
   .lg\:pb-10{
