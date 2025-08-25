@@ -4,7 +4,9 @@ import emailjs from '@emailjs/browser';
 import magniflexlogo from '~/assets/Landing/Desktop/magniflex.svg'
 import FadeIn from '~/components/FadeIn';
 import desktopHeader from '../assets/labor-day-promo-2025/header/magniflex-us-labor-day-header-desktop-02.jpg'
+import desktopHeaderBottom from '../assets/labor-day-promo-2025/header/magniflex-landing-benefit-bar.gif'
 import mobileHeader from '../assets/labor-day-promo-2025/header/magniflex-us-labor-day-header-mobile.jpg'
+import mobileHeaderBottom from '../assets/labor-day-promo-2025/header/magniflex-landing-benefit-bar-mobile-A.gif'
 import dolcevitapng from '../assets/labor-day-promo-2025/products/desktop/01-dolce-vita.jpg'
 import dolcevitapng_roll from '../assets/labor-day-promo-2025/products/roll/01-dolce-vita-roll.jpg'
 import mobileDolcevitapng from '../assets/labor-day-promo-2025/products/mobile/01-dolce-vita.jpg'
@@ -111,24 +113,42 @@ const products = [
     bottom: "Save up to $1,500",
     mattress: true
   },
-  {
-    advance: "Performance and essentiality",
-    advance_color: "#5E5E5E",
-    img: classicopng,
-    roll_img: classicopng_roll,
-    mobile_img: mobileClassicopng,
-    name: "Classico",
-    description: "The perfect combination of performance and essentiality for a mattress with built-in massaging system designed to meet every sleep need",
-    bestfor: "quality sleep lover, restorative sleep seekers",
-    fitness: "medium-firm",
-    original_price: "$3,499",
-    price: "$2,999",
-    button: "Shop Classico",
-    link: "https://magniflex.us/mattresses/classico?product=classico-9",
-    bottom: "Save up to $500",
-    mattress: true
-  },
+  // {
+  //   advance: "Performance and essentiality",
+  //   advance_color: "#5E5E5E",
+  //   img: classicopng,
+  //   roll_img: classicopng_roll,
+  //   mobile_img: mobileClassicopng,
+  //   name: "Classico",
+  //   description: "The perfect combination of performance and essentiality for a mattress with built-in massaging system designed to meet every sleep need",
+  //   bestfor: "quality sleep lover, restorative sleep seekers",
+  //   fitness: "medium-firm",
+  //   original_price: "$3,499",
+  //   price: "$2,999",
+  //   button: "Shop Classico",
+  //   link: "https://magniflex.us/mattresses/classico?product=classico-9",
+  //   bottom: "Save up to $500",
+  //   mattress: true
+  // },
 ]
+
+const Classico = {
+  advance: "Performance and essentiality",
+  advance_color: "#5E5E5E",
+  img: classicopng,
+  roll_img: classicopng_roll,
+  mobile_img: mobileClassicopng,
+  name: "Classico",
+  description: "The perfect combination of performance and essentiality for a mattress with built-in massaging system designed to meet every sleep need",
+  bestfor: "quality sleep lover, restorative sleep seekers",
+  fitness: "medium-firm",
+  original_price: "$3,499",
+  price: "$2,999",
+  button: "Shop Classico",
+  link: "https://magniflex.us/mattresses/classico?product=classico-9",
+  bottom: "Save up to $500",
+  mattress: true
+}
 
 export const meta: MetaFunction = () => {
   return [{
@@ -204,13 +224,21 @@ export default function LaborDayPromo2025() {
       <FadeIn>
         <img src={desktopHeader} loading='lazy' alt="header" className='w-full hidden md:block' />
         <img src={mobileHeader} loading='lazy' alt="header" className='w-full md:hidden' />
+        <div className='flex overflow:hidden px-[32px] text-[13px] landing-[34px] justify-center items-start md:items-center flex-col md:flex-row md:space-x-nav bg-[#f9f9f9] w-100 text-white md:h-[50px] py-2'>
+          <img src={desktopHeaderBottom} loading='lazy' alt="header" className='hidden md:block' />
+          <img src={mobileHeaderBottom} loading='lazy' alt="header" className='md:hidden' />
+        </div>
       </FadeIn>
-      <div className="px-3 sm:container py-16 md:py-24 lg:py-28">
-        <div className={`flex flex-row flex-wrap items-center justify-center`}>
-          {/* Heading */}
-          <div className="w-full md:w-5/12 pb-4">
-            <h2 className="text-dark-blue text-cusSubheading lg:text-40 font-semibold">Explore our collections</h2>
+      <div className="px-3 sm:container py-16 md:py-24 lg:py-28" style={{ lineHeight: 1.5 }}>
+        <div className='bg-white text-[#174860] landing-[29px] text-[17.5px] text-center pb-[64px] md:pb-[32px] px-[30px] md:px-[20%]'>
+          <div style={{ marginBottom: '25px' }}>
+            This Labor Day, reward yourself with more space, more comfort - and more savings.<br />
+            Get a <span className='font-bold'>King mattress for the price of a Queen</span>, or a <span className='font-bold'>Queen for the price of a Full</span>,<br />
+            and enjoy luxurious rest while <span className='font-bold'>saving up to $1,500</span>.
           </div>
+        </div>
+        <div className='bg-white text-[#174860] text-[35px] font-bold text-center leading-1 py-[24px] px-[20px] mb-[24px] md:mb-[55px]' style={{ marginBottom: '55px' }}>
+          Explore our collections
         </div>
         <div className='grid grid-cols-1 lg:grid-cols-2 mb-[70px]'>
           {
@@ -263,16 +291,17 @@ export default function LaborDayPromo2025() {
                     />
                   </div>
                   <div className='flex flex-col items-center px-0 md:px-12'>
+                    <div style={{ color: product.advance_color, marginTop: '24px' }} className={`mt-[24px] lg:mt-[38px] text-[17px] lg:text-[13px] text-[${product.advance_color}] uppercase text-center font-bold`}>{product.advance}</div>
                     <a href={product.link} className='mt-[20px] text-[27.5px] lg:text-[22px] text-[#174860] landing-[24px] font-bold uppercase text-center hover:underline' >{product.name}</a>
                     <hr className='my-[20px] lg:hidden block border-0 clear-both, w-[96%] bg-[#174860] h-[1px]' />
                     <div className='mt-[20px] text-[17px] font-semibold md:font-normal text-[#174860] landing-[25px] md:text-center'>{product.description}</div>
                     <div className='mt-[30px] lg:mt-[25px] text-[17px] lg:text-[15px] md:text-center w-full'>
                       <span className='text-[#839BB1]'>Best for:</span> <span className='text-[rgb(23,72,96)] text-[15px]'>{product.bestfor}</span>
                       <br />
-                      <span className='text-[#839BB1]'>Firmness:</span> <span className='text-[#174860] text-[15px]'>{product.firmness}</span>
+                      <span className='text-[#839BB1]'>Firmness:</span> <span className='text-[#174860] text-[15px]'>{product.fitness}</span>
                     </div>
                     <div className='mt-[25px] text-[#839BB1] text-[13px] landing-[27.5px] text-center'>
-                      Starting at
+                      King starting at
                       <br className='hidden md:block' />
                       <span className='line-through'>{product.original_price}</span> <span className='text-red-600 text-[22px] landing-[27.5px]'>{product.price}</span>
                     </div>
@@ -283,6 +312,73 @@ export default function LaborDayPromo2025() {
               )
             })
           }
+        </div>
+        <div className='lg:w-[50%] w-full m-auto'>
+          <div className='px-[32px] md:px-12 pb-32 relative'>
+            <div className='relative h-auto'>
+              <img
+                src={Classico.roll_img}
+                onMouseOver={() => handleHover(4)}
+                onMouseOut={handleUnhover}
+                alt="product_img"
+                className='hidden md:block absolute'
+                style={{
+                  objectFit: 'cover',
+                  opacity: hoveredIndex === 4 ? 1 : 0,
+                  transition: 'opacity 0.5s ease'
+                }}
+              />
+              <img
+                src={Classico?.img}
+                onMouseOver={() => handleHover(4)}
+                onMouseOut={handleUnhover}
+                alt="product_img"
+                className='hidden md:block absolute'
+                style={{
+                  objectFit: 'cover',
+                  opacity: hoveredIndex !== 4 ? 1 : 0,
+                  transition: 'opacity 0.5s ease'
+                }}
+              />
+              <img
+                src={Classico?.img}
+                onMouseOver={() => handleHover(4)}
+                onMouseOut={handleUnhover}
+                alt="product_img"
+                className='hidden md:block'
+                style={{
+                  visibility: 'hidden'
+                }}
+              />
+              <img src={Classico.mobile_img}
+                onMouseOver={() => handleHover(4)}
+                onMouseOut={handleUnhover}
+                alt="product_img"
+                className='md:hidden'
+                style={{
+                  transition: '0.3s all ease' // Apply a smooth transition effect
+                }}
+              />
+            </div>
+            <div className='flex flex-col items-center px-0 md:px-12'>
+              <div style={{ color: Classico.advance_color, marginTop: '24px' }} className={`mt-[24px] lg:mt-[38px] text-[17px] lg:text-[13px] text-[${Classico.advance_color}] uppercase text-center font-bold`}>{Classico.advance}</div>
+              <a href={Classico.link} className='mt-[20px] text-[27.5px] lg:text-[22px] text-[#174860] landing-[24px] font-bold uppercase text-center hover:underline' >{Classico.name}</a>
+              <hr className='my-[20px] lg:hidden block border-0 clear-both, w-[96%] bg-[#174860] h-[1px]' />
+              <div className='mt-[20px] text-[17px] font-semibold md:font-normal text-[#174860] landing-[25px] md:text-center'>{Classico.description}</div>
+              <div className='mt-[30px] lg:mt-[25px] text-[17px] lg:text-[15px] md:text-center w-full'>
+                <span className='text-[#839BB1]'>Best for:</span> <span className='text-[rgb(23,72,96)] text-[15px]'>{Classico.bestfor}</span>
+                <br />
+                <span className='text-[#839BB1]'>Firmness:</span> <span className='text-[#174860] text-[15px]'>{Classico.fitness}</span>
+              </div>
+              <div className='mt-[25px] text-[#839BB1] text-[13px] landing-[27.5px] text-center'>
+                King starting at
+                <br className='hidden md:block' />
+                <span className='line-through'>{Classico.original_price}</span> <span className='text-red-600 text-[22px] landing-[27.5px]'>{Classico.price}</span>
+              </div>
+              <a className='text-center mt-[15px] py-4 px-8 uppercase border border-[#174860] hover:bg-[#174860] bg-transparent hover:text-white text-[#174860] text-[12px] sm:text-[15px] lg:text-[13px] font-semibold' href={Classico.link}>{Classico.button}</a>
+              <div className='mt-[15px] uppercase text-[#174860] text-center text-[17px] lg:text-[13px] font-semibold'>{Classico.bottom}</div>
+            </div>
+          </div>
         </div>
         <div className='flex flex-col mt-4 px-[30px] lg:p-4 pt-[40px] lg:pt-0'>
           <form onSubmit={(e) => handleSubmit(e)} ref={formRef} className='flex flex-col items-center lg:py-8'>
@@ -311,11 +407,15 @@ export default function LaborDayPromo2025() {
             <br />
             <button type='submit' className='border border-[#556268] text-[#174860] text-[17px] lg:text-[13px] font-semibold px-6 py-3 hover:bg-[#174860] hover:text-white uppercase'>subscribe</button>
           </form>
-          <div className='lg:mt-[40px] mt-[208px] w-full flex justify-center'>
+          <div className='lg:mt-[40px] mt-[208px] w-full flex justify-center hidden lg:block'>
             <img className='w-full h-auto' src={magniflexlogo} alt="" />
           </div>
           <hr className='text-[#0a2430] my-[20px] hidden lg:block border-[#888888]' />
-          <div className='text-[12px] sm:text-[16px] md:text-[20px] lg:text-[23px] text-center landing-[100px] font-semibold py-[30px] lg:py-0'>At Night, We Bring Life to Your Days.</div>
+          <div className='text-[12px] sm:text-[16px] md:text-[20px] lg:text-[23px] text-center landing-[100px] font-semibold py-[30px] lg:py-0 hidden lg:block'>At Night, We Bring Life to Your Days.</div>
+          <div className='text-[12px] m-auto my-[40px] mt-[80px] sm:text-[16px] md:text-[20px] lg:text-[23px] text-center landing-[100px] font-semibold py-[30px] lg:py-0 pt-[80px] lg:hidden relative' style={{ width: 'fit-content' }}>
+            <div className='absolute top-0'><img className='w-[400px] h-auto' src={magniflexlogo} alt="" /></div>
+            At Night, We Bring Life to Your Days.
+          </div>
         </div>
       </div>
     </>
