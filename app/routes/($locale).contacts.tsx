@@ -31,16 +31,19 @@ export default function Contatti(props: { keyframe: Keyframes }) {
   const [error, setError] = useState<string | undefined>(undefined);
   const [policyCheck, setPolicyCheck] = useState(false);
   const [showError, setShowError] = useState(false);
-  const recaptchaRef = useRef<ReCAPTCHA | null>(null);
+
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+
+  const handleCaptchaChange = (token: string | null) => {
+    console.log("Captcha token:", token);
+    setCaptchaToken(token);
+  };
 
   const sendEmail = async () => {
     setLoading(true);
     setError(undefined);
 
-    const token = await recaptchaRef.current?.executeAsync();
-    recaptchaRef.current?.reset();
-
-    if (!token) {
+    if (!captchaToken) {
       setError("reCAPTCHA failed. Please try again.");
       return;
     }
@@ -425,7 +428,7 @@ export default function Contatti(props: { keyframe: Keyframes }) {
             </div>
             <ReCAPTCHA
               sitekey={RECAPTCHA_SITE_KEY!}
-              ref={recaptchaRef}
+              onChange={handleCaptchaChange}
             />
             {success && (
               <div className="w-full bg-green-600 flex justify-center items-center text-white text-sm py-2 mt-3">
