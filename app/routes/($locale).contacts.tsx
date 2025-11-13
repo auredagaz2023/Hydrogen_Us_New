@@ -35,7 +35,6 @@ export default function Contatti(props: { keyframe: Keyframes }) {
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
   const handleCaptchaChange = (token: string | null) => {
-    console.log("Captcha token:", token);
     setCaptchaToken(token);
   };
 
@@ -67,7 +66,7 @@ export default function Contatti(props: { keyframe: Keyframes }) {
         },
         (error) => {
           console.error(error);
-          setError(error.text);
+          setError('Unknown error, please try again later!');
         },
       );
     // emailjs
@@ -437,7 +436,7 @@ export default function Contatti(props: { keyframe: Keyframes }) {
             )}
             {error && (
               <div className="w-full bg-red-600 flex justify-center items-center text-white text-sm py-2 mt-3">
-                Unknown error, please try again later!
+                {error}
               </div>
             )}
           </form>
