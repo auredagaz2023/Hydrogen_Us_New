@@ -411,11 +411,7 @@ export default function Contatti(props: { keyframe: Keyframes }) {
                     You should agree to the policy to submit.
                   </div>
                 )}
-                <ReCAPTCHA
-                  sitekey={RECAPTCHA_SITE_KEY!}
-                  size="invisible"
-                  ref={recaptchaRef}
-                />
+
                 <div className="flex place-content-end">
                   <button
                     type="submit"
@@ -427,6 +423,10 @@ export default function Contatti(props: { keyframe: Keyframes }) {
                 </div>
               </div>
             </div>
+            <ReCAPTCHA
+              sitekey={RECAPTCHA_SITE_KEY!}
+              ref={recaptchaRef}
+            />
             {success && (
               <div className="w-full bg-green-600 flex justify-center items-center text-white text-sm py-2 mt-3">
                 Contact email sent successfully!
