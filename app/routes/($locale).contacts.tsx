@@ -1,13 +1,15 @@
-import {FormEvent, useRef, useState} from 'react';
-import {Keyframes} from '@emotion/react';
-import {CollectionLinks} from '~/components/CollectionLinks';
-import {ContactOptions} from '~/components/ContactOptions';
+import { FormEvent, useRef, useState } from 'react';
+import { Keyframes } from '@emotion/react';
+import { CollectionLinks } from '~/components/CollectionLinks';
+import { ContactOptions } from '~/components/ContactOptions';
 import emailjs from '@emailjs/browser';
+import ReCAPTCHA from "react-google-recaptcha";
 
 const EMAILJS_SERVICE_ID = 'orders-mx-mail';
 const EMAILJS_CONTACT_TEMPLATE_ID = 'mx-usa-form-order';
 const EMAILJS_CONTACT_TEMPLATE_BILLING_ID = 'mx-usa-form-billing';
 const EMAILJS_PUBLIC_KEY = 'S4HKNw2-KC7dMdcU4';
+const RECAPTCHA_SITE_KEY = '6LdDlQssAAAAAP-syxd1WlLWQEgBrwyJyif-g7gI'
 
 interface ContactData {
   firstName: string;
@@ -22,17 +24,27 @@ interface ContactData {
   message?: string;
 }
 
-export default function Contatti(props: {keyframe: Keyframes}) {
+export default function Contatti(props: { keyframe: Keyframes }) {
   const formRef = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
   const [error, setError] = useState<string | undefined>(undefined);
   const [policyCheck, setPolicyCheck] = useState(false);
   const [showError, setShowError] = useState(false);
+  const recaptchaRef = useRef<ReCAPTCHA | null>(null);
 
   const sendEmail = async () => {
     setLoading(true);
     setError(undefined);
+
+    const token = await recaptchaRef.current?.executeAsync();
+    recaptchaRef.current?.reset();
+
+    if (!token) {
+      setError("reCAPTCHA failed. Please try again.");
+      return;
+    }
+
     emailjs
       .sendForm(
         EMAILJS_SERVICE_ID,
@@ -280,7 +292,6 @@ export default function Contatti(props: {keyframe: Keyframes}) {
                   id="state"
                   name="state"
                   autoComplete="state"
-                  placeholder="State"
                   aria-label="State"
                 >
                   <option>State</option>
@@ -343,7 +354,6 @@ export default function Contatti(props: {keyframe: Keyframes}) {
                   id="topic"
                   name="topic"
                   autoComplete="topic"
-                  placeholder="Topic"
                   aria-label="Topic"
                 >
                   <option value="">How do you know us?</option>
@@ -380,7 +390,7 @@ export default function Contatti(props: {keyframe: Keyframes}) {
                     name="agreePrivacy"
                     value="agreePrivacy"
                     onChange={() => setPolicyCheck(!policyCheck)}
-                    // required
+                  // required
                   />
                   <label
                     htmlFor="agreePrivacy"
@@ -401,6 +411,11 @@ export default function Contatti(props: {keyframe: Keyframes}) {
                     You should agree to the policy to submit.
                   </div>
                 )}
+                <ReCAPTCHA
+                  sitekey={RECAPTCHA_SITE_KEY!}
+                  size="invisible"
+                  ref={recaptchaRef}
+                />
                 <div className="flex place-content-end">
                   <button
                     type="submit"
