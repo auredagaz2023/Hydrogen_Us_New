@@ -4731,6 +4731,9 @@ select{
 .pt-\[96px\]{
   padding-top: 96px;
 }
+.pt-\[53px\]{
+  padding-top: 53px;
+}
 .text-left{
   text-align: left;
 }
@@ -4936,6 +4939,9 @@ select{
 }
 .text-xxs{
   font-size: 11px;
+}
+.text-\[19px\]{
+  font-size: 19px;
 }
 .font-\[200\]{
   font-weight: 200;
@@ -7357,6 +7363,10 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
   .md\:pt-nav{
     padding-top: 3rem;
     padding-top: var(--height-nav);
+  }
+
+  .md\:pt-\[80px\]{
+    padding-top: 80px;
   }
 
   .md\:text-left{

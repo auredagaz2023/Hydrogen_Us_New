@@ -4,9 +4,9 @@ import emailjs from '@emailjs/browser';
 import magniflexlogo from '~/assets/Landing/Desktop/magniflex.svg'
 import FadeIn from '~/components/FadeIn';
 import desktopHeader from '../assets/black-friday-2025/Desktop/Header/magniflex-us-black-friday-header-desktop.jpg'
-import desktopHeaderBottom from '../assets/labor-day-promo-2025/header/magniflex-landing-benefit-bar.gif'
+import desktopHeaderBottom from '../assets/labor-day-promo-2025/header/magniflex-landing-benefit-bar-mobile-A.gif'
 import mobileHeader from '../assets/black-friday-2025/Mobile/Header/magniflex-us-black-friday-header-mobile.jpg'
-import mobileHeaderBottom from '../assets/labor-day-promo-2025/header/magniflex-landing-benefit-bar-mobile-A.gif'
+import mobileHeaderBottom from '../assets/black-friday-2025/Mobile/Header/magniflex-landing-benefit-bar-mobile-A.gif'
 import dolcevitapng from '../assets/black-friday-2025/Desktop/Products/Images/01-dolce-vita.jpg'
 import dolcevitapng_roll from '../assets/black-friday-2025/Desktop/Products/Roll/01-dolce-vita-roll.jpg'
 import mobileDolcevitapng from '../assets/black-friday-2025/Mobile/Products/01-dolce-vita.jpg'
@@ -91,7 +91,7 @@ const products = [
     roll_img: magnistretchpng_roll,
     mobile_img: mobileMagnistretchpng,
     name: "MagniStretch",
-    description: "Its patented checkered and stretching construction ensures differentiated zone support and stretching of the spine",
+    description: "Its patented checkered design provides targeted support and gently stretches the spine to promote natural alignment",
     bestfor: "active people, back pain sufferers",
     fitness: "medium-firm, firm",
     original_price: "$2,699",
@@ -136,17 +136,17 @@ const products = [
     mattress: true
   },
   {
-    advance: "Performance and essentiality",
-    advance_color: "#5E5E5E",
+    advance: "FOR ENHANCED COMFORT",
+    advance_color: "#000028",
     img: pillowspng,
     roll_img: pillowspng_roll,
     mobile_img: mobilePillowspng,
-    name: "Pillows",
+    name: "MAGNIFLEX PILLOWS",
     description: "Explore the comfort, support, freshness, breathability, and many more qualities designed to enhance your sleep experience.",
     features: 'ergonomic design, cooling fabrics, natural fibers',
     fitness: "deeper, more comfortable, and restorative sleep",
     original_price: "$129",
-    price: "$191",
+    price: "$91",
     button: "Shop Pillows",
     link: "https://magniflex.us/category/pillows",
     bottom: "Save up to $80",
@@ -237,7 +237,7 @@ export default function LaborDayPromo2025() {
         <div className='bg-white text-[#174860] landing-[29px] text-[17.5px] text-center pb-[64px] md:pb-[32px] px-[30px] md:px-[20%]'>
           <div style={{ marginBottom: '25px' }}>
             The <span className='font-bold'>best deal of the year</span> is here.<br />
-            This Black Friday, bring home the ultimate comfort and save 30% <br />
+            This Black Friday, bring home the ultimate comfort and <span className='font-bold'>save 30%</span> <br />
             on our top class mattresses and pillows — <span className='font-bold'>up to $3,959 off</span>.<br />
             Don't miss this opportunity to transform your sleep for less.
           </div>
@@ -303,7 +303,7 @@ export default function LaborDayPromo2025() {
                     <div className='mt-[30px] lg:mt-[25px] text-[17px] lg:text-[15px] md:text-center w-full'>
                       {product.features && (
                         <>
-                          <span className='text-[#839BB1]'>Features:</span>
+                          <span className='text-[#839BB1]'>Features: </span>
                           <span className='text-[rgb(23,72,96)] text-[15px]'>{product.features}</span>
                           <br />
                         </>
@@ -313,9 +313,9 @@ export default function LaborDayPromo2025() {
                       {product.fitness && <><span className='text-[#839BB1]'>Benefits:</span> <span className='text-[#174860] text-[15px]'>{product.fitness}</span></>}
                     </div>
                     <div className='mt-[25px] text-[#839BB1] text-[13px] landing-[27.5px] text-center'>
-                      Starting at
+                      Starting at&nbsp;&nbsp;
                       <br className='hidden md:block' />
-                      <span className='line-through'>{product.original_price}</span> <span className='text-red-600 text-[22px] landing-[27.5px]'>{product.price}</span>
+                      <span className='line-through'>{product.original_price}</span> <span className='text-red-600 text-[22px] landing-[27.5px] font-bold'>{product.price}</span>
                     </div>
                     <a className='text-center mt-[15px] py-4 px-8 uppercase border border-[#174860] hover:bg-[#174860] bg-transparent hover:text-white text-[#174860] text-[12px] sm:text-[15px] lg:text-[13px] font-semibold' href={product.link}>{product.button}</a>
                     <div className='mt-[15px] uppercase text-[#174860] text-center text-[17px] lg:text-[13px] font-semibold'>{product.bottom}</div>
@@ -357,10 +357,10 @@ export default function LaborDayPromo2025() {
           </div>
           <hr className='text-[#0a2430] my-[20px] hidden lg:block border-[#888888]' />
           <div className='text-[12px] sm:text-[16px] md:text-[20px] lg:text-[23px] text-center landing-[100px] font-semibold py-[30px] lg:py-0 hidden lg:block'>At Night, We Bring Life to Your Days.</div>
-          <div className='text-[12px] m-auto my-[40px] mt-[80px] sm:text-[16px] md:text-[20px] lg:text-[23px] text-center landing-[100px] font-semibold py-[30px] lg:py-0 pt-[80px] lg:hidden relative' style={{ width: 'fit-content' }}>
-            <div className='absolute top-0'><img className='w-[400px] h-auto' src={magniflexlogo} alt="" /></div>
-            At Night, We Bring Life to Your Days.
-          </div>
+            <div className='lg:hidden w-full text-[19px] my-[40px] mt-[80px] md:text-[20px] lg:text-[23px] text-center landing-[100px] font-semibold py-[30px] lg:py-0 pt-[53px] md:pt-[80px] relative'>
+              <img className='w-full h-auto mb-2' src={magniflexlogo} alt="" />
+              At Night, We Bring Life to Your Days.
+            </div>
         </div>
       </div>
     </>
