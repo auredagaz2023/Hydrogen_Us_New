@@ -156,11 +156,11 @@ const products = [
 
 export const meta: MetaFunction = () => {
   return [{
-    title: 'Labor Day Promo 2025 - Magniflex Collections',
+    title: 'Black Friday 2025 - Magniflex Collections',
   }];
 };
 
-export default function LaborDayPromo2025() {
+export default function BlackFriday2025() {
   const formRef = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
@@ -357,10 +357,10 @@ export default function LaborDayPromo2025() {
           </div>
           <hr className='text-[#0a2430] my-[20px] hidden lg:block border-[#888888]' />
           <div className='text-[12px] sm:text-[16px] md:text-[20px] lg:text-[23px] text-center landing-[100px] font-semibold py-[30px] lg:py-0 hidden lg:block'>At Night, We Bring Life to Your Days.</div>
-            <div className='lg:hidden w-full text-[19px] my-[40px] mt-[80px] md:text-[20px] lg:text-[23px] text-center landing-[100px] font-semibold py-[30px] lg:py-0 pt-[53px] md:pt-[80px] relative'>
-              <img className='w-full h-auto mb-2' src={magniflexlogo} alt="" />
-              At Night, We Bring Life to Your Days.
-            </div>
+          <div className='lg:hidden w-full text-[19px] my-[40px] mt-[80px] md:text-[20px] lg:text-[23px] text-center landing-[100px] font-semibold py-[30px] lg:py-0 pt-[53px] md:pt-[80px] relative'>
+            <img className='w-full h-auto mb-2' src={magniflexlogo} alt="" />
+            At Night, We Bring Life to Your Days.
+          </div>
         </div>
       </div>
     </>
