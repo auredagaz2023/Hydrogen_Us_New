@@ -163,7 +163,7 @@ export default function AffirmPromo() {
         </div>
       </div>
       <div className='bg-[#F2F2F4] text-[#000028] landing-[29px] rounded-[60px] text-center py-[30px] px-[20px]'>
-        <div className='text-[#000028] text-[35px] font-semibold text-center leading-1 py-[20px] px-[20px] mb-[15px] md:mb-[55px]'>
+        <div className='text-[#000028] text-[35px] font-semibold text-center leading-1 py-[20px] px-[20px] mb-[12px] md:mb-[20px]'>
           How it works
         </div>
         <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-10 items-start justify-center'>
@@ -339,7 +339,7 @@ export default function AffirmPromo() {
       <div className="flex flex-col flex-wrap justify-center md:items-center py-12 lg:py-24 mt-10 px-[20px]">
         <span className='text-[45px] font-semibold mb-4'>FAQ</span>
         <span className='text-[17.5px] font-bold md:text-center mt-4'>How can I manage my payments?</span>
-        <span className='text-[17.5px] md:max-w-[800px]'>You can easily make payments online at Affirm.com or through the Affirm mobile app.
+        <span className='text-[17.5px] md:max-w-[800px] md:text-center'>You can easily make payments online at Affirm.com or through the Affirm mobile app.
           Affirm will remind you via email and text before each due date - or simply enable AutoPay to have payments made automatically.
         </span>
         <span className='text-[17.5px] font-bold md:text-center mt-4'>Will checking my eligibility affect my credit score?</span>
@@ -362,7 +362,7 @@ export default function AffirmPromo() {
           </a>
         </div>
         <div className='mt-[25px] md:mt-[50px] bg-white py-12 lg:py-24 px-[30px] md:px-[100px] flex items-center justify-center'>
-          <span className='text-787878 text-[17.5px] text-center'>
+          <span className='text-787878 text-[17.5px] md:text-center'>
             DISCLOSURE: Rates from 0-36% APR. Payment options through Affirm are subject to an eligibility check and are provided by these lending partners: <a href="https://www.affirm.com/lenders" target="_blank" rel="noopener noreferrer" className='text-[#4A4AF4]' style={{ textDecoration: 'underline' }}>affirm.com/lenders</a>.
             Options depend on your purchase amount, and a down payment may be required.
             CA residents: Loans by Affirm Loan Services, LLC are made or arranged pursuant to a California Financing Law license.
@@ -376,8 +376,8 @@ export default function AffirmPromo() {
         </div>
         <hr className='text-[#0a2430] my-[20px] hidden lg:block border-[#888888]' />
         <div className='text-[12px] sm:text-[16px] md:text-[20px] lg:text-[23px] text-center landing-[100px] font-semibold py-[30px] lg:py-0 hidden lg:block'>At Night, We Bring Life to Your Days.</div>
-        <div className='text-[12px] m-auto my-[40px] mt-[80px] sm:text-[16px] md:text-[20px] lg:text-[23px] text-center landing-[100px] font-semibold py-[30px] lg:py-0 pt-[80px] lg:hidden relative' style={{ width: 'fit-content' }}>
-          <div className='absolute top-0'><img className='w-[400px] h-auto' src={magniflexlogo} alt="" /></div>
+        <div className='lg:hidden w-full text-[19px] my-[40px] mt-[10px] md:text-[20px] lg:text-[23px] text-center landing-[100px] font-semibold py-[30px] lg:py-0 pt-[53px] md:pt-[80px] relative'>
+          <img className='w-full h-auto mb-2' src={magniflexlogo} alt="" />
           At Night, We Bring Life to Your Days.
         </div>
       </div>

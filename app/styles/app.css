@@ -4716,6 +4716,9 @@ select{
 .pt-\[50px\]{
   padding-top: 50px;
 }
+.pt-\[53px\]{
+  padding-top: 53px;
+}
 .pt-\[55px\]{
   padding-top: 55px;
 }
@@ -4730,9 +4733,6 @@ select{
 }
 .pt-\[96px\]{
   padding-top: 96px;
-}
-.pt-\[53px\]{
-  padding-top: 53px;
 }
 .text-left{
   text-align: left;
@@ -4828,6 +4828,9 @@ select{
 }
 .text-\[18px\]{
   font-size: 18px;
+}
+.text-\[19px\]{
+  font-size: 19px;
 }
 .text-\[1rem\]{
   font-size: 1rem;
@@ -4939,9 +4942,6 @@ select{
 }
 .text-xxs{
   font-size: 11px;
-}
-.text-\[19px\]{
-  font-size: 19px;
 }
 .font-\[200\]{
   font-weight: 200;
@@ -6658,6 +6658,10 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
     margin-bottom: 20px;
   }
 
+  .md\:mb-\[40px\]{
+    margin-bottom: 40px;
+  }
+
   .md\:mb-\[55px\]{
     margin-bottom: 55px;
   }
@@ -7360,13 +7364,13 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
     padding-top: 72px;
   }
 
+  .md\:pt-\[80px\]{
+    padding-top: 80px;
+  }
+
   .md\:pt-nav{
     padding-top: 3rem;
     padding-top: var(--height-nav);
-  }
-
-  .md\:pt-\[80px\]{
-    padding-top: 80px;
   }
 
   .md\:text-left{
