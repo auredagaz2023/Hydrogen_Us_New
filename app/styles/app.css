@@ -4808,6 +4808,9 @@ select{
 .text-\[12px\]{
   font-size: 12px;
 }
+.text-\[13\.5px\]{
+  font-size: 13.5px;
+}
 .text-\[13px\]{
   font-size: 13px;
 }
@@ -5142,6 +5145,11 @@ select{
   --tw-text-opacity: 1;
   color: rgba(87, 87, 86, 1);
   color: rgba(87, 87, 86, var(--tw-text-opacity));
+}
+.text-\[\#787878\]{
+  --tw-text-opacity: 1;
+  color: rgba(120, 120, 120, 1);
+  color: rgba(120, 120, 120, var(--tw-text-opacity));
 }
 .text-\[\#839BB1\]{
   --tw-text-opacity: 1;
@@ -6656,10 +6664,6 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
 
   .md\:mb-\[20px\]{
     margin-bottom: 20px;
-  }
-
-  .md\:mb-\[40px\]{
-    margin-bottom: 40px;
   }
 
   .md\:mb-\[55px\]{

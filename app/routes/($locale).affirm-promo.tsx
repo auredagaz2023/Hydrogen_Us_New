@@ -169,7 +169,7 @@ export default function AffirmPromo() {
         <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-10 items-start justify-center'>
           <div className='flex flex-col items-center justify-center gap-[10px]'>
             <div className='text-[22px] text-[#4242CF] rounded-[4px] font-bold bg-[#E2E2FF] w-[42px] h-[42px] flex items-center justify-center'>1</div>
-            <div className='font-bold text-[22px] text-[#000028]'>Shop & select affirm</div>
+            <div className='font-bold text-[22px] text-[#000028]'>Shop & select Affirm</div>
             <img className='w-[70px] h-[70px]' src={shopImg} alt="" />
             <div>
               <span className='font-[22px] text-[#174860] max-w-[300px]'>Add your favorite Magniflex mattress and accessories to your cart. At checkout, simply select Affirm as your payment method.</span>
@@ -205,7 +205,7 @@ export default function AffirmPromo() {
           Why<img className='mt-[-19px] ml-3' src={affirmSvg} alt="" />?
         </div>
         <div className="grid grid-cols-2 lg:grid-cols-5 w-full">
-          <div className="border-E4E4E4 border-r border-b lg:border-b-0 px-4 lg:px-12 pt-8 lg:pt-0">
+          <div className="border-E4E4E4 border-r border-b lg:border-b-0 px-4 lg:px-12 pt-8 lg:pt-0 pb-2">
             <span>
               <img src={feesImg} className="h-[45px]" alt='' />
             </span>
@@ -218,7 +218,7 @@ export default function AffirmPromo() {
               <div className="text-174860 font-semibold text-sm">What you see is what you pay</div>
             </div>
           </div>
-          <div className="border-E4E4E4 lg:border-r border-b lg:border-b-0 px-4 lg:px-12 pt-8 lg:pt-0">
+          <div className="border-E4E4E4 lg:border-r border-b lg:border-b-0 px-4 lg:px-12 pt-8 lg:pt-0 pb-2">
             <span>
               <img src={aprFinancingImg} className="h-[45px]" alt='' />
             </span>
@@ -232,7 +232,7 @@ export default function AffirmPromo() {
             </div>
           </div>
 
-          <div className="border-E4E4E4 border-r border-b lg:border-b-0 px-4 lg:px-12 pt-8 lg:pt-0">
+          <div className="border-E4E4E4 border-r border-b lg:border-b-0 px-4 lg:px-12 pt-8 lg:pt-0 pb-2">
             <span>
               <img src={quickApprovalImg} className="h-[45px]" alt='' />
             </span>
@@ -243,12 +243,12 @@ export default function AffirmPromo() {
               className="relative flex justify-between"
             >
               <div className="text-174860 font-semibold text-sm">
-                get a real-time decision
+                Get a real-time decision
               </div>
             </div>
           </div>
 
-          <div className="border-E4E4E4 lg:border-r border-b lg:border-b-0 px-4 lg:px-12 pt-8 lg:pt-0">
+          <div className="border-E4E4E4 lg:border-r border-b lg:border-b-0 px-4 lg:px-12 pt-8 lg:pt-0 pb-2">
             <span>
               <img src={trasparencyImg} className="h-[45px]" alt='' />
             </span>
@@ -264,18 +264,18 @@ export default function AffirmPromo() {
             </div>
           </div>
 
-          <div className="px-4 lg:px-12 pt-8 border-r lg:border-r-0 lg:pt-0">
+          <div className="px-4 lg:px-12 pt-8 border-r lg:border-r-0 lg:pt-0 pb-2">
             <span>
               <img src={millionsUserImg} className="h-[45px]" alt='' />
             </span>
             <div className="text-B09987 font-semibold text-lg md:text-base my-4">
-              Millions of users
+              Trusted worldwide
             </div>
             <div
               className="relative flex justify-between"
             >
               <div className="text-174860 font-semibold text-sm">
-                trust Affirm
+                Millions of users trust Affirm
               </div>
             </div>
           </div>
@@ -326,7 +326,7 @@ export default function AffirmPromo() {
             </div>
           </div>
         </div>
-        <div className='mt-[25px] md:mt-[50px]'>
+        <div className='mt-[25px] md:mt-[50px] text-center'>
           <span className='text-174860 text-[17.5px]'>No fees. No surprises. Just simple, affordable monthly payments.</span>
         </div>
         <div className='flex flex-row justify-center mt-12 mb-4'>
@@ -362,8 +362,8 @@ export default function AffirmPromo() {
           </a>
         </div>
         <div className='mt-[25px] md:mt-[50px] bg-white py-12 lg:py-24 px-[30px] md:px-[100px] flex items-center justify-center'>
-          <span className='text-787878 text-[17.5px] md:text-center'>
-            DISCLOSURE: Rates from 0-36% APR. Payment options through Affirm are subject to an eligibility check and are provided by these lending partners: <a href="https://www.affirm.com/lenders" target="_blank" rel="noopener noreferrer" className='text-[#4A4AF4]' style={{ textDecoration: 'underline' }}>affirm.com/lenders</a>.
+          <span className='text-[#787878] text-[13.5px] md:text-center'>
+            DISCLOSURE: Rates from 0-36% APR. Payment options through Affirm are subject to an eligibility check and are provided by these lending partners: <a href="https://www.affirm.com/lenders" target="_blank" rel="noopener noreferrer" className='text-[#4A4AF4]' style={{ textDecoration: 'underline' }}>affirm.com/lenders</a>.<br />
             Options depend on your purchase amount, and a down payment may be required.
             CA residents: Loans by Affirm Loan Services, LLC are made or arranged pursuant to a California Financing Law license.
             For licenses and disclosures, see <a href="https://www.affirm.com/licenses" target="_blank" rel="noopener noreferrer" className='text-[#4A4AF4]' style={{ textDecoration: 'underline' }}>affirm.com/licenses</a>. For example, a $800 purchase could be split into 12 monthly payments of $72.21 at 15% APR
