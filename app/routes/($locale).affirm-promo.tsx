@@ -4,7 +4,7 @@ import FadeIn from '~/components/FadeIn';
 import desktopHeader from '../assets/affirm-promo/Header/magniflex-us-fall-into-savings-header-desktop.jpg'
 import mobileHeader from '../assets/affirm-promo/Header/magniflex-us-fall-into-savings-header-mobile.jpg'
 import desktopHeaderBottom from '../assets/labor-day-promo-2025/header/magniflex-landing-benefit-bar.gif'
-import mobileHeaderBottom from '../assets/affirm-promo/Header/magniflex-landing-benefit-bar-mobile-A.gif'
+import mobileHeaderBottom from '../assets/affirm-promo/Header/magniflex-landing-benefit-bar-mobile.gif'
 import shopImg from '~/assets/affirm-promo/svg/shop.png'
 import approvalImg from '~/assets/affirm-promo/svg/approval.png'
 import paymentsImg from '~/assets/affirm-promo/svg/payments.png'
