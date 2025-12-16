@@ -1,4 +1,4 @@
-import {useLoaderData} from '@remix-run/react';
+import { useLoaderData } from '@remix-run/react';
 import {
   AnalyticsPageType,
   SeoHandleFunction,
@@ -8,24 +8,24 @@ import {
   Collection,
   CollectionConnection,
 } from '@shopify/hydrogen/storefront-api-types';
-import {LoaderFunctionArgs, json} from '@shopify/remix-oxygen';
+import { LoaderFunctionArgs, json } from '@shopify/remix-oxygen';
 import invariant from 'tiny-invariant';
-import {CollectionDetails} from '~/components/CollectionDetails';
-import {CollectionHeading} from '~/components/CollectionHeading';
-import {CollectionLinks} from '~/components/CollectionLinks';
-import {TestMattressWidget} from '~/components/TestMattressWidget';
-import {CollectionWithMetafields, ContentfulCollection} from '~/lib/type';
+import { CollectionDetails } from '~/components/CollectionDetails';
+import { CollectionHeading } from '~/components/CollectionHeading';
+import { CollectionLinks } from '~/components/CollectionLinks';
+import { TestMattressWidget } from '~/components/TestMattressWidget';
+import { CollectionWithMetafields, ContentfulCollection } from '~/lib/type';
 
-const seo: SeoHandleFunction<typeof loader> = ({data}) => ({
+const seo: SeoHandleFunction<typeof loader> = ({ data }) => ({
   title: data.productType,
   description: 'Product category',
 });
 
-export async function loader({params, request, context}: LoaderFunctionArgs) {
-  const {productType} = params;
+export async function loader({ params, request, context }: LoaderFunctionArgs) {
+  const { productType } = params;
   invariant(productType, 'Missing productType param');
 
-  const {collections} = await context.storefront.query<{
+  const { collections } = await context.storefront.query<{
     collections: CollectionConnection;
   }>(CATEGORY_QUERY, {
     variables: {
@@ -35,7 +35,7 @@ export async function loader({params, request, context}: LoaderFunctionArgs) {
   });
 
   if (!collections) {
-    throw new Response(null, {status: 404});
+    throw new Response(null, { status: 404 });
   }
 
   const collectionNodes = flattenConnection(collections);
@@ -46,7 +46,7 @@ export async function loader({params, request, context}: LoaderFunctionArgs) {
   );
 
   if (filteredCollections.length == 0) {
-    throw new Response(null, {status: 404});
+    throw new Response(null, { status: 404 });
   }
 
   const CONTENTFUL_SPACE_ID = '7xbaxb2q56jj';
@@ -71,7 +71,7 @@ export async function loader({params, request, context}: LoaderFunctionArgs) {
 }
 
 export default function CategoryCollections() {
-  const {contentfulCollections, collections, productType} =
+  const { contentfulCollections, collections, productType } =
     useLoaderData<typeof loader>();
 
   const getComfortLevels = (
@@ -108,11 +108,16 @@ export default function CategoryCollections() {
       contentfulCollectionItem.fields.comfortLevels
     ) {
       contentfulCollectionItem.fields.comfortLevels.forEach((comfortLevel) => {
-        comfortLevels.push(
-          contentfulCollections.includes.Entry.find(
-            (link) => link.sys.id === comfortLevel.sys.id,
-          )!.fields,
+        const item = contentfulCollections.includes.Entry.find(
+          (link) => link.sys.id === comfortLevel.sys.id,
         );
+        if (item && item.fields) {
+          comfortLevels.push(
+            contentfulCollections.includes.Entry.find(
+              (link) => link.sys.id === comfortLevel.sys.id,
+            )!.fields,
+          );
+        }
       });
       return comfortLevels;
     }

@@ -1,4 +1,4 @@
-import {useLoaderData} from '@remix-run/react';
+import { useLoaderData } from '@remix-run/react';
 import {
   AnalyticsPageType,
   SeoHandleFunction,
@@ -8,25 +8,25 @@ import {
   Product as ProductType,
   Collection as CollectionType,
 } from '@shopify/hydrogen/storefront-api-types';
-import {LoaderArgs, json} from '@shopify/remix-oxygen';
+import { LoaderArgs, json } from '@shopify/remix-oxygen';
 import invariant from 'tiny-invariant';
-import {CollectionHeading} from '~/components/CollectionHeading';
-import {CollectionLinks} from '~/components/CollectionLinks';
-import {ProductDetails} from '~/components/ProductDetails';
-import {TestMattressWidget} from '~/components/TestMattressWidget';
-import {PRODUCT_CARD_FRAGMENT} from '~/data/fragments';
-import {CollectionWithMetafields, ContentfulCollection} from '~/lib/type';
+import { CollectionHeading } from '~/components/CollectionHeading';
+import { CollectionLinks } from '~/components/CollectionLinks';
+import { ProductDetails } from '~/components/ProductDetails';
+import { TestMattressWidget } from '~/components/TestMattressWidget';
+import { PRODUCT_CARD_FRAGMENT } from '~/data/fragments';
+import { CollectionWithMetafields, ContentfulCollection } from '~/lib/type';
 
-const seo: SeoHandleFunction<typeof loader> = ({data}) => ({
+const seo: SeoHandleFunction<typeof loader> = ({ data }) => ({
   title: data.collection.title,
   description: 'Product category',
 });
 
-export async function loader({params, request, context}: LoaderArgs) {
-  const {collectionHandle} = params;
+export async function loader({ params, request, context }: LoaderArgs) {
+  const { collectionHandle } = params;
   invariant(collectionHandle, 'Missing productType param');
 
-  const {collection} = await context.storefront.query<{
+  const { collection } = await context.storefront.query<{
     collection: CollectionWithMetafields<CollectionType>;
   }>(COLLECTION_QUERY, {
     variables: {
@@ -37,7 +37,7 @@ export async function loader({params, request, context}: LoaderArgs) {
   });
 
   if (!collection) {
-    throw new Response(null, {status: 404});
+    throw new Response(null, { status: 404 });
   }
 
   const CONTENTFUL_SPACE_ID = '7xbaxb2q56jj';
@@ -62,7 +62,7 @@ export async function loader({params, request, context}: LoaderArgs) {
 }
 
 export default function CategoryCollections() {
-  const {contentfulCollections, collection} = useLoaderData<typeof loader>();
+  const { contentfulCollections, collection } = useLoaderData<typeof loader>();
 
   const getComfortLevels = () => {
     const comfortLevels: {
@@ -82,11 +82,16 @@ export default function CategoryCollections() {
       ) {
         contentfulCollectionItem.fields.comfortLevels.forEach(
           (comfortLevel) => {
-            comfortLevels.push(
-              contentfulCollections.includes.Entry.find(
-                (link) => link.sys.id === comfortLevel.sys.id,
-              )!.fields,
+            const item = contentfulCollections.includes.Entry.find(
+              (link) => link.sys.id === comfortLevel.sys.id,
             );
+            if (item && item.fields) {
+              comfortLevels.push(
+                contentfulCollections.includes.Entry.find(
+                  (link) => link.sys.id === comfortLevel.sys.id,
+                )!.fields,
+              );
+            }
           },
         );
 
@@ -109,10 +114,10 @@ export default function CategoryCollections() {
     <>
       <div
         className={`relative h-banner bg-center bg-cover`}
-        style={{backgroundImage: `url('${collection.image?.url}')`}}
+        style={{ backgroundImage: `url('${collection.image?.url}')` }}
       >
         <div className="absolute top-0 bottom-0 left-0 right-0 flex flex-col items-center justify-between">
-          <span className="mt-32 text-white text-5xl font-semibold text-center" style={{ textShadow: "1px 1px 1px gray"}}>
+          <span className="mt-32 text-white text-5xl font-semibold text-center" style={{ textShadow: "1px 1px 1px gray" }}>
             {collection.title} Collection
           </span>
           <span className="relative">

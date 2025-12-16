@@ -1,4 +1,4 @@
-import {useLoaderData, useSearchParams} from '@remix-run/react';
+import { useLoaderData, useSearchParams } from '@remix-run/react';
 import {
   AnalyticsPageType,
   flattenConnection,
@@ -7,13 +7,13 @@ import {
   Collection,
   CollectionConnection,
 } from '@shopify/hydrogen/storefront-api-types';
-import {LoaderArgs, json} from '@shopify/remix-oxygen';
+import { LoaderArgs, json } from '@shopify/remix-oxygen';
 import invariant from 'tiny-invariant';
-import {CollectionDetails} from '~/components/CollectionDetails';
-import {CollectionHeading} from '~/components/CollectionHeading';
-import {CollectionLinks} from '~/components/CollectionLinks';
-import {TestMattressWidget} from '~/components/TestMattressWidget';
-import {CollectionWithMetafields, ContentfulCollection} from '~/lib/type';
+import { CollectionDetails } from '~/components/CollectionDetails';
+import { CollectionHeading } from '~/components/CollectionHeading';
+import { CollectionLinks } from '~/components/CollectionLinks';
+import { TestMattressWidget } from '~/components/TestMattressWidget';
+import { CollectionWithMetafields, ContentfulCollection } from '~/lib/type';
 
 import { useEffect, useState } from 'react';
 
@@ -28,11 +28,11 @@ export const handle = {
   },
 };
 
-export async function loader({params, request, context}: LoaderArgs) {
+export async function loader({ params, request, context }: LoaderArgs) {
   const productType = 'Accessories';
   invariant(productType, 'Missing productType param');
 
-  const {collections} = await context.storefront.query<{
+  const { collections } = await context.storefront.query<{
     collections: CollectionConnection;
   }>(CATEGORY_QUERY, {
     variables: {
@@ -42,7 +42,7 @@ export async function loader({params, request, context}: LoaderArgs) {
   });
 
   if (!collections) {
-    throw new Response(null, {status: 404});
+    throw new Response(null, { status: 404 });
   }
 
   const collectionNodes = flattenConnection(collections);
@@ -53,7 +53,7 @@ export async function loader({params, request, context}: LoaderArgs) {
   );
 
   if (filteredCollections.length == 0) {
-    throw new Response(null, {status: 404});
+    throw new Response(null, { status: 404 });
   }
 
   const CONTENTFUL_SPACE_ID = '7xbaxb2q56jj';
@@ -79,12 +79,12 @@ export async function loader({params, request, context}: LoaderArgs) {
 
 export default function CategoryCollections() {
   const [searchParams] = useSearchParams()
-  const {contentfulCollections, collections, productType} =
+  const { contentfulCollections, collections, productType } =
     useLoaderData<typeof loader>();
   const [banner, setBanner] = useState(false);
   const [desktopBackground, setDesktopBackround] = useState('');
   const [mobileBackground, setMobileBackground] = useState('');
-  
+
   const getComfortLevels = (
     collection: CollectionWithMetafields<Collection>,
   ) => {
@@ -119,23 +119,28 @@ export default function CategoryCollections() {
       contentfulCollectionItem.fields.comfortLevels
     ) {
       contentfulCollectionItem.fields.comfortLevels.forEach((comfortLevel) => {
-        comfortLevels.push(
-          contentfulCollections.includes.Entry.find(
-            (link) => link.sys.id === comfortLevel.sys.id,
-          )!.fields,
+        const item = contentfulCollections.includes.Entry.find(
+          (link) => link.sys.id === comfortLevel.sys.id,
         );
+        if (item && item.fields) {
+          comfortLevels.push(
+            contentfulCollections.includes.Entry.find(
+              (link) => link.sys.id === comfortLevel.sys.id,
+            )!.fields,
+          );
+        }
       });
       return comfortLevels;
     }
     return undefined;
   };
 
-  useEffect(()=>{
-    (async ()=>{
+  useEffect(() => {
+    (async () => {
       const CONTENTFUL_SPACE_ID = '7xbaxb2q56jj';
       const CONTENTFUL_ACCESS_TOKEN = 'yGGCia7N7dHraGe5fsBZkSHsms6QExEKbWy0XdKIn9g';
       const activePromotionsEndpoint = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${CONTENTFUL_ACCESS_TOKEN}&content_type=activePromotions&fields.name=mxusa-active-promotions`;
-      const promoRes:any = await fetch(activePromotionsEndpoint).then(res=>{
+      const promoRes: any = await fetch(activePromotionsEndpoint).then(res => {
         return res.json();
       });
 
@@ -143,7 +148,7 @@ export default function CategoryCollections() {
       setMobileBackground(promoRes?.includes?.Asset[1].fields.file.url)
       setBanner(promoRes?.items[0]?.fields?.promoInHomepage);
     })();
-  },[])
+  }, [])
 
   return (
     <>
