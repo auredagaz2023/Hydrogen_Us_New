@@ -118,11 +118,7 @@ export default function CategoryCollections() {
           (link) => link.sys.id === comfortLevel.sys.id,
         );
         if (item && item.fields) {
-          comfortLevels.push(
-            contentfulCollections.includes.Entry.find(
-              (link) => link.sys.id === comfortLevel.sys.id,
-            )!.fields,
-          );
+          comfortLevels.push(item.fields);
         }
       });
       return comfortLevels;

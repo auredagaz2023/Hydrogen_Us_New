@@ -81,6 +81,7 @@ export default function CategoryCollections() {
       const contentfulCollectionItem = contentfulCollections.items.find(
         (item) => item.fields.name == collection[productKey].value,
       );
+
       if (
         contentfulCollectionItem &&
         contentfulCollectionItem.fields.comfortLevels
@@ -91,11 +92,7 @@ export default function CategoryCollections() {
               (link) => link.sys.id === comfortLevel.sys.id,
             );
             if (item && item.fields) {
-              comfortLevels.push(
-                contentfulCollections.includes.Entry.find(
-                  (link) => link.sys.id === comfortLevel.sys.id,
-                )!.fields,
-              );
+              comfortLevels.push(item.fields);
             }
           },
         );

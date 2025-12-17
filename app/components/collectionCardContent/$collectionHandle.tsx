@@ -80,20 +80,18 @@ export default function CategoryCollections() {
         contentfulCollectionItem &&
         contentfulCollectionItem.fields.comfortLevels
       ) {
+        console.log('here')
         contentfulCollectionItem.fields.comfortLevels.forEach(
           (comfortLevel) => {
             const item = contentfulCollections.includes.Entry.find(
               (link) => link.sys.id === comfortLevel.sys.id,
             );
             if (item && item.fields) {
-              comfortLevels.push(
-                contentfulCollections.includes.Entry.find(
-                  (link) => link.sys.id === comfortLevel.sys.id,
-                )!.fields,
-              );
+              comfortLevels.push(item.fields);
             }
           },
         );
+        console.log(comfortLevels)
 
         return comfortLevels;
       }

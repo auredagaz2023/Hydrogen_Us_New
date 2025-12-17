@@ -45,11 +45,12 @@ export default function ProductCardContent({productData}) {
       contentfulCollectionItem.fields.comfortLevels
     ) {
       contentfulCollectionItem.fields.comfortLevels.forEach((comfortLevel) => {
-        comfortLevels.push(
-          productData.contentfulCollections.includes.Entry.find(
-            (link) => link.sys.id === comfortLevel.sys.id,
-          )!.fields,
+        const item = productData.contentfulCollections.includes.Entry.find(
+          (link) => link.sys.id === comfortLevel.sys.id,
         );
+        if (item && item.fields) {
+          comfortLevels.push(item.fields);
+        }
       });
       return comfortLevels;
     }
