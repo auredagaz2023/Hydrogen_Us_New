@@ -81,12 +81,14 @@ export function CartDetails({
     page: 'w-full pb-12 grid md:grid-cols-2 md:items-start gap-8 md:gap-8 lg:gap-12',
   };
 
+  console.log({cart})
+
   return (
     <div className={container[layout]}>
       <CartLines lines={cart?.lines} layout={layout} />
       {!isZeroCost && (
         <CartSummary cost={cart.cost} layout={layout}>
-          {/* <CartDiscounts discountCodes={cart.discountCodes} /> */}
+          <CartDiscounts discountCodes={cart.discountCodes} />
           <CartCheckoutActions checkoutUrl={cart.checkoutUrl} />
         </CartSummary>
       )}
@@ -415,6 +417,7 @@ function CartLinePrice({
 }) {
   if (!line?.cost?.amountPerQuantity || !line?.cost?.totalAmount) return null;
 
+  console.log({ line })
   const moneyV2 =
     priceType === 'regular'
       ? line.cost.totalAmount
@@ -424,7 +427,18 @@ function CartLinePrice({
     return null;
   }
 
-  return <Money withoutTrailingZeros {...passthroughProps} data={moneyV2} />;
+  const discounted = line.discountAllocations[0].discountedAmount
+  return <>
+    <Money withoutTrailingZeros {...passthroughProps} data={moneyV2} />
+    {discounted && (
+        <Money
+          withoutTrailingZeros
+          data={line.cost.amountPerQuantity}
+          as="span"
+          className="opacity-50 strike"
+        />
+      )}
+  </>;
 }
 
 export function CartEmpty({
