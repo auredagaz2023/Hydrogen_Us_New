@@ -428,7 +428,7 @@ function CartLinePrice({
   }
 
   const discounted = line.discountAllocations?.[0]?.discountedAmount
-  
+
   return <>
     <Money withoutTrailingZeros {...passthroughProps} data={moneyV2} />
     {discounted && (

@@ -387,6 +387,12 @@ const CART_QUERY = `#graphql
             key
             value
           }
+          discountAllocations {
+            discountedAmount {
+              amount
+              currencyCode
+            }
+          }
           cost {
             totalAmount {
               amount
@@ -421,9 +427,6 @@ const CART_QUERY = `#graphql
                 title
                 id
                 upsellingMessage: metafield(namespace: "custom", key: "upselling_message") {
-                  value
-                }
-                discountPercent: metafield(namespace: "custom", key: "discount_percent") {
                   value
                 }
               }
