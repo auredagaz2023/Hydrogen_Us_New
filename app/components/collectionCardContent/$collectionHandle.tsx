@@ -80,7 +80,6 @@ export default function CategoryCollections() {
         contentfulCollectionItem &&
         contentfulCollectionItem.fields.comfortLevels
       ) {
-        console.log('here')
         contentfulCollectionItem.fields.comfortLevels.forEach(
           (comfortLevel) => {
             const item = contentfulCollections.includes.Entry.find(
@@ -91,7 +90,6 @@ export default function CategoryCollections() {
             }
           },
         );
-        console.log(comfortLevels)
 
         return comfortLevels;
       }

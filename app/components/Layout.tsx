@@ -26,12 +26,12 @@ import {
   Collection,
 } from '@shopify/hydrogen/storefront-api-types';
 
-import {ContentfulParagraph} from '~/routes/($locale).types';
+import { ContentfulParagraph } from '~/routes/($locale).types';
 
 import ProductCardContent from './productCardContent';
 import CollectionCardContent from './collectionCardContent';
 
-import {Image} from '@shopify/hydrogen';
+import { Image } from '@shopify/hydrogen';
 // import {CollectionWithMetafields, ProductWithMetafields} from '~/lib/type';
 
 import {
@@ -44,18 +44,18 @@ import {
   useNavigation,
   useRouteLoaderData,
 } from '@remix-run/react';
-import {useWindowScroll} from 'react-use';
-import {Disclosure, Menu} from '@headlessui/react';
-import {FaFacebookF} from 'react-icons/fa';
-import {AiOutlineInstagram} from 'react-icons/ai';
-import {FaYoutube} from 'react-icons/fa';
+import { useWindowScroll } from 'react-use';
+import { Disclosure, Menu } from '@headlessui/react';
+import { FaFacebookF } from 'react-icons/fa';
+import { AiOutlineInstagram } from 'react-icons/ai';
+import { FaYoutube } from 'react-icons/fa';
 import {
   MdOutlineLocationOn,
   MdPermIdentity,
   MdOutlineSearch,
   MdOutlineShoppingCart,
 } from 'react-icons/md';
-import {BsChevronRight} from 'react-icons/bs';
+import { BsChevronRight } from 'react-icons/bs';
 import {
   FormEvent,
   SetStateAction,
@@ -71,14 +71,14 @@ import emailjs from '@emailjs/browser';
 import Logo_Img from '../assets/magniflex-logo-pos.svg';
 import Footer_logo_img from '../assets/magniflex-logo-neg.svg';
 
-import {useIsHydrated} from '~/hooks/useIsHydrated';
-import {useCartFetchers} from '~/hooks/useCartFetchers';
-import type {LayoutData} from '../root';
-import {MobileNav} from './MobileNav';
-import {ContentfulHomePromotion} from '~/routes/($locale).types';
-import {DropdownMenu} from './DropdownMenu';
-import {RxCross2} from 'react-icons/rx';
-import {slugify} from '~/routes/($locale).news';
+import { useIsHydrated } from '~/hooks/useIsHydrated';
+import { useCartFetchers } from '~/hooks/useCartFetchers';
+import type { LayoutData } from '../root';
+import { MobileNav } from './MobileNav';
+import { ContentfulHomePromotion } from '~/routes/($locale).types';
+import { DropdownMenu } from './DropdownMenu';
+import { RxCross2 } from 'react-icons/rx';
+import { slugify } from '~/routes/($locale).news';
 
 const EMAILJS_SERVICE_ID = 'orders-mx-mail';
 const EMAILJS_SUBSCRIPTION_TEMPLATE_ID = 'mx-usa-form-subscription';
@@ -94,7 +94,7 @@ export function Layout({
 }) {
 
   const match = useMatches();
-  const path = match[match.length-1].pathname;
+  const path = match[match.length - 1].pathname;
 
   return (
     <>
@@ -104,7 +104,7 @@ export function Layout({
             Skip to content
           </a>
         </div>
-        {path!='/presidents-sale' && path!='/magnicool-promo' && path!='/outlast-promo' &&
+        {path != '/presidents-sale' && path != '/magnicool-promo' && path != '/outlast-promo' &&
           <Header
             title={layout?.shop.name ?? 'Hydrogen'}
             menu={layout?.headerMenu}
@@ -114,13 +114,13 @@ export function Layout({
           {children}
         </main>
       </div>
-      
-      {path!='/closeout' && path!='/presidents-sale' && path!='/magnicool-promo' && path!='/outlast-promo' && <FooterNew />}
+
+      {path != '/closeout' && path != '/presidents-sale' && path != '/magnicool-promo' && path != '/outlast-promo' && <FooterNew />}
     </>
   );
 }
 
-function Header({title, menu}: {title: string; menu?: EnhancedMenu}) {
+function Header({ title, menu }: { title: string; menu?: EnhancedMenu }) {
   const isHome = useIsHomePath();
 
   const {
@@ -166,7 +166,7 @@ function Header({title, menu}: {title: string; menu?: EnhancedMenu}) {
   );
 }
 
-function CartDrawer({isOpen, onClose}: {isOpen: boolean; onClose: () => void}) {
+function CartDrawer({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const [root] = useMatches();
 
   return (
@@ -222,7 +222,7 @@ function MenuMobileNav({
             to={item.to}
             target={item.target}
             onClick={onClose}
-            className={({isActive}) =>
+            className={({ isActive }) =>
               isActive ? 'pb-1 border-b -mb-px' : 'pb-1'
             }
           >
@@ -254,11 +254,10 @@ function MobileHeader({
   return (
     <header
       role="banner"
-      className={`${
-        isHome
+      className={`${isHome
           ? 'bg-primary/80 dark:bg-contrast/60 text-contrast dark:text-primary shadow-darkHeader'
           : 'bg-contrast/80 text-primary'
-      } flex lg:hidden items-center h-nav sticky backdrop-blur-lg z-40 top-0 justify-between w-full leading-none gap-4 px-4 md:px-8`}
+        } flex lg:hidden items-center h-nav sticky backdrop-blur-lg z-40 top-0 justify-between w-full leading-none gap-4 px-4 md:px-8`}
     >
       <div className="flex items-center justify-start w-full gap-4">
         <button
@@ -318,14 +317,14 @@ function MobileHeader({
 }
 
 export const topMenuList = [
-  {menu: 'OUR ESSENCE', link: '/our-essence'},
-  {menu: 'A RECHARGE OF WELL-BEING', link: '/recharge-well-being'},
-  {menu: 'INNOVATION AND TECHNOLOGY', link: '/innovation-and-technologies'},
-  {menu: 'SUSTAINABILITY', link: '/sustainability'},
-  {menu: '5 STARS LUXURY SLEEP', link: '/5-star-luxury-sleep'},
-  {menu: 'CERTIFICATIONS', link: '/certifications'},
+  { menu: 'OUR ESSENCE', link: '/our-essence' },
+  { menu: 'A RECHARGE OF WELL-BEING', link: '/recharge-well-being' },
+  { menu: 'INNOVATION AND TECHNOLOGY', link: '/innovation-and-technologies' },
+  { menu: 'SUSTAINABILITY', link: '/sustainability' },
+  { menu: '5 STARS LUXURY SLEEP', link: '/5-star-luxury-sleep' },
+  { menu: 'CERTIFICATIONS', link: '/certifications' },
   //{menu: 'NEWS', link: '/news'},
-  {menu: 'CONTACT US', link: '/contacts'},
+  { menu: 'CONTACT US', link: '/contacts' },
 ];
 export const mainMenuList = [
   {
@@ -366,17 +365,15 @@ export const mainMenuList = [
   },
 ];
 
-function DesktopHeaderNew({openCart}: {openCart: () => void}) {
+function DesktopHeaderNew({ openCart }: { openCart: () => void }) {
   const [root] = useMatches();
-  const {load, data} = useFetcher();
+  const { load, data } = useFetcher();
   const [activeMenu, setActiveMenu] = useState<string>('');
   const navigate = useNavigate();
   // const navigation = useNavigation()
   const [homePromotion, setHomePromotion] = useState<
     ContentfulHomePromotion | undefined
   >(undefined);
-
-  // const data = data;
 
   const handleSelectMenu = (productType: SetStateAction<string>) => {
     if (productType == 'Promo') {
@@ -422,14 +419,15 @@ function DesktopHeaderNew({openCart}: {openCart: () => void}) {
     (async () => {
       await fetch(activePromotionsEndpoint)
         .then((res) => res.json())
-        .then((res:any) => {
+        .then((res: any) => {
           setHomePromotion(res as ContentfulHomePromotion);
         });
     })();
+
     if (GTM_ID) {
       const script = document.createElement('script');
       const noscript = document.createElement('noscript');
-      
+
       script.innerHTML = `
         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -441,7 +439,7 @@ function DesktopHeaderNew({openCart}: {openCart: () => void}) {
         <iframe src="https://www.googletagmanager.com/ns.html?id=${GTM_ID}"
         height="0" width="0" style="display:none;visibility:hidden"></iframe>
       `;
-      
+
       document.head.appendChild(script);
       document.body.appendChild(noscript);
     }
@@ -455,7 +453,7 @@ function DesktopHeaderNew({openCart}: {openCart: () => void}) {
       load(`/api/getProductsByCategory?productType=${activeMenu}`);
     } else if (activeMenu == 'Accessories') {
       load(`/api/accessories`);
-    }  else {
+    } else {
       load(`/api/getProductsByType?productType=${activeMenu}`);
     }
   }, [activeMenu]);
@@ -463,7 +461,7 @@ function DesktopHeaderNew({openCart}: {openCart: () => void}) {
   return (
     <header className="sticky top-0 z-50">
       <div className="hidden xxl:flex bg-dark-blue flex-row w-full items-center justify-end text-white uppercase text-xxs px-3 pt-3 pb-[14px]">
-        {topMenuList.map(({menu, link}, index) => (
+        {topMenuList.map(({ menu, link }, index) => (
           <Link
             to={link}
             key={index}
@@ -490,9 +488,8 @@ function DesktopHeaderNew({openCart}: {openCart: () => void}) {
               //   onClick={() => handleSelectMenu(menuItem.productType)}
               // >
               <span
-                className={`main-menu-item text-xs text-dark-blue cursor-pointer py-2 px-[23px] leading-[18px] 2xl:tracking-[0.48px] ${
-                  menuItem.type == 'promo' && 'font-bold text-red-600'
-                }`}
+                className={`main-menu-item text-xs text-dark-blue cursor-pointer py-2 px-[23px] leading-[18px] 2xl:tracking-[0.48px] ${menuItem.type == 'promo' && 'font-bold text-red-600'
+                  }`}
                 key={index}
                 onClick={() => handleSelectMenu(menuItem.productType)}
               >
@@ -515,21 +512,20 @@ function DesktopHeaderNew({openCart}: {openCart: () => void}) {
                               as="span"
                               className="text-gold font-semibold text-xxs"
                             >
-                              {({close}) => (
+                              {({ close }) => (
                                 <Link
                                   onClick={close}
-                                  to={`category/${
-                                    menuItem.handle || 'Mattress'
-                                  }`}
+                                  to={`category/${menuItem.handle || 'Mattress'
+                                    }`}
                                   reloadDocument
                                 >
-                                  {menuItem.productType == 'Collection'? (
+                                  {menuItem.productType == 'Collection' ? (
                                     <span>ALL COLLECTIONS &gt;</span>
                                   ) : (
                                     menuItem.productType == 'Accessories' ?
-                                    <></>
-                                    :
-                                    <span>All MODELS &gt;</span>
+                                      <></>
+                                      :
+                                      <span>All MODELS &gt;</span>
                                   )}
                                 </Link>
                               )}
@@ -541,11 +537,11 @@ function DesktopHeaderNew({openCart}: {openCart: () => void}) {
                         <div className="flex gap-2 flex-wrap">
                           {(activeMenu == 'Pillow' ||
                             activeMenu == 'Mattress') && (
-                            <ProductCardContent
-                              productData={data}
-                              className="product-tab"
-                            />
-                          )}
+                              <ProductCardContent
+                                productData={data}
+                                className="product-tab"
+                              />
+                            )}
                           {(activeMenu == 'Topper' ||
                             activeMenu == 'Beds and Bases') &&
                             data?.productNodes && (
@@ -611,14 +607,13 @@ function DesktopHeaderNew({openCart}: {openCart: () => void}) {
                                         style={{
                                           paddingBottom: '80%',
                                           width: '100%',
-                                          backgroundImage: `url(${
-                                            data.promotions.includes.Asset.find(
-                                              (asset) =>
-                                                asset.sys.id ==
-                                                promotion.fields.coverImage.sys
-                                                  .id,
-                                            )?.fields.file.url || ''
-                                          })`,
+                                          backgroundImage: `url(${data.promotions.includes.Asset.find(
+                                            (asset) =>
+                                              asset.sys.id ==
+                                              promotion.fields.coverImage.sys
+                                                .id,
+                                          )?.fields.file.url || ''
+                                            })`,
                                           backgroundPosition: 'center',
                                           backgroundSize: 'cover',
                                         }}
@@ -714,17 +709,15 @@ function DesktopHeader({
   title: string;
 }) {
   const params = useParams();
-  const {y} = useWindowScroll();
+  const { y } = useWindowScroll();
   return (
     <header
       role="banner"
-      className={`${
-        isHome
+      className={`${isHome
           ? 'bg-primary/80 dark:bg-contrast/60 text-contrast dark:text-primary shadow-darkHeader'
           : 'bg-contrast/80 text-primary'
-      } ${
-        !isHome && y > 50 && ' shadow-lightHeader'
-      } hidden h-nav lg:flex items-center sticky transition duration-300 backdrop-blur-lg z-40 top-0 justify-between w-full leading-none gap-8 px-12 py-8`}
+        } ${!isHome && y > 50 && ' shadow-lightHeader'
+        } hidden h-nav lg:flex items-center sticky transition duration-300 backdrop-blur-lg z-40 top-0 justify-between w-full leading-none gap-8 px-12 py-8`}
     >
       <div className="flex gap-12">
         <Link className="font-bold" to="/" prefetch="intent">
@@ -738,7 +731,7 @@ function DesktopHeader({
               to={item.to}
               target={item.target}
               prefetch="intent"
-              className={({isActive}) =>
+              className={({ isActive }) =>
                 isActive ? 'pb-1 border-b -mb-px' : 'pb-1'
               }
             >
@@ -828,11 +821,10 @@ function Badge({
       <>
         <IconBag />
         <div
-          className={`${
-            dark
+          className={`${dark
               ? 'text-primary bg-contrast dark:text-contrast dark:bg-primary'
               : 'text-contrast bg-primary'
-          } absolute bottom-1 right-1 text-[0.625rem] font-medium subpixel-antialiased h-3 min-w-[0.75rem] flex items-center justify-center leading-none text-center rounded-full w-auto px-[0.125rem] pb-px`}
+            } absolute bottom-1 right-1 text-[0.625rem] font-medium subpixel-antialiased h-3 min-w-[0.75rem] flex items-center justify-center leading-none text-center rounded-full w-auto px-[0.125rem] pb-px`}
         >
           <span>{count || 0}</span>
         </div>
@@ -1072,7 +1064,7 @@ function FooterNew() {
 //   );
 // }
 
-const FooterLink = ({item}: {item: EnhancedMenuItem}) => {
+const FooterLink = ({ item }: { item: EnhancedMenuItem }) => {
   if (item.to.startsWith('http')) {
     return (
       <a href={item.to} target={item.target} rel="noopener noreferrer">
@@ -1088,7 +1080,7 @@ const FooterLink = ({item}: {item: EnhancedMenuItem}) => {
   );
 };
 
-function FooterMenu({menu}: {menu?: EnhancedMenu}) {
+function FooterMenu({ menu }: { menu?: EnhancedMenu }) {
   const styles = {
     section: 'grid gap-4',
     nav: 'grid gap-2 pb-6',
@@ -1099,7 +1091,7 @@ function FooterMenu({menu}: {menu?: EnhancedMenu}) {
       {(menu?.items || []).map((item: EnhancedMenuItem) => (
         <section key={item.id} className={styles.section}>
           <Disclosure>
-            {({open}) => (
+            {({ open }) => (
               <>
                 <Disclosure.Button className="text-left md:cursor-default">
                   <Heading className="flex justify-between" size="lead" as="h3">
@@ -1113,9 +1105,8 @@ function FooterMenu({menu}: {menu?: EnhancedMenu}) {
                 </Disclosure.Button>
                 {item?.items?.length > 0 ? (
                   <div
-                    className={`${
-                      open ? `max-h-48 h-fit` : `max-h-0 md:max-h-fit`
-                    } overflow-hidden transition-all duration-300`}
+                    className={`${open ? `max-h-48 h-fit` : `max-h-0 md:max-h-fit`
+                      } overflow-hidden transition-all duration-300`}
                   >
                     <Suspense data-comment="This suspense fixes a hydration bug in Disclosure.Panel with static prop">
                       <Disclosure.Panel static>

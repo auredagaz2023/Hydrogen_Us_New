@@ -1,4 +1,4 @@
-import {useLoaderData} from '@remix-run/react';
+import { useLoaderData } from '@remix-run/react';
 import {
   AnalyticsPageType,
   SeoHandleFunction,
@@ -9,12 +9,13 @@ import {
   ProductConnection,
   Collection,
 } from '@shopify/hydrogen/storefront-api-types';
-import {LoaderArgs, json} from '@shopify/remix-oxygen';
+import { LoaderArgs, json } from '@shopify/remix-oxygen';
+import { useEffect, useState } from 'react';
 import invariant from 'tiny-invariant';
-import {CollectionHeading} from '~/components/CollectionHeading';
-import {CollectionLinks} from '~/components/CollectionLinks';
-import {ProductDetails} from '~/components/ProductDetails';
-import {TestMattressWidget} from '~/components/TestMattressWidget';
+import { CollectionHeading } from '~/components/CollectionHeading';
+import { CollectionLinks } from '~/components/CollectionLinks';
+import { ProductDetails } from '~/components/ProductDetails';
+import { TestMattressWidget } from '~/components/TestMattressWidget';
 
 // const seo: SeoHandleFunction<typeof loader> = ({data}) => ({
 //   title: data.productType,
@@ -32,11 +33,11 @@ export const handle = {
   },
 };
 
-export async function loader({params, request, context}: LoaderArgs) {
+export async function loader({ params, request, context }: LoaderArgs) {
   const productType = 'Beds and Bases';
   invariant(productType, 'Missing productType param');
 
-  const {products} = await context.storefront.query<{
+  const { products } = await context.storefront.query<{
     products: ProductConnection;
   }>(PRODUCTS_QUERY, {
     variables: {
@@ -47,7 +48,7 @@ export async function loader({params, request, context}: LoaderArgs) {
   });
 
   if (!products) {
-    throw new Response(null, {status: 404});
+    throw new Response(null, { status: 404 });
   }
 
   const productNodes = flattenConnection(products);
@@ -74,7 +75,10 @@ export async function loader({params, request, context}: LoaderArgs) {
 }
 
 export default function CategoryCollections() {
-  const {productNodes, productType} = useLoaderData<typeof loader>();
+  const { productNodes, productType } = useLoaderData<typeof loader>();
+
+  const [desktopBackground, setDesktopBackground] = useState<string | undefined>(undefined);
+  const [mobileBackground, setMobileBackground] = useState<string | undefined>(undefined);
 
   // const getComfortLevels = (collection: CollectionWithMetafields<Collection>) => {
   //   const comfortLevels: {
@@ -111,10 +115,45 @@ export default function CategoryCollections() {
   //   return undefined;
   // }
 
+
+  useEffect(() => {
+    (async () => {
+      const CONTENTFUL_SPACE_ID = '7xbaxb2q56jj';
+      const CONTENTFUL_ACCESS_TOKEN = 'yGGCia7N7dHraGe5fsBZkSHsms6QExEKbWy0XdKIn9g';
+      const activePromotionsEndpoint = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${CONTENTFUL_ACCESS_TOKEN}&content_type=activePromotions&fields.name=mxusa-active-promotions`;
+      const promoRes: any = await fetch(activePromotionsEndpoint).then(res => {
+        return res.json();
+      });
+
+      const promoDesktopItem = promoRes?.items[0]?.fields?.bedAndBasesPromoBannerDesktop;
+      const promoMobileItem = promoRes?.items[0]?.fields?.bedAndBasesPromoBannerMobile;
+
+      if (promoDesktopItem) {
+        const promoDesktopImage = promoRes.includes.Asset.find((asset: any) => {
+          return asset.sys.id === promoDesktopItem.sys.id;
+        })
+        if (promoDesktopImage?.fields?.file?.url) {
+          setDesktopBackground(promoDesktopImage?.fields?.file?.url)
+        }
+      }
+
+      if (promoMobileItem) {
+        const promoMobileImage = promoRes.includes.Asset.find((asset: any) => {
+          return asset.sys.id === promoMobileItem.sys.id;
+        })
+        if (promoMobileImage?.fields?.file?.url) {
+          setMobileBackground(promoMobileImage?.fields?.file?.url)
+        }
+      }
+    })();
+  }, [])
+
   return (
     <>
       <div className="px-3 sm:container py-16 md:py-24 lg:py-28">
         <CollectionHeading heading={productType} />
+        {desktopBackground && <img src={desktopBackground} className="hidden md:block w-full" alt="" />}
+        {mobileBackground && <img src={mobileBackground} className='md:hidden block w-full' alt="" />}
         <div className="flex flex-row flex-wrap justify-start">
           {productNodes &&
             productNodes.map((product: ProductType, index: number) => (

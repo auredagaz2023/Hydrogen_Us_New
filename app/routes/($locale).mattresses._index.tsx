@@ -9,6 +9,7 @@ import {
   CollectionConnection,
 } from '@shopify/hydrogen/storefront-api-types';
 import { LoaderFunctionArgs, json } from '@shopify/remix-oxygen';
+import { useEffect, useState } from 'react';
 import invariant from 'tiny-invariant';
 import { CollectionDetails } from '~/components/CollectionDetails';
 import { CollectionHeading } from '~/components/CollectionHeading';
@@ -76,9 +77,13 @@ export async function loader({ params, request, context }: LoaderFunctionArgs) {
   });
 }
 
+
 export default function CategoryCollections() {
   const { contentfulCollections, collections, productType } =
     useLoaderData<typeof loader>();
+
+  const [desktopBackground, setDesktopBackground] = useState<string | undefined>(undefined);
+  const [mobileBackground, setMobileBackground] = useState<string | undefined>(undefined);
 
   const getComfortLevels = (
     collection: CollectionWithMetafields<Collection>,
@@ -119,6 +124,8 @@ export default function CategoryCollections() {
         );
         if (item && item.fields) {
           comfortLevels.push(item.fields);
+        } else {
+          console.error('contentful error')
         }
       });
       return comfortLevels;
@@ -126,10 +133,44 @@ export default function CategoryCollections() {
     return undefined;
   };
 
+  useEffect(() => {
+    (async () => {
+      const CONTENTFUL_SPACE_ID = '7xbaxb2q56jj';
+      const CONTENTFUL_ACCESS_TOKEN = 'yGGCia7N7dHraGe5fsBZkSHsms6QExEKbWy0XdKIn9g';
+      const activePromotionsEndpoint = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${CONTENTFUL_ACCESS_TOKEN}&content_type=activePromotions&fields.name=mxusa-active-promotions`;
+      const promoRes: any = await fetch(activePromotionsEndpoint).then(res => {
+        return res.json();
+      });
+
+      const promoDesktopItem = promoRes?.items[0]?.fields?.mattressesPromoBannerDesktop;
+      const promoMobileItem = promoRes?.items[0]?.fields?.mattressesPromoBannerMobile;
+
+      if (promoDesktopItem) {
+        const promoDesktopImage = promoRes.includes.Asset.find((asset: any) => {
+          return asset.sys.id === promoDesktopItem.sys.id;
+        })
+        if (promoDesktopImage?.fields?.file?.url) {
+          setDesktopBackground(promoDesktopImage?.fields?.file?.url)
+        }
+      }
+
+      if (promoMobileItem) {
+        const promoMobileImage = promoRes.includes.Asset.find((asset: any) => {
+          return asset.sys.id === promoMobileItem.sys.id;
+        })
+        if (promoMobileImage?.fields?.file?.url) {
+          setMobileBackground(promoMobileImage?.fields?.file?.url)
+        }
+      }
+    })();
+  }, [])
+
   return (
     <>
       <div className="px-3 sm:container py-16 md:py-24 lg:py-28">
         <CollectionHeading heading="Mattresses" />
+        {desktopBackground && <img src={desktopBackground} className="hidden md:block w-full" alt="" />}
+        {mobileBackground && <img src={mobileBackground} className='md:hidden block w-full' alt="" />}
         <div className="flex flex-row flex-wrap justify-start">
           {collections.map((collection, index) => (
             <CollectionDetails

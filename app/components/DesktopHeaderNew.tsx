@@ -40,7 +40,6 @@ export function DesktopHeaderNew({openCart}: {openCart: () => void}) {
     ContentfulHomePromotion | undefined
   >(undefined);
 
-  // const data = data;
   const handleSelectMenu = (productType:any) => {
     if (productType == 'Promo') {
       // navigate('/sales');
