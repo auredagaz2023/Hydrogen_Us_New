@@ -4,7 +4,7 @@ import {
   Money,
   SeoHandleFunction,
 } from '@shopify/hydrogen';
-import {json, LoaderArgs} from '@shopify/remix-oxygen';
+import { json, LoaderArgs } from '@shopify/remix-oxygen';
 import {
   Collection as CollectionType,
   Image as ImageType,
@@ -12,32 +12,31 @@ import {
   ProductVariant,
 } from '@shopify/hydrogen/storefront-api-types';
 import invariant from 'tiny-invariant';
-import {PRODUCT_CARD_FRAGMENT} from '~/data/fragments';
+import { PRODUCT_CARD_FRAGMENT } from '~/data/fragments';
 import {
   Link,
   useLoaderData,
   useLocation,
   useSearchParams,
 } from '@remix-run/react';
-import {useEffect, useRef, useState} from 'react';
-import {Image} from '@shopify/hydrogen';
-import {Disclosure, Popover} from '@headlessui/react';
-import {BsChevronDown} from 'react-icons/bs';
-import {Swiper, SwiperSlide} from 'swiper/react';
-import {Swiper as SwiperType} from 'swiper/types/index';
-import {Text} from '~/components';
-import {AddToCartButton} from '~/components/AddToCartButton';
-import {ProductContent} from '~/components/ProductContent';
+import { useEffect, useRef, useState } from 'react';
+import { Image } from '@shopify/hydrogen';
+import { Disclosure, Popover } from '@headlessui/react';
+import { BsChevronDown } from 'react-icons/bs';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper as SwiperType } from 'swiper/types/index';
+import { Text } from '~/components';
+import { AddToCartButton } from '~/components/AddToCartButton';
+import { ProductContent } from '~/components/ProductContent';
 import WorldMap from '~/components/worldmap';
-import {CollectionWithMetafields, ProductWithMetafields} from '~/lib/type';
+import { CollectionWithMetafields, ProductWithMetafields } from '~/lib/type';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import CollectionProductCard from '~/components/CollectionProductCard';
-import {slugify} from '~/routes/($locale).news';
-import {RxMinusCircled, RxPlusCircled} from 'react-icons/rx';
+import { slugify } from '~/routes/($locale).news';
+import { RxMinusCircled, RxPlusCircled } from 'react-icons/rx';
 import FadeIn from '../FadeIn';
-import affirm_banner from '~/assets/magniflex-us-banner-affirm-product-page-02.jpg'
 
-const seo: SeoHandleFunction<typeof loader> = ({data}) => ({
+const seo: SeoHandleFunction<typeof loader> = ({ data }) => ({
   title: data?.collection?.seo?.title,
   description: data?.collection?.seo?.description,
   titleTemplate: '%s | Collection',
@@ -54,13 +53,13 @@ export const handle = {
   seo,
 };
 
-export async function loader({params, request, context}: LoaderArgs) {
-  const {productSlug, collectionHandle} = params;
+export async function loader({ params, request, context }: LoaderArgs) {
+  const { productSlug, collectionHandle } = params;
 
   invariant(productSlug, 'Missing productSlug param');
   invariant(collectionHandle, 'Missing collectionHandle param');
 
-  const {collection} = await context.storefront.query<{
+  const { collection } = await context.storefront.query<{
     collection: CollectionWithMetafields<CollectionType>;
   }>(COLLECTION_QUERY, {
     variables: {
@@ -71,7 +70,7 @@ export async function loader({params, request, context}: LoaderArgs) {
   });
 
   if (!collection) {
-    throw new Response(null, {status: 404});
+    throw new Response(null, { status: 404 });
   }
 
   const product = collection.products.nodes.find(
@@ -79,7 +78,7 @@ export async function loader({params, request, context}: LoaderArgs) {
   );
 
   if (!product) {
-    throw new Response(null, {status: 404});
+    throw new Response(null, { status: 404 });
   }
 
   return json({
@@ -97,7 +96,7 @@ export async function loader({params, request, context}: LoaderArgs) {
 
 export default function CollectionProducts() {
   const [searchParams] = useSearchParams();
-  const {collection, product, collectionHandle, productType} =
+  const { collection, product, collectionHandle, productType } =
     useLoaderData<typeof loader>();
   const products = collection.products.nodes;
   const featuredImage = products[0].featuredImage;
@@ -118,6 +117,29 @@ export default function CollectionProducts() {
 
   const refDisclosureButton = useRef<HTMLButtonElement>(null);
   const refDisclosure = useRef<HTMLElement>(null);
+
+  const [affirmBanner, setAffirmBanner] = useState<string | undefined>()
+
+  useEffect(() => {
+    (async () => {
+      const CONTENTFUL_SPACE_ID = '7xbaxb2q56jj';
+      const CONTENTFUL_ACCESS_TOKEN = 'yGGCia7N7dHraGe5fsBZkSHsms6QExEKbWy0XdKIn9g';
+      const activePromotionsEndpoint = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${CONTENTFUL_ACCESS_TOKEN}&content_type=activePromotions&fields.name=mxusa-active-promotions`;
+      const promoRes: any = await fetch(activePromotionsEndpoint).then(res => {
+        return res.json();
+      });
+      const cartBannerItem = promoRes?.items[0]?.fields?.cartBanner;
+
+      if (cartBannerItem) {
+        const cartBannerImage = promoRes.includes.Asset.find((asset: any) => {
+          return asset.sys.id === cartBannerItem.sys.id;
+        })
+        if (cartBannerImage?.fields?.file?.url) {
+          setAffirmBanner(cartBannerImage?.fields?.file?.url)
+        }
+      }
+    })();
+  }, [])
 
   const changeProduct = (_product: Product) => {
     setSelectedProduct(_product);
@@ -172,22 +194,21 @@ export default function CollectionProducts() {
           </Swiper>
           {(selectedProduct as ProductWithMetafields<Product>)
             .discountPercent && (
-            <div className="absolute left-0 top-10 flex justify-end bg-red-600 text-white w-48 px-2 py-2 z-10">
-              Promo -
-              {
-                (selectedProduct as ProductWithMetafields<Product>)
-                  .discountPercent.value
-              }
-              %
-            </div>
-          )}
+              <div className="absolute left-0 top-10 flex justify-end bg-red-600 text-white w-48 px-2 py-2 z-10">
+                Promo -
+                {
+                  (selectedProduct as ProductWithMetafields<Product>)
+                    .discountPercent.value
+                }
+                %
+              </div>
+            )}
           <div
-            className={`${
-              (selectedProduct as ProductWithMetafields<Product>)
+            className={`${(selectedProduct as ProductWithMetafields<Product>)
                 .discountPercent
                 ? 'top-[90px]'
                 : 'top-[25px]'
-            } imageNavigation absolute left-5 w-10 md:w-16 z-10`}
+              } imageNavigation absolute left-5 w-10 md:w-16 z-10`}
           >
             {selectedProduct.images.nodes.map(
               (navImage: ImageType, index: number) => (
@@ -201,11 +222,10 @@ export default function CollectionProducts() {
                     `${selectedProduct.handle}-nav-image-${index}`
                   }
                   onClick={() => onClickNavigation(navImage, index)}
-                  className={`${
-                    navImage == selectedImage
+                  className={`${navImage == selectedImage
                       ? 'border border-dark-blue'
                       : 'border-0'
-                  } cursor-pointer mb-2`}
+                    } cursor-pointer mb-2`}
                 />
               ),
             )}
@@ -232,9 +252,8 @@ export default function CollectionProducts() {
                     //   refDisclosureButton.current?.click();
                     // }
                   }}
-                  className={`grow flex justify-between items-center p-2 md:px-4 md:py-5 break-all text-174860 text-10 md:text-xs font-semibold uppercase border border-border cursor-pointer ${
-                    handle === 'comfort' && 'bg-174860 text-white'
-                  }`}
+                  className={`grow flex justify-between items-center p-2 md:px-4 md:py-5 break-all text-174860 text-10 md:text-xs font-semibold uppercase border border-border cursor-pointer ${handle === 'comfort' && 'bg-174860 text-white'
+                    }`}
                 >
                   <span>comfort</span>
                   <svg
@@ -267,9 +286,8 @@ export default function CollectionProducts() {
                         //   refDisclosureButton.current?.click();
                         // }
                       }}
-                      className={`grow flex justify-between items-center p-2 md:px-4 md:py-5 break-all text-174860 text-10 md:text-xs font-semibold uppercase border border-border cursor-pointer ${
-                        handle === 'benefits' && 'bg-174860 text-white'
-                      }`}
+                      className={`grow flex justify-between items-center p-2 md:px-4 md:py-5 break-all text-174860 text-10 md:text-xs font-semibold uppercase border border-border cursor-pointer ${handle === 'benefits' && 'bg-174860 text-white'
+                        }`}
                     >
                       <span>benefits</span>
                       <svg
@@ -304,9 +322,8 @@ export default function CollectionProducts() {
                         //   refDisclosureButton.current?.click();
                         // }
                       }}
-                      className={`grow flex justify-between items-center p-2 md:px-4 md:py-5 break-all text-174860 text-10 md:text-xs font-semibold uppercase border border-border cursor-pointer ${
-                        handle === 'technology' && 'bg-174860 text-white'
-                      }`}
+                      className={`grow flex justify-between items-center p-2 md:px-4 md:py-5 break-all text-174860 text-10 md:text-xs font-semibold uppercase border border-border cursor-pointer ${handle === 'technology' && 'bg-174860 text-white'
+                        }`}
                     >
                       <span>technology</span>
                       <svg
@@ -318,9 +335,8 @@ export default function CollectionProducts() {
                       >
                         <path
                           d="M12 15.25C11.9015 15.2504 11.8038 15.2312 11.7128 15.1934C11.6218 15.1557 11.5392 15.1001 11.47 15.03L6.47 10.03C6.37027 9.88408 6.32527 9.70765 6.34293 9.53181C6.36058 9.35598 6.43977 9.19202 6.56651 9.06886C6.69325 8.94571 6.85941 8.87126 7.03569 8.85866C7.21196 8.84606 7.38702 8.89611 7.53 8.99998L12 13.44L16.47 8.99998C16.611 8.90859 16.7785 8.86717 16.9458 8.88235C17.1131 8.89754 17.2705 8.96846 17.3927 9.08374C17.5149 9.19902 17.5948 9.35198 17.6197 9.51812C17.6446 9.68425 17.613 9.85394 17.53 9.99998L12.53 15C12.4633 15.0755 12.3819 15.1367 12.2908 15.1797C12.1997 15.2227 12.1007 15.2466 12 15.25Z"
-                          fill={`${
-                            handle == 'technology' ? '#FFF' : '#174860'
-                          }`}
+                          fill={`${handle == 'technology' ? '#FFF' : '#174860'
+                            }`}
                         />
                       </svg>
                     </div>
@@ -343,9 +359,8 @@ export default function CollectionProducts() {
                         //   refDisclosureButton.current?.click();
                         // }
                       }}
-                      className={`grow flex justify-between items-center p-2 md:px-4 md:py-5 break-all text-174860 text-10 md:text-xs font-semibold uppercase border border-border cursor-pointer ${
-                        handle === 'comparison' && 'bg-174860 text-white'
-                      }`}
+                      className={`grow flex justify-between items-center p-2 md:px-4 md:py-5 break-all text-174860 text-10 md:text-xs font-semibold uppercase border border-border cursor-pointer ${handle === 'comparison' && 'bg-174860 text-white'
+                        }`}
                     >
                       <span>comparison</span>
                       <svg
@@ -357,9 +372,8 @@ export default function CollectionProducts() {
                       >
                         <path
                           d="M12 15.25C11.9015 15.2504 11.8038 15.2312 11.7128 15.1934C11.6218 15.1557 11.5392 15.1001 11.47 15.03L6.47 10.03C6.37027 9.88408 6.32527 9.70765 6.34293 9.53181C6.36058 9.35598 6.43977 9.19202 6.56651 9.06886C6.69325 8.94571 6.85941 8.87126 7.03569 8.85866C7.21196 8.84606 7.38702 8.89611 7.53 8.99998L12 13.44L16.47 8.99998C16.611 8.90859 16.7785 8.86717 16.9458 8.88235C17.1131 8.89754 17.2705 8.96846 17.3927 9.08374C17.5149 9.19902 17.5948 9.35198 17.6197 9.51812C17.6446 9.68425 17.613 9.85394 17.53 9.99998L12.53 15C12.4633 15.0755 12.3819 15.1367 12.2908 15.1797C12.1997 15.2227 12.1007 15.2466 12 15.25Z"
-                          fill={`${
-                            handle == 'comparison' ? '#FFF' : '#174860'
-                          }`}
+                          fill={`${handle == 'comparison' ? '#FFF' : '#174860'
+                            }`}
                         />
                       </svg>
                     </div>
@@ -466,7 +480,7 @@ export default function CollectionProducts() {
           className="p-5 border-t border-[#dee2e6]"
           defaultOpen
         >
-          {({open}) => (
+          {({ open }) => (
             <>
               <Disclosure.Button
                 ref={refDisclosureButton}
@@ -501,11 +515,10 @@ export default function CollectionProducts() {
                           product.title,
                         )}`}
                         key={index}
-                        className={`${
-                          selectedProduct.handle == product.handle
+                        className={`${selectedProduct.handle == product.handle
                             ? 'bg-[#e9eced]'
                             : ''
-                        } border rounded-xs border-[#e9eced] mt-2 flex items-center cursor-pointer relative`}
+                          } border rounded-xs border-[#e9eced] mt-2 flex items-center cursor-pointer relative`}
                         onClick={() => {
                           changeProduct(product);
                           setHandle(undefined);
@@ -523,43 +536,43 @@ export default function CollectionProducts() {
                           </p>
                           {
                             (product as ProductWithMetafields<Product>).saveUpTo ?
-                            <>
-                              <p className='text-[11px] text-red-600'>
-                                {`Save up to ${(product as ProductWithMetafields<Product>)
-                                  .saveUpTo?.value
-                                }`}
+                              <>
+                                <p className='text-[11px] text-red-600'>
+                                  {`Save up to ${(product as ProductWithMetafields<Product>)
+                                    .saveUpTo?.value
+                                    }`}
+                                </p>
+                                <br />
+                              </>
+                              :
+                              <p className="text-[11px]">
+                                Starting at&nbsp;&nbsp;
+                                {(product as ProductWithMetafields<Product>)
+                                  .discountPercent ? (
+                                  <>
+                                    <div className='flex flex-wrap justify-between'>
+                                      <span className="text-red">
+                                        <Money
+                                          data={{
+                                            ...minPrice,
+                                            amount: (
+                                              (parseInt(minPrice.amount) *
+                                                (100 -
+                                                  (
+                                                    product as ProductWithMetafields<Product>
+                                                  ).discountPercent.value)) /
+                                              100
+                                            ).toString(),
+                                          }}
+                                        />
+                                      </span>
+                                      <span className='text-red-600 font-bold pr-[10px]'>{`PROMO ${(product as ProductWithMetafields<Product>).discountPercent.value}%`}</span>
+                                    </div>
+                                  </>
+                                ) : (
+                                  <Money data={minPrice} />
+                                )}
                               </p>
-                              <br/>
-                            </>
-                            :
-                            <p className="text-[11px]">
-                              Starting at&nbsp;&nbsp;
-                              {(product as ProductWithMetafields<Product>)
-                                .discountPercent ? (
-                                <>
-                                  <div className='flex flex-wrap justify-between'>
-                                    <span className="text-red">
-                                      <Money
-                                        data={{
-                                          ...minPrice,
-                                          amount: (
-                                            (parseInt(minPrice.amount) *
-                                              (100 -
-                                                (
-                                                  product as ProductWithMetafields<Product>
-                                                ).discountPercent.value)) /
-                                            100
-                                          ).toString(),
-                                        }}
-                                      />
-                                    </span>
-                                    <span className='text-red-600 font-bold pr-[10px]'>{`PROMO ${(product as ProductWithMetafields<Product>).discountPercent.value}%`}</span>
-                                  </div>
-                                </>
-                              ) : (
-                                <Money data={minPrice} />
-                              )}
-                            </p>
                           }
                           {/* <p className="text-[11px]">
                             Starting at&nbsp;&nbsp;
@@ -589,10 +602,10 @@ export default function CollectionProducts() {
                         </div>
                         {(product as ProductWithMetafields<Product>)
                           .discountPercent && (
-                          <div className="absolute top-0 left-0 bg-red-600 text-white px-2 uppercase text-8">
-                            promo
-                          </div>
-                        )}
+                            <div className="absolute top-0 left-0 bg-red-600 text-white px-2 uppercase text-8">
+                              promo
+                            </div>
+                          )}
                         {/* </Disclosure.Button> */}
                       </Link>
                     );
@@ -603,7 +616,7 @@ export default function CollectionProducts() {
         </Disclosure>
         {/* Variant picker */}
         <Disclosure as="div" className="p-5 border-t border-[#dee2e6]">
-          {({open}) => (
+          {({ open }) => (
             <>
               <Disclosure.Button className="flex w-full justify-between text-[13px] text-dark-blue">
                 <span>
@@ -620,7 +633,7 @@ export default function CollectionProducts() {
                 />
               </Disclosure.Button>
               <Disclosure.Panel as="div" className="pt-3">
-                {({close}) => (
+                {({ close }) => (
                   <>
                     {flattenConnection(selectedProduct.variants).map(
                       (variant: ProductVariant, index: number) => {
@@ -648,18 +661,18 @@ export default function CollectionProducts() {
                             {
                               <label className="radio-label ml-2 text-sm font-medium dark:text-gray-300">
                                 {
-                                  variant.compareAtPrice ? 
-                                  <>
-                                    {variant.selectedOptions[0].value } <span className='text-red-600'>&nbsp;&nbsp;&nbsp;Save ${parseFloat(variant.compareAtPrice.amount)-parseFloat(variant.price.amount)}</span>
-                                  </> :
-                                  variant?.discount?.value ?
-                                  <div className='flex gap-1 flex-wrap items-center'>
-                                    <div className='py-1'>{variant.selectedOptions[0].value }</div> <div className='text-white bg-red-600 font-semibold text-xxs px-2 py-1'>&nbsp;-{variant.discount.value}% PROMO</div>
-                                  </div>
-                                  :
-                                  <>
-                                    {variant.selectedOptions[0].value }
-                                  </>
+                                  variant.compareAtPrice ?
+                                    <>
+                                      {variant.selectedOptions[0].value} <span className='text-red-600'>&nbsp;&nbsp;&nbsp;Save ${parseFloat(variant.compareAtPrice.amount) - parseFloat(variant.price.amount)}</span>
+                                    </> :
+                                    variant?.discount?.value ?
+                                      <div className='flex gap-1 flex-wrap items-center'>
+                                        <div className='py-1'>{variant.selectedOptions[0].value}</div> <div className='text-white bg-red-600 font-semibold text-xxs px-2 py-1'>&nbsp;-{variant.discount.value}% PROMO</div>
+                                      </div>
+                                      :
+                                      <>
+                                        {variant.selectedOptions[0].value}
+                                      </>
                                 }
                               </label>
                             }
@@ -700,7 +713,7 @@ export default function CollectionProducts() {
               name="qty"
               className="w-10 border-0 p-0 text-center text-lg"
               value={quantity}
-              onChange={() => {}}
+              onChange={() => { }}
             />
             <button onClick={() => increaseQty()}>
               <RxPlusCircled className="w-5 h-5 text-dark-blue" />
@@ -737,9 +750,9 @@ export default function CollectionProducts() {
               </>
             )} */}
             {selectedVariant?.compareAtPrice
-               ? (
+              ? (
                 <>
-                  {selectedVariant.compareAtPrice && <Money className='text-red-600 line-through' data={selectedVariant.compareAtPrice} />} 
+                  {selectedVariant.compareAtPrice && <Money className='text-red-600 line-through' data={selectedVariant.compareAtPrice} />}
                   <Money data={selectedVariant.price} />
                 </>
               ) : (
@@ -748,15 +761,15 @@ export default function CollectionProducts() {
             }
             {(selectedProduct as ProductWithMetafields<Product>)
               .discountPercent && (
-              <span className="text-red-600 ml-8">
-                -
-                {
-                  (selectedProduct as ProductWithMetafields<Product>)
-                    .discountPercent.value
-                }
-                %
-              </span>
-            )}
+                <span className="text-red-600 ml-8">
+                  -
+                  {
+                    (selectedProduct as ProductWithMetafields<Product>)
+                      .discountPercent.value
+                  }
+                  %
+                </span>
+              )}
           </div>
         )}
         {!selectedVariant && (
@@ -838,7 +851,7 @@ export default function CollectionProducts() {
           )}
         </div>
         <div className='absolute px-5 py-8 bg-white'>
-          <img src={affirm_banner}></img>
+          <img src={affirmBanner}></img>
         </div>
       </div>
       <div

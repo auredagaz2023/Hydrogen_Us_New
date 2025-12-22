@@ -34,7 +34,6 @@ import CollectionProductCard from '~/components/CollectionProductCard';
 import {slugify} from '~/routes/($locale).news';
 import {RxMinusCircled, RxPlusCircled} from 'react-icons/rx';
 import FadeIn from '~/components/FadeIn';
-import affirm_banner from '~/assets/magniflex-us-banner-affirm-product-page-02.jpg'
 
 const contentfulEndpoint = `https://cdn.contentful.com/spaces/7xbaxb2q56jj/entries/6CZ0VtYrPTikwSp1XmXPXM?access_token=yGGCia7N7dHraGe5fsBZkSHsms6QExEKbWy0XdKIn9g`;
 
@@ -131,6 +130,29 @@ export default function CollectionProducts() {
   const [promoLabel, setPromoLabel] = useState('');
 
   const refDisclosureButton = useRef<HTMLButtonElement>(null);
+
+  const [affirmBanner, setAffirmBanner] = useState<string | undefined>()
+
+  useEffect(() => {
+    (async () => {
+      const CONTENTFUL_SPACE_ID = '7xbaxb2q56jj';
+      const CONTENTFUL_ACCESS_TOKEN = 'yGGCia7N7dHraGe5fsBZkSHsms6QExEKbWy0XdKIn9g';
+      const activePromotionsEndpoint = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${CONTENTFUL_ACCESS_TOKEN}&content_type=activePromotions&fields.name=mxusa-active-promotions`;
+      const promoRes: any = await fetch(activePromotionsEndpoint).then(res => {
+        return res.json();
+      });
+      const cartBannerItem = promoRes?.items[0]?.fields?.cartBanner;
+
+      if (cartBannerItem) {
+        const cartBannerImage = promoRes.includes.Asset.find((asset: any) => {
+          return asset.sys.id === cartBannerItem.sys.id;
+        })
+        if (cartBannerImage?.fields?.file?.url) {
+          setAffirmBanner(cartBannerImage?.fields?.file?.url)
+        }
+      }
+    })();
+  }, [])
 
   const changeProduct = (_product: Product) => {
     setSelectedProduct(_product);
@@ -918,7 +940,7 @@ export default function CollectionProducts() {
           )}
         </div>
         <div className='absolute px-5 py-8 bg-white'>
-          <img src={affirm_banner}></img>
+          <img src={affirmBanner}></img>
         </div>
       </div>
       <div

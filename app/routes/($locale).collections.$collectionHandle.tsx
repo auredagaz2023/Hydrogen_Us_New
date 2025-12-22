@@ -132,8 +132,6 @@ export default function CategoryCollections() {
     return _products;
   };
 
-  console.log('collection products', collection)
-
   return (
     <>
       <div

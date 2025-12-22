@@ -4,7 +4,7 @@ import {
   Money,
   SeoHandleFunction,
 } from '@shopify/hydrogen';
-import {json, LoaderArgs} from '@shopify/remix-oxygen';
+import { json, LoaderArgs } from '@shopify/remix-oxygen';
 import {
   Collection as CollectionType,
   Image as ImageType,
@@ -13,32 +13,31 @@ import {
   ProductVariant,
 } from '@shopify/hydrogen/storefront-api-types';
 import invariant from 'tiny-invariant';
-import {PRODUCT_CARD_FRAGMENT} from '~/data/fragments';
+import { PRODUCT_CARD_FRAGMENT } from '~/data/fragments';
 import {
   Link,
   useLoaderData,
   useSearchParams,
 } from '@remix-run/react';
-import {useEffect, useRef, useState} from 'react';
-import {Image} from '@shopify/hydrogen';
-import {Disclosure, Popover} from '@headlessui/react';
-import {BsChevronDown} from 'react-icons/bs';
-import {Swiper, SwiperSlide} from 'swiper/react';
-import {Swiper as SwiperType} from 'swiper/types/index';
-import {Text} from '~/components';
-import {AddToCartButton} from '~/components/AddToCartButton';
-import {ProductContent} from '~/components/ProductContent';
+import { useEffect, useRef, useState } from 'react';
+import { Image } from '@shopify/hydrogen';
+import { Disclosure, Popover } from '@headlessui/react';
+import { BsChevronDown } from 'react-icons/bs';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper as SwiperType } from 'swiper/types/index';
+import { Text } from '~/components';
+import { AddToCartButton } from '~/components/AddToCartButton';
+import { ProductContent } from '~/components/ProductContent';
 import WorldMap from '~/components/worldmap';
-import {CollectionWithMetafields, ProductWithMetafields} from '~/lib/type';
+import { CollectionWithMetafields, ProductWithMetafields } from '~/lib/type';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import CollectionProductCard from '~/components/CollectionProductCard';
-import {slugify} from '~/routes/($locale).news';
-import {RxMinusCircled, RxPlusCircled} from 'react-icons/rx';
+import { slugify } from '~/routes/($locale).news';
+import { RxMinusCircled, RxPlusCircled } from 'react-icons/rx';
 import FadeIn from '~/components/FadeIn';
 import { AccessoriesProductContent } from '~/components/AccessoriesProductContent';
-import affirm_banner from '~/assets/magniflex-us-banner-affirm-product-page-02.jpg'
 
-const seo: SeoHandleFunction<typeof loader> = ({data}) => ({
+const seo: SeoHandleFunction<typeof loader> = ({ data }) => ({
   title: data?.collection?.seo?.title,
   description: data?.collection?.seo?.description,
   titleTemplate: '%s | Collection',
@@ -291,15 +290,38 @@ export async function loader({ params, request, context }: LoaderArgs) {
 }
 
 export default function CollectionProducts() {
-  const {colorOptions:colorVariants, collection, product, collectionHandle, productType} =
+  const { colorOptions: colorVariants, collection, product, collectionHandle, productType } =
     useLoaderData<typeof loader>();
   const [sizeOptions, setSizeOptions] = useState<String[]>([])
   const [colorOptions, setColorOptions] = useState<String[]>([])
   const [selectedSize, setSelectedSize] = useState<String>('')
   const [selectedColor, setSelectedColor] = useState<String>('')
-  const [sizeOptionTitle,  setSizeOptionTitle] = useState<String>('')
+  const [sizeOptionTitle, setSizeOptionTitle] = useState<String>('')
   const [colorOptionTitle, setColorOptionTitle] = useState<String>('')
   const [variantProductImages, setVariantProductImages] = useState<String[]>([])
+
+  const [affirmBanner, setAffirmBanner] = useState<string | undefined>()
+
+  useEffect(() => {
+    (async () => {
+      const CONTENTFUL_SPACE_ID = '7xbaxb2q56jj';
+      const CONTENTFUL_ACCESS_TOKEN = 'yGGCia7N7dHraGe5fsBZkSHsms6QExEKbWy0XdKIn9g';
+      const activePromotionsEndpoint = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${CONTENTFUL_ACCESS_TOKEN}&content_type=activePromotions&fields.name=mxusa-active-promotions`;
+      const promoRes: any = await fetch(activePromotionsEndpoint).then(res => {
+        return res.json();
+      });
+      const cartBannerItem = promoRes?.items[0]?.fields?.cartBanner;
+
+      if (cartBannerItem) {
+        const cartBannerImage = promoRes.includes.Asset.find((asset: any) => {
+          return asset.sys.id === cartBannerItem.sys.id;
+        })
+        if (cartBannerImage?.fields?.file?.url) {
+          setAffirmBanner(cartBannerImage?.fields?.file?.url)
+        }
+      }
+    })();
+  }, [])
 
   const products = collection.products.nodes;
   const featuredImage = products[0].featuredImage;
@@ -399,27 +421,27 @@ export default function CollectionProducts() {
           (option) => option.name === "Bedding size" && option.value === selectedSize,
         ),
     );
-  
+
     const selectedVariant = selectedColor
       ? filteredVariantsBySize.filter((node) =>
-          node.selectedOptions.some(
-            (option) => option.name === "Color" && option.value === selectedColor,
-          ),
-        )[0]
+        node.selectedOptions.some(
+          (option) => option.name === "Color" && option.value === selectedColor,
+        ),
+      )[0]
       : filteredVariantsBySize[0];
-  
+
     setSelectedVariant(selectedVariant);
-  
+
     let variantProductImages = [];
     let variantImages = [];
-  
+
     try {
       // Step 1: Parse the `gid` values from `variantProductImages`
       variantProductImages = JSON.parse(selectedVariant?.productImages?.value || "[]");
-  
+
       // Step 2: Parse the `variantImages` (assuming it contains `gid` and `url`)
       variantImages = JSON.parse(selectedVariant?.images?.value || "[]");
-  
+
       if (!Array.isArray(variantProductImages) || !Array.isArray(variantImages)) {
         console.error("Parsed values are not arrays:", {
           variantProductImages,
@@ -433,29 +455,29 @@ export default function CollectionProducts() {
       variantProductImages = [];
       variantImages = [];
     }
-  
+
     // Step 3: Sort `variantImages` based on the order of `gid` values in `variantProductImages`
     const sortedVariantImages = variantProductImages
       .map((gid) => variantImages.find((image) => image.id === gid))
       .filter(Boolean); // Remove undefined values (if any `gid` is not found)
-  
+
     // Step 5: Update the state with the sorted image URLs
     setVariantProductImages(sortedVariantImages);
   }, [selectedSize, selectedColor, selectedProduct?.variants.nodes]);
-  const colorMap = colorVariants?.reduce((acc:any, metaobject:any) => {
+  const colorMap = colorVariants?.reduce((acc: any, metaobject: any) => {
     // Find the label and color fields
-    const labelField = metaobject.fields.find((field:any) => field.key === "label");
-    const colorField = metaobject.fields.find((field:any) => field.key === "color");
-  
+    const labelField = metaobject.fields.find((field: any) => field.key === "label");
+    const colorField = metaobject.fields.find((field: any) => field.key === "color");
+
     // Add the label and color to the result object
     if (labelField && colorField) {
       acc[labelField.value] = colorField.value;
     }
-  
+
     return acc;
   }, {});
 
-  useEffect(()=>{
+  useEffect(() => {
     const discount = selectedVariant?.discount?.value ?? (selectedProduct as ProductWithMetafields<Product>).discountPercent?.value
     setDiscount(discount)
   }, [selectedProduct, selectedVariant])
@@ -476,7 +498,7 @@ export default function CollectionProducts() {
                     <div className="w-full h-[350px] sm:h-[480px] md:h-[500px] lg:h-auto aspect-[100/55]">
                       <Image
                         className="w-full h-full object-cover"
-                        data={index<2 ? {...productImage, url:selectedVariant?.images?.[index]?.image?.url ?? productImage?.url} : productImage}
+                        data={index < 2 ? { ...productImage, url: selectedVariant?.images?.[index]?.image?.url ?? productImage?.url } : productImage}
                         // data={ productImage}
                         sizes="1500"
                         widths={[
@@ -491,36 +513,35 @@ export default function CollectionProducts() {
           </Swiper>
           {(selectedProduct as ProductWithMetafields<Product>)
             .discountPercent && (
-            <div className="absolute left-0 top-10 flex justify-end bg-red-600 text-white w-48 px-2 py-2 z-10">
-              Promo -
-              {
-                (selectedProduct as ProductWithMetafields<Product>)
-                  .discountPercent.value
-              }
-              %
-            </div>
-          )}
+              <div className="absolute left-0 top-10 flex justify-end bg-red-600 text-white w-48 px-2 py-2 z-10">
+                Promo -
+                {
+                  (selectedProduct as ProductWithMetafields<Product>)
+                    .discountPercent.value
+                }
+                %
+              </div>
+            )}
           {(selectedProduct as ProductWithMetafields<Product>)
             .saveUpTo && (
-            <div className="absolute left-0 top-10 flex justify-end bg-red-600 text-white px-[25px] py-2 z-10">
-              SALE
-            </div>
-          )}
+              <div className="absolute left-0 top-10 flex justify-end bg-red-600 text-white px-[25px] py-2 z-10">
+                SALE
+              </div>
+            )}
           <div
-            className={`${
-              (selectedProduct as ProductWithMetafields<Product>)
-                .discountPercent || (selectedProduct as ProductWithMetafields<Product>)
+            className={`${(selectedProduct as ProductWithMetafields<Product>)
+              .discountPercent || (selectedProduct as ProductWithMetafields<Product>)
                 .saveUpTo
-                ? 'top-[90px]'
-                : 'top-[25px]'
-            } imageNavigation absolute left-5 w-10 md:w-16 z-10`}
+              ? 'top-[90px]'
+              : 'top-[25px]'
+              } imageNavigation absolute left-5 w-10 md:w-16 z-10`}
           >
             <FadeIn>
               {selectedProduct.images.nodes.map(
                 (navImage: ImageType, index: number) => (
                   <Image
                     key={index}
-                    data={index<2 ? {...navImage, url:selectedVariant?.images?.[index]?.image?.url ?? navImage?.url} : navImage}
+                    data={index < 2 ? { ...navImage, url: selectedVariant?.images?.[index]?.image?.url ?? navImage?.url } : navImage}
                     sizes="60"
                     widths={[60]}
                     alt={
@@ -528,17 +549,16 @@ export default function CollectionProducts() {
                       `${selectedProduct.handle}-nav-image-${index}`
                     }
                     onClick={() => onClickNavigation(navImage, index)}
-                    className={`${
-                      navImage == selectedImage
-                        ? 'border border-dark-blue'
-                        : 'border-0'
-                    } cursor-pointer mb-2`}
+                    className={`${navImage == selectedImage
+                      ? 'border border-dark-blue'
+                      : 'border-0'
+                      } cursor-pointer mb-2`}
                   />
                 ),
               )}
             </FadeIn>
           </div>
-          <div className="product-menu-bottom absolute right-0 left-0 bottom-0 bg-white z-10">            
+          <div className="product-menu-bottom absolute right-0 left-0 bottom-0 bg-white z-10">
             <div className="w-full flex justify-center border border-border cursor-pointer">
               <AnchorLink
                 href="#productDetails"
@@ -605,7 +625,7 @@ export default function CollectionProducts() {
           className="p-5 border-t border-[#dee2e6]"
           defaultOpen
         >
-          {({open}) => (
+          {({ open }) => (
             <>
               <Disclosure.Button
                 ref={refDisclosureButton}
@@ -634,11 +654,10 @@ export default function CollectionProducts() {
                           product.title,
                         )}`}
                         key={index}
-                        className={`${
-                          selectedProduct.handle == product.handle
-                            ? 'bg-[#e9eced]'
-                            : ''
-                        } border rounded-xs border-[#e9eced] mt-2 flex items-center cursor-pointer relative`}
+                        className={`${selectedProduct.handle == product.handle
+                          ? 'bg-[#e9eced]'
+                          : ''
+                          } border rounded-xs border-[#e9eced] mt-2 flex items-center cursor-pointer relative`}
                         onClick={() => {
                           changeProduct(product);
                           setHandle(undefined);
@@ -656,41 +675,41 @@ export default function CollectionProducts() {
                           </p>
                           {
                             (product as ProductWithMetafields<Product>).saveUpTo ?
-                            <>
-                              <p className='text-[11px] text-red-600'>
-                                {`Save up to ${(product as ProductWithMetafields<Product>)
-                                  .saveUpTo?.value
-                                }`}
+                              <>
+                                <p className='text-[11px] text-red-600'>
+                                  {`Save up to ${(product as ProductWithMetafields<Product>)
+                                    .saveUpTo?.value
+                                    }`}
+                                </p>
+                                <br />
+                              </>
+                              :
+                              <p className="text-[11px]">
+                                Starting at&nbsp;&nbsp;
+                                {(product as ProductWithMetafields<Product>)
+                                  .discountPercent ? (
+                                  <div className='flex flex-wrap justify-between'>
+                                    <span className="text-blue">
+                                      <Money
+                                        data={{
+                                          ...minPrice,
+                                          amount: (
+                                            (parseInt(minPrice.amount) *
+                                              (100 -
+                                                (
+                                                  product as ProductWithMetafields<Product>
+                                                )?.discountPercent?.value)) /
+                                            100
+                                          ).toString(),
+                                        }}
+                                      />
+                                    </span>
+                                    <span className='text-red-600 font-bold pr-[10px]'>{`PROMO ${(product as ProductWithMetafields<Product>)?.discountPercent?.value}%`}</span>
+                                  </div>
+                                ) : (
+                                  <Money data={minPrice} />
+                                )}
                               </p>
-                              <br/>
-                            </>
-                            :
-                            <p className="text-[11px]">
-                              Starting at&nbsp;&nbsp;
-                              {(product as ProductWithMetafields<Product>)
-                                .discountPercent ? (
-                                <div className='flex flex-wrap justify-between'>
-                                  <span className="text-blue">
-                                    <Money
-                                      data={{
-                                        ...minPrice,
-                                        amount: (
-                                          (parseInt(minPrice.amount) *
-                                            (100 -
-                                              (
-                                                product as ProductWithMetafields<Product>
-                                              )?.discountPercent?.value)) /
-                                          100
-                                        ).toString(),
-                                      }}
-                                    />
-                                  </span>
-                                  <span className='text-red-600 font-bold pr-[10px]'>{`PROMO ${(product as ProductWithMetafields<Product>)?.discountPercent?.value}%`}</span>
-                                </div>
-                              ) : (
-                                <Money data={minPrice} />
-                              )}
-                            </p>
                           }
                           {/* <p className="text-[11px]">
                             Starting at&nbsp;&nbsp;
@@ -734,7 +753,7 @@ export default function CollectionProducts() {
         </Disclosure>
         {/* Variant picker */}
         <Disclosure as="div" className="p-5 border-t border-[#dee2e6]">
-          {({open}) => (
+          {({ open }) => (
             <>
               <Disclosure.Button className="flex w-full justify-between text-[13px] text-dark-blue">
                 <span className='text-left'>
@@ -751,7 +770,7 @@ export default function CollectionProducts() {
                 />
               </Disclosure.Button>
               <Disclosure.Panel as="div" className="pt-3">
-                {({close}) => (
+                {({ close }) => (
                   <>
                     {sizeOptions.map(
                       (size: String, index: number) => {
@@ -803,24 +822,24 @@ export default function CollectionProducts() {
             </>
           )}
         </Disclosure>
-        {colorOptions?.length>0 && 
+        {colorOptions?.length > 0 &&
           <div className='p-5 border-t border-[#dee2e6]'>
             <div className='font-semibold text-[13px] text-[#1c1072] mb-[20px]'>
               Color
             </div>
-            
+
             <div className='w-full grid grid-cols-3'>
-            {colorOptions.map((color:String, index:number) => {
-              return (
+              {colorOptions.map((color: String, index: number) => {
+                return (
                   <div className='flex flex-col items-center justify-center gap-[10px]'>
-                    <div onClick={()=>{setSelectedColor(color)}} className={`w-[20px] h-[20px] hover:cusor-pointer rounded-full border border-2 ${color==selectedColor ? 'border-[#033076]' : ''}`} style={{backgroundColor:colorMap?.[color] || '#ffffff'}}>
+                    <div onClick={() => { setSelectedColor(color) }} className={`w-[20px] h-[20px] hover:cusor-pointer rounded-full border border-2 ${color == selectedColor ? 'border-[#033076]' : ''}`} style={{ backgroundColor: colorMap?.[color] || '#ffffff' }}>
                     </div>
                     <div className='text-[12px] text-[#1c1072]'>
                       {color}
                     </div>
                   </div>
-              )
-            })}
+                )
+              })}
             </div>
           </div>
         }
@@ -835,7 +854,7 @@ export default function CollectionProducts() {
               name="qty"
               className="w-10 border-0 p-0 text-center text-lg"
               value={quantity}
-              onChange={() => {}}
+              onChange={() => { }}
             />
             <button onClick={() => increaseQty()}>
               <RxPlusCircled className="w-5 h-5 text-dark-blue" />
@@ -872,31 +891,31 @@ export default function CollectionProducts() {
                   </span>
                 </div>
               </>
-            ) : 
-            (
-              selectedVariant?.compareAtPrice
-                ? (
-                 <>
-                   {selectedVariant.compareAtPrice && <Money className='text-red-600 line-through' data={selectedVariant.compareAtPrice} />} 
-                   <Money data={selectedVariant.price} />
-                 </>
-               ) : (
-                 <Money data={selectedVariant.price} />
-               )
-             
-              // <Money data={selectedVariant.price} />
-            )}
+            ) :
+              (
+                selectedVariant?.compareAtPrice
+                  ? (
+                    <>
+                      {selectedVariant.compareAtPrice && <Money className='text-red-600 line-through' data={selectedVariant.compareAtPrice} />}
+                      <Money data={selectedVariant.price} />
+                    </>
+                  ) : (
+                    <Money data={selectedVariant.price} />
+                  )
+
+                // <Money data={selectedVariant.price} />
+              )}
             {(selectedProduct as ProductWithMetafields<Product>)
               .discountPercent && (
-              <span className="text-red-600 ml-8">
-                -
-                {
-                  (selectedProduct as ProductWithMetafields<Product>)
-                    .discountPercent?.value
-                }
-                %
-              </span>
-            )}
+                <span className="text-red-600 ml-8">
+                  -
+                  {
+                    (selectedProduct as ProductWithMetafields<Product>)
+                      .discountPercent?.value
+                  }
+                  %
+                </span>
+              )}
           </div>
         )}
         {!selectedVariant && (
@@ -935,7 +954,7 @@ export default function CollectionProducts() {
                 //   10 days.
                 // </p>
               )}
-             
+
             </>
           ) : (
             <button
@@ -947,7 +966,7 @@ export default function CollectionProducts() {
           )}
         </div>
         <div className='absolute px-5 py-8 bg-white'>
-          <img src={affirm_banner}></img>
+          <img src={affirmBanner}></img>
         </div>
       </div>
       <div

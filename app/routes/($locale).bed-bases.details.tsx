@@ -1,6 +1,6 @@
-import {type ReactNode, useRef, Suspense, useMemo, useState} from 'react';
-import {Disclosure, Listbox} from '@headlessui/react';
-import {defer, type LoaderArgs} from '@shopify/remix-oxygen';
+import { type ReactNode, useRef, Suspense, useMemo, useState, useEffect } from 'react';
+import { Disclosure, Listbox } from '@headlessui/react';
+import { defer, type LoaderArgs } from '@shopify/remix-oxygen';
 import {
   useLoaderData,
   Await,
@@ -31,9 +31,9 @@ import {
   Link,
   AddToCartButton,
 } from '~/components';
-import {ProductContent} from '~/components/ProductContent';
+import { ProductContent } from '~/components/ProductContent';
 import WorldMap from '~/components/worldmap';
-import {getExcerpt} from '~/lib/utils';
+import { getExcerpt } from '~/lib/utils';
 import invariant from 'tiny-invariant';
 import clsx from 'clsx';
 import type {
@@ -46,17 +46,16 @@ import type {
   MediaImage,
   Image as ImageType,
 } from '@shopify/hydrogen/storefront-api-types';
-import {MEDIA_FRAGMENT, PRODUCT_CARD_FRAGMENT} from '~/data/fragments';
-import type {ProductWithMetafields, Storefront} from '~/lib/type';
-import type {Product} from 'schema-dts';
-import {Swiper, SwiperSlide} from 'swiper/react';
-import {Swiper as SwiperType} from 'swiper/types/index';
-import {BsChevronDown} from 'react-icons/bs';
+import { MEDIA_FRAGMENT, PRODUCT_CARD_FRAGMENT } from '~/data/fragments';
+import type { ProductWithMetafields, Storefront } from '~/lib/type';
+import type { Product } from 'schema-dts';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper as SwiperType } from 'swiper/types/index';
+import { BsChevronDown } from 'react-icons/bs';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
-import {RxMinusCircled, RxPlusCircled} from 'react-icons/rx';
-import affirm_banner from '~/assets/magniflex-us-banner-affirm-product-page-02.jpg'
+import { RxMinusCircled, RxPlusCircled } from 'react-icons/rx';
 
-const seo: SeoHandleFunction<typeof loader> = ({data}) => {
+const seo: SeoHandleFunction<typeof loader> = ({ data }) => {
   const media = flattenConnection<MediaConnection>(data.product.media).find(
     (media) => media.mediaContentType === 'IMAGE',
   ) as MediaImage | undefined;
@@ -80,7 +79,7 @@ export const handle = {
   seo,
 };
 
-export async function loader({params, request, context}: LoaderArgs) {
+export async function loader({ params, request, context }: LoaderArgs) {
   const url = new URL(request.url);
   const productHandle = url.searchParams.get('product');
   // const {productHandle} = params;
@@ -90,12 +89,12 @@ export async function loader({params, request, context}: LoaderArgs) {
 
   const selectedOptions: SelectedOptionInput[] = [];
   searchParams.forEach((value, name) => {
-    selectedOptions.push({name, value});
+    selectedOptions.push({ name, value });
   });
 
-  const {product} = await context.storefront.query<{
+  const { product } = await context.storefront.query<{
     product: ProductWithMetafields<
-      ProductType & {selectedVariant?: ProductVariant}
+      ProductType & { selectedVariant?: ProductVariant }
     >;
   }>(PRODUCT_QUERY, {
     variables: {
@@ -107,7 +106,7 @@ export async function loader({params, request, context}: LoaderArgs) {
   });
 
   if (!product?.id) {
-    throw new Response(null, {status: 404});
+    throw new Response(null, { status: 404 });
   }
 
   const firstVariant = product.variants.nodes[0];
@@ -123,7 +122,7 @@ export async function loader({params, request, context}: LoaderArgs) {
   };
 
   return defer({
-    product: {...product, productType:'Beds and bases'},
+    product: { ...product, productType: 'Beds and bases' },
     analytics: {
       pageType: AnalyticsPageType.product,
       resourceId: product.id,
@@ -134,8 +133,8 @@ export async function loader({params, request, context}: LoaderArgs) {
 }
 
 export default function Product() {
-  const {product, analytics} = useLoaderData<typeof loader>();
-  const {media, title, vendor, descriptionHtml} = product;
+  const { product, analytics } = useLoaderData<typeof loader>();
+  const { media, title, vendor, descriptionHtml } = product;
   const [productImagesSwiper, setProductImagesSwiper] = useState<
     SwiperType | undefined
   >(undefined);
@@ -146,6 +145,29 @@ export default function Product() {
     product.featuredImage || product.images?.nodes[0],
   );
   const [quantity, setQuantity] = useState<number>(1);
+
+  const [affirmBanner, setAffirmBanner] = useState<string | undefined>()
+
+  useEffect(() => {
+    (async () => {
+      const CONTENTFUL_SPACE_ID = '7xbaxb2q56jj';
+      const CONTENTFUL_ACCESS_TOKEN = 'yGGCia7N7dHraGe5fsBZkSHsms6QExEKbWy0XdKIn9g';
+      const activePromotionsEndpoint = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${CONTENTFUL_ACCESS_TOKEN}&content_type=activePromotions&fields.name=mxusa-active-promotions`;
+      const promoRes: any = await fetch(activePromotionsEndpoint).then(res => {
+        return res.json();
+      });
+      const cartBannerItem = promoRes?.items[0]?.fields?.cartBanner;
+
+      if (cartBannerItem) {
+        const cartBannerImage = promoRes.includes.Asset.find((asset: any) => {
+          return asset.sys.id === cartBannerItem.sys.id;
+        })
+        if (cartBannerImage?.fields?.file?.url) {
+          setAffirmBanner(cartBannerImage?.fields?.file?.url)
+        }
+      }
+    })();
+  }, [])
 
   const onClickNavigation = (navImage: ImageType, index: number) => {
     setSelectedImage(navImage);
@@ -203,11 +225,10 @@ export default function Product() {
                         `${product.handle}-nav-image-${index}`
                       }
                       onClick={() => onClickNavigation(navImage, index)}
-                      className={`${
-                        navImage == selectedImage
+                      className={`${navImage == selectedImage
                           ? 'border border-dark-blue'
                           : 'border-0'
-                      } cursor-pointer mb-2`}
+                        } cursor-pointer mb-2`}
                     />
                   ),
                 )}
@@ -245,7 +266,7 @@ export default function Product() {
         </h1>
         {/* Variant picker */}
         <Disclosure as="div" className="p-5 border-t border-[#dee2e6]">
-          {({open}) => (
+          {({ open }) => (
             <>
               <Disclosure.Button className="flex w-full justify-between text-[13px] text-dark-blue">
                 <span>
@@ -262,7 +283,7 @@ export default function Product() {
                 />
               </Disclosure.Button>
               <Disclosure.Panel as="div" className="pt-3">
-                {({close}) => (
+                {({ close }) => (
                   <>
                     {flattenConnection(product.variants).map(
                       (variant: ProductVariant, index: number) => (
@@ -319,7 +340,7 @@ export default function Product() {
               name="qty"
               className="w-10 border-0 p-0 text-center text-lg"
               value={quantity}
-              onChange={() => {}}
+              onChange={() => { }}
             />
             <button onClick={() => increaseQty()}>
               <RxPlusCircled className="w-5 h-5 text-dark-blue" />
@@ -373,7 +394,7 @@ export default function Product() {
                     {selectedVariant?.price?.amount &&
                       selectedVariant?.compareAtPrice?.amount &&
                       selectedVariant?.price?.amount <
-                        selectedVariant?.compareAtPrice?.amount && (
+                      selectedVariant?.compareAtPrice?.amount && (
                         <Money
                           withoutTrailingZeros
                           data={selectedVariant?.compareAtPrice!}
@@ -454,10 +475,10 @@ export default function Product() {
                 <a href="/warranty" className='text-gray-400 text-xs underline'>Warranty and return policy</a>
               </div>
             </>
-      )}
+          )}
         </div>
         <div className='absolute px-5 py-8 bg-white'>
-          <img src={affirm_banner}></img>
+          <img src={affirmBanner}></img>
         </div>
       </div>
       <div
@@ -518,7 +539,7 @@ export default function Product() {
 }
 
 export function ProductForm() {
-  const {product, analytics} = useLoaderData<typeof loader>();
+  const { product, analytics } = useLoaderData<typeof loader>();
 
   const [currentSearchParams] = useSearchParams();
   // const transition = useTransition();
@@ -544,7 +565,7 @@ export function ProductForm() {
   const searchParamsWithDefaults = useMemo<URLSearchParams>(() => {
     const clonedParams = new URLSearchParams(searchParams);
 
-    for (const {name, value} of firstVariant.selectedOptions) {
+    for (const { name, value } of firstVariant.selectedOptions) {
       if (!searchParams.has(name)) {
         clonedParams.set(name, value);
       }
@@ -662,7 +683,7 @@ function ProductOptions({
               {option.values.length > 7 ? (
                 <div className="relative w-full">
                   <Listbox>
-                    {({open}) => (
+                    {({ open }) => (
                       <>
                         <Listbox.Button
                           ref={closeRef}
@@ -689,7 +710,7 @@ function ProductOptions({
                               key={`option-${option.name}-${value}`}
                               value={value}
                             >
-                              {({active}) => (
+                              {({ active }) => (
                                 <ProductOptionLink
                                   optionName={option.name}
                                   optionValue={value}
@@ -706,10 +727,10 @@ function ProductOptions({
                                   {value}
                                   {searchParamsWithDefaults.get(option.name) ===
                                     value && (
-                                    <span className="ml-2">
-                                      <IconCheck />
-                                    </span>
-                                  )}
+                                      <span className="ml-2">
+                                        <IconCheck />
+                                      </span>
+                                    )}
                                 </ProductOptionLink>
                               )}
                             </Listbox.Option>
@@ -762,7 +783,7 @@ function ProductOptionLink({
   children?: ReactNode;
   [key: string]: any;
 }) {
-  const {pathname} = useLocation();
+  const { pathname } = useLocation();
   const isLangPathname = /\/[a-zA-Z]{2}-[a-zA-Z]{2}\//g.test(pathname);
   // fixes internalized pathname
   const path = isLangPathname
@@ -796,7 +817,7 @@ function ProductDetail({
 }) {
   return (
     <Disclosure key={title} as="div" className="grid w-full gap-2">
-      {({open}) => (
+      {({ open }) => (
         <>
           <Disclosure.Button className="text-left">
             <div className="flex justify-between">
@@ -815,7 +836,7 @@ function ProductDetail({
           <Disclosure.Panel className={'pb-4 pt-2 grid gap-2'}>
             <div
               className="prose dark:prose-invert"
-              dangerouslySetInnerHTML={{__html: content}}
+              dangerouslySetInnerHTML={{ __html: content }}
             />
             {learnMore && (
               <div className="">
@@ -968,7 +989,7 @@ async function getRecommendedProducts(
     recommended: ProductType[];
     additional: ProductConnection;
   }>(RECOMMENDED_PRODUCTS_QUERY, {
-    variables: {productId, count: 12},
+    variables: { productId, count: 12 },
   });
 
   invariant(products, 'No data returned from Shopify API');
