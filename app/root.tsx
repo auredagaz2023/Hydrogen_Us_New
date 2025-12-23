@@ -423,6 +423,12 @@ const CART_QUERY = `#graphql
                 upsellingMessage: metafield(namespace: "custom", key: "upselling_message") {
                   value
                 }
+                discountPercent: metafield(namespace: "custom", key: "discount_percent") {
+                  value
+                }
+              }
+              discountPercent: metafield(namespace: "custom", key: "discount_percent") {
+                value
               }
               selectedOptions {
                 name
