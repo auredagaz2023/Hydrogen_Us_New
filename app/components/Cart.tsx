@@ -81,7 +81,7 @@ export function CartDetails({
     page: 'w-full pb-12 grid md:grid-cols-2 md:items-start gap-8 md:gap-8 lg:gap-12',
   };
 
-  console.log({cart})
+  console.log({ cart })
 
   return (
     <div className={container[layout]}>
@@ -427,18 +427,25 @@ function CartLinePrice({
     return null;
   }
 
-  const discounted = line.discountAllocations?.[0]?.discountedAmount
+  const discountPercent = line.merchandise?.product?.discountPercent?.value ?? 0;
 
   return <>
     <Money withoutTrailingZeros {...passthroughProps} data={moneyV2} />
-    {discounted && (
-        <Money
-          withoutTrailingZeros
-          data={discounted}
-          as="span"
-          className="opacity-50 strike"
-        />
-      )}
+    {discountPercent > 0 && (
+      <Money
+        withoutTrailingZeros
+        data={{
+          ...moneyV2,
+          amount: (
+            (parseInt(moneyV2.amount) *
+              (100 + discountPercent) /
+            100
+          )).toString(),
+        }}
+        as="span"
+        className="opacity-50 strike"
+      />
+    )}
   </>;
 }
 

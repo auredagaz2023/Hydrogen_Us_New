@@ -427,7 +427,7 @@ const CART_QUERY = `#graphql
                   value
                 }
               }
-              discountPercent: metafield(namespace: "custom", key: "discount_percent") {
+              discountPercent: metafield(namespace: "custom", key: "discount") {
                 value
               }
               selectedOptions {
