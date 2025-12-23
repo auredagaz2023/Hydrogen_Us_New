@@ -81,14 +81,12 @@ export function CartDetails({
     page: 'w-full pb-12 grid md:grid-cols-2 md:items-start gap-8 md:gap-8 lg:gap-12',
   };
 
-  console.log({ cart })
-
   return (
     <div className={container[layout]}>
       <CartLines lines={cart?.lines} layout={layout} />
       {!isZeroCost && (
         <CartSummary cost={cart.cost} layout={layout}>
-          <CartDiscounts discountCodes={cart.discountCodes} />
+          {/* <CartDiscounts discountCodes={cart.discountCodes} /> */}
           <CartCheckoutActions checkoutUrl={cart.checkoutUrl} />
         </CartSummary>
       )}
@@ -417,7 +415,6 @@ function CartLinePrice({
 }) {
   if (!line?.cost?.amountPerQuantity || !line?.cost?.totalAmount) return null;
 
-  console.log({ line })
   const moneyV2 =
     priceType === 'regular'
       ? line.cost.totalAmount
@@ -429,24 +426,30 @@ function CartLinePrice({
 
   const discountPercent = line.merchandise?.product?.discountPercent?.value ?? 0;
 
-  return <>
-    <Money withoutTrailingZeros {...passthroughProps} data={moneyV2} />
-    {discountPercent > 0 && (
-      <Money
-        withoutTrailingZeros
-        data={{
-          ...moneyV2,
-          amount: (
-            (parseInt(moneyV2.amount) *
-              (100 + discountPercent) /
-            100
-          )).toString(),
-        }}
-        as="span"
-        className="opacity-50 strike"
-      />
-    )}
-  </>;
+  return (
+    <div className='flex flex-wrap flex-col'>
+      <Money withoutTrailingZeros {...passthroughProps} data={moneyV2} />
+      {discountPercent > 0 && (<>
+        <div className='flex flex-wrap justify-between'>
+          <span className="text-red">
+            <Money
+              withoutTrailingZeros
+              data={{
+                ...moneyV2,
+                amount: (
+                  (parseInt(moneyV2.amount) *
+                    (100 + discountPercent) /
+                    100
+                  )).toString(),
+              }}
+              as="span"
+              className="opacity-50 strike"
+            />
+          </span>
+        </div>
+      </>)}
+    </div>
+  );
 }
 
 export function CartEmpty({
