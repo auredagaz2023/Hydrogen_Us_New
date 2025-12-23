@@ -378,32 +378,54 @@ const CART_QUERY = `#graphql
       email
       phone
     }
-    lines(first: 10) {
+    lines(first: 100) {
       edges {
         node {
           id
           quantity
+          attributes {
+            key
+            value
+          }
+          cost {
+            totalAmount {
+              amount
+              currencyCode
+            }
+            amountPerQuantity {
+              amount
+              currencyCode
+            }
+            compareAtAmountPerQuantity {
+              amount
+              currencyCode
+            }
+          }
           merchandise {
-            __typename
             ... on ProductVariant {
               id
+              availableForSale
+              compareAtPrice {
+                ...MoneyFragment
+              }
+              price {
+                ...MoneyFragment
+              }
+              requiresShipping
               title
+              image {
+                ...ImageFragment
+              }
               product {
-                id
+                handle
                 title
-                metafield(namespace: "custom", key: "discount_percent") {
-                  id
-                  namespace
-                  key
-                  type
+                id
+                upsellingMessage: metafield(namespace: "custom", key: "upselling_message") {
                   value
                 }
               }
-              metafield(namespace: "custom", key: "discount_percent") {
-                id
-                namespace
-                key
-                type
+              selectedOptions {
+                name
                 value
               }
             }
