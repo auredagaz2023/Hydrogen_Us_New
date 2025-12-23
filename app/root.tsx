@@ -24,28 +24,28 @@ import {
   type SeoHandleFunction,
   getShopAnalytics,
 } from '@shopify/hydrogen';
-import {Layout} from '~/components';
-import {GenericError} from './components/GenericError';
-import {NotFound} from './components/NotFound';
+import { Layout } from '~/components';
+import { GenericError } from './components/GenericError';
+import { NotFound } from './components/NotFound';
 
 import styles from '../app/styles/app.css';
 import customSliderStyles from 'public/styles/slick-custom.css';
 import customStyles from 'public/styles/custom-styles.css';
 import favicon from '../public/favicon.svg';
 
-import {DEFAULT_LOCALE, parseMenu, type EnhancedMenu} from './lib/utils';
+import { DEFAULT_LOCALE, parseMenu, type EnhancedMenu } from './lib/utils';
 import invariant from 'tiny-invariant';
-import {Shop, Cart} from '@shopify/hydrogen/storefront-api-types';
-import {useAnalytics} from '~/hooks/useAnalytics';
+import { Shop, Cart } from '@shopify/hydrogen/storefront-api-types';
+import { useAnalytics } from '~/hooks/useAnalytics';
 
-import {seoPayload} from '~/lib/session.server'
+import { seoPayload } from '~/lib/session.server'
 
 
 // import * as gtag from './gtags.client';
 // import {useLocation} from 'react-use';
 // import {useEffect, useRef} from 'react';
 
-const seo: SeoHandleFunction<typeof loader> = ({data, pathname}) => ({
+const seo: SeoHandleFunction<typeof loader> = ({ data, pathname }) => ({
   // title: data?.layout?.shop?.name,
   title: 'Magniflex US | Online Store',
   // titleTemplate: '%s | Hydrogen Store',
@@ -72,9 +72,9 @@ export const handle = {
 
 export const links: LinksFunction = () => {
   return [
-    {rel: 'stylesheet', href: styles},
-    {rel: 'stylesheet', href: customStyles},
-    {rel: 'stylesheet', href: customSliderStyles},
+    { rel: 'stylesheet', href: styles },
+    { rel: 'stylesheet', href: customStyles },
+    { rel: 'stylesheet', href: customSliderStyles },
     {
       rel: 'preconnect',
       href: 'https://cdn.shopify.com',
@@ -83,8 +83,8 @@ export const links: LinksFunction = () => {
       rel: 'preconnect',
       href: 'https://shop.app',
     },
-    {rel: 'icon', type: 'image/svg+xml', href: favicon},
-    {rel: 'preconnect', href: 'https://fonts.googleapis.com'},
+    { rel: 'icon', type: 'image/svg+xml', href: favicon },
+    { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
     {
       rel: 'preconnect',
       href: 'https://fonts.gstatic.com',
@@ -109,19 +109,19 @@ export const links: LinksFunction = () => {
 //   charset: 'utf-8',
 //   viewport: 'width=device-width,initial-scale=1',
 // });
-export const meta: MetaFunction<typeof loader> = ({data}) => {
-  return [{charset: 'utf-8', viewport: 'width=device-width,initial-scale=1',}];
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+  return [{ charset: 'utf-8', viewport: 'width=device-width,initial-scale=1', }];
 };
 
-export async function loader({request, context}: LoaderFunctionArgs) {
-  const {storefront, cart, env} = context;
+export async function loader({ request, context }: LoaderFunctionArgs) {
+  const { storefront, cart, env } = context;
   // const isLoggedInPromise = context.customerAccount?.isLoggedIn(); 
   const [cartId, layout] = await Promise.all([
     context.session.get('cartId'),
     getLayoutData(context),
   ]);
 
-  const seo = seoPayload.root({shop: layout.shop, url: request.url});
+  const seo = seoPayload.root({ shop: layout.shop, url: request.url });
 
   return defer({
     shop: getShopAnalytics({
@@ -145,11 +145,11 @@ export async function loader({request, context}: LoaderFunctionArgs) {
     //   shopId: layout.shop.id,
     // },
   },
-  {
-    headers: {
-      'Set-Cookie': await context.session.commit(),
-    },
-  });
+    {
+      headers: {
+        'Set-Cookie': await context.session.commit(),
+      },
+    });
 }
 
 export default function App() {
@@ -176,7 +176,7 @@ export default function App() {
       <head>
         {/* <Seo /> */}
         <Meta />
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Links />
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8ZQTL2qrSTWiK6gnZ5uYotq5LdfsGJPw&libraries=places"></script>
         {/* <script
@@ -233,7 +233,7 @@ export function CatchBoundary() {
             <NotFound type={pageType} />
           ) : (
             <GenericError
-              error={{message: `${routeError.status} ${routeError.data}`}}
+              error={{ message: `${routeError.status} ${routeError.data}` }}
             />
           )}
         </Layout>
@@ -251,7 +251,7 @@ export function CatchBoundary() {
   );
 }
 
-export function ErrorBoundary({error}: {error: Error}) {
+export function ErrorBoundary({ error }: { error: Error }) {
   const [root] = useMatches();
   const locale = root?.data?.selectedLocale ?? DEFAULT_LOCALE;
 
@@ -319,7 +319,7 @@ export interface LayoutData {
   cart?: Promise<Cart>;
 }
 
-async function getLayoutData({storefront}: AppLoadContext) {
+async function getLayoutData({ storefront }: AppLoadContext) {
   const HEADER_MENU_HANDLE = 'main-menu';
   const FOOTER_MENU_HANDLE = 'footer';
 
@@ -341,7 +341,7 @@ async function getLayoutData({storefront}: AppLoadContext) {
       - /blog/news/blog-post -> /news/blog-post
       - /collections/all -> /products
   */
-  const customPrefixes = {BLOG: '', CATALOG: 'products'};
+  const customPrefixes = { BLOG: '', CATALOG: 'products' };
 
   const headerMenu = data?.headerMenu
     ? parseMenu(data.headerMenu, customPrefixes)
@@ -351,7 +351,7 @@ async function getLayoutData({storefront}: AppLoadContext) {
     ? parseMenu(data.footerMenu, customPrefixes)
     : undefined;
 
-  return {shop: data.shop, headerMenu, footerMenu};
+  return { shop: data.shop, headerMenu, footerMenu };
 }
 
 const CART_QUERY = `#graphql
@@ -386,12 +386,6 @@ const CART_QUERY = `#graphql
           attributes {
             key
             value
-          }
-          discountAllocations {
-            discountedAmount {
-              amount
-              currencyCode
-            }
           }
           cost {
             totalAmount {
@@ -429,6 +423,9 @@ const CART_QUERY = `#graphql
                 upsellingMessage: metafield(namespace: "custom", key: "upselling_message") {
                   value
                 }
+                discountPercent: metafield(namespace: "custom", key: "discount_percent") {
+                  value
+                }
               }
               selectedOptions {
                 name
@@ -461,11 +458,6 @@ const CART_QUERY = `#graphql
     discountCodes {
       code
     }
-    discountAllocations {
-      discountedAmount {
-        ...MoneyFragment
-      }
-    }
   }
 
   fragment MoneyFragment on MoneyV2 {
@@ -482,10 +474,10 @@ const CART_QUERY = `#graphql
   }
 `;
 
-export async function getCart({storefront}: AppLoadContext, cartId: string) {
+export async function getCart({ storefront }: AppLoadContext, cartId: string) {
   invariant(storefront, 'missing storefront client in cart query');
 
-  const {cart} = await storefront.query<{cart?: Cart}>(CART_QUERY, {
+  const { cart } = await storefront.query<{ cart?: Cart }>(CART_QUERY, {
     variables: {
       cartId,
       country: storefront.i18n.country,
