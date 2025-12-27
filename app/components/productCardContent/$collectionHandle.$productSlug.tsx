@@ -180,7 +180,7 @@ export default function CollectionProducts() {
                 <SwiperSlide key={index}>
                   <div className="w-full h-[350px] sm:h-[480px] md:h-[500px] lg:h-auto aspect-[100/55]">
                     <Image
-                      className="w-full h-full object-cover"
+                      className="w-full object-cover"
                       data={productImage}
                       sizes="1500"
                       widths={[
