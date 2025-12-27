@@ -8,27 +8,27 @@ import desktopHeaderBottom from '../assets/labor-day-promo-2025/header/magniflex
 import mobileHeader from '../assets/sleep-resolution-2025/Mobile/Header/magniflex-us-the-great-sleep-resolution-header-mobile.jpg'
 import mobileHeaderBottom from '../assets/labor-day-promo-2025/header/magniflex-landing-benefit-bar-mobile-A.gif'
 import dolcevitapng from '../assets/sleep-resolution-2025/Desktop/Products/Images/02-dolce-vita.jpg'
-import dolcevitapng_roll from '../assets/sleep-resolution-2025/Desktop/Products/Roll/02-dolce-vita.jpg'
+import dolcevitapng_roll from '../assets/sleep-resolution-2025/Desktop/Products/Roll/02-dolce-vita-roll.jpg'
 import mobileDolcevitapng from '../assets/sleep-resolution-2025/Mobile/Products/02-dolce-vita.jpg'
 
 import magnicoolpng from '../assets/sleep-resolution-2025/Desktop/Products/Images/03-magnicool.jpg'
-import magnicoolpng_roll from '../assets/sleep-resolution-2025/Desktop/Products/Roll/03-magnicool.jpg'
+import magnicoolpng_roll from '../assets/sleep-resolution-2025/Desktop/Products/Roll/03-magnicool-roll.jpg'
 import mobileMagnicoolpng from '../assets/sleep-resolution-2025/Mobile/Products/03-magnicool.jpg'
 
 import magnistretchpng from '../assets/sleep-resolution-2025/Desktop/Products/Images/04-magnistretch.jpg'
-import magnistretchpng_roll from '../assets/sleep-resolution-2025/Desktop/Products/Roll/04-magnistretch.jpg'
+import magnistretchpng_roll from '../assets/sleep-resolution-2025/Desktop/Products/Roll/04-magnistretch-roll.jpg'
 import mobileMagnistretchpng from '../assets/sleep-resolution-2025/Mobile/Products/04-magnistretch.jpg'
 
 import magnificopng from '../assets/sleep-resolution-2025/Desktop/Products/Images/05-magnifico.jpg'
-import magnificopng_roll from '../assets/sleep-resolution-2025/Desktop/Products/Roll/05-magnifico.jpg'
+import magnificopng_roll from '../assets/sleep-resolution-2025/Desktop/Products/Roll/05-magnifico-roll.jpg'
 import mobileMagnificopng from '../assets/sleep-resolution-2025/Mobile/Products/05-magnifico.jpg'
 
 import classicopng from '../assets/sleep-resolution-2025/Desktop/Products/Images/06-classico.jpg'
-import classicopng_roll from '../assets/sleep-resolution-2025/Desktop/Products/Roll/06-classico.jpg'
+import classicopng_roll from '../assets/sleep-resolution-2025/Desktop/Products/Roll/06-classico-roll.jpg'
 import mobileClassicopng from '../assets/sleep-resolution-2025/Mobile/Products/06-classico.jpg'
 
 import firenzepng from '../assets/sleep-resolution-2025/Desktop/Products/Images/01-firenze-base.jpg'
-import firenzepng_roll from '../assets/sleep-resolution-2025/Desktop/Products/Roll/01-firenze-base.jpg'
+import firenzepng_roll from '../assets/sleep-resolution-2025/Desktop/Products/Roll/01-firenze-base-roll.jpg'
 import mobileFirenzepng from '../assets/sleep-resolution-2025/Mobile/Products/01-firenze-base.jpg'
 
 import CirculationIcon from '../assets/sleep-resolution-2025/Icons/01-icon-circulation.png'
@@ -109,7 +109,7 @@ const products = [
     mobile_img: mobileMagnificopng,
     name: "Magnifico",
     description: "The excellence of traditional materials combined with the innovation of new technologies to produce timeless comfort",
-    bestfor: "discerning sleepers seeking ultimate comfort",
+    bestfor: "refined sleepers seeking ultimate comfort",
     fitness: "super-soft, medium-soft, medium-firm",
     price: "$2,899",
     button: "Shop Magnifico",
@@ -128,7 +128,7 @@ const products = [
     fitness: "medium-firm",
     price: "$1,799",
     button: "Shop Classico",
-    link: "https://magniflex.us/mattresses/classico?product=classico-9",
+    link: "https://magniflex.us/mattresses/classico?product=classico-essential-10",
     mattress: true
   },
 ]
@@ -212,12 +212,12 @@ export default function BlackFriday2025() {
           <img src={mobileHeaderBottom} loading='lazy' alt="header" className='md:hidden' />
         </div>
       </FadeIn>
-      <div className="px-3 py-16 md:py-24 lg:py-28" style={{ lineHeight: 1.5 }}>
+      <div className="lg:px-3 py-16 md:py-24 lg:py-28" style={{ lineHeight: 1.5 }}>
         <div className='bg-white text-[#174860] landing-[29px] text-[17.5px] text-center pb-[64px] md:pb-[45px] px-[30px] md:px-[20%]'>
           <div style={{ marginBottom: '25px' }}>
             <span className='font-bold text-[25px] mb-4'>Better sleep starts with the right foundation.</span><br /><br />
             <span className='text-[17.5px]'>
-              With any Magniflex mattress purchase, you can elevate your rest with the <span className='font-bold'>Firenze adjustable base</span> starting at $199,<br />
+              With any Magniflex mattress purchase, you can elevate your rest with the <span className='font-bold'>Firenze adjustable base</span> starting at <span className='font-bold'>$199</span>,<br />
               blending advanced comfort with refined design while <span className='font-bold'>saving up to $1,799</span>.
             </span>
           </div>
@@ -258,7 +258,7 @@ export default function BlackFriday2025() {
               </span>
             </div>
             <div className='flex flex-col w-fit mt-5 mb-5'>
-              <a onMouseOver={() => handleHover(4)} onMouseOut={handleUnhover} className='w-full text-center py-4 px-8 uppercase border border-[#174860] hover:bg-[#174860] bg-transparent hover:text-white text-[#174860] text-[17.5px] lg:text-[13px] font-semibold' href="https://magniflex.us/collections/firenze">Shop FIRENZE BASE</a>
+              <a onMouseOver={() => handleHover(4)} onMouseOut={handleUnhover} className='w-full text-center py-4 px-8 uppercase border border-[#174860] hover:bg-[#174860] bg-transparent hover:text-white text-[#174860] text-[17.5px] lg:text-[13px] font-semibold' href="https://magniflex.us/bed-bases/details?product=firenze">Shop FIRENZE BASE</a>
               <div className='text-[#174860] text-[8px] text-center xl:text-[13px] landing-[30px] font-semibold mt-[20px] font-[600px]'>Save up to $1,799</div>
             </div>
           </div>
@@ -268,7 +268,7 @@ export default function BlackFriday2025() {
                 className='h-6 w-6'
               />
             </div>
-            <div className='mt-5 bg-transparent text-[#174860] landing-[29px] text-[17.5px] text-center pb-[64px] md:pb-[48px] px-[30px] md:px-[20%]'>
+            <div className='mt-5 bg-transparent text-[#174860] landing-[29px] text-[17px] text-center pb-[64px] md:pb-[48px] px-[30px] md:px-[20%]'>
               <div style={{ marginBottom: '25px' }}>
                 <span className='font-bold text-[25px] mb-4'>Don't just sleep, restore. </span><br /><br />
                 <span className='text-[17.5px]'>
@@ -280,57 +280,47 @@ export default function BlackFriday2025() {
                 <div className='bg-white flex items-center justify-center px-5 min-h-[70px] mb-[2px] mr-[2px] text-[#000028] font-bold text-center'>Do you experience some of these issues?</div>
                 <div className='bg-white flex text-left items-center px-5 justify-center min-h-[70px] mb-[2px] text-[#000028] font-bold text-center'>How Firenze Adjustable Base will help:</div>
                 <div className='relative bg-white flex items-center justify-end text-right px-5 min-h-[100px] mr-[2px]'>
-                  <div className='mr-5'>Do you wake up<br /> feeling stiff or achy?</div>
+                  <div className='mr-5'>Do you wake up feeling stiff or achy?</div>
                   <img width={78} src={CirculationIcon} alt="" />
                   <img src={ArrowIcon} className='absolute right-[-16px]' alt="" />
                 </div>
                 <div className='pl-10 bg-white flex text-left items-center px-5 justify-start min-h-[100px]'>
-                  <div>Independently elevate your head<br />
-                    and legs <span className='font-semibold'>to relieve muscle pressure</span><br />
-                    and promote <span className='font-semibold'>better circulation</span>
+                  <div>Independently elevate your head and legs <span className='font-bold'>to relieve muscle pressure</span> and promote <span className='font-bold'>better circulation</span>
                   </div>
                 </div>
                 <div className='relative bg-white flex items-center justify-end text-right px-5 min-h-[100px] mr-[2px]'>
-                  <div className='mr-5'>Tired of disruptive snoring<br />
-                    or poor posture in bed?
+                  <div className='mr-5'>Tired of disruptive snoring or poor posture in bed?
                   </div>
                   <img width={78} src={SnoozeIcon} alt="" />
                   <img src={ArrowIcon} className='absolute right-[-16px]' alt="" />
                 </div>
                 <div className='pl-10 bg-white flex text-left items-center px-5 justify-start min-h-[100px]'>
-                  <div>Ideal for <span className='font-semibold'>reducing strain, mitigating snoring</span>,<br />
-                    and <span className='font-semibold'>improving overall spinal alignment</span>
+                  <div>Ideal for <span className='font-bold'>reducing strain, mitigating snoring</span>, and <span className='font-bold'>improving overall spinal alignment</span>
                   </div>
                 </div>
                 <div className='relative bg-white flex items-center justify-end text-right px-5 min-h-[100px] mr-[2px]'>
-                  <div className='mr-5'>Are you constantly searching<br />
-                    for the "just right" position?</div>
+                  <div className='mr-5'>Are you constantly searching for the "just right" position?</div>
                   <img width={78} src={PositionIcon} alt="" />
                   <img src={ArrowIcon} className='absolute right-[-16px]' alt="" />
                 </div>
                 <div className='pl-10 bg-white flex text-left items-center px-5 justify-start min-h-[100px]'>
-                  <div>Find the perfect angle for superior comfort<br />
-                    and support thanks to a <span className='font-semibold'>powerful, silent motor</span></div>
+                  <div>Find the perfect angle for superior comfort and support thanks to a <span className='font-bold'>powerful, silent motor</span></div>
                 </div>
                 <div className='relative bg-white flex items-center justify-end text-right px-5 min-h-[100px] mr-[2px]'>
-                  <div className='mr-5'>Worried an adjustable base<br />
-                    won't fit your current frame?</div>
+                  <div className='mr-5'>Worried an adjustable base won't fit your current frame?</div>
                   <img width={78} src={FitIcon} alt="" />
                   <img src={ArrowIcon} className='absolute right-[-16px]' alt="" />
                 </div>
                 <div className='pl-10 bg-white flex text-left items-center px-5 justify-start min-h-[100px]'>
-                  <div><span className='font-semibold'>Zero-clearance structure</span> fits discreetly<br />
-                    within most existing bed frames</div>
+                  <div><span className='font-bold'>Zero-clearance structure</span> fits discreetly within most existing bed frames</div>
                 </div>
                 <div className='relative bg-white flex items-center justify-end text-right px-5 min-h-[100px] mr-[2px]'>
-                  <div className='mr-5'>Need a base that supports watching<br />
-                    TV, reading, and even working?</div>
+                  <div className='mr-5'>Need a base that supports watching TV, reading, and even working?</div>
                   <img width={78} src={SupportIcon} alt="" />
                   <img src={ArrowIcon} className='absolute right-[-16px]' alt="" />
                 </div>
                 <div className='pl-10 bg-white flex text-left items-center px-5 justify-start min-h-[100px]'>
-                  <div>it <span className='font-semibold'>supports all your in-bed activities</span><br />
-                    while maximizing mattress benefits.</div>
+                  <div>it <span className='font-bold'>supports all your in-bed activities</span> while maximizing mattress benefits</div>
                 </div>
               </div>
               <div className='pt-[50px]'>
@@ -341,15 +331,15 @@ export default function BlackFriday2025() {
           </div>
         </div>
 
-        <div className="px-12 mb-20 relative block lg:hidden">
+        <div className="mb-20 relative block lg:hidden">
           <div className='relative bg-[#F2ECD6] pb-5'>
             <img src={mobileFirenzepng}
               alt="product_img"
               className='lg:hidden'
             />
             <div className='flex flex-col items-center px-12'>
-              <a href='https://magniflex.us/bed-bases/details?product=firenze' className='hover:underline mt-[20px] text-[27.5px] lg:text-[22px] text-[#174860] landing-[24px] font-bold uppercase text-center'>FIRENZE ADJUSTABLE BASE</a>
-              <div className='mt-[20px] text-[17px] font-semibold md:font-normal text-[#174860] landing-[25px] text-center'>
+              <a href='https://magniflex.us/bed-bases/details?product=firenze' className='hover:underline mt-[20px] text-[27.5px] lg:text-[22px] text-[#174860] landing-[24px] font-bold uppercase text-center' style={{ lineHeight: 1 }}>FIRENZE ADJUSTABLE BASE</a>
+              <div className='mt-[15px] text-[17px] font-semibold md:font-normal text-[#174860] landing-[25px] text-center' style={{ lineHeight: 1 }}>
                 <span>Get it <span className='font-bold'>starting at</span> <span className='line-through'>$1,099</span> <span className='font-bold text-[#ED1C24] text-[15px]'>$199</span><br />
                   with the purchase of a King, Queen,<br />
                   or Twin XL mattress
@@ -370,46 +360,35 @@ export default function BlackFriday2025() {
               <div style={{ marginBottom: '50px' }}>
                 <span className='font-bold text-[25px] mb-4'>Don't just sleep, restore. </span><br /><br />
                 <span className='text-[17.5px]'>
-                  The Firenze Adjustable Base is the foundation<br />
-                  for a truly restorative night, and day.
+                  The Firenze Adjustable Base is the foundation for a truly restorative night, and day.
                 </span>
               </div>
               <div className='grid grid-cols-2 gap-[1px] rounded-[50px] overflow-hidden'>
                 <div className='bg-white flex items-center justify-center px-5 min-h-[80px] mb-[2px] mr-[2px] text-[#000028] font-bold text-center'>Do you experience some of these issues?</div>
                 <div className='bg-white flex text-left items-center px-5 justify-center min-h-[80px] mb-[2px] text-[#000028] font-bold text-center'>How Firenze Adjustable Base will help:</div>
                 <div className='relative bg-white flex items-center justify-end text-right px-5 min-h-[140px] mr-[2px]'>
-                  <div className='mr-5'>Feeling stiff<br />or achy?</div>
+                  <div className='mr-5'>Feeling stiffr achy?</div>
                   <div className='absolute right-[-39px] flex flex-col justify-center items-center'>
                     <img width={75} src={CirculationIcon} alt="" />
                     <img width={30} src={ArrowIcon} alt="" />
                   </div>
                 </div>
                 <div className='pl-10 bg-white flex text-left items-center px-5 justify-start min-h-[140px]'>
-                  <div>Relieve pressure<br />
-                    and improve<br />
-                    circulation
+                  <div>Relieve pressure and improve circulation
                   </div>
                 </div>
                 <div className='relative bg-white flex items-center justify-end text-right px-5 min-h-[140px] mr-[2px]'>
-                  <div className='mr-5'>Disruptive<br />
-                    snoring or poor <br />
-                    posture?<br />
-                  </div>
+                  <div className='mr-5'>Disruptive snoring or poor  posture?</div>
                   <div className='absolute right-[-39px] flex flex-col justify-center items-center'>
                     <img width={78} src={SnoozeIcon} alt="" />
                     <img width={30} src={ArrowIcon} alt="" />
                   </div>
                 </div>
                 <div className='pl-10 bg-white flex text-left items-center px-5 justify-start min-h-[140px]'>
-                  <div>Reduce snoring <br />
-                    and improve<br />
-                    spinal alignment<br />
-                  </div>
+                  <div>Reduce snoring and improve spinal alignment</div>
                 </div>
                 <div className='relative bg-white flex items-center justify-end text-right px-5 min-h-[140px] mr-[2px]'>
-                  <div className='mr-5'>Can’t find<br />
-                    the “just right”<br />
-                    position?
+                  <div className='mr-5'>Can’t find the “just right” position?
                   </div>
                   <div className='absolute right-[-39px] flex flex-col justify-center items-center'>
                     <img width={75} src={PositionIcon} alt="" />
@@ -417,15 +396,11 @@ export default function BlackFriday2025() {
                   </div>
                 </div>
                 <div className='pl-10 bg-white flex text-left items-center px-5 justify-start min-h-[140px]'>
-                  <div>Perfect<br />
-                    positioning,<br />
-                    effortless comfort
+                  <div>Perfect positioning, effortless comfort
                   </div>
                 </div>
                 <div className='relative bg-white flex items-center justify-end text-right px-5 min-h-[140px] mr-[2px]'>
-                  <div className='mr-5'>Worried it<br />
-                    won’t fit your<br />
-                    bed frame?
+                  <div className='mr-5'>Worried it won’t fit your bed frame?
                   </div>
                   <div className='absolute right-[-39px] flex flex-col justify-center items-center'>
                     <img width={75} src={FitIcon} alt="" />
@@ -436,9 +411,7 @@ export default function BlackFriday2025() {
                   <div>Designed to fit most frames</div>
                 </div>
                 <div className='relative bg-white flex items-center justify-end text-right px-5 min-h-[140px] mr-[2px]'>
-                  <div className='mr-5'>Need support<br />
-                    for TV, reading,<br />
-                    or work?
+                  <div className='mr-5'>Need support for TV, reading, or work?
                   </div>
                   <div className='absolute right-[-39px] flex flex-col justify-center items-center'>
                     <img width={75} src={SupportIcon} alt="" />
@@ -537,7 +510,7 @@ export default function BlackFriday2025() {
                     <div className='mt-[25px] text-[#839BB1] text-[13px] landing-[27.5px] text-center'>
                       Starting at&nbsp;&nbsp;
                       <br className='hidden md:block' />
-                      <span className='text-[22px] landing-[27.5px] font-semibold'>{product.price}</span>
+                      <span className='text-[22px] landing-[27.5px] text-[#174860] font-semibold'>{product.price}</span>
                     </div>
                     <a className='text-center mt-[15px] py-4 px-8 uppercase border border-[#174860] hover:bg-[#174860] bg-transparent hover:text-white text-[#174860] text-[12px] sm:text-[15px] lg:text-[13px] font-semibold' href={product.link}>{product.button}</a>
                     {product.bottom && <div className='mt-[15px] uppercase text-[#174860] text-center text-[17px] lg:text-[13px] font-semibold'>{product.bottom}</div>}

@@ -7366,6 +7366,14 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
     padding-bottom: 32px;
   }
 
+  .md\:pb-\[45px\]{
+    padding-bottom: 45px;
+  }
+
+  .md\:pb-\[48px\]{
+    padding-bottom: 48px;
+  }
+
   .md\:pb-\[70\%\]{
     padding-bottom: 70%;
   }
@@ -7437,14 +7445,6 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
   .md\:pt-nav{
     padding-top: 3rem;
     padding-top: var(--height-nav);
-  }
-
-  .md\:pb-\[48px\]{
-    padding-bottom: 48px;
-  }
-
-  .md\:pb-\[45px\]{
-    padding-bottom: 45px;
   }
 
   .md\:text-left{
