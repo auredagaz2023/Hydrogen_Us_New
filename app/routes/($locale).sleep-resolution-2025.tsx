@@ -228,21 +228,25 @@ export default function BlackFriday2025() {
             <img className='hidden lg:block w-full' style={{ visibility: 'hidden' }} src={firenzepng} alt="" />
             <img
               src={firenzepng_roll}
+              onMouseOver={() => handleHover(0)}
+              onMouseOut={handleUnhover}
               alt="product_img"
               className='hidden lg:block absolute top-0 left-0'
               style={{
                 objectFit: 'cover',
-                opacity: hoveredIndex === 4 ? 1 : 0,
+                opacity: hoveredIndex === 0 ? 1 : 0,
                 transition: 'opacity 0.5s ease'
               }}
             />
             <img
               src={firenzepng}
+              onMouseOver={() => handleHover(0)}
+              onMouseOut={handleUnhover}
               alt="product_img"
               className='hidden lg:block w-full absolute top-0 left-0 '
               style={{
                 objectFit: 'cover',
-                opacity: hoveredIndex !== 4 ? 1 : 0,
+                opacity: hoveredIndex !== 0 ? 1 : 0,
                 transition: 'opacity 0.5s ease'
               }}
             />
@@ -258,7 +262,7 @@ export default function BlackFriday2025() {
               </span>
             </div>
             <div className='flex flex-col w-fit mt-5 mb-5'>
-              <a onMouseOver={() => handleHover(4)} onMouseOut={handleUnhover} className='w-full text-center py-4 px-8 uppercase border border-[#174860] hover:bg-[#174860] bg-transparent hover:text-white text-[#174860] text-[17.5px] lg:text-[13px] font-semibold' href="https://magniflex.us/bed-bases/details?product=firenze">Shop FIRENZE BASE</a>
+              <a className='w-full text-center py-4 px-8 uppercase border border-[#174860] hover:bg-[#174860] bg-transparent hover:text-white text-[#174860] text-[17.5px] lg:text-[13px] font-semibold' href="https://magniflex.us/bed-bases/details?product=firenze">Shop FIRENZE BASE</a>
               <div className='text-[#174860] text-[8px] text-center xl:text-[13px] landing-[30px] font-semibold mt-[20px] font-[600px]'>Save up to $1,799</div>
             </div>
           </div>
