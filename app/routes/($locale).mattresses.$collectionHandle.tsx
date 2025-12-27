@@ -185,7 +185,7 @@ export default function CollectionProducts() {
   return (
     <div className="w-full pb-6 flex flex-wrap justify-between">
       <div className="w-full lg:w-9/12">
-        <div className="product-image w-full relative aspect-[100/55]">
+        <div className="product-image w-full relative">
           {!handle && (
             <Swiper
               slidesPerView={1}
@@ -195,7 +195,7 @@ export default function CollectionProducts() {
               {selectedProduct.images.nodes.map(
                 (productImage: ImageType, index: number) => (
                   <SwiperSlide key={index}>
-                    <div className="w-full h-[350px] sm:h-[480px] md:h-[500px] lg:h-auto aspect-[100/55]">
+                    <div className="w-full h-[350px] sm:h-[480px] md:h-[500px] lg:h-auto">
                       <Image
                         className="w-full object-cover"
                         data={productImage}
