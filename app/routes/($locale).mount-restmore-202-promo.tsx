@@ -6,7 +6,7 @@ import FadeIn from '~/components/FadeIn';
 import desktopHeader from '../assets/mount-restmore-202-promo/Desktop/Header/magniflex-us-mount-restmore-sale-header-desktop.jpg'
 import desktopHeaderBottom from '../assets/labor-day-promo-2025/header/magniflex-landing-benefit-bar-mobile-A.gif'
 import mobileHeader from '../assets/mount-restmore-202-promo/Mobile/Header/magniflex-us-mount-restmore-sale-header-mobile.jpg'
-import mobileHeaderBottom from '../assets/mount-restmore-202-promo/Mobile/Header/magniflex-us-mount-restmore-sale-header-mobile.jpg'
+import mobileHeaderBottom from '../assets/mount-restmore-202-promo/Mobile/Header/magniflex-landing-benefit-bar-mobile-A.gif'
 import dolcevitapng from '../assets/mount-restmore-202-promo/Desktop/Products/Images/01-dolce-vita.jpg'
 import dolcevitapng_roll from '../assets/mount-restmore-202-promo/Desktop/Products/Roll/01-dolce-vita-roll.jpg'
 import mobileDolcevitapng from '../assets/mount-restmore-202-promo/Mobile/Products/01-dolce-vita.jpg'
@@ -230,13 +230,14 @@ export default function BlackFriday2025() {
       <div className="px-3 sm:container py-16 md:py-24 lg:py-28" style={{ lineHeight: 1.5 }}>
         <div className='bg-white text-[#174860] landing-[29px] text-[17.5px] text-center pb-[64px] md:pb-[32px] px-[30px] md:px-[20%]'>
           <div style={{ marginBottom: '25px' }}>
-            <span className='font-bold hidden md:block text-[25px] mb-2'>Welcome to the Mount Restmore Sale:<br />
+            <span className='font-bold hidden md:block text-[25px]'>Welcome to the Mount Restmore Sale:<br />
               where world-class Italian comfort meets historic savings.
             </span>
-            <span className='font-bold md:hidden text-[25px] mb-2'>Welcome to the Mount Restmore Sale:
+            <span className='font-bold md:hidden text-[25px]'>Welcome to the Mount Restmore Sale:
               where world-class Italian comfort meets historic savings.
             </span>
-            <br />
+          </div>
+          <div>
             For a limited time, enjoy <span className='text-[#ED1C24] font-semibold'>30% off our mattresses and pillows.</span>
             It's time to stop dreaming about better sleep and start experiencing it.&nbsp;
             <span className='font-bold'>Save up to $3,959</span> and discover why Magniflex is the gold standard of rest.
