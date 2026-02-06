@@ -227,7 +227,7 @@ export default function BlackFriday2025() {
           <img src={mobileHeaderBottom} loading='lazy' alt="header" className='md:hidden' />
         </div>
       </FadeIn>
-      <div className="px-3 py-16 md:pt-24 lg:pt-28" style={{ lineHeight: 1.5 }}>
+      <div className="px-3 pt-16 md:pt-24 lg:pt-28" style={{ lineHeight: 1.5 }}>
         <div className='bg-white text-[#174860] landing-[29px] text-[17.5px] text-center px-[30px] mb-[25px]'>
           <span className='font-bold hidden md:block text-[25px]'>Welcome to the Mount Restmore Sale:<br />
             where world-class Italian comfort meets historic savings.
@@ -325,7 +325,7 @@ export default function BlackFriday2025() {
           }
         </div>
       </div>
-      <div className="px-3 py-16 md:pb-24 lg:pb-28 bg-[#F6F6F6]" style={{ lineHeight: 1.5 }}>
+      <div className="px-3 pb-16 md:pb-24 lg:pb-28 bg-[#F6F6F6]" style={{ lineHeight: 1.5 }}>
         <div className='flex flex-col mt-4 px-[30px] lg:p-4 pt-[40px] lg:pt-0'>
           <form onSubmit={(e) => handleSubmit(e)} ref={formRef} className='flex flex-col items-center lg:py-8'>
             <svg width="50" height="43" viewBox="0 0 50 43" fill="none" xmlns="http://www.w3.org/2000/svg">
