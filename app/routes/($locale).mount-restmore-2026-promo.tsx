@@ -98,7 +98,7 @@ const products = [
     price: "$1,890",
     button: "Shop MAGNISTRETCH",
     link: "https://magniflex.us/mattresses/magnistretch?product=magnistretch-12",
-    bottom: "Save up to $2,219",
+    bottom: "Save up to $2,519",
     mattress: true
   },
   {
@@ -131,7 +131,7 @@ const products = [
     original_price: "$1,799",
     price: "$1,260",
     button: "Shop Classico",
-    link: "https://magniflex.us/mattresses/classico?product=classico-9",
+    link: "https://magniflex.us/mattresses/classico?product=classico-essential-10",
     bottom: "Save up to $1,499",
     mattress: true
   },
@@ -227,21 +227,19 @@ export default function BlackFriday2025() {
           <img src={mobileHeaderBottom} loading='lazy' alt="header" className='md:hidden' />
         </div>
       </FadeIn>
-      <div className="px-3 sm:container py-16 md:py-24 lg:py-28" style={{ lineHeight: 1.5 }}>
+      <div className="px-3 py-16 md:pt-24 lg:pt-28" style={{ lineHeight: 1.5 }}>
+        <div className='bg-white text-[#174860] landing-[29px] text-[17.5px] text-center px-[30px] mb-[25px]'>
+          <span className='font-bold hidden md:block text-[25px]'>Welcome to the Mount Restmore Sale:<br />
+            where world-class Italian comfort meets historic savings.
+          </span>
+          <span className='font-bold md:hidden text-[25px]'>Welcome to the Mount Restmore Sale:
+            where world-class Italian comfort meets historic savings.
+          </span>
+        </div>
         <div className='bg-white text-[#174860] landing-[29px] text-[17.5px] text-center pb-[64px] md:pb-[32px] px-[30px] md:px-[20%]'>
-          <div style={{ marginBottom: '25px' }}>
-            <span className='font-bold hidden md:block text-[25px]'>Welcome to the Mount Restmore Sale:<br />
-              where world-class Italian comfort meets historic savings.
-            </span>
-            <span className='font-bold md:hidden text-[25px]'>Welcome to the Mount Restmore Sale:
-              where world-class Italian comfort meets historic savings.
-            </span>
-          </div>
-          <div>
-            For a limited time, enjoy <span className='text-[#ED1C24] font-semibold'>30% off our mattresses and pillows.</span>
-            It's time to stop dreaming about better sleep and start experiencing it.&nbsp;
-            <span className='font-bold'>Save up to $3,959</span> and discover why Magniflex is the gold standard of rest.
-          </div>
+          For a limited time, enjoy <span className='text-[#ED1C24] font-bold'>30% off our mattresses and pillows.</span>&nbsp;
+          It's time to stop dreaming about better sleep and start experiencing it.&nbsp;
+          <span className='font-bold'>Save up to $3,959</span> and discover why Magniflex is the gold standard of rest.
         </div>
         <div className='bg-white text-[#174860] text-[35px] font-bold text-center leading-1 py-[24px] px-[20px] mb-[24px] md:mb-[55px]' style={{ marginBottom: '55px' }}>
           Explore our collections
@@ -326,6 +324,8 @@ export default function BlackFriday2025() {
             })
           }
         </div>
+      </div>
+      <div className="px-3 py-16 md:pb-24 lg:pb-28 bg-[#F6F6F6]" style={{ lineHeight: 1.5 }}>
         <div className='flex flex-col mt-4 px-[30px] lg:p-4 pt-[40px] lg:pt-0'>
           <form onSubmit={(e) => handleSubmit(e)} ref={formRef} className='flex flex-col items-center lg:py-8'>
             <svg width="50" height="43" viewBox="0 0 50 43" fill="none" xmlns="http://www.w3.org/2000/svg">
