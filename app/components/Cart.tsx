@@ -424,30 +424,20 @@ function CartLinePrice({
     return null;
   }
 
-  const discountPercent = line.merchandise?.product?.discountPercent?.value ?? 0;
-
-  console.log(JSON.stringify(line))
-
   return (
     <div className='flex flex-wrap flex-col'>
       <Money withoutTrailingZeros {...passthroughProps} data={moneyV2} />
-      {discountPercent > 0 && (<>
-        <div className='flex flex-wrap justify-between'>
-          <Money
-            withoutTrailingZeros
-            data={{
-              ...moneyV2,
-              amount: (
-                (parseInt(moneyV2.amount) *
-                  100 /
-                  (100 - Number(discountPercent))
-                )).toString(),
-            }}
-            as="span"
-            className="opacity-50 strike"
-          />
-        </div>
-      </>)}
+      <div className='flex flex-wrap justify-between'>
+        <Money
+          withoutTrailingZeros
+          data={{
+            ...moneyV2,
+            amount: (line.cost.amountPerQuantity).toString(),
+          }}
+          as="span"
+          className="opacity-50 strike"
+        />
+      </div>
     </div>
   );
 }
