@@ -437,8 +437,8 @@ function CartLinePrice({
               ...moneyV2,
               amount: (
                 (parseInt(moneyV2.amount) *
-                  (100 + parseInt(discountPercent)) /
-                  100
+                  100 /
+                  (100 - Number(discountPercent))
                 )).toString(),
             }}
             as="span"
