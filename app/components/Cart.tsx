@@ -426,6 +426,8 @@ function CartLinePrice({
 
   const discountPercent = line.merchandise?.product?.discountPercent?.value ?? 0;
 
+  console.log(JSON.stringify(line))
+
   return (
     <div className='flex flex-wrap flex-col'>
       <Money withoutTrailingZeros {...passthroughProps} data={moneyV2} />
