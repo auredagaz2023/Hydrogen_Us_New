@@ -431,21 +431,19 @@ function CartLinePrice({
       <Money withoutTrailingZeros {...passthroughProps} data={moneyV2} />
       {discountPercent > 0 && (<>
         <div className='flex flex-wrap justify-between'>
-          <span className="text-red">
-            <Money
-              withoutTrailingZeros
-              data={{
-                ...moneyV2,
-                amount: (
-                  (parseInt(moneyV2.amount) *
-                    (100 - discountPercent) /
-                    100
-                  )).toString(),
-              }}
-              as="span"
-              className="opacity-50 strike"
-            />
-          </span>
+          <Money
+            withoutTrailingZeros
+            data={{
+              ...moneyV2,
+              amount: (
+                (parseInt(moneyV2.amount) *
+                  (100 + discountPercent) /
+                  100
+                )).toString(),
+            }}
+            as="span"
+            className="opacity-50 strike"
+          />
         </div>
       </>)}
     </div>
