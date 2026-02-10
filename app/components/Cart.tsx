@@ -437,7 +437,7 @@ function CartLinePrice({
               ...moneyV2,
               amount: (
                 (parseInt(moneyV2.amount) *
-                  (100 + discountPercent) /
+                  (100 + parseInt(discountPercent)) /
                   100
                 )).toString(),
             }}
