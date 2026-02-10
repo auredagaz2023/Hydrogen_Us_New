@@ -428,12 +428,17 @@ function CartLinePrice({
     <div className='flex flex-wrap flex-col'>
       <Money withoutTrailingZeros {...passthroughProps} data={moneyV2} />
       <div className='flex flex-wrap justify-between'>
-        <Money
-          withoutTrailingZeros
-          data={line.cost.amountPerQuantity}
-          as="span"
-          className="opacity-50 strike"
-        />
+        <span className="text-red">
+          <Money
+            withoutTrailingZeros
+            data={{
+              ...moneyV2,
+              amount: (parseInt(line.cost.amountPerQuantity?.amount) * line.quantity).toString()
+            }}
+            as="span"
+            className="opacity-50 strike"
+          />
+        </span>
       </div>
     </div>
   );
