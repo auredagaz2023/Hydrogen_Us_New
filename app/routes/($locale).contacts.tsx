@@ -170,7 +170,7 @@ export default function Contatti(props: { keyframe: Keyframes }) {
             <div className="mb-4 lg:mb-0 lg:basis-3/12">
               <p className="font-semibold text-sm pb-4">EMAIL</p>
               <a
-                href="mailto:info@magniflex.us"
+                href="mailto:infos@magniflex.us"
                 className="underline decoration-[#174860] pb-8 text-B09987"
               >
                 info@magniflex.us
