@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git ls-tree:*)",
+      "Bash(dir:*)",
+      "Bash(git -C \"c:\\\\Users\\\\aurel\\\\Documents\\\\GitHub\\\\Hydrogen_Us_New\" log --oneline -20)",
+      "Bash(git -C \"c:\\\\Users\\\\aurel\\\\Documents\\\\GitHub\\\\Hydrogen_Us_New\" ls-tree:*)",
+      "Bash(git -C \"c:\\\\Users\\\\aurel\\\\Documents\\\\GitHub\\\\Hydrogen_Us_New\" log --all --oneline)",
+      "Bash(git -C \"c:\\\\Users\\\\aurel\\\\Documents\\\\GitHub\\\\Hydrogen_Us_New\" log --oneline -1)",
+      "Bash(git -C:*)",
+      "Bash(test:*)"
+    ]
+  }
+}
