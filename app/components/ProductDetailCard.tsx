@@ -129,7 +129,7 @@ export function ProductDetailCard({
           {collection[coverImageKey] && (
             <Image
               className="w-full h-full object-cover"
-              data={coverImageKey=='image' ? collection.image : collection[coverImageKey].reference.image}
+              data={coverImageKey=='image' ? collection.image : collection[coverImageKey]?.reference?.image}
               sizes="700"
               widths={[700]}
             />

@@ -37,7 +37,7 @@ export default function ProductCardContent({productData}) {
     }
 
     const contentfulCollectionItem =
-      productData.contentfulCollections.items.find(
+      productData.contentfulCollections?.items?.find(
         (item) => item.fields.name == collection[productKey]?.value,
       );
     if (
@@ -45,7 +45,7 @@ export default function ProductCardContent({productData}) {
       contentfulCollectionItem.fields.comfortLevels
     ) {
       contentfulCollectionItem.fields.comfortLevels.forEach((comfortLevel) => {
-        const item = productData.contentfulCollections.includes.Entry.find(
+        const item = productData.contentfulCollections?.includes?.Entry?.find(
           (link) => link.sys.id === comfortLevel.sys.id,
         );
         if (item && item.fields) {

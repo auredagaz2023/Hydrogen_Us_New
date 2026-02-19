@@ -43,7 +43,7 @@ export async function loader({params, request, context}: LoaderFunctionArgs) {
   const filteredCollections = collectionNodes
   .filter((collectionNode) =>
     collectionNode?.collectionType?.value == 'Accessories'
-  ).sort((a,b)=>a.collectionOrder.value.localeCompare(b.collectionOrder.value))
+  ).sort((a, b) => (a.collectionOrder?.value ?? '').localeCompare(b.collectionOrder?.value ?? ''))
   // const filteredCollections = collectionNodes
   if (filteredCollections.length == 0) {
     throw new Response(null, {status: 404});
