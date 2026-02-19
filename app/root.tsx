@@ -140,10 +140,10 @@ export async function loader({request, context}: LoaderFunctionArgs) {
     layout,
     // selectedLocale: context.storefront.i18n,
     cart: cartId ? getCart(context, cartId) : undefined,
-    // analytics: {
-    //   shopifySalesChannel: ShopifySalesChannel.hydrogen,
-    //   shopId: layout.shop.id,
-    // },
+    analytics: {
+      shopifySalesChannel: ShopifySalesChannel.hydrogen,
+      shopId: layout.shop.id,
+    },
   },
   {
     headers: {
