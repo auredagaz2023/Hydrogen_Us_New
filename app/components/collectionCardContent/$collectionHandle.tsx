@@ -73,7 +73,7 @@ export default function CategoryCollections() {
     productKey = 'mattressId';
 
     if (collection[productKey] != null) {
-      const contentfulCollectionItem = contentfulCollections.items.find(
+      const contentfulCollectionItem = contentfulCollections?.items?.find(
         (item) => item.fields.name == collection[productKey].value,
       );
       if (
@@ -82,7 +82,7 @@ export default function CategoryCollections() {
       ) {
         contentfulCollectionItem.fields.comfortLevels.forEach(
           (comfortLevel) => {
-            const item = contentfulCollections.includes.Entry.find(
+            const item = contentfulCollections?.includes?.Entry?.find(
               (link) => link.sys.id === comfortLevel.sys.id,
             );
             if (item && item.fields) {
