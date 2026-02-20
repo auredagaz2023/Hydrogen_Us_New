@@ -69,7 +69,7 @@ export default function ShopLocator() {
   );
   const {stores, storeCategories} = useLoaderData<typeof loader>();
   const [selectedFilterIndex, setSelectedFilterIndex] = useState(0);
-  const [items, setItems] = useState<ContentItem[]>(stores.items);
+  const [items, setItems] = useState<ContentItem[]>(stores?.items ?? []);
   const [selectedItem, setSelectedItem] = useState<ContentItem | undefined>(
     undefined,
   );
@@ -79,11 +79,11 @@ export default function ShopLocator() {
     lng: -102.964617,
   });
   const [zoom, setZoom] = useState<number>(5);
-  const assets = stores.includes.Asset;
+  const assets = stores?.includes?.Asset ?? [];
 
   useEffect(() => {
     const tempItems: ContentItem[] = [];
-    stores.items.forEach((item) => {
+    (stores?.items ?? []).forEach((item) => {
       const distance = calculateDistance(item.fields.location);
       tempItems.push({
         ...item,
@@ -181,11 +181,11 @@ export default function ShopLocator() {
           select the stores displayed on the map
         </div>
         <div className="mt-8 grid grid-cols-2 gap-6 lg:grid-cols-3">
-          {storeCategories.items.map((category, index: number) => (
+          {(storeCategories?.items ?? []).map((category, index: number) => (
             <div className="flex items-start" key={index}>
               <img
                 src={
-                  storeCategories.includes.Asset.find(
+                  storeCategories?.includes?.Asset?.find(
                     (asset) => asset.sys.id === category.fields.icon.sys.id,
                   )?.fields.file.url || ''
                 }
@@ -322,7 +322,7 @@ export default function ShopLocator() {
                       TYPE OF STORE
                     </div>
                     <div>
-                      {storeCategories.items.map((category, index: number) => (
+                      {(storeCategories?.items ?? []).map((category, index: number) => (
                         // <h1>Category{category.fields.name}</h1>
                         <MapFilterListItem
                           style={{padding: '10px 0px'}}
