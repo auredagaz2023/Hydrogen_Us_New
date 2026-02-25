@@ -424,22 +424,29 @@ function CartLinePrice({
     return null;
   }
 
+  const compareAtPrice = line.cost.compareAtAmountPerQuantity;
+  const hasDiscount =
+    compareAtPrice != null &&
+    parseFloat(compareAtPrice.amount) > parseFloat(line.cost.amountPerQuantity.amount);
+
   return (
     <div className='flex flex-wrap flex-col'>
       <Money withoutTrailingZeros {...passthroughProps} data={moneyV2} />
-      <div className='flex flex-wrap justify-between'>
-        <span className="text-red">
-          <Money
-            withoutTrailingZeros
-            data={{
-              ...moneyV2,
-              amount: (parseInt(line.cost.amountPerQuantity?.amount) * line.quantity).toString()
-            }}
-            as="span"
-            className="opacity-50 strike"
-          />
-        </span>
-      </div>
+      {hasDiscount && (
+        <div className='flex flex-wrap justify-between'>
+          <span className="text-red">
+            <Money
+              withoutTrailingZeros
+              data={{
+                ...moneyV2,
+                amount: (parseInt(compareAtPrice.amount) * line.quantity).toString()
+              }}
+              as="span"
+              className="opacity-50 strike"
+            />
+          </span>
+        </div>
+      )}
     </div>
   );
 }
