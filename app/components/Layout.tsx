@@ -66,8 +66,6 @@ import {
   useState,
 } from 'react';
 
-import emailjs from '@emailjs/browser';
-
 import Logo_Img from '../assets/magniflex-logo-pos.svg';
 import Footer_logo_img from '../assets/magniflex-logo-neg.svg';
 
@@ -80,9 +78,8 @@ import { DropdownMenu } from './DropdownMenu';
 import { RxCross2 } from 'react-icons/rx';
 import { slugify } from '~/routes/($locale).news';
 
-const EMAILJS_SERVICE_ID = 'orders-mx-mail';
-const EMAILJS_SUBSCRIPTION_TEMPLATE_ID = 'mx-usa-form-subscription';
-const EMAILJS_PUBLIC_KEY = 'S4HKNw2-KC7dMdcU4';
+const HUBSPOT_PORTAL_ID = '26099639';
+const HUBSPOT_FORM_GUID = '4971e4aa-85a8-4d54-8180-4c3f2806579c';
 const GTM_ID = 'GTM-56RM3Q5';
 
 export function Layout({
@@ -851,41 +848,48 @@ function Badge({
 }
 
 function FooterNew() {
-  const formRef = useRef<HTMLElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
   const [error, setError] = useState<string | undefined>(undefined);
 
-  const sendEmail = async () => {
-    setLoading(true);
-    setError(undefined);
-    emailjs
-      .sendForm(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_SUBSCRIPTION_TEMPLATE_ID,
-        formRef.current || '',
-        EMAILJS_PUBLIC_KEY,
-      )
-      .then(
-        (result) => {
-          if (result.text == 'OK') {
-            setLoading(false);
-            setSuccess(true);
-            setTimeout(() => {
-              setSuccess(false);
-            }, 3000);
-          }
-        },
-        (error) => {
-          console.error(error);
-          setError(error.text);
-        },
-      );
-  };
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await sendEmail();
-    document.getElementById('email').value = '';
+    const email = emailRef.current?.value ?? '';
+    if (!email) return;
+
+    setLoading(true);
+    setError(undefined);
+
+    try {
+      const response = await fetch(
+        `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_GUID}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            fields: [{ name: 'email', value: email }],
+            context: {
+              pageUri: window.location.href,
+              pageName: document.title,
+            },
+          }),
+        },
+      );
+
+      if (response.ok) {
+        setSuccess(true);
+        if (emailRef.current) emailRef.current.value = '';
+        setTimeout(() => setSuccess(false), 3000);
+      } else {
+        const data = await response.json();
+        setError(data?.errors?.[0]?.message ?? 'Submission failed. Please try again.');
+      }
+    } catch {
+      setError('Network error. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -1012,9 +1016,10 @@ function FooterNew() {
                 KEEP UP WITH THE NEWS FROM MAGNIFLEX
               </p>
             )}
-            <form onSubmit={(e) => handleSubmit(e)} ref={formRef}>
+            <form onSubmit={handleSubmit}>
               <div className="flex flex-row mb-3">
                 <input
+                  ref={emailRef}
                   type="email"
                   name="email"
                   id="email"
@@ -1023,11 +1028,15 @@ function FooterNew() {
                 />
                 <button
                   type="submit"
-                  className="border grow-0 shrink-0 border-white border-l-0 flex justify-center items-center basis-20"
+                  disabled={loading}
+                  className="border grow-0 shrink-0 border-white border-l-0 flex justify-center items-center basis-20 disabled:opacity-50"
                 >
                   <BsChevronRight className="w-6 h-6 text-white" />
                 </button>
               </div>
+              {error && (
+                <p className="text-xxs text-red-400 mt-1">{error}</p>
+              )}
             </form>
           </div>
         </div>
