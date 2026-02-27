@@ -142,10 +142,10 @@ const Classico = {
   description: "The perfect combination of performance and essentiality for a mattress with built-in massaging system designed to meet every sleep need",
   bestfor: "quality sleep lover, restorative sleep seekers",
   fitness: "medium-firm",
-  original_price: "$3,499",
-  price: "$2,999",
+  original_price: "$2,499",
+  price: "$2,099",
   button: "Shop Classico",
-  link: "https://magniflex.us/mattresses/classico?product=classico-9",
+  link: "https://magniflex.us/mattresses/classico?product=classico-essential-10",
   bottom: "Save up to $1,199",
   mattress: true
 }
@@ -409,12 +409,12 @@ export default function UpgradeYourRestPromo2026() {
             <button type='submit' className='border border-[#556268] text-[#174860] text-[17px] lg:text-[13px] font-semibold px-6 py-3 hover:bg-[#174860] hover:text-white uppercase'>subscribe</button>
           </form>
           <div className='lg:mt-[40px] mt-[208px] w-full flex justify-center hidden lg:block'>
-            <img className='w-full h-auto' src={magniflexlogo} alt="" />
+            <img className='w-full h-auto max-w-[900px]' src={magniflexlogo} alt="" />
           </div>
           <hr className='text-[#0a2430] my-[20px] hidden lg:block border-[#888888]' />
-          <div className='text-[12px] sm:text-[16px] md:text-[20px] lg:text-[23px] text-center landing-[100px] font-semibold py-[30px] lg:py-0 hidden lg:block'>At Night, We Bring Life to Your Days.</div>
-          <div className='text-[12px] m-auto my-[40px] mt-[80px] sm:text-[16px] md:text-[20px] lg:text-[23px] text-center landing-[100px] font-semibold py-[30px] lg:py-0 pt-[80px] lg:hidden relative' style={{ width: 'fit-content' }}>
-            <div className='absolute top-0'><img className='w-[400px] h-auto' src={magniflexlogo} alt="" /></div>
+          <div className='text-[16px] sm:text-[20px] md:text-[24px] lg:text-[30px] text-center landing-[100px] font-semibold py-[30px] lg:py-0 hidden lg:block'>At Night, We Bring Life to Your Days.</div>
+          <div className='text-[16px] m-auto my-[40px] mt-[80px] sm:text-[20px] md:text-[24px] lg:text-[30px] text-center landing-[100px] font-semibold py-[30px] lg:py-0 pt-[80px] lg:hidden relative' style={{ width: 'fit-content' }}>
+            <div className='absolute top-0'><img className='w-[500px] h-auto' src={magniflexlogo} alt="" /></div>
             At Night, We Bring Life to Your Days.
           </div>
         </div>
