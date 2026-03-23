@@ -74,6 +74,9 @@ export function DesktopHeaderNew({openCart}: {openCart: () => void}) {
     return `${cardLink}?product=${slugify(product.title)}`;
   };
 
+  const hasActiveSales =
+    homePromotion?.items?.[0]?.fields?.promoInHomepage === true;
+
   useEffect(() => {
     const CONTENTFUL_SPACE_ID = '7xbaxb2q56jj';
     const CONTENTFUL_ACCESS_TOKEN =
@@ -119,7 +122,9 @@ export function DesktopHeaderNew({openCart}: {openCart: () => void}) {
             <img src={Logo_Img} alt="site log img" className="h-[65px]" />
           </Link>
           <div className="hidden menu-list xl:block grow self-center justify-self-end text-right">
-            {mainMenuList.map((menuItem, index) => (
+            {mainMenuList
+              .filter((item) => item.type !== 'promo' || hasActiveSales)
+              .map((menuItem, index) => (
               <span
                 className={`${
                   activeMenu == menuItem.productType ? 'selected-menu-item' : ''
@@ -312,7 +317,7 @@ export function DesktopHeaderNew({openCart}: {openCart: () => void}) {
               </Await>
             </span>
             <span className="flex items-center mx-2 xl:hidden">
-              <MobileNav />
+              <MobileNav hasActiveSales={hasActiveSales} />
             </span>
           </div>
         </div>

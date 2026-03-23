@@ -14,7 +14,7 @@ import {Image} from '@shopify/hydrogen';
 
 import {topMenuList} from '~/components/Layout';
 
-export function MobileNav() {
+export function MobileNav({hasActiveSales}: {hasActiveSales?: boolean}) {
   const [activeMenu, setActiveMenu] = useState<string>('');
   const mobileNavList = [
     {
@@ -64,7 +64,7 @@ export function MobileNav() {
       title: 'magniflex',
       disabled: false,
     },
-  ];
+  ].filter((item) => item.productType !== 'Promos' || hasActiveSales);
   const {load, data} = useFetcher();
   const productData = data;
 

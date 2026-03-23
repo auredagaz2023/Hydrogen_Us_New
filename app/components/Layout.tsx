@@ -372,6 +372,9 @@ function DesktopHeaderNew({ openCart }: { openCart: () => void }) {
     ContentfulHomePromotion | undefined
   >(undefined);
 
+  const hasActiveSales =
+    homePromotion?.items?.[0]?.fields?.promoInHomepage === true;
+
   const handleSelectMenu = (productType: SetStateAction<string>) => {
     if (productType == 'Promo') {
       navigate('/sales');
@@ -474,7 +477,9 @@ function DesktopHeaderNew({ openCart }: { openCart: () => void }) {
             <img src={Logo_Img} alt="site log img" className="h-[65px]" />
           </Link>
           <div className="hidden menu-list xl:block grow self-center justify-self-end text-right">
-            {mainMenuList.map((menuItem, index) => (
+            {mainMenuList
+              .filter((item) => item.type !== 'promo' || hasActiveSales)
+              .map((menuItem, index) => (
               // <span
               //   className={`${
               //     activeMenu == menuItem.productType ? 'selected-menu-item' : ''
@@ -685,7 +690,7 @@ function DesktopHeaderNew({ openCart }: { openCart: () => void }) {
               </Await>
             </span>
             <span className="flex items-center mx-2 xl:hidden">
-              <MobileNav />
+              <MobileNav hasActiveSales={hasActiveSales} />
             </span>
           </div>
         </div>
