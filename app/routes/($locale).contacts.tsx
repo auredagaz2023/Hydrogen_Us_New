@@ -178,10 +178,10 @@ export default function Contatti(props: { keyframe: Keyframes }) {
             </div>
             <div className="basis-2/12">
               <p className="font-semibold text-sm pb-4 text-blue">
-                TOLL FREE NUMBER
+                PHONE
               </p>
-              <a href="tel:+18883818481" className="pb-8 text-blue">
-                +1-888-381-8481
+              <a href="tel:+17862338805" className="pb-8 text-blue">
+                +1 (786) 233-8805
               </a>
             </div>
           </div>

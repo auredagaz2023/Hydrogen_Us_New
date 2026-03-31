@@ -1488,7 +1488,7 @@ export default function PaginaTestiCol(props: {keyframe: Keyframes}) {
                 sleep comfort. If, for any reason, you find yourself
                 dissatisfied with your Magniflex product purchased directly from
                 our website, please do not hesitate to contact us at
-                1-888-381-8481 or via email at info@magniflex.us. If your
+                +1 (786) 233-8805 or via email at info@magniflex.us. If your
                 purchase was made through an authorized Magniflex retailer, we
                 kindly request that you get in touch with them directly. It's
                 important to note that certain fees, including those associated

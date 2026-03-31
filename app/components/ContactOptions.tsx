@@ -36,8 +36,8 @@ export function ContactOptions() {
           >
             <img src={Contacts2_Ico} className="mx-auto my-0" />
             <p className="font-semibold pb-4 uppercase pt-4 text-sm">Call us</p>
-            <a href="tel:+18883818481" className="pb-8 text-blue">
-              +1-888-381-8481
+            <a href="tel:+17862338805" className="pb-8 text-blue">
+              +1 (786) 233-8805
             </a>
             <p className="text-sm pb-10">
               Our call center is at your service Monday to Friday 8:30 a.m. to

@@ -25,7 +25,7 @@ export default function ReturnPolicy() {
             <p className="mt-18 mb-4 xl:mb-6  landing-[1.15] text-[#212529]">
               At Magniflex, we're dedicated to ensuring you enjoy the ultimate sleep comfort. 
               If, for any reason, you find yourself dissatisfied with your Magniflex product purchased 
-              directly from our website, please do not hesitate to contact us at <span className='font-bold'>1-888-381-8481</span> or via 
+              directly from our website, please do not hesitate to contact us at <span className='font-bold'>+1 (786) 233-8805</span> or via 
               email at <span className='font-bold'>info@magniflex.us</span>. If your purchase was made through an authorized Magniflex 
               retailer, we kindly request that you get in touch with them directly. 
               It's important to note that certain fees, including those associated with in-home delivery, 

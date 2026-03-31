@@ -1003,7 +1003,7 @@ function FooterNew() {
               <br />
               3050 Biscayne Blvd, Ste 200 Miami, FL 33137 - USA
               <br />
-              Toll free number <a href='tel:+1-888-381-8481'>+1-888-381-8481</a>
+              Phone <a href='tel:+17862338805'>+1 (786) 233-8805</a>
               <br />
               <a href='mailto:orders@magniflex.us'>orders@magniflex.us</a>
             </p>
