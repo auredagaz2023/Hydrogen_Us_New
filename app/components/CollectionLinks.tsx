@@ -44,9 +44,7 @@ export function CollectionLinks() {
             Pay over time with Affirm
           </div>
           <Link
-            to={`https://www.affirm.com/disclosures`}
-            target="_blank"
-            rel="noopener noreferrer"
+            to="/affirm"
             className="hover:underline decoration-[#174860] relative flex justify-between"
           >
             <div className="text-B09987 font-semibold text-sm">See disclosures</div>

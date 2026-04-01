@@ -29,7 +29,7 @@ export function Home() {
       <Fade duration={1000} className='bg-f7'>
         <div className='flex flex-col lg:flex-row w-full'>
           <div className='flex items-center justify-center w-full lg:w-[40%] px-[30px] lg:px-[40px] bg-f7'>
-            <img className='w-full' src={affirm_banner}></img>
+            <Link to="/affirm"><img className='w-full' src={affirm_banner}></img></Link>
           </div>
           <div className='w-full lg:w-[60%]'>
             <CollectionLinks />
