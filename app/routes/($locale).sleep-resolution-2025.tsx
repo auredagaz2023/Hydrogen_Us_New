@@ -1,4 +1,4 @@
-import { FormEvent, useRef, useState } from 'react';
+import {FormEvent, type ReactNode, useRef, useState} from 'react';
 import { type MetaFunction } from '@shopify/remix-oxygen';
 import emailjs from '@emailjs/browser';
 import magniflexlogo from '~/assets/Landing/Desktop/magniflex.svg'
@@ -139,7 +139,26 @@ export const meta: MetaFunction = () => {
   }];
 };
 
-export default function BlackFriday2025() {
+type SleepResolutionLandingProps = {
+  desktopHeaderImage?: string;
+  mobileHeaderImage?: string;
+  introTitle?: string;
+  introBody?: ReactNode;
+};
+
+const defaultIntroBody = (
+  <>
+    With any Magniflex mattress purchase, you can elevate your rest with the <span className='font-bold'>Firenze adjustable base</span> starting at <span className='font-bold'>$199</span>,<br />
+    blending advanced comfort with refined design while <span className='font-bold'>saving up to $1,799</span>.
+  </>
+);
+
+export default function SleepResolutionLanding({
+  desktopHeaderImage = desktopHeader,
+  mobileHeaderImage = mobileHeader,
+  introTitle = 'Better sleep starts with the right foundation.',
+  introBody = defaultIntroBody,
+}: SleepResolutionLandingProps = {}) {
   const formRef = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
@@ -205,8 +224,8 @@ export default function BlackFriday2025() {
   return (
     <>
       <FadeIn>
-        <img src={desktopHeader} loading='lazy' alt="header" className='w-full hidden md:block' />
-        <img src={mobileHeader} loading='lazy' alt="header" className='w-full md:hidden' />
+        <img src={desktopHeaderImage} loading='lazy' alt="header" className='w-full hidden md:block' />
+        <img src={mobileHeaderImage} loading='lazy' alt="header" className='w-full md:hidden' />
         <div className='flex overflow:hidden px-[32px] text-[13px] landing-[34px] justify-center items-start md:items-center flex-col md:flex-row md:space-x-nav bg-[#f9f9f9] w-100 text-white md:h-[50px] py-2'>
           <img src={desktopHeaderBottom} loading='lazy' alt="header" className='hidden md:block' />
           <img src={mobileHeaderBottom} loading='lazy' alt="header" className='md:hidden' />
@@ -215,10 +234,9 @@ export default function BlackFriday2025() {
       <div className="lg:px-3 py-16 md:py-24 lg:py-28" style={{ lineHeight: 1.5 }}>
         <div className='bg-white text-[#174860] landing-[29px] text-[17.5px] text-center pb-[64px] md:pb-[45px] px-[30px] md:px-[20%]'>
           <div style={{ marginBottom: '25px' }}>
-            <span className='font-bold text-[25px] mb-4'>Better sleep starts with the right foundation.</span><br /><br />
+            <span className='font-bold text-[25px] mb-4'>{introTitle}</span><br /><br />
             <span className='text-[17.5px]'>
-              With any Magniflex mattress purchase, you can elevate your rest with the <span className='font-bold'>Firenze adjustable base</span> starting at <span className='font-bold'>$199</span>,<br />
-              blending advanced comfort with refined design while <span className='font-bold'>saving up to $1,799</span>.
+              {introBody}
             </span>
           </div>
         </div>
@@ -282,7 +300,7 @@ export default function BlackFriday2025() {
               </div>
               <div className='grid grid-cols-2 gap-[1px] rounded-[50px] overflow-hidden'>
                 <div className='bg-white flex items-center justify-center px-5 min-h-[70px] mb-[2px] mr-[2px] text-[#000028] font-bold text-center'>Do you experience some of these issues?</div>
-                <div className='bg-white flex text-left items-center px-5 justify-center min-h-[70px] mb-[2px] text-[#000028] font-bold text-center'>How Firenze Adjustable Base will help:</div>
+                <div className='bg-white flex text-left items-center px-5 justify-center min-h-[70px] mb-[2px] text-[#000028] font-bold text-center'>The Firenze Adjustable Base can help you:</div>
                 <div className='relative bg-white flex items-center justify-end text-right px-5 min-h-[100px] mr-[2px]'>
                   <div className='mr-5'>Do you wake up feeling stiff or achy?</div>
                   <img width={78} src={CirculationIcon} alt="" />
@@ -329,7 +347,7 @@ export default function BlackFriday2025() {
               </div>
               <div className='pt-[50px]'>
                 <a className='text-center py-4 px-8 uppercase border border-[#174860] hover:bg-[#174860] bg-transparent hover:text-white text-[#174860] text-[12px] sm:text-[15px] lg:text-[13px] font-semibold' href={'https://magniflex.us/bed-bases/details?product=firenze'}>Shop FIRENZE BASE</a>
-                <div className='pt-[25px] uppercase text-[#174860] text-center text-[17px] lg:text-[13px] font-semibold'>SAVE UP TO $1,799</div>
+                <div className='pt-[25px] text-[#174860] text-center text-[17px] lg:text-[13px] font-semibold'>Save up to $1,799</div>
               </div>
             </div>
           </div>
@@ -351,7 +369,7 @@ export default function BlackFriday2025() {
               </div>
 
               <a className='text-center mt-[30px] py-4 px-8 uppercase border border-[#174860] bg-[#174860] hover:bg-transparent text-white hover:text-[#174860] text-[17.5px] lg:text-[13px] font-semibold' href="https://magniflex.us/bed-bases/details?product=firenze">Shop FIRENZE BASE</a>
-              <div className='mt-[15px] mb-[30px] uppercase text-[#174860] text-[17px] lg:text-[13px] font-semibold'>SAVE UP TO $1,799</div>
+              <div className='mt-[15px] mb-[30px] text-[#174860] text-[17px] lg:text-[13px] font-semibold'>Save up to $1,799</div>
             </div>
           </div>
           <div className='mt-[2px] bg-[#F2ECD6] flex justify-center items-center flex-col'>
@@ -369,7 +387,7 @@ export default function BlackFriday2025() {
               </div>
               <div className='grid grid-cols-2 gap-[1px] rounded-[50px] overflow-hidden'>
                 <div className='bg-white flex items-center justify-center px-5 min-h-[80px] mb-[2px] mr-[2px] text-[#000028] font-bold text-center'>Do you experience some of these issues?</div>
-                <div className='bg-white flex text-left items-center px-5 justify-center min-h-[80px] mb-[2px] text-[#000028] font-bold text-center'>How Firenze Adjustable Base will help:</div>
+                <div className='bg-white flex text-left items-center px-5 justify-center min-h-[80px] mb-[2px] text-[#000028] font-bold text-center'>The Firenze Adjustable Base can help you:</div>
                 <div className='relative bg-white flex items-center justify-end text-right px-5 min-h-[140px] mr-[2px]'>
                   <div className='mr-5'>Feeling stiffr achy?</div>
                   <div className='absolute right-[-39px] flex flex-col justify-center items-center'>
@@ -428,7 +446,7 @@ export default function BlackFriday2025() {
               </div>
               <div className='pt-[50px]'>
                 <a className='text-center py-4 px-8 uppercase border border-[#174860] hover:bg-[#174860] bg-transparent hover:text-white text-[#174860] text-[12px] sm:text-[15px] lg:text-[13px] font-semibold' href={'https://magniflex.us/bed-bases/details?product=firenze'}>Shop FIRENZE BASE</a>
-                <div className='pt-[25px] uppercase text-[#174860] text-center text-[17px] lg:text-[13px] font-semibold'>SAVE UP TO $1,799</div>
+                <div className='pt-[25px] text-[#174860] text-center text-[17px] lg:text-[13px] font-semibold'>Save up to $1,799</div>
               </div>
             </div>
           </div>
