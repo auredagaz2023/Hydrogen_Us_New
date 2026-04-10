@@ -2,6 +2,8 @@ import {type MetaFunction} from '@shopify/remix-oxygen';
 import SleepResolutionLanding from './($locale).sleep-resolution-2025';
 import desktopHeader from '../assets/spring-into-sleep-promo/magniflex-us-the-spring-into-sleep-event-header-desktop.jpg';
 import mobileHeader from '../assets/spring-into-sleep-promo/magniflex-us-the-spring-into-sleep-event-header-mobile.jpg';
+import desktopBenefitBar from '../assets/spring-into-sleep-promo/magniflex-landing-benefit-bar-desktop.gif';
+import mobileBenefitBar from '../assets/spring-into-sleep-promo/magniflex-landing-benefit-bar-mobile-A.gif';
 
 export const handle = {
   seo: {
@@ -27,6 +29,8 @@ export default function SpringIntoSleepEvent2026() {
     <SleepResolutionLanding
       desktopHeaderImage={desktopHeader}
       mobileHeaderImage={mobileHeader}
+      desktopBenefitBarImage={desktopBenefitBar}
+      mobileBenefitBarImage={mobileBenefitBar}
       introTitle="This spring, invest in rest that helps you recharge"
       introBody={
         <>

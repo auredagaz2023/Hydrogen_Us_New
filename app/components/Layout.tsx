@@ -2,6 +2,7 @@ import {
   type EnhancedMenu,
   type EnhancedMenuItem,
   useIsHomePath,
+  hasContentfulRichTextContent,
 } from '~/lib/utils';
 import {
   Drawer,
@@ -372,8 +373,9 @@ function DesktopHeaderNew({ openCart }: { openCart: () => void }) {
     ContentfulHomePromotion | undefined
   >(undefined);
 
-  const hasActiveSales =
-    homePromotion?.items?.[0]?.fields?.promoInHomepage === true;
+  const hasActiveSales = hasContentfulRichTextContent(
+    homePromotion?.items?.[0]?.fields?.description,
+  );
 
   const handleSelectMenu = (productType: SetStateAction<string>) => {
     if (productType == 'Promo') {
@@ -415,7 +417,7 @@ function DesktopHeaderNew({ openCart }: { openCart: () => void }) {
     const CONTENTFUL_ACCESS_TOKEN =
       'yGGCia7N7dHraGe5fsBZkSHsms6QExEKbWy0XdKIn9g';
 
-    const activePromotionsEndpoint = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/environments/master/entries?select=fields.promoInHomepage,fields.saleRedirectLink&access_token=${CONTENTFUL_ACCESS_TOKEN}&content_type=activePromotions&fields.name=mxusa-active-promotions`;
+    const activePromotionsEndpoint = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/environments/master/entries?select=fields.description&access_token=${CONTENTFUL_ACCESS_TOKEN}&content_type=activePromotions&fields.name=mxusa-active-promotions`;
     (async () => {
       await fetch(activePromotionsEndpoint)
         .then((res) => res.json())

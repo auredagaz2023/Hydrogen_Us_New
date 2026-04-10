@@ -29,6 +29,7 @@ import {DropdownMenu} from './DropdownMenu';
 import {RxCross2} from 'react-icons/rx';
 import {slugify} from '~/routes/($locale).news';
 import {topMenuList, mainMenuList} from './Layout';
+import {hasContentfulRichTextContent} from '~/lib/utils';
 
 export function DesktopHeaderNew({openCart}: {openCart: () => void}) {
   const [root] = useMatches();
@@ -74,15 +75,16 @@ export function DesktopHeaderNew({openCart}: {openCart: () => void}) {
     return `${cardLink}?product=${slugify(product.title)}`;
   };
 
-  const hasActiveSales =
-    homePromotion?.items?.[0]?.fields?.promoInHomepage === true;
+  const hasActiveSales = hasContentfulRichTextContent(
+    homePromotion?.items?.[0]?.fields?.description,
+  );
 
   useEffect(() => {
     const CONTENTFUL_SPACE_ID = '7xbaxb2q56jj';
     const CONTENTFUL_ACCESS_TOKEN =
       'yGGCia7N7dHraGe5fsBZkSHsms6QExEKbWy0XdKIn9g';
 
-    const activePromotionsEndpoint = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/environments/master/entries?select=fields.promoInHomepage&access_token=${CONTENTFUL_ACCESS_TOKEN}&content_type=activePromotions&fields.name=mxusa-active-promotions`;
+    const activePromotionsEndpoint = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/environments/master/entries?select=fields.description&access_token=${CONTENTFUL_ACCESS_TOKEN}&content_type=activePromotions&fields.name=mxusa-active-promotions`;
     (async () => {
       await fetch(activePromotionsEndpoint)
         .then((res) => res.json())

@@ -65,6 +65,25 @@ export function isDiscounted(price: MoneyV2, compareAtPrice: MoneyV2) {
   return false;
 }
 
+export function hasContentfulRichTextContent(
+  richText?: {
+    content?: Array<{
+      content?: Array<{
+        value?: string;
+      }>;
+    }>;
+  },
+) {
+  return (
+    richText?.content?.some((node) =>
+      node.content?.some(
+        (textNode) =>
+          typeof textNode.value === 'string' && textNode.value.trim().length > 0,
+      ),
+    ) ?? false
+  );
+}
+
 function resolveToFromType(
   {
     customPrefixes,

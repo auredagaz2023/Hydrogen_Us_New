@@ -1,18 +1,18 @@
-import {Link, useLoaderData, useNavigate} from '@remix-run/react';
+import {Link, useLoaderData} from '@remix-run/react';
 import {flattenConnection} from '@shopify/hydrogen';
 import {
   Collection,
   CollectionConnection,
   Product,
 } from '@shopify/hydrogen/storefront-api-types';
-import {LoaderArgs, json} from '@shopify/remix-oxygen';
+import {LoaderArgs, json, redirect} from '@shopify/remix-oxygen';
 import {
   ContentfulParagraph,
   ContentfulPromoDesc,
   ContentfulPromotion,
 } from './($locale).types';
 import {CollectionWithMetafields, ProductWithMetafields} from '~/lib/type';
-import { useEffect } from 'react';
+import {hasContentfulRichTextContent} from '~/lib/utils';
 
 export const handle = {
   seo: {
@@ -43,7 +43,7 @@ export async function loader({params, request, context}: LoaderArgs) {
 
   const contentfulEndpoint = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/environments/master/entries?select=fields.label,fields.coverImage,fields.discount,fields.title,fields.description,fields.ctaLabel,fields.productReference,fields.collectionReference,fields.urlReference&access_token=${CONTENTFUL_ACCESS_TOKEN}&content_type=promotion`;
 
-  const descContentfulEndpiont = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/environments/master/entries?select=fields.description&access_token=${CONTENTFUL_ACCESS_TOKEN}&content_type=activePromotions`;
+  const descContentfulEndpiont = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/environments/master/entries?select=fields.description,fields.saleRedirectLink&access_token=${CONTENTFUL_ACCESS_TOKEN}&content_type=activePromotions&fields.name=mxusa-active-promotions`;
 
   const response = await fetch(contentfulEndpoint).then((res) => {
     return res.json();
@@ -53,16 +53,28 @@ export async function loader({params, request, context}: LoaderArgs) {
     return res.json();
   });
 
+  const activePromotion = (descResponse as ContentfulPromoDesc)?.items?.[0];
+  const hasActiveSales = hasContentfulRichTextContent(
+    activePromotion?.fields?.description,
+  );
+  const redirectLink = activePromotion?.fields?.saleRedirectLink;
+
+  if (!hasActiveSales && redirectLink) {
+    const path = new URL(redirectLink).pathname;
+    throw redirect(path);
+  }
+
   return json({
     collections: collectionNodes,
     promotions: response as unknown as ContentfulPromotion,
     promoDesc: descResponse as unknown as ContentfulPromoDesc,
+    hasActiveSales,
   });
 }
 
 export default function Promotion() {
-  const {collections, promotions, promoDesc} = useLoaderData<typeof loader>();
-  const navigate = useNavigate();
+  const {collections, promotions, promoDesc, hasActiveSales} =
+    useLoaderData<typeof loader>();
   const getProductLink = (productReference: string) => {
     let products: ProductWithMetafields<Product>[] = [];
     collections.forEach((collection) => {
@@ -87,44 +99,27 @@ export default function Promotion() {
     return `/collections/${collection?.handle || ''}`;
   };
 
-  useEffect(()=>{
-    const CONTENTFUL_SPACE_ID = '7xbaxb2q56jj';
-    const CONTENTFUL_ACCESS_TOKEN =
-      'yGGCia7N7dHraGe5fsBZkSHsms6QExEKbWy0XdKIn9g';
-    const activePromotionsEndpoint = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/environments/master/entries?select=fields.promoInHomepage,fields.saleRedirectLink&access_token=${CONTENTFUL_ACCESS_TOKEN}&content_type=activePromotions&fields.name=mxusa-active-promotions`;
-    (async () => {
-      await fetch(activePromotionsEndpoint)
-        .then((res) => res.json())
-        .then((res:any) => {
-          const redirectLink = res?.items[0]?.fields?.saleRedirectLink;
-          if (redirectLink) {
-            const url = new URL(redirectLink);
-            const path = url.pathname;
-            navigate(path)
-          }
-        });
-    })();  
-  },[])
-
   return (
     <div className="px-3 sm:container pt-12 pb-20 md:py-20 md:pb-32">
       <p className="text-text text-dark-blue font-bold uppercase mb-6 lg:text-2xl text-center">
         sales
       </p>
-      <div className="pb-6 md:pb-8 max-w-xl mx-auto">
-        {promoDesc.items[0].fields.description.content.map(
-          (content: ContentfulParagraph, index: number) => (
-            <p
-              className="text-gray-800 text-sm text-justify mx-[30px]"
-              key={index}
-            >
-              {(content as ContentfulParagraph).content.map((text, index) => (
-                <span key={index}>{text.value}</span>
-              ))}
-            </p>
-          ),
-        )}
-      </div>
+      {hasActiveSales && promoDesc.items[0]?.fields?.description?.content && (
+        <div className="pb-6 md:pb-8 max-w-xl mx-auto">
+          {promoDesc.items[0].fields.description.content.map(
+            (content: ContentfulParagraph, index: number) => (
+              <p
+                className="text-gray-800 text-sm text-justify mx-[30px]"
+                key={index}
+              >
+                {(content as ContentfulParagraph).content.map((text, index) => (
+                  <span key={index}>{text.value}</span>
+                ))}
+              </p>
+            ),
+          )}
+        </div>
+      )}
       <div className="mt-5 pt-5 grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-16">
         {promotions &&
           promotions.items.reverse().map((promotion, index: number) => (

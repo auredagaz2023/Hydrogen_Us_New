@@ -142,6 +142,8 @@ export const meta: MetaFunction = () => {
 type SleepResolutionLandingProps = {
   desktopHeaderImage?: string;
   mobileHeaderImage?: string;
+  desktopBenefitBarImage?: string;
+  mobileBenefitBarImage?: string;
   introTitle?: string;
   introBody?: ReactNode;
 };
@@ -156,6 +158,8 @@ const defaultIntroBody = (
 export default function SleepResolutionLanding({
   desktopHeaderImage = desktopHeader,
   mobileHeaderImage = mobileHeader,
+  desktopBenefitBarImage = desktopHeaderBottom,
+  mobileBenefitBarImage = mobileHeaderBottom,
   introTitle = 'Better sleep starts with the right foundation.',
   introBody = defaultIntroBody,
 }: SleepResolutionLandingProps = {}) {
@@ -227,8 +231,8 @@ export default function SleepResolutionLanding({
         <img src={desktopHeaderImage} loading='lazy' alt="header" className='w-full hidden md:block' />
         <img src={mobileHeaderImage} loading='lazy' alt="header" className='w-full md:hidden' />
         <div className='flex overflow:hidden px-[32px] text-[13px] landing-[34px] justify-center items-start md:items-center flex-col md:flex-row md:space-x-nav bg-[#f9f9f9] w-100 text-white md:h-[50px] py-2'>
-          <img src={desktopHeaderBottom} loading='lazy' alt="header" className='hidden md:block' />
-          <img src={mobileHeaderBottom} loading='lazy' alt="header" className='md:hidden' />
+          <img src={desktopBenefitBarImage} loading='lazy' alt="header" className='hidden md:block' />
+          <img src={mobileBenefitBarImage} loading='lazy' alt="header" className='md:hidden' />
         </div>
       </FadeIn>
       <div className="lg:px-3 py-16 md:py-24 lg:py-28" style={{ lineHeight: 1.5 }}>
@@ -361,7 +365,7 @@ export default function SleepResolutionLanding({
             />
             <div className='flex flex-col items-center px-12'>
               <a href='https://magniflex.us/bed-bases/details?product=firenze' className='hover:underline mt-[20px] text-[27.5px] lg:text-[22px] text-[#174860] landing-[24px] font-bold uppercase text-center' style={{ lineHeight: 1 }}>FIRENZE ADJUSTABLE BASE</a>
-              <div className='mt-[15px] text-[17px] font-semibold md:font-normal text-[#174860] landing-[25px] text-center' style={{ lineHeight: 1 }}>
+              <div className='mt-[15px] text-[17px] font-semibold md:font-normal text-[#174860] landing-[25px] text-center' style={{ lineHeight: 1.2 }}>
                 <span>Get it <span className='font-bold'>starting at</span> <span className='line-through'>$1,099</span> <span className='font-bold text-[#ED1C24] text-[15px]'>$199</span><br />
                   with the purchase of a King, Queen,<br />
                   or Twin XL mattress
