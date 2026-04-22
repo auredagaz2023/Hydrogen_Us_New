@@ -381,18 +381,20 @@ Il push ha triggerato correttamente il deploy automatico su **Shopify Oxygen**.
 
 **File modificato:** `app/routes/($locale).shipping-methods.tsx`
 
-Aggiornati i contenuti della pagina `/shipping-methods` con il nuovo testo fornito e una formattazione più leggibile.
+La pagina `/shipping-methods` è stata semplificata e sostituita con il nuovo testo fornito, rimuovendo tutto il contenuto precedente relativo a returns / warranty / policy.
 
-**Modifiche principali:**
-- Introduzione aggiornata con spedizioni gratuite negli USA, tempi di elaborazione ordine e conferma via email
-- Sezione contatti aggiornata con:
+**Nuovo contenuto pubblicato:**
+- Titolo: `How to receive your Magniflex product`
+- Intro: spedizioni gratuite negli Stati Uniti, ordine processato lun-ven esclusi festivi, email di conferma dopo l'elaborazione
+- Indicazione generica sui tempi di consegna in base a categoria e disponibilità
+- Contatti assistenza:
   - Phone: `(786) 233-8805`
   - Email: `orders@magniflex.us`
-- Sezione "Delivery Times by Product Category" riorganizzata in box/card separate per:
+- Sezione finale `Delivery Times by Product Category` con i tempi per:
   - Mattresses and Pillow
   - Kit Foundation
   - Adjustable Base
   - Toppers
   - Sheets
 
-**Nota:** al momento la modifica non risulta ancora pushata su `upstream/main`.
+**Nota:** la pagina ora contiene solo questo contenuto, senza sidebar né sezioni aggiuntive.
