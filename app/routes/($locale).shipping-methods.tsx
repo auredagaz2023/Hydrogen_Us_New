@@ -10,14 +10,14 @@ export default function ShippingMethods() {
               How to receive your Magniflex product
             </h1>
 
-            <div className="space-y-4 text-[#212529] leading-7">
-              <p>Magniflex shipments are free within the United States.</p>
-              <p>
+            <div className="text-[#212529] leading-7">
+              <p className="mb-6">Magniflex shipments are free within the United States.</p>
+              <p className="mb-6">
                 Orders are processed Monday through Friday (excluding holidays).
                 Once your order has been processed, you will receive a confirmation
                 email.
               </p>
-              <p>
+              <p className="mb-6">
                 Delivery times vary depending on product category and availability.
                 Products in stock are shipped within 48 hours of order
                 confirmation.
@@ -37,11 +37,11 @@ export default function ShippingMethods() {
               </p>
             </div>
 
-            <div className="mt-12 space-y-6">
-              <h2 className="text-3xl font-semibold">Delivery Times by Product Category</h2>
+            <div className="mt-20 space-y-5">
+              <h2 className="text-3xl font-semibold mb-1">Delivery Times by Product Category</h2>
 
-              <section className="space-y-2">
-                <h3 className="text-xl font-semibold">MATTRESSES AND PILLOWS</h3>
+              <section>
+                <h3 className="text-xl font-semibold mb-1">MATTRESSES AND PILLOWS</h3>
                 <p className="text-[#212529] leading-7">
                   In-stock products ship within 48 hours of order confirmation.
                   <br />
@@ -49,23 +49,23 @@ export default function ShippingMethods() {
                 </p>
               </section>
 
-              <section className="space-y-2">
-                <h3 className="text-xl font-semibold">KIT FOUNDATION</h3>
+              <section>
+                <h3 className="text-xl font-semibold mb-1">KIT FOUNDATION</h3>
                 <p className="text-[#212529] leading-7">Ships within 2–4 business days.</p>
               </section>
 
-              <section className="space-y-2">
-                <h3 className="text-xl font-semibold">ADJUSTABLE BASE</h3>
+              <section>
+                <h3 className="text-xl font-semibold mb-1">ADJUSTABLE BASE</h3>
                 <p className="text-[#212529] leading-7">Ships within 4–5 business days.</p>
               </section>
 
-              <section className="space-y-2">
-                <h3 className="text-xl font-semibold">TOPPERS</h3>
+              <section>
+                <h3 className="text-xl font-semibold mb-1">TOPPERS</h3>
                 <p className="text-[#212529] leading-7">Ships within 24 hours.</p>
               </section>
 
-              <section className="space-y-2">
-                <h3 className="text-xl font-semibold">SHEETS</h3>
+              <section>
+                <h3 className="text-xl font-semibold mb-1">SHEETS</h3>
                 <p className="text-[#212529] leading-7">Ships within 48 hours.</p>
               </section>
             </div>
