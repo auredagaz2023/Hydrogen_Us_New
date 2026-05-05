@@ -381,7 +381,7 @@ Il push ha triggerato correttamente il deploy automatico su **Shopify Oxygen**.
 
 **File modificato:** `app/routes/($locale).shipping-methods.tsx`
 
-La pagina `/shipping-methods` è stata semplificata e sostituita con il nuovo testo fornito, rimuovendo tutto il contenuto precedente relativo a returns / warranty / policy.
+La pagina `/shipping-methods` è stata semplificata e sostituita con il nuovo testo fornito, rimuovendo tutto il contenuto precedente relativo a returns / warranty / policy. In un secondo passaggio è stato ripristinato anche il menu laterale della sezione policy e sono stati rifiniti gli accapo/spaziature per allinearli alla reference visiva.
 
 **Nuovo contenuto pubblicato:**
 - Titolo: `How to receive your Magniflex product`
@@ -391,10 +391,10 @@ La pagina `/shipping-methods` è stata semplificata e sostituita con il nuovo te
   - Phone: `(786) 233-8805`
   - Email: `orders@magniflex.us`
 - Sezione finale `Delivery Times by Product Category` con i tempi per:
-  - Mattresses and Pillow
+  - Mattresses and Pillows
   - Kit Foundation
   - Adjustable Base
   - Toppers
   - Sheets
 
-**Nota:** la pagina ora contiene solo questo contenuto, senza sidebar né sezioni aggiuntive.
+**Nota:** la pagina ora include anche la sidebar laterale con Warranty / Shipping methods / Return policy / Privacy Policy / Cookies.
