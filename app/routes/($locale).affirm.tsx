@@ -1,8 +1,8 @@
 import { type MetaFunction } from '@shopify/remix-oxygen';
 import magniflexlogo from '~/assets/Landing/Desktop/magniflex.svg'
 import FadeIn from '~/components/FadeIn';
-import desktopHeader from '../assets/affirm-promo/Header/magniflex-us-fall-into-savings-header-desktop.jpg'
-import mobileHeader from '../assets/affirm-promo/Header/magniflex-us-fall-into-savings-header-mobile.jpg'
+import desktopHeader from '../assets/affirm-page/magniflex-us-evergreen-promo-header-desktop-02.jpg'
+import mobileHeader from '../assets/affirm-page/magniflex-us-evergreen-promo-header-mobile-02.jpg'
 import desktopHeaderBottom from '../assets/labor-day-promo-2025/header/magniflex-landing-benefit-bar.gif'
 import mobileHeaderBottom from '../assets/affirm-promo/Header/magniflex-landing-benefit-bar-mobile.gif'
 import shopImg from '~/assets/affirm-promo/svg/shop.png'
