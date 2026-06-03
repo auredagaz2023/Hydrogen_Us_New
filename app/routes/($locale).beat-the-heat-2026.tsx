@@ -233,7 +233,7 @@ export default function BeatTheHeat2026() {
       <div className="px-3 sm:container py-16 md:py-24 lg:py-28" style={{ lineHeight: 1.5 }}>
         <div className='bg-white text-[#174860] text-center pb-[64px] md:pb-[32px] px-[30px] md:px-[8%]'>
           <div className='mb-[25px]'>
-            <div className='text-[28px] md:text-[41px] leading-tight font-bold mb-[48px] md:mb-[56px]'>
+            <div className='text-[27px] md:text-[40px] leading-tight font-bold mb-[64px] md:mb-[72px]'>
               Ready for the coolest summer sleep?
             </div>
             <div className='text-[26px] md:text-[39px] leading-tight font-bold mb-[18px]'>
