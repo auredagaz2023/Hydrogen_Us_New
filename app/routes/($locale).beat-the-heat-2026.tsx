@@ -1,6 +1,5 @@
 import { FormEvent, useRef, useState } from 'react';
 import { type MetaFunction } from '@shopify/remix-oxygen';
-import emailjs from '@emailjs/browser';
 import magniflexlogo from '~/assets/Landing/Desktop/magniflex.svg'
 import FadeIn from '~/components/FadeIn';
 import desktopHeader from '../assets/beat-the-heat-2026/Desktop/Header/magniflex-us-beat-the-heat-sale-header-desktop.jpg'
@@ -39,9 +38,8 @@ export const handle = {
   },
 };
 
-const EMAILJS_SERVICE_ID = 'orders-mx-mail';
-const EMAILJS_PUBLIC_KEY = 'S4HKNw2-KC7dMdcU4';
-const EMAILJS_SUBSCRIPTION_TEMPLATE_ID = 'mx-usa-form-subscription';
+const HUBSPOT_PORTAL_ID = '26099639';
+const HUBSPOT_FORM_GUID = '4971e4aa-85a8-4d54-8180-4c3f2806579c';
 
 const products = [
   {
@@ -158,7 +156,7 @@ export const meta: MetaFunction = () => {
 };
 
 export default function BeatTheHeat2026() {
-  const formRef = useRef<HTMLFormElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
   const [error, setError] = useState<string | undefined>(undefined);
@@ -172,31 +170,41 @@ export default function BeatTheHeat2026() {
     setHoveredIndex(-1);
   };
 
-  const sendEmail = async () => {
+  const submitNewsletter = async (email: string) => {
     setLoading(true);
     setError(undefined);
-    emailjs
-      .sendForm(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_SUBSCRIPTION_TEMPLATE_ID,
-        formRef.current || '',
-        EMAILJS_PUBLIC_KEY,
-      )
-      .then(
-        (result) => {
-          if (result.text == 'OK') {
-            setLoading(false);
-            setSuccess(true);
-            setTimeout(() => {
-              setSuccess(false);
-            }, 3000);
-          }
-        },
-        (error) => {
-          console.log(error);
-          setError(error.text);
+
+    try {
+      const response = await fetch(
+        `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_GUID}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            fields: [{ name: 'email', value: email }],
+            context: {
+              pageUri: window.location.href,
+              pageName: document.title,
+            },
+          }),
         },
       );
+
+      if (response.ok) {
+        setSuccess(true);
+        if (emailRef.current) emailRef.current.value = '';
+        setTimeout(() => {
+          setSuccess(false);
+        }, 3000);
+      } else {
+        const data = await response.json().catch(() => null);
+        setError(data?.errors?.[0]?.message ?? 'Submission failed. Please try again.');
+      }
+    } catch {
+      setError('Network error. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const validateEmail = (email: any) => {
@@ -206,17 +214,14 @@ export default function BeatTheHeat2026() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = e.target as HTMLFormElement;
-    const email = (form.elements.namedItem('email') as HTMLInputElement)?.value;
+    const email = emailRef.current?.value?.trim() ?? '';
     if (!validateEmail(email)) {
       setShowEmailError(true);
+      setError(undefined);
     } else {
       setShowEmailError(false);
-      await sendEmail();
-      const emailInput = document.getElementById('email') as HTMLInputElement | null;
-      if (emailInput) {
-        emailInput.value = '';
-      }
+      setSuccess(false);
+      await submitNewsletter(email);
     }
   };
 
@@ -401,7 +406,7 @@ export default function BeatTheHeat2026() {
           })}
         </div>
         <div className='flex flex-col mt-4 px-[30px] lg:p-4 pt-[40px] lg:pt-0'>
-          <form onSubmit={(e) => handleSubmit(e)} ref={formRef} className='flex flex-col items-center lg:py-8'>
+          <form onSubmit={(e) => handleSubmit(e)} className='flex flex-col items-center lg:py-8'>
             <svg width="50" height="43" viewBox="0 0 50 43" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M45.9999 14.4738C49.9284 13.9068 50.0795 14.4993 49.9788 14.907C49.8718 15.3083 49.4688 15.2574 49.4688 15.2574C49.4688 15.2574 43.8028 14.1426 25.9798 29.4888C28.6491 33.2664 30.6826 39.1781 28.945 40.1528C27.2137 41.1274 25.1739 35.7126 21.875 34.7188C18.5698 33.7251 18.5698 33.4957 10.1903 40.9045C2.72998 46.6187 5.78336 39.0953 9.10117 36.4771C12.419 33.8652 16.807 29.5143 17.1344 27.9153C17.4555 26.3036 14.3077 24.5645 14.9813 19.5128C15.082 18.9522 15.0694 18.9203 15.3464 18.2769C16.486 15.6077 17.0085 18.6464 18.7083 21.0162C20.5907 23.6471 21.9128 24.1568 21.9128 24.1568C21.9128 24.1568 35.4421 15.99 46.0062 14.4611" fill="#174860" />
               <path d="M14.5789 27.7684C14.5789 27.7684 -9.58376 12.4859 4.30443 1.49701C14.6985 -4.62492 17.0216 10.0078 17.0216 10.0078C17.0216 10.0078 22.4925 -0.783586 29.1093 3.67567C36.4437 8.62545 26.5532 17.2892 22.2533 20.3278C21.7119 19.557 27.7116 13.7281 24.929 11.5303C22.2659 9.44086 20.1191 12.3075 17.0972 15.9004C15.4792 17.8179 13.7416 6.28115 8.85618 9.02678C4.55625 11.4475 8.44696 19.1748 13.8486 25.8255C14.9378 27.2015 14.5789 27.762 14.5789 27.762" fill="#174860" />
@@ -417,15 +422,19 @@ export default function BeatTheHeat2026() {
             {
               showEmailError && <p className='text-xxs mb-4 mt-6 text-red-400'>Please enter the valid Email.</p>
             }
+            {error && (
+              <p className='text-xxs mb-4 mt-6 text-red-400'>{error}</p>
+            )}
             <input
+              ref={emailRef}
               type="email"
               name="email"
-              id="email"
+              id="beat-the-heat-newsletter-email"
               placeholder='Enter e-mail'
               style={{ outline: 'none', boxShadow: 'none' }}
               className='w-full md:w-[400px] text-center text-[16px] font-[24px] bg-[#F6F6F6] border border-t-0 border-l-0 border-r-0 border-b-1 border-[#174860] my-[20px] outline-none' />
             <br />
-            <button type='submit' className='border border-[#556268] text-[#174860] text-[17px] lg:text-[13px] font-semibold px-6 py-3 hover:bg-[#174860] hover:text-white uppercase'>subscribe</button>
+            <button type='submit' disabled={loading} className='border border-[#556268] text-[#174860] text-[17px] lg:text-[13px] font-semibold px-6 py-3 hover:bg-[#174860] hover:text-white uppercase disabled:opacity-50'>subscribe</button>
           </form>
           <div className='lg:mt-[40px] mt-[208px] w-full flex justify-center hidden lg:block'>
             <img className='w-full h-auto max-w-[900px]' src={magniflexlogo} alt="" />

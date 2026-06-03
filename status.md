@@ -486,6 +486,12 @@ Creata nuova landing duplicando `memorial-day-promo-2026`.
 - Product images mobile normalizzate da `Mobile/Images/` a `Mobile/Products/`
 - `.gitignore` aggiornato con `temp/` per escludere i file sorgente temporanei dal repo/deploy
 
+**Newsletter form:**
+- Migrato il form newsletter della landing da EmailJS a HubSpot Forms API, usando lo stesso Portal ID/Form GUID del footer
+- Aggiunto `context` con `pageUri` e `pageName`
+- Aggiunti errori visibili, stato loading sul bottone e reset input solo dopo submit OK
+- Input email rinominato con id dedicato `beat-the-heat-newsletter-email` per evitare collisioni con altri form nella pagina
+
 **Prodotti in pagina:**
 - Dolce Vita
 - Magnicool
