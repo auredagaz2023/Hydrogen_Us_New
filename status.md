@@ -477,6 +477,13 @@ Creata nuova landing duplicando `memorial-day-promo-2026`.
 - Rimossi gli import degli asset Pillows
 - La lista prodotti chiude con `Classico` da solo, centrato nella riga desktop tramite wrapper `flex justify-center` e card `lg:w-1/2`
 
+**Asset dedicati:**
+- Spostati gli asset forniti da `temp/beat-the-heat/` a `app/assets/beat-the-heat-2026/`
+- Header desktop/mobile aggiornati ai file Beat the Heat
+- Product images e roll images desktop aggiornate ai file Beat the Heat
+- Product images mobile normalizzate da `Mobile/Images/` a `Mobile/Products/`
+- `.gitignore` aggiornato con `temp/` per escludere i file sorgente temporanei dal repo/deploy
+
 **Prodotti in pagina:**
 - Dolce Vita
 - Magnicool

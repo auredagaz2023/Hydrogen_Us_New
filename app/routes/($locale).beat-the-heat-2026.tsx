@@ -3,29 +3,29 @@ import { type MetaFunction } from '@shopify/remix-oxygen';
 import emailjs from '@emailjs/browser';
 import magniflexlogo from '~/assets/Landing/Desktop/magniflex.svg'
 import FadeIn from '~/components/FadeIn';
-import desktopHeader from '../assets/memorial-day-2026/Desktop/Header/magniflex-us-memorial-day-sleep-sale-header-desktop.jpg'
+import desktopHeader from '../assets/beat-the-heat-2026/Desktop/Header/magniflex-us-beat-the-heat-sale-header-desktop.jpg'
 import desktopHeaderBottom from '../assets/labor-day-promo-2025/header/magniflex-landing-benefit-bar.gif'
-import mobileHeader from '../assets/memorial-day-2026/Mobile/Header/magniflex-us-memorial-day-sleep-sale-header-mobile.jpg'
+import mobileHeader from '../assets/beat-the-heat-2026/Mobile/Header/magniflex-us-beat-the-heat-sale-header-mobile.jpg'
 import mobileHeaderBottom from '../assets/labor-day-promo-2025/header/magniflex-landing-benefit-bar-mobile-A.gif'
-import dolcevitapng from '../assets/memorial-day-2026/Desktop/Products/Images/01-dolce-vita.jpg'
-import dolcevitapng_roll from '../assets/memorial-day-2026/Desktop/Products/Roll/01-dolce-vita-roll.jpg'
-import mobileDolcevitapng from '../assets/memorial-day-2026/Mobile/Products/01-dolce-vita.jpg'
+import dolcevitapng from '../assets/beat-the-heat-2026/Desktop/Products/Images/01-dolce-vita.jpg'
+import dolcevitapng_roll from '../assets/beat-the-heat-2026/Desktop/Products/Roll/01-dolce-vita-roll.jpg'
+import mobileDolcevitapng from '../assets/beat-the-heat-2026/Mobile/Products/01-dolce-vita.jpg'
 
-import magnicoolpng from '../assets/memorial-day-2026/Desktop/Products/Images/02-magnicool.jpg'
-import magnicoolpng_roll from '../assets/memorial-day-2026/Desktop/Products/Roll/02-magnicool-roll.jpg'
-import mobileMagnicoolpng from '../assets/memorial-day-2026/Mobile/Products/02-magnicool.jpg'
+import magnicoolpng from '../assets/beat-the-heat-2026/Desktop/Products/Images/02-magnicool.jpg'
+import magnicoolpng_roll from '../assets/beat-the-heat-2026/Desktop/Products/Roll/02-magnicool-roll.jpg'
+import mobileMagnicoolpng from '../assets/beat-the-heat-2026/Mobile/Products/02-magnicool.jpg'
 
-import magnistretchpng from '../assets/memorial-day-2026/Desktop/Products/Images/03-magnistretch.jpg'
-import magnistretchpng_roll from '../assets/memorial-day-2026/Desktop/Products/Roll/03-magnistretch-roll.jpg'
-import mobileMagnistretchpng from '../assets/memorial-day-2026/Mobile/Products/03-magnistretch.jpg'
+import magnistretchpng from '../assets/beat-the-heat-2026/Desktop/Products/Images/03-magnistretch.jpg'
+import magnistretchpng_roll from '../assets/beat-the-heat-2026/Desktop/Products/Roll/03-magnistretch-roll.jpg'
+import mobileMagnistretchpng from '../assets/beat-the-heat-2026/Mobile/Products/03-magnistretch.jpg'
 
-import magnificopng from '../assets/memorial-day-2026/Desktop/Products/Images/04-magnifico.jpg'
-import magnificopng_roll from '../assets/memorial-day-2026/Desktop/Products/Roll/04-magnifico-roll.jpg'
-import mobileMagnificopng from '../assets/memorial-day-2026/Mobile/Products/04-magnifico.jpg'
+import magnificopng from '../assets/beat-the-heat-2026/Desktop/Products/Images/04-magnifico.jpg'
+import magnificopng_roll from '../assets/beat-the-heat-2026/Desktop/Products/Roll/04-magnifico-roll.jpg'
+import mobileMagnificopng from '../assets/beat-the-heat-2026/Mobile/Products/04-magnifico.jpg'
 
-import classicopng from '../assets/memorial-day-2026/Desktop/Products/Images/05-classico.jpg'
-import classicopng_roll from '../assets/memorial-day-2026/Desktop/Products/Roll/05-classico-roll.jpg'
-import mobileClassicopng from '../assets/memorial-day-2026/Mobile/Products/05-classico.jpg'
+import classicopng from '../assets/beat-the-heat-2026/Desktop/Products/Images/05-classico.jpg'
+import classicopng_roll from '../assets/beat-the-heat-2026/Desktop/Products/Roll/05-classico-roll.jpg'
+import mobileClassicopng from '../assets/beat-the-heat-2026/Mobile/Products/05-classico.jpg'
 
 export const handle = {
   seo: {
