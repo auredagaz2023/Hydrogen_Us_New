@@ -229,12 +229,24 @@ export default function BeatTheHeat2026() {
         </div>
       </FadeIn>
       <div className="px-3 sm:container py-16 md:py-24 lg:py-28" style={{ lineHeight: 1.5 }}>
-        <div className='bg-white text-[#174860] landing-[29px] text-[17.5px] text-center pb-[64px] md:pb-[32px] px-[30px] md:px-[20%]'>
-          <div style={{ marginBottom: '25px' }}>
-            <span className='font-bold'>The pursuit of happiness begins with a great night’s sleep.</span><br /><br />
-            During our <span className='font-bold'>Beat the Heat Sale</span>, experience world-class Italian comfort with <span className='font-bold text-[#ED1C24]'>30% off mattresses</span>. Stop compromising on your rest and start investing in your well-being.
-            <br />
-            <span className='font-bold text-[#ED1C24]'>Save up to $3,959</span> and discover the gold standard of Italian sleep.
+        <div className='bg-white text-[#174860] text-center pb-[64px] md:pb-[32px] px-[30px] md:px-[8%]'>
+          <div className='mb-[25px]'>
+            <div className='text-[32px] md:text-[44px] leading-tight font-bold mb-[58px]'>
+              Ready for the coolest summer sleep?
+            </div>
+            <div className='text-[26px] md:text-[39px] leading-tight font-bold mb-[18px]'>
+              Recharge your nights this season.
+            </div>
+            <div className='text-[24px] md:text-[38px] leading-[1.6]'>
+              It is the perfect time to refresh your sanctuary. Upgrade your sleep experience
+              <br className='hidden md:block' />
+              with <span className='font-bold'>exclusive size incentives</span> that provide more room to stretch out
+              <br className='hidden md:block' />
+              and the temperature regulation you need for deep, uninterrupted rest.
+            </div>
+            <div className='text-[27px] md:text-[40px] leading-tight font-bold text-[#ED1C24] mt-[16px]'>
+              Save up to $3,999 today.
+            </div>
           </div>
         </div>
         <div className='bg-white text-[#174860] text-[35px] font-bold text-center leading-1 py-[24px] px-[20px] mb-[24px] md:mb-[55px]' style={{ marginBottom: '55px' }}>
