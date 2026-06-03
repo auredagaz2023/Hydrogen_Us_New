@@ -398,3 +398,96 @@ La pagina `/shipping-methods` è stata semplificata e sostituita con il nuovo te
   - Sheets
 
 **Nota:** la pagina ora include anche la sidebar laterale con Warranty / Shipping methods / Return policy / Privacy Policy / Cookies.
+
+---
+
+## Sessione 2026-05-13
+
+### Nuova landing page: memorial-day-promo-2026
+
+**File route:** `app/routes/($locale).memorial-day-promo-2026.tsx`  
+**URL:** `https://magniflex.us/memorial-day-promo-2026`
+
+Creata nuova landing duplicando `upgrade-your-rest-promo-2026` e personalizzata per **Memorial Day Sale 2026**.
+
+**Asset utilizzati:** `app/assets/memorial-day-2026/`
+- Header desktop: `Desktop/Header/magniflex-us-memorial-day-sleep-sale-header-desktop.jpg`
+- Header mobile: `Mobile/Header/magniflex-us-memorial-day-sleep-sale-header-mobile.jpg`
+- Product images desktop: `Desktop/Products/Images/`
+- Product roll images desktop: `Desktop/Products/Roll/`
+- Product images mobile: `Mobile/Products/`
+- Benefit bar: riutilizzate da `labor-day-promo-2025`
+
+**Prodotti in pagina:**
+- Dolce Vita
+- Magnicool
+- MagniStretch
+- Magnifico
+- Classico
+- Magniflex Pillows — nuovo blocco aggiunto rispetto a `upgrade-your-rest-promo-2026`
+
+**Copy intro aggiornato:**
+- `The pursuit of happiness begins with a great night’s sleep.`
+- Copy Memorial Day Sale con focus su `30% off mattresses and pillows`
+- Claim finale: `Save up to $3,959 and discover the gold standard of Italian sleep.`
+
+**Prezzi aggiornati:**
+- Dolce Vita: `$3,099` → `$2,170`, `Save up to $2,519`
+- Magnicool: `$2,299` → `$1,610`, `Save up to $1,679`
+- MagniStretch: `$2,699` → `$1,890`, `Save up to $2,219`
+- Magnifico: `$2,899` → `$2,030`, `Save up to $3,959`
+- Classico: `$1,799` → `$1,260`, `Save up to $1,499`
+- Pillows: `$129` → `$91`, `Save up to $80`
+
+**Altre modifiche:**
+- Label prezzi da `King starting at` a `Starting at`
+- SEO title/meta/url aggiornati a Memorial Day Promo 2026
+
+### Ritocchi landing Memorial Day da reference R01
+
+**File modificato:** `app/routes/($locale).memorial-day-promo-2026.tsx`
+
+Modifiche richieste su desktop e mobile in base alle reference:
+- Testo `30% off mattresses and pillows` colorato in rosso `#ED1C24`
+- Tutti i prezzi rossi resi bold e uniformati a `#ED1C24`
+- Blocco Magniflex Pillows aggiornato con le label/testi corretti:
+  - `Features: ergonomic design, cooling fabrics, natural fibers`
+  - `Benefits: deeper, more comfortable, and restorative sleep`
+- Aggiunto spazio dopo `Starting at` su mobile per tutti i prodotti
+
+**Verifica:** `npm run -s typecheck` non eseguibile localmente perché `tsc` non è disponibile nel workspace.
+
+---
+
+## Sessione 2026-06-03
+
+### Nuova landing page: beat-the-heat-2026
+
+**File route:** `app/routes/($locale).beat-the-heat-2026.tsx`  
+**URL:** `https://magniflex.us/beat-the-heat-2026`
+
+Creata nuova landing duplicando `memorial-day-promo-2026`.
+
+**Modifiche rispetto a Memorial Day:**
+- SEO title/meta/url aggiornati a `Beat the Heat 2026`
+- Componente rinominato `BeatTheHeat2026`
+- Copy intro aggiornato da `Memorial Day Sale` a `Beat the Heat Sale`
+- Focus promo aggiornato da `30% off mattresses and pillows` a `30% off mattresses`
+- Rimosso completamente il blocco `Magniflex Pillows`
+- Rimossi gli import degli asset Pillows
+- La griglia prodotti chiude con `Classico` da solo, centrato nella riga desktop tramite `lg:col-span-2 lg:mx-auto lg:w-1/2`
+
+**Prodotti in pagina:**
+- Dolce Vita
+- Magnicool
+- MagniStretch
+- Magnifico
+- Classico
+
+**Commit pushato su `origin/main` (auredagaz2023/Hydrogen_Us_New):**
+
+| Hash | Descrizione |
+|------|-------------|
+| `3f8ee5c` | Add beat the heat 2026 landing page |
+
+**Verifica:** `npm run -s typecheck` non eseguibile localmente perché `tsc` non è disponibile nel workspace.

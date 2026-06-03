@@ -162,7 +162,7 @@ const Pillows = {
   mobile_img: mobilePillowspng,
   name: "MAGNIFLEX PILLOWS",
   description: "Explore the comfort, support, freshness, breathability, and many more qualities designed to enhance your sleep experience.",
-  bestfor: "enhanced comfort and support",
+  bestfor: "ergonomic design, cooling fabrics, natural fibers",
   fitness: "deeper, more comfortable, and restorative sleep",
   original_price: "$129",
   price: "$91",
@@ -255,9 +255,9 @@ export default function MemorialDayPromo2026() {
         <div className='bg-white text-[#174860] landing-[29px] text-[17.5px] text-center pb-[64px] md:pb-[32px] px-[30px] md:px-[20%]'>
           <div style={{ marginBottom: '25px' }}>
             <span className='font-bold'>The pursuit of happiness begins with a great night’s sleep.</span><br /><br />
-            During our <span className='font-bold'>Memorial Day Sale</span>, experience world-class Italian comfort with <span className='font-bold'>30% off mattresses and pillows</span>. Stop compromising on your rest and start investing in your well-being.
+            During our <span className='font-bold'>Memorial Day Sale</span>, experience world-class Italian comfort with <span className='font-bold text-[#ED1C24]'>30% off mattresses and pillows</span>. Stop compromising on your rest and start investing in your well-being.
             <br />
-            <span className='font-bold text-red-600'>Save up to $3,959</span> and discover the gold standard of Italian sleep.
+            <span className='font-bold text-[#ED1C24]'>Save up to $3,959</span> and discover the gold standard of Italian sleep.
           </div>
         </div>
         <div className='bg-white text-[#174860] text-[35px] font-bold text-center leading-1 py-[24px] px-[20px] mb-[24px] md:mb-[55px]' style={{ marginBottom: '55px' }}>
@@ -324,9 +324,9 @@ export default function MemorialDayPromo2026() {
                       <span className='text-[#839BB1]'>Firmness:</span> <span className='text-[#174860] text-[15px]'>{product.fitness}</span>
                     </div>
                     <div className='mt-[25px] text-[#839BB1] text-[13px] landing-[27.5px] text-center'>
-                      Starting at
+                      Starting at{' '}
                       <br className='hidden md:block' />
-                      <span className='line-through'>{product.original_price}</span> <span className='text-red-600 text-[22px] landing-[27.5px]'>{product.price}</span>
+                      <span className='line-through'>{product.original_price}</span> <span className='font-bold text-[#ED1C24] text-[22px] landing-[27.5px]'>{product.price}</span>
                     </div>
                     <a className='text-center mt-[15px] py-4 px-8 uppercase border border-[#174860] hover:bg-[#174860] bg-transparent hover:text-white text-[#174860] text-[12px] sm:text-[15px] lg:text-[13px] font-semibold' href={product.link}>{product.button}</a>
                     <div className='mt-[15px] uppercase text-[#174860] text-center text-[17px] lg:text-[13px] font-semibold'>{product.bottom}</div>
@@ -393,14 +393,14 @@ export default function MemorialDayPromo2026() {
                   <hr className='my-[20px] lg:hidden block border-0 clear-both, w-[96%] bg-[#174860] h-[1px]' />
                   <div className='mt-[20px] text-[17px] font-semibold md:font-normal text-[#174860] landing-[25px] md:text-center'>{product.description}</div>
                   <div className='mt-[30px] lg:mt-[25px] text-[17px] lg:text-[15px] md:text-center w-full'>
-                    <span className='text-[#839BB1]'>Best for:</span> <span className='text-[rgb(23,72,96)] text-[15px]'>{product.bestfor}</span>
+                    <span className='text-[#839BB1]'>{product.name === 'MAGNIFLEX PILLOWS' ? 'Features:' : 'Best for:'}</span> <span className='text-[rgb(23,72,96)] text-[15px]'>{product.bestfor}</span>
                     <br />
-                    <span className='text-[#839BB1]'>Firmness:</span> <span className='text-[#174860] text-[15px]'>{product.fitness}</span>
+                    <span className='text-[#839BB1]'>{product.name === 'MAGNIFLEX PILLOWS' ? 'Benefits:' : 'Firmness:'}</span> <span className='text-[#174860] text-[15px]'>{product.fitness}</span>
                   </div>
                   <div className='mt-[25px] text-[#839BB1] text-[13px] landing-[27.5px] text-center'>
-                    Starting at
+                    Starting at{' '}
                     <br className='hidden md:block' />
-                    <span className='line-through'>{product.original_price}</span> <span className='text-red-600 text-[22px] landing-[27.5px]'>{product.price}</span>
+                    <span className='line-through'>{product.original_price}</span> <span className='font-bold text-[#ED1C24] text-[22px] landing-[27.5px]'>{product.price}</span>
                   </div>
                   <a className='text-center mt-[15px] py-4 px-8 uppercase border border-[#174860] hover:bg-[#174860] bg-transparent hover:text-white text-[#174860] text-[12px] sm:text-[15px] lg:text-[13px] font-semibold' href={product.link}>{product.button}</a>
                   <div className='mt-[15px] uppercase text-[#174860] text-center text-[17px] lg:text-[13px] font-semibold'>{product.bottom}</div>
