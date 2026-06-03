@@ -492,6 +492,15 @@ Creata nuova landing duplicando `memorial-day-promo-2026`.
 - Magnifico
 - Classico
 
+**Aggiornamento prezzi/testi prodotto da reference:**
+- Label prezzo aggiornata a `King starting at`
+- Dolce Vita: `$4,399` → `$3,599`, `Save up to $2,499`
+- Magnicool: `$3,299` → `$2,699`, `Save up to $1,799`
+- MagniStretch: `$3,999` → `$3,199`, `Save up to $2,099`
+- Magnifico: `$3,999` → `$3,299`, `Save up to $3,999`, seconda label aggiornata a `Benefits`
+- Classico: `$2,499` → `$2,099`, `Save up to $1,199`, seconda label aggiornata a `Benefits`
+- Descrizioni prodotto rifinite con punteggiatura finale e copy Dolce Vita `4 layers combinations`
+
 **Commit pushato su `origin/main` (auredagaz2023/Hydrogen_Us_New):**
 
 | Hash | Descrizione |

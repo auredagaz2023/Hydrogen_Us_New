@@ -51,14 +51,14 @@ const products = [
     roll_img: dolcevitapng_roll,
     mobile_img: mobileDolcevitapng,
     name: "dolce vita",
-    description: "One mattress with 4 layer combinations and different comfort levels thanks to our Dual Core technology",
+    description: "One mattress with 4 layers combinations and different comfort levels thanks to our Dual Core technology.",
     bestfor: "couples with different sleep needs",
     fitness: "soft, medium-soft, medium-firm, firm",
-    original_price: "$3,099",
-    price: "$2,170",
+    original_price: "$4,399",
+    price: "$3,599",
     button: "shop dolce vita",
     link: "https://magniflex.us/mattresses/dolce-vita?product=dolcevita-dual-10",
-    bottom: "Save up to $2,519",
+    bottom: "Save up to $2,499",
     mattress: true
   },
   {
@@ -68,14 +68,14 @@ const products = [
     roll_img: magnicoolpng_roll,
     mobile_img: mobileMagnicoolpng,
     name: "magnicool",
-    description: "The innovative mattress, designed with premium materials and cover fabrics, delivers unmatched freshness and superior air circulation",
+    description: "The innovative mattress, designed with premium materials and cover fabrics, delivers unmatched freshness and superior air circulation.",
     bestfor: "cool night lovers",
     fitness: "medium-soft, medium-firm",
-    original_price: "$2,299",
-    price: "$1,610",
+    original_price: "$3,299",
+    price: "$2,699",
     button: "Shop MAGNICOOL",
     link: "https://magniflex.us/mattresses/magnicool?product=magnicool-10-firm",
-    bottom: "Save up to $1,679",
+    bottom: "Save up to $1,799",
     mattress: true
   },
   {
@@ -85,14 +85,14 @@ const products = [
     roll_img: magnistretchpng_roll,
     mobile_img: mobileMagnistretchpng,
     name: "MagniStretch",
-    description: "Its patented checkered and stretching construction ensures differentiated zone support and stretching of the spine",
+    description: "Its patented checkered and stretching construction ensures differentiated zone support and stretching of the spine.",
     bestfor: "active people, back pain sufferers",
     fitness: "medium-firm, firm",
-    original_price: "$2,699",
-    price: "$1,890",
+    original_price: "$3,999",
+    price: "$3,199",
     button: "Shop MAGNISTRETCH",
     link: "https://magniflex.us/mattresses/magnistretch?product=magnistretch-12",
-    bottom: "Save up to $2,219",
+    bottom: "Save up to $2,099",
     mattress: true
   },
   {
@@ -102,14 +102,15 @@ const products = [
     roll_img: magnificopng_roll,
     mobile_img: mobileMagnificopng,
     name: "Magnifico",
-    description: "The excellence of traditional materials combined with the innovation of new technologies to produce timeless comfort",
+    description: "The excellence of traditional materials combined with the innovation of new technologies to produce timeless comfort.",
     bestfor: "discerning sleepers seeking ultimate comfort",
     fitness: "super-soft, medium-soft, medium-firm",
-    original_price: "$2,899",
-    price: "$2,030",
+    detailLabel: "Benefits",
+    original_price: "$3,999",
+    price: "$3,299",
     button: "Shop Magnifico",
     link: "https://magniflex.us/mattresses/magnifico?product=toscana-cotton-lux-10",
-    bottom: "Save up to $3,959",
+    bottom: "Save up to $3,999",
     mattress: true
   },
   // {
@@ -138,14 +139,15 @@ const Classico = {
   roll_img: classicopng_roll,
   mobile_img: mobileClassicopng,
   name: "Classico",
-  description: "The perfect combination of performance and essentiality for a mattress with built-in massaging system designed to meet every sleep need",
+  description: "The perfect combination of performance and essentiality for a mattress with built-in massaging system designed to meet every sleep need.",
   bestfor: "quality sleep lover, restorative sleep seekers",
   fitness: "medium-firm",
-  original_price: "$1,799",
-  price: "$1,260",
+  detailLabel: "Benefits",
+  original_price: "$2,499",
+  price: "$2,099",
   button: "Shop Classico",
   link: "https://magniflex.us/mattresses/classico?product=classico-essential-10",
-  bottom: "Save up to $1,499",
+  bottom: "Save up to $1,199",
   mattress: true
 }
 
@@ -310,10 +312,10 @@ export default function BeatTheHeat2026() {
                     <div className='mt-[30px] lg:mt-[25px] text-[17px] lg:text-[15px] md:text-center w-full'>
                       <span className='text-[#839BB1]'>Best for:</span> <span className='text-[rgb(23,72,96)] text-[15px]'>{product.bestfor}</span>
                       <br />
-                      <span className='text-[#839BB1]'>Firmness:</span> <span className='text-[#174860] text-[15px]'>{product.fitness}</span>
+                      <span className='text-[#839BB1]'>{product.detailLabel ?? 'Firmness'}:</span> <span className='text-[#174860] text-[15px]'>{product.fitness}</span>
                     </div>
                     <div className='mt-[25px] text-[#839BB1] text-[13px] landing-[27.5px] text-center'>
-                      Starting at{' '}
+                      King starting at{' '}
                       <br className='hidden md:block' />
                       <span className='line-through'>{product.original_price}</span> <span className='font-bold text-[#ED1C24] text-[22px] landing-[27.5px]'>{product.price}</span>
                     </div>
@@ -384,10 +386,10 @@ export default function BeatTheHeat2026() {
                   <div className='mt-[30px] lg:mt-[25px] text-[17px] lg:text-[15px] md:text-center w-full'>
                     <span className='text-[#839BB1]'>Best for:</span> <span className='text-[rgb(23,72,96)] text-[15px]'>{product.bestfor}</span>
                     <br />
-                    <span className='text-[#839BB1]'>Firmness:</span> <span className='text-[#174860] text-[15px]'>{product.fitness}</span>
+                    <span className='text-[#839BB1]'>{product.detailLabel ?? 'Firmness'}:</span> <span className='text-[#174860] text-[15px]'>{product.fitness}</span>
                   </div>
                   <div className='mt-[25px] text-[#839BB1] text-[13px] landing-[27.5px] text-center'>
-                    Starting at{' '}
+                    King starting at{' '}
                     <br className='hidden md:block' />
                     <span className='line-through'>{product.original_price}</span> <span className='font-bold text-[#ED1C24] text-[22px] landing-[27.5px]'>{product.price}</span>
                   </div>
