@@ -474,6 +474,7 @@ Creata nuova landing duplicando `memorial-day-promo-2026`.
 - Copy intro aggiornato da `Memorial Day Sale` a `Beat the Heat Sale`
 - Focus promo aggiornato da `30% off mattresses and pillows` a `30% off mattresses`
 - Intro testuale aggiornata con headline `Ready for the coolest summer sleep?`, subheadline `Recharge your nights this season.` e claim finale `Save up to $3,999 today.`
+- Tipografia intro rifinita: headline 2px più grande della subheadline, spazio equivalente ad almeno una riga vuota dopo la headline, paragrafo alla stessa dimensione della subheadline
 - Rimosso completamente il blocco `Magniflex Pillows`
 - Rimossi gli import degli asset Pillows
 - La lista prodotti chiude con `Classico` da solo, centrato nella riga desktop tramite wrapper `flex justify-center` e card `lg:w-1/2`

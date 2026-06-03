@@ -233,13 +233,13 @@ export default function BeatTheHeat2026() {
       <div className="px-3 sm:container py-16 md:py-24 lg:py-28" style={{ lineHeight: 1.5 }}>
         <div className='bg-white text-[#174860] text-center pb-[64px] md:pb-[32px] px-[30px] md:px-[8%]'>
           <div className='mb-[25px]'>
-            <div className='text-[32px] md:text-[44px] leading-tight font-bold mb-[58px]'>
+            <div className='text-[28px] md:text-[41px] leading-tight font-bold mb-[48px] md:mb-[56px]'>
               Ready for the coolest summer sleep?
             </div>
             <div className='text-[26px] md:text-[39px] leading-tight font-bold mb-[18px]'>
               Recharge your nights this season.
             </div>
-            <div className='text-[24px] md:text-[38px] leading-[1.6]'>
+            <div className='text-[26px] md:text-[39px] leading-[1.6]'>
               It is the perfect time to refresh your sanctuary. Upgrade your sleep experience
               <br className='hidden md:block' />
               with <span className='font-bold'>exclusive size incentives</span> that provide more room to stretch out
