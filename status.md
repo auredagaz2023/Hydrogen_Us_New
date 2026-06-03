@@ -475,7 +475,7 @@ Creata nuova landing duplicando `memorial-day-promo-2026`.
 - Focus promo aggiornato da `30% off mattresses and pillows` a `30% off mattresses`
 - Rimosso completamente il blocco `Magniflex Pillows`
 - Rimossi gli import degli asset Pillows
-- La griglia prodotti chiude con `Classico` da solo, centrato nella riga desktop tramite `lg:col-span-2 lg:mx-auto lg:w-1/2`
+- La lista prodotti chiude con `Classico` da solo, centrato nella riga desktop tramite wrapper `flex justify-center` e card `lg:w-1/2`
 
 **Prodotti in pagina:**
 - Dolce Vita

@@ -313,12 +313,12 @@ export default function BeatTheHeat2026() {
             })
           }
         </div>
-        <div className='grid grid-cols-1 lg:grid-cols-2 mb-[70px]'>
+        <div className='flex justify-center mb-[70px]'>
           {[Classico].map((product: any) => {
             const hoverIndex = products.length;
 
             return (
-              <div key={product.name} className='px-[32px] md:px-12 pb-32 relative lg:col-span-2 lg:mx-auto lg:w-1/2'>
+              <div key={product.name} className='w-full lg:w-1/2 px-[32px] md:px-12 pb-32 relative'>
                 <div className='relative h-auto'>
                   <img
                     src={product.roll_img}
