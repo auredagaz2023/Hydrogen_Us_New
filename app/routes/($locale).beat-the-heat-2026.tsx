@@ -2,9 +2,9 @@ import { FormEvent, useRef, useState } from 'react';
 import { type MetaFunction } from '@shopify/remix-oxygen';
 import magniflexlogo from '~/assets/Landing/Desktop/magniflex.svg'
 import FadeIn from '~/components/FadeIn';
-import desktopHeader from '../assets/beat-the-heat-2026/Desktop/Header/magniflex-us-beat-the-heat-sale-header-desktop.jpg'
+import desktopHeader from '../assets/beat-the-heat-2026/Desktop/Header/magniflex-us-beat-the-heat-sale-header-desktop-02.jpg'
 import desktopHeaderBottom from '../assets/labor-day-promo-2025/header/magniflex-landing-benefit-bar.gif'
-import mobileHeader from '../assets/beat-the-heat-2026/Mobile/Header/magniflex-us-beat-the-heat-sale-header-mobile.jpg'
+import mobileHeader from '../assets/beat-the-heat-2026/Mobile/Header/magniflex-us-beat-the-heat-sale-header-mobile-02.jpg'
 import mobileHeaderBottom from '../assets/labor-day-promo-2025/header/magniflex-landing-benefit-bar-mobile-A.gif'
 import dolcevitapng from '../assets/beat-the-heat-2026/Desktop/Products/Images/01-dolce-vita.jpg'
 import dolcevitapng_roll from '../assets/beat-the-heat-2026/Desktop/Products/Roll/01-dolce-vita-roll.jpg'
