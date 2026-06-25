@@ -515,3 +515,34 @@ Creata nuova landing duplicando `memorial-day-promo-2026`.
 | `3f8ee5c` | Add beat the heat 2026 landing page |
 
 **Verifica:** `npm run -s typecheck` non eseguibile localmente perché `tsc` non è disponibile nel workspace.
+
+---
+
+## Sessione 2026-06-25
+
+### Nuova landing page: independence-day-2026
+
+**File route:** `app/routes/($locale).independence-day-2026.tsx`  
+**URL:** `https://magniflex.us/independence-day-2026`
+
+Creata nuova landing duplicando `memorial-day-promo-2026` e personalizzata per **Independence Day Sale 2026**.
+
+**Asset utilizzati:** `app/assets/independence-day-2026/`
+- Header desktop/mobile da `temp/independence-day/Desktop/Header` e `temp/independence-day/Mobile/Header`
+- Product images desktop da `temp/independence-day/Desktop/Products/Images`
+- Product roll images desktop da `temp/independence-day/Desktop/Products/Roll`
+- Product images mobile da `temp/independence-day/Mobile/Products`
+- Benefit bar: riutilizzate da `labor-day-promo-2025`
+
+**Copy intro aggiornato da reference Figma:**
+- Headline: `True freedom starts with a fully recharged body`
+- Promo: `30% off premium mattresses and pillows`
+- Claim finale: `save up to $3,959`
+
+**Aggiornamenti prodotto da reference:**
+- Dolce Vita, Magnicool, MagniStretch, Magnifico e Classico allineati ai prezzi della promo Memorial Day
+- MagniStretch: descrizione aggiornata sul supporto mirato e allineamento naturale
+- Magnifico e Classico: seconda label aggiornata a `Benefits:`
+- Pillows: `$119` → `$83`, `Save up to $86`
+
+**Verifica:** `npm run -s typecheck` non eseguibile localmente perché `tsc` non è disponibile nel workspace.
