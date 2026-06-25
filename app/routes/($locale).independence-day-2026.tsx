@@ -3,7 +3,7 @@ import { type MetaFunction } from '@shopify/remix-oxygen';
 import emailjs from '@emailjs/browser';
 import magniflexlogo from '~/assets/Landing/Desktop/magniflex.svg'
 import FadeIn from '~/components/FadeIn';
-import desktopHeader from '../assets/independence-day-2026/Desktop/Header/magniflex-us-the-independence-day-sleep-sale-header-desktop.jpg'
+import desktopHeader from '../assets/independence-day-2026/Desktop/Header/magniflex-us-the-independence-day-sleep-sale-header-desktop-02.jpg'
 import desktopHeaderBottom from '../assets/labor-day-promo-2025/header/magniflex-landing-benefit-bar.gif'
 import mobileHeader from '../assets/independence-day-2026/Mobile/Header/magniflex-us-the-independence-day-sleep-sale-header-mobile.jpg'
 import mobileHeaderBottom from '../assets/labor-day-promo-2025/header/magniflex-landing-benefit-bar-mobile-A.gif'
@@ -263,7 +263,7 @@ export default function IndependenceDay2026() {
         <div className='bg-white text-[#174860] text-[35px] font-bold text-center leading-1 py-[24px] px-[20px] mb-[24px] md:mb-[55px]' style={{ marginBottom: '55px' }}>
           Explore our collections
         </div>
-        <div className='grid grid-cols-1 lg:grid-cols-2 mb-[70px]'>
+        <div className='grid grid-cols-1 lg:grid-cols-2 mb-0 lg:mb-[70px]'>
           {
             products.map((product: any, index) => {
               return (
