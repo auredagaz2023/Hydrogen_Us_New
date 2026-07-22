@@ -2,7 +2,9 @@ import GoogleMapReact from "google-map-react";
 import { FaClock, FaEnvelope, FaMap, FaMapMarkerAlt, FaPhone, FaStore, FaTimes } from "react-icons/fa";
 import { ContentItem, ContentStoreCategory } from "~/routes/($locale).types";
 
-const API_KEY = "AIzaSyC8ZQTL2qrSTWiK6gnZ5uYotq5LdfsGJPw";
+const hasLocation = (item: ContentItem) =>
+    typeof item.fields.location?.lat === "number" &&
+    typeof item.fields.location?.lon === "number";
 
 type TMarkerProps = {
     lat: number;
@@ -12,8 +14,8 @@ type TMarkerProps = {
     showDetails: (item: ContentItem) => void;
 }
 const Marker = ({ item, categories, showDetails }: TMarkerProps) => {
-    const category = categories.items.find((category) => category.sys.id === item.fields.category.sys.id);
-    const image = categories.includes.Asset.find((asset) => asset.sys.id === category?.fields.icon.sys.id);
+    const category = (categories?.items ?? []).find((category) => category.sys.id === item.fields.category?.sys.id);
+    const image = (categories?.includes?.Asset ?? []).find((asset) => asset.sys.id === category?.fields.icon?.sys.id);
 
     return (
         <div>
@@ -65,7 +67,7 @@ const MarkerDetails = ({ item, closeDetails }: TMarkerDetailProps) => {
             }
             <div className="flex gap-2">
                 <FaMap className="w-4 h-4 shrink-0" />
-                <a className="text-xs" target="_blank" href={ `https://maps.google.com/maps?daddr=${item.fields.address}` }>Google Maps</a>
+                <a className="text-xs" target="_blank" rel="noreferrer" href={ `https://maps.google.com/maps?daddr=${encodeURIComponent(`${item.fields.address} ${item.fields.city} ${item.fields.zip} ${item.fields.state}`)}` }>Google Maps</a>
             </div>
         </div>
     )
@@ -79,20 +81,29 @@ type TProps = {
     detailItem?: ContentItem;
     showDetails: (item: ContentItem) => void;
     hideDetails: () => void;
+    googleMapsApiKey?: string;
 }
 export default function MapComponent(props: TProps) {
-    const { zoom, center, items, categories, detailItem, setZoom, showDetails, hideDetails } = props;
+    const { zoom, center, items, categories, detailItem, setZoom, showDetails, hideDetails, googleMapsApiKey } = props;
+
+    if (!googleMapsApiKey) {
+        return (
+            <div className="h-full w-full bg-gray-100 flex items-center justify-center px-6 text-center text-dark-blue">
+                Google Maps is not configured.
+            </div>
+        );
+    }
 
     return (
         <div style={{ height: "100%", width: "100%" }}>
             <GoogleMapReact
-                bootstrapURLKeys={{ key: API_KEY }}
+                bootstrapURLKeys={{ key: googleMapsApiKey, libraries: ['places'] }}
                 defaultCenter={center}
                 defaultZoom={zoom}
                 center={center}
                 zoom={zoom}
             >
-                { items && items.map((item, index: number) => (
+                { items?.filter(hasLocation).map((item, index: number) => (
                     <Marker
                         key={index}
                         lat={item.fields.location.lat}
@@ -102,7 +113,7 @@ export default function MapComponent(props: TProps) {
                         showDetails={(item) => showDetails(item)}
                     />
                 )) }
-                { detailItem && 
+                { detailItem && hasLocation(detailItem) &&
                     <MarkerDetails
                         lat={detailItem.fields.location.lat}
                         lng={detailItem.fields.location.lon}

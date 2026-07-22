@@ -546,3 +546,229 @@ Creata nuova landing duplicando `memorial-day-promo-2026` e personalizzata per *
 - Pillows: `$119` → `$83`, `Save up to $86`
 
 **Verifica:** `npm run -s typecheck` non eseguibile localmente perché `tsc` non è disponibile nel workspace.
+
+---
+
+## Sessione 2026-07-16
+
+### Store locator: problema Google Maps API key
+
+**Contesto:** dalla schermata produzione di `https://magniflex.us/store-locator` la mappa mostra watermark `For development purposes only` e popup Google:
+> `Questa pagina non carica correttamente Google Maps.`
+
+Diagnosi: non e' un problema di layout React o dei marker. Il messaggio indica una **Google Maps API key non valida per produzione**, tipicamente per uno di questi motivi:
+- billing Google Cloud non attivo
+- dominio `magniflex.us` / `www.magniflex.us` non autorizzato nei referrer
+- `Maps JavaScript API` o `Places API` non abilitate
+- key vecchia/non valida
+
+### Modifiche applicate
+
+**File modificati:**
+- `app/root.tsx`
+- `app/components/MapComponent.tsx`
+- `app/components/MapSearchBox.tsx`
+- `app/components/MapStoreListItem.tsx`
+- `app/components/MapStoreDetails.tsx`
+- `app/components/MapFilterListItem.tsx`
+- `app/routes/($locale).store-locator.tsx`
+- `remix.env.d.ts`
+- `README.md`
+
+**Fix tecnici:**
+- Rimossa la Google Maps API key hard-coded dal codice.
+- Rimossa la vecchia inclusione globale dello script Google Maps da `root.tsx`.
+- Aggiunta env pubblica `PUBLIC_GOOGLE_MAPS_API_KEY`.
+- La route `store-locator` passa ora `googleMapsApiKey` dal loader a `MapComponent`.
+- `MapComponent` carica Google Maps tramite `google-map-react` con `libraries: ['places']`.
+- Se la env non e' configurata, la mappa mostra un fallback pulito invece del popup Google.
+- Resi piu' robusti gli accessi a dati Contentful in store locator:
+  - fallback se Contentful fallisce
+  - optional chaining su categorie, asset e icone
+  - marker filtrati se mancano coordinate valide
+  - ricerca Places renderizzata solo quando `window.google.maps.places` e' pronta
+
+### Verifica documentazione Google
+
+Verificato su documentazione ufficiale Google il 16 luglio 2026:
+- Maps JavaScript API richiede una API key legata a progetto Google Cloud con billing attivo.
+- Google raccomanda restrizioni per website/referrer e API specifiche.
+- Places Library richiede caricamento con `libraries=places`.
+
+**Guida inviata al cliente:** chiedere una key Google Maps con:
+- `Maps JavaScript API`
+- `Places API`
+- Application restriction: `Websites`
+- Referrer autorizzati:
+  - `https://magniflex.us/*`
+  - `https://www.magniflex.us/*`
+
+### Prossimo passo
+
+Quando il cliente fornisce la key:
+1. Configurare `PUBLIC_GOOGLE_MAPS_API_KEY` su Shopify Oxygen.
+2. Eseguire deploy.
+3. Verificare `/store-locator` in produzione: niente popup Google, niente watermark `For development purposes only`, autocomplete funzionante.
+
+**Verifica locale:** `git diff --check` sui file modificati per la mappa e' pulito.
+**Typecheck:** non eseguibile localmente per assenza di `node_modules` / `tsc`.
+
+### ⚠️ Problema aperto — Google Maps in produzione
+
+**Stato:** key ricevuta dal cliente il 22 luglio 2026, validata, configurata in locale. Push in produzione ancora da completare.
+
+`/store-locator` in produzione mostra ancora il watermark `For development purposes only` e il popup `Questa pagina non carica correttamente Google Maps.` perche' manca una `PUBLIC_GOOGLE_MAPS_API_KEY` valida configurata su Shopify Oxygen. Il codice e' gia' pronto (fallback pulito se la env manca, fix applicati lato componenti Map*).
+
+**Verifica della key fornita dal cliente (22 luglio 2026):**
+- Testata via chiamate dirette a Static Maps API, Geocoding API e Places Autocomplete API con referer `https://magniflex.us/` → risposta `200 OK` / `status: OK` su tutte.
+- Key valida, billing Google Cloud attivo, API necessarie (Maps JavaScript/Static, Geocoding, Places) abilitate.
+- **Attenzione:** la key **non ha restrizioni HTTP referrer attive**. Test ripetuto senza referer e con un referer estraneo (dominio non autorizzato): risposta comunque `200 OK`. La key funziona ma e' attualmente utilizzabile da qualsiasi sito/dominio la intercetti (es. da view-source della pagina), esponendo il cliente a possibile abuso di quota/billing. **Consigliato**: far aggiungere al cliente la restrizione `Websites` con referrer `https://magniflex.us/*` e `https://www.magniflex.us/*` su Google Cloud Console appena possibile.
+
+**Configurazione locale:** key impostata in `.env` (root, gia' in `.gitignore`, mai committata) come `PUBLIC_GOOGLE_MAPS_API_KEY`.
+
+**Configurazione produzione (da completare manualmente):** il push della env var su Shopify Oxygen richiede login interattivo via browser (`shopify hydrogen env push` chiede OAuth), non eseguibile in sessione non interattiva. Da fare manualmente:
+1. Login: `npx shopify login` (apre il browser) oppure direttamente da Shopify Admin → Oxygen → Environment variables.
+2. Impostare `PUBLIC_GOOGLE_MAPS_API_KEY` per l'ambiente di produzione.
+3. Eseguire deploy (o attendere il prossimo push su `main` che triggera il deploy automatico).
+4. Verificare `/store-locator` in produzione: niente popup Google, niente watermark, autocomplete funzionante.
+
+---
+
+## Sessione 2026-07-22
+
+### Export massivo asset esposti dal sito
+
+**Richiesta cliente:** recuperare una base di immagini/contenuti gia' presenti sulle pagine prodotto e, se possibile, sulle pagine editoriali per supportare il rifacimento del sito.
+
+### Decisione presa
+
+Perimetro confermato: esportare solo cio' che il sito espone oggi nelle pagine, senza cercare asset non esposti via API Shopify/Contentful.
+
+Struttura scelta:
+
+```txt
+export/
+  catalog/
+    product-handle/
+      manifest.json
+      pending-assets.json
+      img/
+      mobile/
+  pages/
+    page-slug/
+      manifest.json
+      pending-assets.json
+      img/
+      mobile/
+```
+
+Regole:
+- `img/`: tutte le immagini principali/default, incluse quelle visibili desktop o visibili sia desktop sia mobile.
+- `mobile/`: solo immagini viste esclusivamente nella passata mobile.
+- `manifest.json`: asset scaricati, URL originale, viewport, sorgente rilevata, bucket e metadati.
+- `pending-assets.json`: immagini esposte nel DOM/CSS ma su elementi nascosti.
+- Asset non esposti dalla pagina: ignorati.
+
+### File aggiunti/modificati
+
+- `.gitignore`
+  - aggiunto `export/` per non tracciare l'output pesante dell'esportazione
+- `package.json`
+  - aggiunto script `export:visible-assets`
+- `scripts/export-visible-assets.js`
+  - nuovo crawler Playwright browser-driven
+  - visita ogni URL in viewport desktop e mobile
+  - intercetta immagini caricate via network
+  - legge `<img>`, `srcset`, `<source>`, `video[poster]` e `background-image` da DOM/CSS
+  - scarica immagini visibili in `img/` o `mobile/`
+  - salva immagini esposte ma nascoste in `pending-assets.json`
+- `scripts/export-visible-assets.md`
+  - istruzioni operative e formato output
+
+### Comandi previsti
+
+Singolo URL:
+
+```bash
+npm run export:visible-assets -- --url https://magniflex.us/mattresses/magnicool?product=magnicool-12
+```
+
+Lista URL:
+
+```bash
+npm run export:visible-assets -- --urls export-urls.txt
+```
+
+### Stato installazione Playwright
+
+Installazione completata il 22 luglio 2026:
+
+```bash
+npm install -D playwright
+$env:PLAYWRIGHT_BROWSERS_PATH='.playwright-browsers'; npx playwright install chromium
+```
+
+Risultato:
+- `playwright@1.61.1` aggiunto in `devDependencies`
+- `package-lock.json` aggiornato
+- Chromium, headless shell, FFmpeg e Winldd scaricati in `.playwright-browsers/`
+- `.playwright-browsers/` e `.npm-cache/` aggiunti a `.gitignore`
+- script `export:visible-assets` aggiornato con `cross-env PLAYWRIGHT_BROWSERS_PATH=.playwright-browsers`
+
+**Stato:** installazione Playwright completata e verificata.
+
+### Verifiche fatte
+
+- `node --check scripts/export-visible-assets.js`: OK
+- parse JSON di `package.json`: OK
+- `git diff --check` su `.gitignore`, `package.json`, `scripts/export-visible-assets.js`, `scripts/export-visible-assets.md`: OK
+- `npm run export:visible-assets -- --help`: OK
+- launch reale Chromium headless via Playwright: OK
+
+### Test export su prodotto e pagina statica
+
+Test eseguito il 22 luglio 2026 con:
+
+```bash
+npm run export:visible-assets -- --url https://magniflex.us/mattresses/dolce-vita?product=dolcevita-dual-10 --url https://magniflex.us/our-essence --limit 2
+```
+
+Nota operativa: il primo tentativo senza permessi estesi e' fallito con `net::ERR_NETWORK_ACCESS_DENIED` per blocco rete della sandbox. Rilanciato con accesso rete approvato, completato correttamente.
+
+Output:
+- `export/summary.json`
+- `export/catalog/dolcevita-dual-10/manifest.json`
+- `export/catalog/dolcevita-dual-10/img/`
+- `export/catalog/dolcevita-dual-10/pending-assets.json`
+- `export/pages/our-essence/manifest.json`
+- `export/pages/our-essence/img/`
+- `export/pages/our-essence/pending-assets.json`
+
+Risultato:
+
+| URL | Sezione | Key | Scaricati | Falliti | Pending |
+|---|---|---|---:|---:|---:|
+| `https://magniflex.us/mattresses/dolce-vita?product=dolcevita-dual-10` | `catalog` | `dolcevita-dual-10` | 100 | 1 | 0 |
+| `https://magniflex.us/our-essence` | `pages` | `our-essence` | 33 | 0 | 0 |
+
+L'unico fail sul prodotto e' una variante `srcset` Shopify dello stesso asset:
+
+```txt
+MX-Dolcevita-Dual-10.png?v=1775813672&width=2200&height=1069&crop=center
+downloadError: terminated
+```
+
+Non e' bloccante per l'export: lo stesso asset sorgente e' stato scaricato in molte altre varianti/dimensioni, incluse versioni piu' grandi. La duplicazione sulle pagine prodotto e' attesa perche' Shopify espone molte varianti responsive dello stesso asset via query string (`width`, `height`, `crop`) per galleria, thumbnail e `srcset`. Le pagine statiche editoriali espongono meno varianti, quindi risultano molto meno duplicate.
+
+**Stato test:** OK.
+
+### Prossimi passi
+
+1. Preparare `export-urls.txt` con tutti gli URL prodotto/editoriali da esportare.
+2. Lanciare:
+
+```bash
+npm run export:visible-assets -- --urls export-urls.txt
+```
+
+3. Verificare `export/summary.json`, `manifest.json` e `pending-assets.json`.

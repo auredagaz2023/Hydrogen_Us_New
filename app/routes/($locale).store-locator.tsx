@@ -32,27 +32,44 @@ export const handle = {
   },
 };
 
-export const loader = async ({request, context: {storefront}}: LoaderArgs) => {
+export const loader = async ({context: {env}}: LoaderArgs) => {
   const CONTENTFUL_SPACE_ID = '7xbaxb2q56jj';
   const CONTENTFUL_ACCESS_TOKEN = 'yGGCia7N7dHraGe5fsBZkSHsms6QExEKbWy0XdKIn9g';
+  const emptyStoresResponse: ContentfulResponse = {
+    items: [],
+    includes: {
+      Asset: [],
+    },
+  };
+  const emptyStoreCategoryResponse: ContentStoreCategory = {
+    items: [],
+    includes: {
+      Asset: [],
+    },
+  };
 
   const contentfulStoresEndpoint = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${CONTENTFUL_ACCESS_TOKEN}&content_type=store`;
 
-  const storesResponse = await fetch(contentfulStoresEndpoint).then((res) => {
-    return res.json();
-  });
+  const storesResponse = await fetch(contentfulStoresEndpoint)
+    .then((res) => {
+      return res.ok ? res.json() : emptyStoresResponse;
+    })
+    .catch(() => emptyStoresResponse);
 
   const contentfulStoreCategoryEndpoint = `https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE_ID}/environments/master/entries?select=fields.name,fields.description,fields.icon,sys.id&access_token=${CONTENTFUL_ACCESS_TOKEN}&content_type=storeCategory`;
 
   const storeCategoryResponse = await fetch(
     contentfulStoreCategoryEndpoint,
-  ).then((res) => {
-    return res.json();
-  });
+  )
+    .then((res) => {
+      return res.ok ? res.json() : emptyStoreCategoryResponse;
+    })
+    .catch(() => emptyStoreCategoryResponse);
 
   return json({
     stores: storesResponse as ContentfulResponse,
     storeCategories: storeCategoryResponse as ContentStoreCategory,
+    googleMapsApiKey: env.PUBLIC_GOOGLE_MAPS_API_KEY ?? '',
   });
 };
 
@@ -67,7 +84,8 @@ export default function ShopLocator() {
   const [detailItem, setDetailItem] = useState<ContentItem | undefined>(
     undefined,
   );
-  const {stores, storeCategories} = useLoaderData<typeof loader>();
+  const {stores, storeCategories, googleMapsApiKey} =
+    useLoaderData<typeof loader>();
   const [selectedFilterIndex, setSelectedFilterIndex] = useState(0);
   const [items, setItems] = useState<ContentItem[]>(stores?.items ?? []);
   const [selectedItem, setSelectedItem] = useState<ContentItem | undefined>(
@@ -103,8 +121,10 @@ export default function ShopLocator() {
   const handleSelectItem = (item: ContentItem) => {
     setSelectedItem(item);
     setDetailItem(item);
-    setCenter({lat: item.fields.location.lat, lng: item.fields.location.lon});
-    setZoom(15);
+    if (item.fields.location) {
+      setCenter({lat: item.fields.location.lat, lng: item.fields.location.lon});
+      setZoom(15);
+    }
   };
 
   const handleDeselectItem = () => {
@@ -112,10 +132,13 @@ export default function ShopLocator() {
     setZoom(5);
   };
 
-  const handleSelectFilter = (index: number, category: ContentItem) => {
+  const handleSelectFilter = (
+    index: number,
+    category: ContentStoreCategory['items'][number],
+  ) => {
     // console.log(category.fields.name);
-    const filteredItems = stores.items.filter(
-      (item) => category.sys.id === item.fields.category.sys.id,
+    const filteredItems = (stores?.items ?? []).filter(
+      (item) => category.sys.id === item.fields.category?.sys.id,
     );
     setItems(filteredItems);
     setSelectedFilterIndex(index + 1);
@@ -145,7 +168,9 @@ export default function ShopLocator() {
     return (x * Math.PI) / 180;
   };
 
-  var calculateDistance = function (location: {lat: number; lon: number}) {
+  var calculateDistance = function (location?: {lat: number; lon: number}) {
+    if (!location) return '0.00';
+
     const p1 = {lat: location.lat, lng: location.lon};
     const p2 = center;
 
@@ -186,7 +211,7 @@ export default function ShopLocator() {
               <img
                 src={
                   storeCategories?.includes?.Asset?.find(
-                    (asset) => asset.sys.id === category.fields.icon.sys.id,
+                    (asset) => asset.sys.id === category.fields.icon?.sys.id,
                   )?.fields.file.url || ''
                 }
                 alt=""
@@ -197,7 +222,7 @@ export default function ShopLocator() {
                   {category.fields.name}
                 </p>
                 <p className="text-gold text-sm">
-                  {category.fields.description.content.map(
+                  {(category.fields.description?.content ?? []).map(
                     (content: ContentfulParagraph, index: number) => (
                       <p
                         className="text-gray-800 text-sm mt-[10px]"
@@ -225,6 +250,7 @@ export default function ShopLocator() {
           detailItem={detailItem}
           showDetails={(item) => handleShowDetails(item)}
           hideDetails={() => handleHideDetails()}
+          googleMapsApiKey={googleMapsApiKey}
         />
         <div className="absolute top-0 left-0 md:left-5 bottom-0 w-80 pt-0 pl-0 md:pt-5 md:pl-5 flex flex-col justify-between">
           <div className="input relative">
@@ -327,7 +353,7 @@ export default function ShopLocator() {
                         <MapFilterListItem
                           style={{padding: '10px 0px'}}
                           isValid={index + 1 === selectedFilterIndex}
-                          items={stores.items}
+                          items={stores?.items ?? []}
                           category={category}
                           categories={storeCategories}
                           index={index}

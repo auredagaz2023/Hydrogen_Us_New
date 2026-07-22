@@ -178,7 +178,6 @@ export default function App() {
         <Meta />
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <Links />
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8ZQTL2qrSTWiK6gnZ5uYotq5LdfsGJPw&libraries=places"></script>
         {/* <script
           type="text/javascript"
           id="hs-script-loader"

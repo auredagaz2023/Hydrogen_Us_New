@@ -1,14 +1,18 @@
 import {Form} from 'react-bootstrap';
-import {Asset, ContentItem, ContentStoreCategory} from '~/routes/($locale).types';
+import type {CSSProperties} from 'react';
+import {ContentItem, ContentStoreCategory} from '~/routes/($locale).types';
 
 type TProps = {
   isValid: boolean;
   index: number;
   items: ContentItem[];
-  category: ContentItem;
+  category: ContentStoreCategory['items'][number];
   categories: ContentStoreCategory;
-  assets: Asset[];
-  handleSelectFilter: Function;
+  style?: CSSProperties;
+  handleSelectFilter: (
+    index: number,
+    category: ContentStoreCategory['items'][number],
+  ) => void;
 };
 
 export default function MapFilterListItem({
@@ -17,15 +21,15 @@ export default function MapFilterListItem({
   items,
   categories,
   category,
-  assets,
+  style,
   handleSelectFilter,
 }: TProps) {
   const filteredItems = items.filter(
-    (item) => category.sys.id === item.fields.category.sys.id,
+    (item) => category.sys.id === item.fields.category?.sys.id,
   );
 
-  const image = categories.includes.Asset.find(
-    (asset) => asset.sys.id === category?.fields.icon.sys.id,
+  const image = (categories?.includes?.Asset ?? []).find(
+    (asset) => asset.sys.id === category?.fields.icon?.sys.id,
   );
 
   const onSelect = () => {
@@ -35,9 +39,9 @@ export default function MapFilterListItem({
   return (
     <>
       <Form.Check name="group1" type="radio" id={`reverse-radio-1`}>
-        <input type="radio" checked={isValid} onClick={() => onSelect()} />
+        <input type="radio" checked={isValid} onChange={() => onSelect()} />
         <Form.Check.Label>
-          <div style={{display: 'flex', gap: '10px'}}>
+          <div style={{display: 'flex', gap: '10px', ...style}}>
             <img
               src={image?.fields.file.url || ''}
               alt={image?.fields.file.fileName}

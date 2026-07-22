@@ -7,8 +7,8 @@ type TProps = {
 }
 
 export default function MapStoreDetails({ item, assets, categories }: TProps) {
-    const category = categories.items.find((category) => category.sys.id === item.fields.category.sys.id);
-    const image = categories.includes.Asset.find((asset) => asset.sys.id === category?.fields.icon.sys.id);
+    const category = (categories?.items ?? []).find((category) => category.sys.id === item.fields.category?.sys.id);
+    const image = (categories?.includes?.Asset ?? []).find((asset) => asset.sys.id === category?.fields.icon?.sys.id);
     
     return (
         <>

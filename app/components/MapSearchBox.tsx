@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PlacesAutocomplete, {
     geocodeByAddress,
     getLatLng
@@ -9,6 +9,35 @@ type TProps = {
 }
 export default function MapSearchBox({ setCenter }: TProps) {
     const [ address, setAddress ] = useState<string>("");
+    const [ isPlacesReady, setIsPlacesReady ] = useState(false);
+
+    useEffect(() => {
+        type GoogleMapsWindow = Window & {
+            google?: {
+                maps?: {
+                    places?: unknown;
+                };
+            };
+        };
+        const checkPlacesReady = () => {
+            const googleMaps = (window as GoogleMapsWindow).google;
+            return Boolean(googleMaps?.maps?.places);
+        };
+
+        if (checkPlacesReady()) {
+            setIsPlacesReady(true);
+            return;
+        }
+
+        const interval = window.setInterval(() => {
+            if (checkPlacesReady()) {
+                setIsPlacesReady(true);
+                window.clearInterval(interval);
+            }
+        }, 100);
+
+        return () => window.clearInterval(interval);
+    }, []);
 
     const handleChange = (value: string) => {
         setAddress(value);
@@ -20,6 +49,20 @@ export default function MapSearchBox({ setCenter }: TProps) {
             .then((results) => getLatLng(results[0]))
             .then((latLng) => setCenter({ lat: latLng.lat, lng: latLng.lng }))
             .catch((error) => console.error('Error', error));
+    }
+
+    if (!isPlacesReady) {
+        return (
+            <div className="relative">
+                <input
+                    value={address}
+                    onChange={(event) => handleChange(event.target.value)}
+                    placeholder="Search Places ..."
+                    className="w-full border border-dark-blue px-8 text-sm text-dark-blue"
+                    disabled
+                />
+            </div>
+        );
     }
 
     return (
