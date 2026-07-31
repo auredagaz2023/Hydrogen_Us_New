@@ -144,8 +144,15 @@ type SleepResolutionLandingProps = {
   mobileHeaderImage?: string;
   desktopBenefitBarImage?: string;
   mobileBenefitBarImage?: string;
+  desktopFirenzeImage?: string;
+  desktopFirenzeRollImage?: string;
+  mobileFirenzeImage?: string;
+  productDesktopImages?: string[];
+  productDesktopRollImages?: string[];
+  productMobileImages?: string[];
   introTitle?: string;
   introBody?: ReactNode;
+  productDetailLabel?: string;
 };
 
 const defaultIntroBody = (
@@ -160,8 +167,15 @@ export default function SleepResolutionLanding({
   mobileHeaderImage = mobileHeader,
   desktopBenefitBarImage = desktopHeaderBottom,
   mobileBenefitBarImage = mobileHeaderBottom,
+  desktopFirenzeImage = firenzepng,
+  desktopFirenzeRollImage = firenzepng_roll,
+  mobileFirenzeImage = mobileFirenzepng,
+  productDesktopImages,
+  productDesktopRollImages,
+  productMobileImages,
   introTitle = 'Better sleep starts with the right foundation.',
   introBody = defaultIntroBody,
+  productDetailLabel = 'Benefits',
 }: SleepResolutionLandingProps = {}) {
   const formRef = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -247,9 +261,9 @@ export default function SleepResolutionLanding({
 
         <div className="px-12 mb-20 relative hidden lg:block">
           <div className='relative'>
-            <img className='hidden lg:block w-full' style={{ visibility: 'hidden' }} src={firenzepng} alt="" />
+            <img className='hidden lg:block w-full' style={{ visibility: 'hidden' }} src={desktopFirenzeImage} alt="" />
             <img
-              src={firenzepng_roll}
+              src={desktopFirenzeRollImage}
               onMouseOver={() => handleHover(0)}
               onMouseOut={handleUnhover}
               alt="product_img"
@@ -261,7 +275,7 @@ export default function SleepResolutionLanding({
               }}
             />
             <img
-              src={firenzepng}
+              src={desktopFirenzeImage}
               onMouseOver={() => handleHover(0)}
               onMouseOut={handleUnhover}
               alt="product_img"
@@ -359,7 +373,7 @@ export default function SleepResolutionLanding({
 
         <div className="mb-20 relative block lg:hidden">
           <div className='relative bg-[#F2ECD6] pb-5'>
-            <img src={mobileFirenzepng}
+            <img src={mobileFirenzeImage}
               alt="product_img"
               className='lg:hidden'
             />
@@ -393,7 +407,7 @@ export default function SleepResolutionLanding({
                 <div className='bg-white flex items-center justify-center px-5 min-h-[80px] mb-[2px] mr-[2px] text-[#000028] font-bold text-center'>Do you experience some of these issues?</div>
                 <div className='bg-white flex text-left items-center px-5 justify-center min-h-[80px] mb-[2px] text-[#000028] font-bold text-center'>The Firenze Adjustable Base can help you:</div>
                 <div className='relative bg-white flex items-center justify-end text-right px-5 min-h-[140px] mr-[2px]'>
-                  <div className='mr-5'>Feeling stiffr achy?</div>
+                  <div className='mr-5'>Stiff or achy?</div>
                   <div className='absolute right-[-39px] flex flex-col justify-center items-center'>
                     <img width={75} src={CirculationIcon} alt="" />
                     <img width={30} src={ArrowIcon} alt="" />
@@ -404,17 +418,17 @@ export default function SleepResolutionLanding({
                   </div>
                 </div>
                 <div className='relative bg-white flex items-center justify-end text-right px-5 min-h-[140px] mr-[2px]'>
-                  <div className='mr-5'>Disruptive snoring or poor  posture?</div>
+                  <div className='mr-5'>Snoring or poor posture?</div>
                   <div className='absolute right-[-39px] flex flex-col justify-center items-center'>
                     <img width={78} src={SnoozeIcon} alt="" />
                     <img width={30} src={ArrowIcon} alt="" />
                   </div>
                 </div>
                 <div className='pl-10 bg-white flex text-left items-center px-5 justify-start min-h-[140px]'>
-                  <div>Reduce snoring and improve spinal alignment</div>
+                  <div>Reduce snoring and improve alignment</div>
                 </div>
                 <div className='relative bg-white flex items-center justify-end text-right px-5 min-h-[140px] mr-[2px]'>
-                  <div className='mr-5'>Can’t find the “just right” position?
+                  <div className='mr-5'>Can't find the “just right” position?
                   </div>
                   <div className='absolute right-[-39px] flex flex-col justify-center items-center'>
                     <img width={75} src={PositionIcon} alt="" />
@@ -437,7 +451,7 @@ export default function SleepResolutionLanding({
                   <div>Designed to fit most frames</div>
                 </div>
                 <div className='relative bg-white flex items-center justify-end text-right px-5 min-h-[140px] mr-[2px]'>
-                  <div className='mr-5'>Need support for TV, reading, or work?
+                  <div className='mr-5'>Need support for TV, reading or work?
                   </div>
                   <div className='absolute right-[-39px] flex flex-col justify-center items-center'>
                     <img width={75} src={SupportIcon} alt="" />
@@ -473,7 +487,7 @@ export default function SleepResolutionLanding({
                 <div key={index} className='px-[32px] md:px-12 pb-32 relative m-auto w-full lg:w-1/2'>
                   <div className='relative h-auto'>
                     <img
-                      src={product.roll_img}
+                      src={productDesktopRollImages?.[index] ?? product.roll_img}
                       onMouseOver={() => handleHover(index)}
                       onMouseOut={handleUnhover}
                       alt="product_img"
@@ -485,7 +499,7 @@ export default function SleepResolutionLanding({
                       }}
                     />
                     <img
-                      src={product?.img}
+                      src={productDesktopImages?.[index] ?? product?.img}
                       onMouseOver={() => handleHover(index)}
                       onMouseOut={handleUnhover}
                       alt="product_img"
@@ -497,7 +511,7 @@ export default function SleepResolutionLanding({
                       }}
                     />
                     <img
-                      src={product?.img}
+                      src={productDesktopImages?.[index] ?? product?.img}
                       onMouseOver={() => handleHover(index)}
                       onMouseOut={handleUnhover}
                       alt="product_img"
@@ -506,7 +520,7 @@ export default function SleepResolutionLanding({
                         visibility: 'hidden'
                       }}
                     />
-                    <img src={product.mobile_img}
+                    <img src={productMobileImages?.[index] ?? product.mobile_img}
                       onMouseOver={() => handleHover(index)}
                       onMouseOut={handleUnhover}
                       alt="product_img"
@@ -531,7 +545,7 @@ export default function SleepResolutionLanding({
                       )}
                       {product.bestfor && <><span className='text-[#839BB1]'>Best for:</span> <span className='text-[rgb(23,72,96)] text-[15px]'>{product.bestfor}</span>
                         <br /></>}
-                      {product.fitness && <><span className='text-[#839BB1]'>Benefits:</span> <span className='text-[#174860] text-[15px]'>{product.fitness}</span></>}
+                      {product.fitness && <><span className='text-[#839BB1]'>{productDetailLabel}:</span> <span className='text-[#174860] text-[15px]'>{product.fitness}</span></>}
                     </div>
                     <div className='mt-[25px] text-[#839BB1] text-[13px] landing-[27.5px] text-center'>
                       Starting at&nbsp;&nbsp;

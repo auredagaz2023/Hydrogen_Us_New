@@ -613,9 +613,9 @@ Quando il cliente fornisce la key:
 **Verifica locale:** `git diff --check` sui file modificati per la mappa e' pulito.
 **Typecheck:** non eseguibile localmente per assenza di `node_modules` / `tsc`.
 
-### ⚠️ Problema aperto — Google Maps in produzione
+### ✅ Risolto — Google Maps in produzione
 
-**Stato:** key ricevuta dal cliente il 22 luglio 2026, validata, configurata in locale. Push in produzione ancora da completare.
+**Stato:** chiuso il 22 luglio 2026. Mappa verificata funzionante in produzione su `/store-locator`: niente piu' watermark `For development purposes only` ne' popup di errore Google, autocomplete funzionante.
 
 `/store-locator` in produzione mostra ancora il watermark `For development purposes only` e il popup `Questa pagina non carica correttamente Google Maps.` perche' manca una `PUBLIC_GOOGLE_MAPS_API_KEY` valida configurata su Shopify Oxygen. Il codice e' gia' pronto (fallback pulito se la env manca, fix applicati lato componenti Map*).
 
@@ -626,11 +626,14 @@ Quando il cliente fornisce la key:
 
 **Configurazione locale:** key impostata in `.env` (root, gia' in `.gitignore`, mai committata) come `PUBLIC_GOOGLE_MAPS_API_KEY`.
 
-**Configurazione produzione (da completare manualmente):** il push della env var su Shopify Oxygen richiede login interattivo via browser (`shopify hydrogen env push` chiede OAuth), non eseguibile in sessione non interattiva. Da fare manualmente:
-1. Login: `npx shopify login` (apre il browser) oppure direttamente da Shopify Admin → Oxygen → Environment variables.
-2. Impostare `PUBLIC_GOOGLE_MAPS_API_KEY` per l'ambiente di produzione.
-3. Eseguire deploy (o attendere il prossimo push su `main` che triggera il deploy automatico).
-4. Verificare `/store-locator` in produzione: niente popup Google, niente watermark, autocomplete funzionante.
+**Configurazione produzione:** variabile `PUBLIC_GOOGLE_MAPS_API_KEY` impostata manualmente dal cliente da Shopify Admin → Oxygen → Environment variables (ambiente Production), il push della env var via `shopify hydrogen env push` non era eseguibile in sessione non interattiva (richiede login browser).
+
+**Deploy e verifica finale:**
+- Commit `15aeb14` — "fix: load Google Maps via env-configured API key instead of hard-coded script" — pushato su `origin/main` il 22 luglio 2026 (rimosso lo script Google Maps hard-coded da `root.tsx`, caricamento ora via env attraverso `store-locator` → `MapComponent`).
+- Push ha triggerato il deploy automatico su Shopify Oxygen.
+- Confermato dal cliente il 22 luglio 2026: mappa funzionante in produzione.
+
+**Nota di sicurezza ancora aperta:** la key fornita **non ha restrizioni HTTP referrer attive** (vedi verifica sopra) — resta consigliato far aggiungere al cliente la restrizione `Websites` con referrer `https://magniflex.us/*` e `https://www.magniflex.us/*` su Google Cloud Console.
 
 ---
 
@@ -772,3 +775,275 @@ npm run export:visible-assets -- --urls export-urls.txt
 ```
 
 3. Verificare `export/summary.json`, `manifest.json` e `pending-assets.json`.
+
+---
+
+## Sessione 2026-07-24
+
+### Export asset immagini: deduplica varianti responsive
+
+**File modificati:**
+- `scripts/export-visible-assets.js`
+- `scripts/export-visible-assets.md`
+
+Richiesta: evitare l'esportazione di immagini duplicate quando Shopify o Contentful espongono lo stesso asset in molte dimensioni diverse (`width`, `height`, `w`, `h`, `crop`, `q`, `fm`, ecc.).
+
+**Implementazione:**
+- Aggiunta deduplica per asset canonico prima del download.
+- Per Shopify e Contentful, la chiave canonica usa origin + pathname dell'asset e ignora i parametri di trasformazione/dimensione.
+- Per altri asset renderizzati, vengono ignorati solo i parametri di resize/format piu' comuni mantenendo eventuali parametri non trasformativi.
+- Se lo stesso asset appare in piu' varianti responsive, viene scaricata solo la variante con dimensione maggiore rilevata da:
+  - query string `width` / `height`
+  - query string `w` / `h`
+  - descriptor `srcset` tipo `1200w`
+  - dimensioni DOM quando disponibili
+- Il manifest conserva audit trail con:
+  - `canonicalKey`
+  - `selectedDimensions`
+  - `dedupedVariantCount`
+  - `dedupedVariants`
+- Prima di riesportare una pagina, lo script pulisce `img/`, `mobile/`, `manifest.json` e `pending-assets.json` della pagina, cosi' non restano file obsoleti da run precedenti.
+- Aggiunto filtro finale per scartare URL non immagine prima del download. Questo ha eliminato falsi positivi come `https://magniflex.us/collections/undefined`.
+- Reso il crawler piu' resiliente:
+  - navigazione su `domcontentloaded`
+  - `networkidle` usato come best-effort con timeout breve
+  - un URL problematico viene registrato nel summary invece di abortire tutto l'export
+
+### Verifiche deduplica
+
+**Test prodotto Dolce Vita:**
+
+```bash
+npm run export:visible-assets -- --url https://magniflex.us/mattresses/dolce-vita?product=dolcevita-dual-10 --limit 1
+```
+
+Risultato:
+- `downloaded`: 16
+- `failed`: 0
+- `dedupedVariants`: 85
+- file fisici in `export/catalog/dolcevita-dual-10/img`: 16
+
+**Test Contentful live:**
+- `/news`: 2 asset Contentful esportati, 0 duplicati canonici, 0 errori
+- `/`: 2 asset Contentful esportati, 0 duplicati canonici, 0 errori
+- `/sales`: nessun asset Contentful visibile nell'export
+
+**Test mirato Contentful trasformato:**
+- `photo.jpg?w=400&h=200`
+- `photo.jpg?w=1200&h=600`
+
+Risultato: una sola entry esportata, selezionata la variante `1200x600`, `dedupedVariantCount: 1`.
+
+### Export completo da sitemap
+
+Generata lista URL dal sitemap pubblico:
+
+```bash
+Invoke-WebRequest -UseBasicParsing https://magniflex.us/sitemap.xml
+```
+
+Output lista:
+- `export-urls.txt`
+- 85 URL totali
+
+Export completo eseguito in:
+
+```txt
+export/full/
+```
+
+Comando:
+
+```bash
+npm run export:visible-assets -- --urls export-urls.txt --out export/full
+```
+
+Nota operativa: il primo run si e' fermato su `https://magniflex.us/pages/data-sale-opt-out` per timeout `networkidle`. Dopo la modifica anti-timeout, il run e' stato ripreso con `export-remaining-urls.txt` sui 64 URL mancanti. Due falsi positivi `https://magniflex.us/collections/undefined` sono stati eliminati dal filtro URL non immagine e le due pagine coinvolte sono state riesportate.
+
+**Risultato finale aggregato:**
+- URL da sitemap: 85
+- Manifest generati: 85
+- URL mancanti: 0
+- URL extra: 0
+- Asset scaricati: 699
+- Download falliti: 0
+- Asset Contentful esportati: 39
+- Duplicati canonici: 0
+- Duplicati canonici Contentful: 0
+- Varianti responsive accorpate: 4088
+- Pending asset: 0
+- File fisici verificati: 699
+
+Summary finali:
+- `export/full/summary.json`
+- `export/full/summary-all.json`
+
+**Stato:** export completo terminato e verificato.
+
+---
+
+## Sessione 2026-07-27
+
+### Export asset immagini: URL prodotto canonici e gallery Contentful
+
+**Problema individuato:**
+- Nel full export precedente da sitemap, le pagine prodotto erano esportate da URL `https://magniflex.us/products/<handle>`.
+- Alcune pagine prodotto reali della vetrina usano invece URL di categoria/collection con query string, per esempio:
+
+```txt
+https://magniflex.us/mattresses/magnicool?product=magnicool-10-firm
+```
+
+- Su `/products/magnicool-10-firm`, il componente `ProductContent` riceveva `product.productType` non valorizzato dalla query della route `products.$productHandle`, quindi la gallery Contentful sotto Structure / Materials / Features non veniva renderizzata nel DOM.
+- Di conseguenza lo script di export non poteva esportare quelle immagini: non erano nascoste o pending, ma proprio non presenti nella pagina esportata.
+
+**Conferma sul caso Magnicool:**
+- URL problematico verificato:
+
+```txt
+https://magniflex.us/mattresses/magnicool?product=magnicool-10-firm
+```
+
+- Nuovo export mirato ha incluso correttamente le 3 immagini Contentful della gallery:
+
+```txt
+materasso-magnicool-ambientata-1-1920x810-db5c6194f5.jpg
+materasso-magnicool-ambientata-2-1920x810-69a2da5563.jpg
+materasso-magnicool-ambientata-3-1920x810-cafaf23c83.jpg
+```
+
+Percorso:
+
+```txt
+export/full-canonical/catalog/magnicool-10-firm/img/
+```
+
+### Nuova lista URL canonica
+
+Creato:
+
+```txt
+export-urls-canonical.txt
+```
+
+La lista e' stata generata leggendo le pagine live e usando gli URL prodotto realmente usati dalla vetrina:
+- `mattresses/<collection>?product=<product>`
+- `pillows/<collection>?product=<product>`
+- `accessories/<collection>?product=<product>`
+- `bed-bases/details?product=<product>`
+- `toppers/details?product=<product>`
+
+Risultato lista:
+- URL totali: 92
+- URL prodotto canonici: 49
+
+File temporanei di ripresa/debug generati durante la sessione:
+- `export-urls-canonical-missing.txt`
+- `export-urls-canonical-remaining.txt`
+- `export-urls-canonical-remaining-1.txt`
+- `export-urls-canonical-remaining-2.txt`
+- `export-urls-canonical-remaining-3.txt`
+- `export-urls-canonical-remaining-4.txt`
+- `export-urls-canonical-remaining-5.txt`
+- `export-urls-failed-asset-retry.txt`
+
+### Robustezza script export
+
+**File modificato:**
+- `scripts/export-visible-assets.js`
+
+Miglioramenti applicati:
+- Aggiunta opzione `--resume` per saltare URL che hanno gia' un manifest corrispondente.
+- Aggiunto timeout per singolo download asset:
+
+```bash
+--download-timeout <ms>
+```
+
+- Default timeout: `45000ms`.
+- Durante le run lunghe viene scritto `summary.partial.json`, cosi' lo stato e' recuperabile anche se il processo viene interrotto.
+- Un asset bloccato o lento viene registrato come `downloadError` invece di lasciare l'intero export appeso.
+
+Verifiche:
+- `node --check scripts/export-visible-assets.js`: OK
+- `npm run export:visible-assets -- --help`: OK
+
+### Nuovo export completo canonico
+
+Output finale:
+
+```txt
+export/full-canonical/
+```
+
+Riepilogo finale:
+- URL attesi: 92
+- Manifest generati: 92
+- URL mancanti: 0
+- URL extra: 0
+- Asset scaricati: 1004
+- Download falliti: 0
+- Asset Contentful esportati: 145
+- Varianti responsive accorpate: 3930
+- Pending asset: 0
+- File fisici verificati: 1004
+
+Summary finale:
+
+```txt
+export/full-canonical/summary-all.json
+```
+
+### Background image su pagine statiche
+
+Verificato che lo script gestisce anche i background dei `div` tramite `window.getComputedStyle(element).backgroundImage`.
+
+Nel nuovo export canonico:
+- Pagine con asset da `css-background-image`: 76
+- Asset totali da `css-background-image`: 326
+
+Esempi:
+- `/our-essence`: 13 background asset
+- `/innovation-and-technologies`: 12 background asset
+- `/pages/5-star-luxury-sleep`: 8 background asset
+- pagine collection: in media 4-5 background asset ciascuna
+
+**Limite noto:** vengono esportati i background effettivamente esposti/renderizzati durante le passate desktop/mobile. Background dentro stati non aperti, tab non cliccate o interazioni custom non vengono inclusi finche' il crawler non simula quelle interazioni.
+
+**Stato:** nuova esportazione completata e verificata. Il caso Magnicool gallery e' risolto.
+
+---
+
+## Sessione 2026-07-31
+
+### Nuova landing page: cool-comfort-2026
+
+**File route:** `app/routes/($locale).cool-comfort-2026.tsx`  
+**URL:** `https://magniflex.us/cool-comfort-2026`
+
+Creata la nuova landing duplicando la struttura di `/spring-into-sleep-event-2026` e riallineandola al mockup Cool Comfort Event desktop/mobile.
+
+**File modificati/aggiunti:**
+- `app/routes/($locale).cool-comfort-2026.tsx`
+- `app/routes/($locale).sleep-resolution-2025.tsx`
+- `app/assets/cool-comfort-2026/`
+
+**Modifiche:**
+- Aggiunti asset dedicati Cool Comfort 2026 per header desktop/mobile e immagini prodotto desktop/mobile/rollover.
+- Esteso il componente riusabile `SleepResolutionLanding` con prop opzionali per sovrascrivere:
+  - immagine Firenze desktop e rollover
+  - immagine Firenze mobile
+  - immagini prodotto desktop
+  - immagini prodotto desktop rollover
+  - immagini prodotto mobile
+  - label dettagli prodotto (`Benefits`/`Fitness`)
+- Aggiornati SEO title e URL della nuova route.
+- Aggiornato copy intro secondo mockup:
+  - `Elevate your sleep experience with tailored posture and comfort`
+  - Firenze Adjustable Base from just `$199`
+  - saving up to `$1,799`
+- Allineati testi mobile della tabella benefit Firenze.
+
+**Verifica:**
+- `npx tsc --noEmit --pretty false | grep -E "cool-comfort-2026|sleep-resolution-2025"`: nessun errore riferito ai file modificati.
+- Il typecheck completo del progetto resta non pulito per errori TypeScript preesistenti in molte altre aree del codice.
