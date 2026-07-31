@@ -73,7 +73,8 @@ export default function CoolComfort2026() {
         mobileMagnifico,
         mobileClassico,
       ]}
-      introTitle="Elevate your sleep experience with tailored posture and comfort"
+      productPrices={['$3,299', '$2,485', '$2,969', '$2,959', '$1,979']}
+      introTitle="Elevate your sleep experience with tailored posture and comfort."
       introBody={
         <>
           Purchase a select Magniflex mattress and get the advanced{' '}
@@ -83,7 +84,7 @@ export default function CoolComfort2026() {
           <span className="font-bold text-[#ED1C24]">saving up to $1,799</span>.
         </>
       }
-      productDetailLabel="Fitness"
+      productDetailLabel="Firmness"
     />
   );
 }

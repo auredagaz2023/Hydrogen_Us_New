@@ -1047,3 +1047,20 @@ Creata la nuova landing duplicando la struttura di `/spring-into-sleep-event-202
 **Verifica:**
 - `npx tsc --noEmit --pretty false | grep -E "cool-comfort-2026|sleep-resolution-2025"`: nessun errore riferito ai file modificati.
 - Il typecheck completo del progetto resta non pulito per errori TypeScript preesistenti in molte altre aree del codice.
+
+### Aggiornamento prezzi Cool Comfort 2026
+
+**File modificati:**
+- `app/routes/($locale).cool-comfort-2026.tsx`
+- `app/routes/($locale).sleep-resolution-2025.tsx`
+
+**Modifiche:**
+- Aggiornati i prezzi `Starting at` della landing `/cool-comfort-2026`:
+  - Dolce Vita: `$3,299`
+  - MagniCool: `$2,485`
+  - MagniStretch: `$2,969`
+  - Magnifico: `$2,959`
+  - Classico: `$1,979`
+- Cambiata label dettaglio prodotti da `Fitness` a `Firmness` per la landing Cool Comfort.
+- Aggiunto punto finale al titolo intro come da copy fornito.
+- Il componente riusabile `SleepResolutionLanding` ora accetta `productPrices` opzionale per evitare di alterare le altre landing.

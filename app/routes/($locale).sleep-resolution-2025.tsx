@@ -150,6 +150,7 @@ type SleepResolutionLandingProps = {
   productDesktopImages?: string[];
   productDesktopRollImages?: string[];
   productMobileImages?: string[];
+  productPrices?: string[];
   introTitle?: string;
   introBody?: ReactNode;
   productDetailLabel?: string;
@@ -173,6 +174,7 @@ export default function SleepResolutionLanding({
   productDesktopImages,
   productDesktopRollImages,
   productMobileImages,
+  productPrices,
   introTitle = 'Better sleep starts with the right foundation.',
   introBody = defaultIntroBody,
   productDetailLabel = 'Benefits',
@@ -483,6 +485,7 @@ export default function SleepResolutionLanding({
         <div className='flex flex-col flex-wrap lg:flex-row mb-[70px]'>
           {
             products.map((product: any, index) => {
+              const productPrice = productPrices?.[index] ?? product.price;
               return (
                 <div key={index} className='px-[32px] md:px-12 pb-32 relative m-auto w-full lg:w-1/2'>
                   <div className='relative h-auto'>
@@ -550,7 +553,7 @@ export default function SleepResolutionLanding({
                     <div className='mt-[25px] text-[#839BB1] text-[13px] landing-[27.5px] text-center'>
                       Starting at&nbsp;&nbsp;
                       <br className='hidden md:block' />
-                      <span className='text-[22px] landing-[27.5px] text-[#174860] font-semibold'>{product.price}</span>
+                      <span className='text-[22px] landing-[27.5px] text-[#174860] font-semibold'>{productPrice}</span>
                     </div>
                     <a className='text-center mt-[15px] py-4 px-8 uppercase border border-[#174860] hover:bg-[#174860] bg-transparent hover:text-white text-[#174860] text-[12px] sm:text-[15px] lg:text-[13px] font-semibold' href={product.link}>{product.button}</a>
                     {product.bottom && <div className='mt-[15px] uppercase text-[#174860] text-center text-[17px] lg:text-[13px] font-semibold'>{product.bottom}</div>}
