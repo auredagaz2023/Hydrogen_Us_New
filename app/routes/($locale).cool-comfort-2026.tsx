@@ -74,6 +74,9 @@ export default function CoolComfort2026() {
         mobileClassico,
       ]}
       productPrices={['$3,299', '$2,485', '$2,969', '$2,959', '$1,979']}
+      emphasizeMobileFirenzePrice
+      centerMobileFirenzeTableText
+      greyNewsletterFooter
       introTitle="Elevate your sleep experience with tailored posture and comfort."
       introBody={
         <>

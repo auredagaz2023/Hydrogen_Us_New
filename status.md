@@ -1064,3 +1064,53 @@ Creata la nuova landing duplicando la struttura di `/spring-into-sleep-event-202
 - Cambiata label dettaglio prodotti da `Fitness` a `Firmness` per la landing Cool Comfort.
 - Aggiunto punto finale al titolo intro come da copy fornito.
 - Il componente riusabile `SleepResolutionLanding` ora accetta `productPrices` opzionale per evitare di alterare le altre landing.
+
+---
+
+## Sessione 2026-08-03
+
+### Aggiornamento copy pagina Affirm
+
+**File modificati:**
+- `app/routes/($locale).affirm.tsx`
+- `app/routes/($locale).affirm-promo.tsx`
+
+Modifiche richieste da reference `MX affirm modif 1.png` e `MX affirm modif 2.png`:
+- Sezione `How it works`, step 2:
+  - `Get instant approval` → `Get instant decision`
+  - Rimosso `score` dal testo: `Checking eligibility won't affect your credit score.` → `Checking eligibility won't affect your credit.`
+- Sezione `Why affirm?`, card Quick approval:
+  - `Quick approval` → `Instant decision`
+  - `Get a real-time decision` → `Get a response in seconds`
+
+**Verifica:**
+- `npx tsc --noEmit --pretty false | grep -E 'affirm\\.tsx|affirm-promo\\.tsx'`: nessun errore riferito ai file modificati.
+
+**Commit pushato su `origin/main` (auredagaz2023/Hydrogen_Us_New):**
+
+| Hash | Descrizione |
+|------|-------------|
+| `693e124` | fix: update Affirm page decision copy |
+
+Il push su `origin/main` ha triggerato il deploy automatico su **Shopify Oxygen**.
+
+### Ritocchi mobile/finale landing Cool Comfort 2026
+
+**File modificati:**
+- `app/routes/($locale).cool-comfort-2026.tsx`
+- `app/routes/($locale).sleep-resolution-2025.tsx`
+
+Modifiche richieste da screenshot reference del 31 luglio 2026:
+- Mobile, blocco Firenze Adjustable Base: solo la porzione `starting at $1,099 $199` e' bold; il resto della frase resta regular.
+- Mobile, tabella benefici Firenze: tutti i testi dentro le caselle sono centrati.
+- Desktop e mobile, fondo pagina: aggiunto sfondo grigio `#F6F6F6` al blocco finale che comprende newsletter, logo maxi Magniflex e payoff/footer.
+
+**Implementazione:**
+- Esteso il componente riusabile `SleepResolutionLanding` con prop opzionali dedicate:
+  - `emphasizeMobileFirenzePrice`
+  - `centerMobileFirenzeTableText`
+  - `greyNewsletterFooter`
+- Le prop sono attivate solo nella route `/cool-comfort-2026`, cosi' le altre landing basate sullo stesso template restano invariate.
+
+**Verifica:**
+- `npx tsc --noEmit --pretty false | grep -E 'cool-comfort-2026|sleep-resolution-2025'`: nessun errore riferito ai file modificati.

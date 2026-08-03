@@ -151,6 +151,9 @@ type SleepResolutionLandingProps = {
   productDesktopRollImages?: string[];
   productMobileImages?: string[];
   productPrices?: string[];
+  emphasizeMobileFirenzePrice?: boolean;
+  centerMobileFirenzeTableText?: boolean;
+  greyNewsletterFooter?: boolean;
   introTitle?: string;
   introBody?: ReactNode;
   productDetailLabel?: string;
@@ -175,6 +178,9 @@ export default function SleepResolutionLanding({
   productDesktopRollImages,
   productMobileImages,
   productPrices,
+  emphasizeMobileFirenzePrice = false,
+  centerMobileFirenzeTableText = false,
+  greyNewsletterFooter = false,
   introTitle = 'Better sleep starts with the right foundation.',
   introBody = defaultIntroBody,
   productDetailLabel = 'Benefits',
@@ -381,8 +387,12 @@ export default function SleepResolutionLanding({
             />
             <div className='flex flex-col items-center px-12'>
               <a href='https://magniflex.us/bed-bases/details?product=firenze' className='hover:underline mt-[20px] text-[27.5px] lg:text-[22px] text-[#174860] landing-[24px] font-bold uppercase text-center' style={{ lineHeight: 1 }}>FIRENZE ADJUSTABLE BASE</a>
-              <div className='mt-[15px] text-[17px] font-semibold md:font-normal text-[#174860] landing-[25px] text-center' style={{ lineHeight: 1.2 }}>
-                <span>Get it <span className='font-bold'>starting at</span> <span className='line-through'>$1,099</span> <span className='font-bold text-[#ED1C24] text-[15px]'>$199</span><br />
+              <div className={`mt-[15px] text-[17px] ${emphasizeMobileFirenzePrice ? 'font-normal' : 'font-semibold md:font-normal'} text-[#174860] landing-[25px] text-center`} style={{ lineHeight: 1.2 }}>
+                <span>Get it {emphasizeMobileFirenzePrice ? (
+                  <span className='font-bold'>starting at <span className='line-through'>$1,099</span> <span className='text-[#ED1C24] text-[15px]'>$199</span></span>
+                ) : (
+                  <><span className='font-bold'>starting at</span> <span className='line-through'>$1,099</span> <span className='font-bold text-[#ED1C24] text-[15px]'>$199</span></>
+                )}<br />
                   with the purchase of a King, Queen,<br />
                   or Twin XL mattress
                 </span>
@@ -408,59 +418,59 @@ export default function SleepResolutionLanding({
               <div className='grid grid-cols-2 gap-[1px] rounded-[50px] overflow-hidden'>
                 <div className='bg-white flex items-center justify-center px-5 min-h-[80px] mb-[2px] mr-[2px] text-[#000028] font-bold text-center'>Do you experience some of these issues?</div>
                 <div className='bg-white flex text-left items-center px-5 justify-center min-h-[80px] mb-[2px] text-[#000028] font-bold text-center'>The Firenze Adjustable Base can help you:</div>
-                <div className='relative bg-white flex items-center justify-end text-right px-5 min-h-[140px] mr-[2px]'>
-                  <div className='mr-5'>Stiff or achy?</div>
+                <div className={`relative bg-white flex items-center ${centerMobileFirenzeTableText ? 'justify-center text-center' : 'justify-end text-right'} px-5 min-h-[140px] mr-[2px]`}>
+                  <div className={centerMobileFirenzeTableText ? '' : 'mr-5'}>Stiff or achy?</div>
                   <div className='absolute right-[-39px] flex flex-col justify-center items-center'>
                     <img width={75} src={CirculationIcon} alt="" />
                     <img width={30} src={ArrowIcon} alt="" />
                   </div>
                 </div>
-                <div className='pl-10 bg-white flex text-left items-center px-5 justify-start min-h-[140px]'>
+                <div className={`bg-white flex ${centerMobileFirenzeTableText ? 'text-center justify-center' : 'pl-10 text-left justify-start'} items-center px-5 min-h-[140px]`}>
                   <div>Relieve pressure and improve circulation
                   </div>
                 </div>
-                <div className='relative bg-white flex items-center justify-end text-right px-5 min-h-[140px] mr-[2px]'>
-                  <div className='mr-5'>Snoring or poor posture?</div>
+                <div className={`relative bg-white flex items-center ${centerMobileFirenzeTableText ? 'justify-center text-center' : 'justify-end text-right'} px-5 min-h-[140px] mr-[2px]`}>
+                  <div className={centerMobileFirenzeTableText ? '' : 'mr-5'}>Snoring or poor posture?</div>
                   <div className='absolute right-[-39px] flex flex-col justify-center items-center'>
                     <img width={78} src={SnoozeIcon} alt="" />
                     <img width={30} src={ArrowIcon} alt="" />
                   </div>
                 </div>
-                <div className='pl-10 bg-white flex text-left items-center px-5 justify-start min-h-[140px]'>
+                <div className={`bg-white flex ${centerMobileFirenzeTableText ? 'text-center justify-center' : 'pl-10 text-left justify-start'} items-center px-5 min-h-[140px]`}>
                   <div>Reduce snoring and improve alignment</div>
                 </div>
-                <div className='relative bg-white flex items-center justify-end text-right px-5 min-h-[140px] mr-[2px]'>
-                  <div className='mr-5'>Can't find the “just right” position?
+                <div className={`relative bg-white flex items-center ${centerMobileFirenzeTableText ? 'justify-center text-center' : 'justify-end text-right'} px-5 min-h-[140px] mr-[2px]`}>
+                  <div className={centerMobileFirenzeTableText ? '' : 'mr-5'}>Can't find the “just right” position?
                   </div>
                   <div className='absolute right-[-39px] flex flex-col justify-center items-center'>
                     <img width={75} src={PositionIcon} alt="" />
                     <img width={30} src={ArrowIcon} alt="" />
                   </div>
                 </div>
-                <div className='pl-10 bg-white flex text-left items-center px-5 justify-start min-h-[140px]'>
+                <div className={`bg-white flex ${centerMobileFirenzeTableText ? 'text-center justify-center' : 'pl-10 text-left justify-start'} items-center px-5 min-h-[140px]`}>
                   <div>Perfect positioning, effortless comfort
                   </div>
                 </div>
-                <div className='relative bg-white flex items-center justify-end text-right px-5 min-h-[140px] mr-[2px]'>
-                  <div className='mr-5'>Worried it won’t fit your bed frame?
+                <div className={`relative bg-white flex items-center ${centerMobileFirenzeTableText ? 'justify-center text-center' : 'justify-end text-right'} px-5 min-h-[140px] mr-[2px]`}>
+                  <div className={centerMobileFirenzeTableText ? '' : 'mr-5'}>Worried it won’t fit your bed frame?
                   </div>
                   <div className='absolute right-[-39px] flex flex-col justify-center items-center'>
                     <img width={75} src={FitIcon} alt="" />
                     <img width={30} src={ArrowIcon} alt="" />
                   </div>
                 </div>
-                <div className='pl-10 bg-white flex text-left items-center px-5 justify-start min-h-[140px]'>
+                <div className={`bg-white flex ${centerMobileFirenzeTableText ? 'text-center justify-center' : 'pl-10 text-left justify-start'} items-center px-5 min-h-[140px]`}>
                   <div>Designed to fit most frames</div>
                 </div>
-                <div className='relative bg-white flex items-center justify-end text-right px-5 min-h-[140px] mr-[2px]'>
-                  <div className='mr-5'>Need support for TV, reading or work?
+                <div className={`relative bg-white flex items-center ${centerMobileFirenzeTableText ? 'justify-center text-center' : 'justify-end text-right'} px-5 min-h-[140px] mr-[2px]`}>
+                  <div className={centerMobileFirenzeTableText ? '' : 'mr-5'}>Need support for TV, reading or work?
                   </div>
                   <div className='absolute right-[-39px] flex flex-col justify-center items-center'>
                     <img width={75} src={SupportIcon} alt="" />
                     <img width={30} src={ArrowIcon} alt="" />
                   </div>
                 </div>
-                <div className='pl-10 bg-white flex text-left items-center px-5 justify-start min-h-[140px]'>
+                <div className={`bg-white flex ${centerMobileFirenzeTableText ? 'text-center justify-center' : 'pl-10 text-left justify-start'} items-center px-5 min-h-[140px]`}>
                   <div>Supports all in-bed activities</div>
                 </div>
               </div>
@@ -563,7 +573,7 @@ export default function SleepResolutionLanding({
             })
           }
         </div>
-        <div className='flex flex-col mt-4 px-[30px] lg:p-4 pt-[40px] lg:pt-0'>
+        <div className={`flex flex-col mt-4 px-[30px] lg:p-4 pt-[40px] lg:pt-0 ${greyNewsletterFooter ? 'bg-[#F6F6F6] lg:-mx-3' : ''}`}>
           <form onSubmit={(e) => handleSubmit(e)} ref={formRef} className='flex flex-col items-center lg:py-8'>
             <svg width="50" height="43" viewBox="0 0 50 43" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M45.9999 14.4738C49.9284 13.9068 50.0795 14.4993 49.9788 14.907C49.8718 15.3083 49.4688 15.2574 49.4688 15.2574C49.4688 15.2574 43.8028 14.1426 25.9798 29.4888C28.6491 33.2664 30.6826 39.1781 28.945 40.1528C27.2137 41.1274 25.1739 35.7126 21.875 34.7188C18.5698 33.7251 18.5698 33.4957 10.1903 40.9045C2.72998 46.6187 5.78336 39.0953 9.10117 36.4771C12.419 33.8652 16.807 29.5143 17.1344 27.9153C17.4555 26.3036 14.3077 24.5645 14.9813 19.5128C15.082 18.9522 15.0694 18.9203 15.3464 18.2769C16.486 15.6077 17.0085 18.6464 18.7083 21.0162C20.5907 23.6471 21.9128 24.1568 21.9128 24.1568C21.9128 24.1568 35.4421 15.99 46.0062 14.4611" fill="#174860" />
