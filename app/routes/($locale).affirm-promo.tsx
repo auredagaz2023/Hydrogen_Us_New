@@ -177,10 +177,10 @@ export default function AffirmPromo() {
           </div>
           <div className='flex flex-col items-center justify-center gap-[10px]'>
             <div className='text-[22px] text-[#4242CF] rounded-[4px] font-bold bg-[#E2E2FF] w-[42px] h-[42px] flex items-center justify-center'>2</div>
-            <div className='font-bold text-[22px] text-[#000028]'>Get instant approval</div>
+            <div className='font-bold text-[22px] text-[#000028]'>Get instant decision</div>
             <img className='w-[70px] h-[70px]' src={approvalImg} alt="" />
             <div>
-              <span className='font-[22px] text-[#174860] max-w-[300px]'>Enter a few pieces of information for a real-time decision. Checking eligibility won't affect your credit score.</span>
+              <span className='font-[22px] text-[#174860] max-w-[300px]'>Enter a few pieces of information for a real-time decision. Checking eligibility won't affect your credit.</span>
             </div>
           </div>
           <div className='flex flex-col items-center justify-center gap-[10px]'>
@@ -237,13 +237,13 @@ export default function AffirmPromo() {
               <img src={quickApprovalImg} className="h-[45px]" alt='' />
             </span>
             <div className="text-B09987 font-semibold text-lg md:text-base my-4">
-              Quick approval
+              Instant decision
             </div>
             <div
               className="relative flex justify-between"
             >
               <div className="text-174860 font-semibold text-sm">
-                Get a real-time decision
+                Get a response in seconds
               </div>
             </div>
           </div>
