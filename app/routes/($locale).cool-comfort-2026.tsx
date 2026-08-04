@@ -76,6 +76,20 @@ export default function CoolComfort2026() {
       productPrices={['$3,299', '$2,485', '$2,969', '$2,959', '$1,979']}
       emphasizeMobileFirenzePrice
       centerMobileFirenzeTableText
+      mobileFirenzeSnoringIssueText={
+        <>
+          Disruptive<br />
+          snoring or poor<br />
+          posture?
+        </>
+      }
+      mobileFirenzeSnoringBenefitText={
+        <>
+          Reduce snoring<br />
+          and improve<br />
+          spinal alignment
+        </>
+      }
       greyNewsletterFooter
       introTitle="Elevate your sleep experience with tailored posture and comfort."
       introBody={

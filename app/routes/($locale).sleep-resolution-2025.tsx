@@ -153,6 +153,8 @@ type SleepResolutionLandingProps = {
   productPrices?: string[];
   emphasizeMobileFirenzePrice?: boolean;
   centerMobileFirenzeTableText?: boolean;
+  mobileFirenzeSnoringIssueText?: ReactNode;
+  mobileFirenzeSnoringBenefitText?: ReactNode;
   greyNewsletterFooter?: boolean;
   introTitle?: string;
   introBody?: ReactNode;
@@ -180,6 +182,8 @@ export default function SleepResolutionLanding({
   productPrices,
   emphasizeMobileFirenzePrice = false,
   centerMobileFirenzeTableText = false,
+  mobileFirenzeSnoringIssueText = 'Snoring or poor posture?',
+  mobileFirenzeSnoringBenefitText = 'Reduce snoring and improve alignment',
   greyNewsletterFooter = false,
   introTitle = 'Better sleep starts with the right foundation.',
   introBody = defaultIntroBody,
@@ -430,14 +434,14 @@ export default function SleepResolutionLanding({
                   </div>
                 </div>
                 <div className={`relative bg-white flex items-center ${centerMobileFirenzeTableText ? 'justify-center text-center' : 'justify-end text-right'} px-5 min-h-[140px] mr-[2px]`}>
-                  <div className={centerMobileFirenzeTableText ? '' : 'mr-5'}>Snoring or poor posture?</div>
+                  <div className={centerMobileFirenzeTableText ? '' : 'mr-5'}>{mobileFirenzeSnoringIssueText}</div>
                   <div className='absolute right-[-39px] flex flex-col justify-center items-center'>
                     <img width={78} src={SnoozeIcon} alt="" />
                     <img width={30} src={ArrowIcon} alt="" />
                   </div>
                 </div>
                 <div className={`bg-white flex ${centerMobileFirenzeTableText ? 'text-center justify-center' : 'pl-10 text-left justify-start'} items-center px-5 min-h-[140px]`}>
-                  <div>Reduce snoring and improve alignment</div>
+                  <div>{mobileFirenzeSnoringBenefitText}</div>
                 </div>
                 <div className={`relative bg-white flex items-center ${centerMobileFirenzeTableText ? 'justify-center text-center' : 'justify-end text-right'} px-5 min-h-[140px] mr-[2px]`}>
                   <div className={centerMobileFirenzeTableText ? '' : 'mr-5'}>Can't find the “just right” position?
