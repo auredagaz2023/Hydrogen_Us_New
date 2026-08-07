@@ -343,7 +343,7 @@ export default function AffirmPromo() {
           Affirm will remind you via email and text before each due date - or simply enable AutoPay to have payments made automatically.
         </span>
         <span className='text-[17.5px] font-bold md:text-center mt-4'>Will checking my eligibility affect my credit score?</span>
-        <span className='text-[17.5px]'>No. Affirm uses a soft credit check that won't impact your score.</span>
+        <span className='text-[17.5px]'>No. Affirm uses a soft credit check that won't impact your credit.</span>
         <span className='text-[17.5px] font-bold md:text-center mt-4'>Can I pay off early?</span>
         <span className='text-[17.5px]'>Yes! You can pay off your balance at any time with no penalties.</span>
         <span className='text-[17.5px] font-bold md:text-center mt-4'>Are there any late or hidden fees?</span>
