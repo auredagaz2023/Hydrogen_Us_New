@@ -93,7 +93,7 @@ const products = [
     description: "Its patented checkered design provides targeted support and gently stretches the spine to promote natural alignment.",
     bestfor: "active people, back pain sufferers",
     fitness: "medium-firm, firm",
-    original_price: "$2,699",
+    original_price: "$2,969",
     price: "$2,079",
     button: "Shop MAGNISTRETCH",
     link: "https://magniflex.us/mattresses/magnistretch?product=magnistretch-12",
@@ -409,7 +409,7 @@ export default function LaborDaySale2026() {
             )
           })}
         </div>
-        <div className='flex flex-col mt-4 px-[30px] lg:p-4 pt-[40px] lg:pt-0'>
+        <div className='flex flex-col mt-4 px-[30px] lg:p-4 pt-[40px] lg:pt-0 bg-[#F6F6F6]'>
           <form onSubmit={(e) => handleSubmit(e)} ref={formRef} className='flex flex-col items-center lg:py-8'>
             <svg width="50" height="43" viewBox="0 0 50 43" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M45.9999 14.4738C49.9284 13.9068 50.0795 14.4993 49.9788 14.907C49.8718 15.3083 49.4688 15.2574 49.4688 15.2574C49.4688 15.2574 43.8028 14.1426 25.9798 29.4888C28.6491 33.2664 30.6826 39.1781 28.945 40.1528C27.2137 41.1274 25.1739 35.7126 21.875 34.7188C18.5698 33.7251 18.5698 33.4957 10.1903 40.9045C2.72998 46.6187 5.78336 39.0953 9.10117 36.4771C12.419 33.8652 16.807 29.5143 17.1344 27.9153C17.4555 26.3036 14.3077 24.5645 14.9813 19.5128C15.082 18.9522 15.0694 18.9203 15.3464 18.2769C16.486 15.6077 17.0085 18.6464 18.7083 21.0162C20.5907 23.6471 21.9128 24.1568 21.9128 24.1568C21.9128 24.1568 35.4421 15.99 46.0062 14.4611" fill="#174860" />
@@ -436,8 +436,8 @@ export default function LaborDaySale2026() {
             <br />
             <button type='submit' className='border border-[#556268] text-[#174860] text-[17px] lg:text-[13px] font-semibold px-6 py-3 hover:bg-[#174860] hover:text-white uppercase'>subscribe</button>
           </form>
-          <div className='lg:mt-[40px] mt-[208px] w-full flex justify-center hidden lg:block'>
-            <img className='w-full h-auto max-w-[900px]' src={magniflexlogo} alt="" />
+          <div className='lg:mt-[40px] mt-[208px] w-full hidden lg:block'>
+            <img className='w-full h-auto max-w-[900px] mx-auto' src={magniflexlogo} alt="" />
           </div>
           <hr className='text-[#0a2430] my-[20px] hidden lg:block border-[#888888]' />
           <div className='text-[16px] sm:text-[20px] md:text-[24px] lg:text-[30px] text-center landing-[100px] font-semibold py-[30px] lg:py-0 hidden lg:block'>At Night, We Bring Life to Your Days.</div>
