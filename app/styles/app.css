@@ -2216,6 +2216,9 @@ select{
 .mb-\[30px\]{
   margin-bottom: 30px;
 }
+.mb-\[32px\]{
+  margin-bottom: 32px;
+}
 .mb-\[35px\]{
   margin-bottom: 35px;
 }
@@ -3046,6 +3049,9 @@ select{
 .max-w-\[880px\]{
   max-width: 880px;
 }
+.max-w-\[900px\]{
+  max-width: 900px;
+}
 .max-w-footer-logo{
   max-width: 260px;
 }
@@ -3462,6 +3468,15 @@ select{
   margin-top: calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.75rem * 0);
   margin-bottom: calc(0.75rem * var(--tw-space-y-reverse));
+}
+.space-y-5 > :not([hidden]) ~ :not([hidden]){
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1.25rem * (1 - 0));
+  margin-top: calc(1.25rem * (1 - var(--tw-space-y-reverse)));
+  margin-top: calc(1.25rem * calc(1 - 0));
+  margin-top: calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1.25rem * 0);
+  margin-bottom: calc(1.25rem * var(--tw-space-y-reverse));
 }
 .divide-y > :not([hidden]) ~ :not([hidden]){
   --tw-divide-y-reverse: 0;
@@ -4909,8 +4924,14 @@ select{
 .text-\[25px\]{
   font-size: 25px;
 }
+.text-\[26px\]{
+  font-size: 26px;
+}
 .text-\[27\.5px\]{
   font-size: 27.5px;
+}
+.text-\[27px\]{
+  font-size: 27px;
 }
 .text-\[28px\]{
   font-size: 28px;
@@ -5055,6 +5076,9 @@ select{
 }
 .leading-\[1\.2\]{
   line-height: 1.2;
+}
+.leading-\[1\.6\]{
+  line-height: 1.6;
 }
 .leading-\[100px\]{
   line-height: 100px;
@@ -6399,6 +6423,9 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
 .disabled\:opacity-30:disabled{
   opacity: 0.3;
 }
+.disabled\:opacity-50:disabled{
+  opacity: 0.5;
+}
 .disabled\:opacity-70:disabled{
   opacity: 0.7;
 }
@@ -6593,6 +6620,10 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
 
   .sm\:text-\[16px\]{
     font-size: 16px;
+  }
+
+  .sm\:text-\[20px\]{
+    font-size: 20px;
   }
 }
 @media (min-width: 768px){
@@ -7272,6 +7303,11 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
     padding-right: 32px;
   }
 
+  .md\:px-\[8\%\]{
+    padding-left: 8%;
+    padding-right: 8%;
+  }
+
   .md\:py-12{
     padding-top: 3rem;
     padding-bottom: 3rem;
@@ -7483,12 +7519,28 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
     font-size: 20px;
   }
 
+  .md\:text-\[24px\]{
+    font-size: 24px;
+  }
+
   .md\:text-\[30px\]{
     font-size: 30px;
   }
 
   .md\:text-\[35px\]{
     font-size: 35px;
+  }
+
+  .md\:text-\[39px\]{
+    font-size: 39px;
+  }
+
+  .md\:text-\[40px\]{
+    font-size: 40px;
+  }
+
+  .md\:text-\[41px\]{
+    font-size: 41px;
   }
 
   .md\:text-base{
@@ -7606,6 +7658,11 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
     grid-column-start: 6;
   }
 
+  .lg\:-mx-3{
+    margin-left: -0.75rem;
+    margin-right: -0.75rem;
+  }
+
   .lg\:mx-0{
     margin-left: 0px;
     margin-right: 0px;
@@ -7653,6 +7710,10 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
 
   .lg\:mb-\[55px\]{
     margin-bottom: 55px;
+  }
+
+  .lg\:mb-\[70px\]{
+    margin-bottom: 70px;
   }
 
   .lg\:ml-\[8\%\]{
@@ -8332,6 +8393,10 @@ swiper-container:not(.swiper-watch-progress) .swiper-lazy-preloader {
 
   .lg\:text-\[25px\]{
     font-size: 25px;
+  }
+
+  .lg\:text-\[30px\]{
+    font-size: 30px;
   }
 
   .lg\:text-\[35px\]{
