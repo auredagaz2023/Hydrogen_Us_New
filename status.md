@@ -1114,3 +1114,68 @@ Modifiche richieste da screenshot reference del 31 luglio 2026:
 
 **Verifica:**
 - `npx tsc --noEmit --pretty false | grep -E 'cool-comfort-2026|sleep-resolution-2025'`: nessun errore riferito ai file modificati.
+
+---
+
+## Sessione 2026-08-24
+
+### Nuova landing page: labor-day-sale-2026
+
+**File route:** `app/routes/($locale).labor-day-sale-2026.tsx`
+**URL:** `https://magniflex.us/labor-day-sale-2026`
+
+Creata nuova landing duplicando `independence-day-2026` e personalizzata per **Labor Day Sale 2026**.
+
+**Asset utilizzati:** `app/assets/labor-day-sale-2026/`
+- Copiati 20 asset da `temp/Labor Day Snooze-A-Thon Sale`
+- Header desktop/mobile dedicati Labor Day Snooze-A-Thon Sale
+- Product images desktop, roll desktop e mobile per Dolce Vita, Magnicool, MagniStretch, Magnifico, Classico e Pillows
+- Benefit bar riutilizzata da `labor-day-promo-2025`
+
+**Copy intro aggiornato da reference Figma:**
+- Headline: `Peak performance starts with deeper, more restorative sleep`
+- Promo: `30% off select mattresses and pillows`
+- Claim finale: `save up to $4,355`
+
+**Aggiornamenti prodotto da reference:**
+- Dolce Vita: `$3,299` → `$2,310`, `Save up to $2,705`
+- Magnicool: `$2,485` → `$1,740`, `Save up to $1,748`
+- MagniStretch: `$2,699` → `$2,079`, `Save up to $2,375`
+- Magnifico: `$2,969` → `$2,079`, `Save up to $4,355`
+- Classico: `$1,979` → `$1,386`, `Save up to $1,319`
+- Pillows: `$129` → `$91`, `Save up to $86`
+
+**Deploy:**
+- Commit pushato su `origin/main`: `6a0c598` — `Add labor day sale 2026 landing page`
+- Deploy automatico **Shopify Oxygen** completato con successo tramite GitHub Actions (`Storefront 1000031155`, run `32714932023`)
+
+**Verifica:**
+- `npm run build`: build CSS completato; `shopify hydrogen build` interrotto localmente per timeout dopo 180s senza errori espliciti prima del timeout.
+- Check con pi-textbrowser su `https://magniflex.us/labor-day-sale-2026`: pagina raggiungibile, title corretto e testi/prezzi principali presenti nel DOM.
+
+---
+
+## Sessione 2026-08-28
+
+### Fix finale landing labor-day-sale-2026
+
+**File modificato:**
+- `app/routes/($locale).labor-day-sale-2026.tsx`
+
+**Modifiche:**
+- Il blocco finale grigio `#F6F6F6` di newsletter, logo Magniflex e payoff ora si estende a tutta la larghezza della viewport, anche se la landing e' dentro il container principale.
+- Il logo Magniflex finale e' stato ingrandito e riallineato al comportamento della landing Canada `https://magniflex.ca/labour-day-comfort-sale`:
+  - desktop: logo `w-full` senza limite `max-w-[900px]`, con padding laterale `px-12`
+  - mobile: logo inline `w-full` sopra il payoff, non piu' posizionato absolute con larghezza fissa `500px`
+
+**Deploy:**
+- Commit pushato su `origin/main`: `1b52e6d` — `Fix labor day footer background and logo`
+- Deploy automatico **Shopify Oxygen** completato con successo tramite GitHub Actions (`Storefront 1000031155`, run `33172524361`)
+
+**Verifica:**
+- `npm run build:css`: OK; solo warning `Browserslist: caniuse-lite is outdated`.
+- `git diff --check` sulla route: OK.
+- Check Playwright headless live su `https://magniflex.us/labor-day-sale-2026`:
+  - desktop `1440px`: blocco grigio `left 0`, `right 1440`, `width 1440`; logo `1312px`
+  - mobile `390px`: blocco grigio `left 0`, `right 390`, `width 390`; logo `330px`
+  - bordi sinistro/destro del blocco finale confermati con background `rgb(246, 246, 246)`
