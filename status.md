@@ -1179,3 +1179,27 @@ Creata nuova landing duplicando `independence-day-2026` e personalizzata per **L
   - desktop `1440px`: blocco grigio `left 0`, `right 1440`, `width 1440`; logo `1312px`
   - mobile `390px`: blocco grigio `left 0`, `right 390`, `width 390`; logo `330px`
   - bordi sinistro/destro del blocco finale confermati con background `rgb(246, 246, 246)`
+
+---
+
+## Sessione 2026-09-14
+
+### Aggiornamento carousel pagina Affirm
+
+**File modificato:**
+- `app/routes/($locale).affirm.tsx`
+
+**Modifiche:**
+- Attivata rotazione automatica del carousel prodotti nella pagina `/affirm` con intervallo di 4 secondi (`autoplaySpeed: 4000`).
+- Aggiunte frecce laterali destra/sinistra non invasive, con stile arrotondato, sfondo semi-trasparente, ombra leggera e label accessibili.
+- Aggiornato il link della slide `Classico` a `https://magniflex.us/mattresses/classico?product=classico-essential-10`.
+
+**Verifica:**
+- `npx tsc --noEmit --pretty false | rg "affirm\.tsx"`: nessun errore riferito al file modificato.
+
+**Deploy:**
+- Commit pushato su `origin/main`: `4901cce` — `feat: update Affirm carousel`
+- Deploy automatico **Shopify Oxygen** completato con successo tramite GitHub Actions (`Storefront 1000031155`, run `34854746470`)
+
+**Nota:**
+- Nel working tree erano presenti altre modifiche/file non tracciati preesistenti; il commit include solo `app/routes/($locale).affirm.tsx`.
