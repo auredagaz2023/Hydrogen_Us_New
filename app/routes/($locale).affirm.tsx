@@ -82,7 +82,7 @@ const products = [
     original_price: "$2,099.00",
     price: "$1,679",
     button: "shop magnistretch",
-    link: "https://magniflex.us/mattresses/classico?product=classico-9",
+    link: "https://magniflex.us/mattresses/classico?product=classico-essential-10",
     bottom: "Save up to $860"
   },
 ]
@@ -90,30 +90,43 @@ const products = [
 const PrevArrow = (props: any) => {
   const { style, onClick } = props;
   return (
-    <div className='text-12 font-semibold text-[#174860] lg:text-white absolute left-2 lg:left-4 top-[50%] z-[200]' style={style} onClick={onClick}>
-      {'<'}
-    </div>
+    <button
+      type="button"
+      aria-label="Previous slide"
+      className="absolute left-3 md:left-6 top-1/2 z-[200] flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/75 text-[#174860] shadow-md backdrop-blur-sm transition hover:bg-white hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#4A4AF4] md:h-11 md:w-11"
+      style={style}
+      onClick={onClick}
+    >
+      <span className="text-2xl leading-none md:text-3xl">‹</span>
+    </button>
   )
 }
 
 const NextArrow = (props: any) => {
   const { style, onClick } = props;
   return (
-    <div className='text-12 font-semibold text-[#174860] lg:text-white absolute right-2 lg:right-4 top-[50%] z-[200] ' onClick={onClick} style={style}>
-      {'>'}
-    </div>
+    <button
+      type="button"
+      aria-label="Next slide"
+      className="absolute right-3 md:right-6 top-1/2 z-[200] flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/75 text-[#174860] shadow-md backdrop-blur-sm transition hover:bg-white hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#4A4AF4] md:h-11 md:w-11"
+      onClick={onClick}
+      style={style}
+    >
+      <span className="text-2xl leading-none md:text-3xl">›</span>
+    </button>
   )
 }
 
 
 const settings = {
   dots: false,
-  arrows: false,
+  arrows: true,
   infinite: true,
   slidesToShow: 1,
   slidesToScroll: 1,
   speed: 1000,
-  autoplay: false,
+  autoplay: true,
+  autoplaySpeed: 4000,
   prevArrow: <PrevArrow />,
   nextArrow: <NextArrow />,
   responsive: [
